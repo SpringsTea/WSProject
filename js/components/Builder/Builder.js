@@ -3,6 +3,7 @@ import { Input, Row, Col } from 'antd'
 
 import Card from './Card';
 import SeriesSelect from './SeriesSelect';
+import CardSelector from './CardSelector';
 
 import BuilderStore from '../../stores/BuilderStore';
 
@@ -27,7 +28,7 @@ class Builder extends Component {
   }
 
 	render(){
-		const { selectedCard, serieses } = this.state;
+		const { selectedCard, serieses, buildercards } = this.state;
 		return(
 			<div className="container-builder">
 				<Row>
@@ -36,7 +37,12 @@ class Builder extends Component {
 						<SeriesSelect serieses={serieses} />
 					</Col>
 					<Col span={18}>
-						
+
+					</Col>
+				</Row>
+				<Row>
+					<Col span={6}>
+						<CardSelector cards={buildercards} />
 					</Col>
 				</Row>
 			</div>
