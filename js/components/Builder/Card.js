@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 
-import Property from './partials/Card/Property';
+import Property from '../partials/Builder/Card/Property';
 
 class Card extends Component {
 	render(){

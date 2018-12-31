@@ -7,14 +7,16 @@ import { Router, Route, browserHistory } from 'react-router';
 
 import {
   receiveTestData,
+  receiveSerieses,
 } from './actions/BuilderActions';
 
 import {
-	fetchTestData
+	fetchTestData,
+  fetchSerieses,
 } from './utils/api'
 
 // React components
-import Builder from './components/Builder';
+import Builder from './components/Builder/Builder';
 
 // Styles
 import '../styles/builder.less'
@@ -43,9 +45,12 @@ WS.event.on('page.app.load', async props => {
 async function loadBuilderData() {
   const [
     testdata,
+    serieses,
   ] = await Promise.all([
     fetchTestData(),
+    fetchSerieses(),
   ]);
 
   receiveTestData(testdata);
+  receiveSerieses(serieses);
 }

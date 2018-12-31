@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { Input, Row, Col } from 'antd'
 
 import Card from './Card';
+import SeriesSelect from './SeriesSelect';
 
-import BuilderStore from '../stores/BuilderStore'
+import BuilderStore from '../../stores/BuilderStore';
 
 const buildState = () => ({
   selectedCard: BuilderStore.getTestData(),
+  serieses: BuilderStore.getSeriesesData(),
+  buildercards: BuilderStore.getBuilderCards(),
 });
 
 class Builder extends Component {
@@ -22,16 +25,18 @@ class Builder extends Component {
   componentWillUnmount() {
     BuilderStore.removeChangeListener(this.onChange);
   }
+
 	render(){
-		const { selectedCard } = this.state;
+		const { selectedCard, serieses } = this.state;
 		return(
 			<div className="container-builder">
 				<Row>
 					<Col span={6}>
-						<Card data={selectedCard} />
+						{/*<Card data={selectedCard} />*/}
+						<SeriesSelect serieses={serieses} />
 					</Col>
 					<Col span={18}>
-
+						
 					</Col>
 				</Row>
 			</div>

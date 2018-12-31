@@ -2,6 +2,8 @@ export const charicter =
 {
 	id: 'a5b0851b-9e8e-4c82-bc2a-5ba17842dab8',
 	name: '"Crimson Demon" Megumin',
+	series: 'KS/W49',
+	seriesID: 1,
 	cardID: 'KS/W49-034',
 	rarity: 'RR',
 	color: 'Red',
@@ -23,6 +25,8 @@ export const charicter =
 export const climax = {
 	id: 'b5b0851b-9e8e-4c82-bc2a-5ba17842dab8',
 	name: 'Explosion Magic',
+	series: 'KS/W49',
+	seriesID: 1,
 	cardID: 'KS/W49-069',
 	rarity: 'CC',
 	color: 'Red',
@@ -43,6 +47,8 @@ export const climax = {
 export const event = {
 	id: 'c5b0851b-9e8e-4c82-bc2a-5ba17842dab8',
 	name: 'Explosion Magic Everyday!',
+	series: 'KS/W49',
+	seriesID: 1,
 	cardID: 'KS/W49-064',
 	rarity: 'U',
 	color: 'Red',
