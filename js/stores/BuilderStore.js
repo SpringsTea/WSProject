@@ -6,11 +6,14 @@ let test = {};
 let serieslist = [];//Top level list of available series
 let buildercards = [];
 
+let deck = [];
+
 const BuilderStore = {
   ...Store,
   getTestData: () => test,
   getSeriesesData: () => serieslist,
   getBuilderCards: () => buildercards,
+  getDeckCards: () => deck,
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case AT.TEST_RECEIVE:
@@ -21,6 +24,13 @@ const BuilderStore = {
         break;
       case AT.SERIES_RECEIVE:
         buildercards = props.data;
+        break;
+      case AT.ADD_DECK_CARD:
+        deck.push(props.card);
+        break;
+      case AT.REMOVE_DECK_CARD:
+        let indextoremove = deck.findIndex( (el) => el.id === props.card.id )
+        deck.splice(indextoremove, 1);
         break;
       default: return;
     }

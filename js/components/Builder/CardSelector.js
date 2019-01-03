@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { List } from 'antd';
+import { List, Icon } from 'antd';
+
+import CardItem from '../partials/Builder/CardItem'
 
 class CardSelector extends Component {
 
@@ -17,13 +19,7 @@ class CardSelector extends Component {
 					itemLayout="horizontal"
 					dataSource={cards}
 					renderItem={ card => (
-						<List.Item>
-							<List.Item.Meta 
-								/*TODO create an icon that can represent color and card type*/
-								onMouseOver={ () => handleItemHover(card)}
-								title={card.name}
-							/>
-						</List.Item>
+						<CardItem card={card} handleItemHover={handleItemHover} />
 					)}
 				/>
 			</div>

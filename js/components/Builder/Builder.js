@@ -12,6 +12,7 @@ import BuilderStore from '../../stores/BuilderStore';
 const buildState = () => ({
   serieses: BuilderStore.getSeriesesData(),
   buildercards: BuilderStore.getBuilderCards(),
+  deck: BuilderStore.getDeckCards(),
 });
 
 class Builder extends Component {
@@ -43,9 +44,13 @@ class Builder extends Component {
   	})
   }
 
+  handleModifyDeck = (card, options) => {
+
+  }
+
 	render(){
 		const { handleViewCard } = this;
-		const { selectedCard, serieses, buildercards } = this.state;
+		const { selectedCard, serieses, buildercards, deck } = this.state;
 		return(
 			<div className="container-builder">
 				<Row>
@@ -55,7 +60,7 @@ class Builder extends Component {
 						<Card data={selectedCard.card} />
 					</Col>
 					<Col span={18}>
-						<Deck />
+						<Deck cards={deck} />
 					</Col>
 				</Row>
 			</div>

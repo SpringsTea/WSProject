@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { List } from 'antd';
 
 class Deck extends Component {
 
@@ -13,7 +14,7 @@ class Deck extends Component {
 		return(
 			<div className="container-deck">
 				<div className="deck-header">
-					deck numbers
+					{ cards.length }
 				</div>
 				<div className="deck-body">
 					<div>Charicters</div>

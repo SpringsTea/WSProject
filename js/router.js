@@ -19,6 +19,7 @@ import {
 import Builder from './components/Builder/Builder';
 
 // Styles
+import '../styles/styles.less'
 import '../styles/builder.less'
 
 // Export the globals we'll want elsewhere
