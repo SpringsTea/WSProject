@@ -8,8 +8,10 @@ class Card extends Component {
 		const { data } = this.props;
 		return(
 			<div className="container-card">
-				<div className="card">
-					<div>{data.name}</div>
+				{
+				data ?
+				<div className="card">		
+					<div>{data.name || 'NaN'}</div>
 					<img src={data.image} />
 					<div className="cardtext">{data.cardText}</div>
 					<div className="extra"> 
@@ -26,6 +28,8 @@ class Card extends Component {
 						</Row>
 					</div>
 				</div>
+				: <span>No card found</span>
+				}
 			</div>
 		)
 	}

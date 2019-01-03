@@ -4,6 +4,46 @@
 		"selected_items":
 		[
 			[
+				"Card",
+				"CardSelector"
+			],
+			[
+				"Car",
+				"CardSelector\t(CardSelector.js)"
+			],
+			[
+				"ser",
+				"series"
+			],
+			[
+				"ge",
+				"getBuilderCards\t(BuilderStore.js)"
+			],
+			[
+				"seri",
+				"series\t(SeriesSelect.js)"
+			],
+			[
+				"B",
+				"BuilderActions\t(BuilderStore.js)"
+			],
+			[
+				"fet",
+				"fetchSeries\t(api.js)"
+			],
+			[
+				"onSe",
+				"onSeriesSelect"
+			],
+			[
+				"se",
+				"seriesid"
+			],
+			[
+				"get",
+				"getSeriesesData\t(BuilderStore.js)"
+			],
+			[
 				"class",
 				"className"
 			],
@@ -32,46 +72,37 @@
 	"buffers":
 	[
 		{
-			"file": "js/components/Builder.js",
+			"file": "js/components/Builder/Builder.js",
 			"settings":
 			{
-				"buffer_size": 774,
+				"buffer_size": 1127,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": ".gitignore",
+			"file": "js/components/Builder/CardSelector.js",
 			"settings":
 			{
-				"buffer_size": 37,
+				"buffer_size": 540,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/components/Card.js",
+			"file": "js/stores/BuilderStore.js",
 			"settings":
 			{
-				"buffer_size": 986,
+				"buffer_size": 766,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/constants/stubs/Cards.js",
+			"file": "js/actions/BuilderActions.js",
 			"settings":
 			{
-				"buffer_size": 2277,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "js/components/partials/Card/Property.js",
-			"settings":
-			{
-				"buffer_size": 350,
+				"buffer_size": 359,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -80,7 +111,16 @@
 			"file": "js/utils/api.js",
 			"settings":
 			{
-				"buffer_size": 131,
+				"buffer_size": 434,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/constants/stubs/Serieses.js",
+			"settings":
+			{
+				"buffer_size": 82,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -97,6 +137,10 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
 			[
 				"PACKA",
 				"Package Control: Install Package"
@@ -122,21 +166,31 @@
 	},
 	"expanded_folders":
 	[
-		"/C/WSProject"
+		"/C/WSProject",
+		"/C/WSProject/js",
+		"/C/WSProject/js/actions",
+		"/C/WSProject/js/components"
 	],
 	"file_history":
 	[
-		"/C/WSProject/styles/builder.less",
-		"/C/WSProject/js/components/partials/Card/Property.js",
-		"/C/WSProject/js/router.js",
-		"/C/WSProject/js/utils/api.js",
-		"/C/WSProject/js/constants/stubs/Cards.js",
-		"/C/WSProject/js/actions/BuilderActions.js",
-		"/C/WSProject/js/stores/BuilderStore.js",
-		"/C/WSProject/js/constants/stubs/Test.js",
-		"/C/WSProject/webpack.config.js",
-		"/C/WSProject/js/app.js",
+		"/C/WSProject/js/components/Builder/SeriesSelect.js",
 		"/C/WSProject/js/constants/Actions.js",
+		"/C/WSProject/js/actions/BuilderActions.js",
+		"/C/WSProject/js/constants/stubs/Cards.js",
+		"/C/WSProject/webpack.config.js",
+		"/C/WSProject/js/router.js",
+		"/C/WSProject/js/constants/stubs/Series.js",
+		"/C/WSProject/js/components/Builder/Card.js",
+		"/C/WSProject/js/stores/BuilderStore.js",
+		"/C/WSProject/js/components/Card.js",
+		"/C/WSProject/js/utils/api.js",
+		"/C/WSProject/js/components/Builder.js",
+		"/C/WSProject/js/components/partials/Card/Property.js",
+		"/C/WSProject/js/constants/stubs/Serieses.js",
+		"/C/WSProject/.gitignore",
+		"/C/WSProject/styles/builder.less",
+		"/C/WSProject/js/constants/stubs/Test.js",
+		"/C/WSProject/js/app.js",
 		"/D/clausehound/js/router.js",
 		"/D/clausehound/js/utils/api.js",
 		"/C/WSProject/js/stores/Store.js",
@@ -162,7 +216,7 @@
 	],
 	"find":
 	{
-		"height": 27.0
+		"height": 40.0
 	},
 	"find_in_files":
 	{
@@ -204,19 +258,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "js/components/Builder.js",
+					"file": "js/components/Builder/Builder.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 774,
+						"buffer_size": 1127,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								368,
-								368
+								257,
+								267
 							]
 						],
 						"settings":
@@ -224,7 +278,7 @@
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 108.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -232,24 +286,25 @@
 				},
 				{
 					"buffer": 1,
-					"file": ".gitignore",
+					"file": "js/components/Builder/CardSelector.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 37,
+						"buffer_size": 540,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								37,
-								37
+								183,
+								184
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Git Formats/Git Ignore.sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -260,25 +315,26 @@
 				},
 				{
 					"buffer": 2,
-					"file": "js/components/Card.js",
+					"file": "js/stores/BuilderStore.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 986,
+						"buffer_size": 766,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								41,
-								41
+								587,
+								587
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -289,54 +345,24 @@
 				},
 				{
 					"buffer": 3,
-					"file": "js/constants/stubs/Cards.js",
+					"file": "js/actions/BuilderActions.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2277,
+						"buffer_size": 359,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								222,
-								222
+								341,
+								341
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 108.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "js/components/partials/Card/Property.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 350,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								189,
-								189
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -346,20 +372,48 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "js/utils/api.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 131,
+						"buffer_size": 434,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								128,
-								128
+								428,
+								428
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/constants/stubs/Serieses.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 82,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								82,
+								82
 							]
 						],
 						"settings":
