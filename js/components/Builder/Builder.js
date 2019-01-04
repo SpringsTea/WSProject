@@ -44,10 +44,6 @@ class Builder extends Component {
   	})
   }
 
-  handleModifyDeck = (card, options) => {
-
-  }
-
 	render(){
 		const { handleViewCard } = this;
 		const { selectedCard, serieses, buildercards, deck } = this.state;
@@ -60,7 +56,7 @@ class Builder extends Component {
 						<Card data={selectedCard.card} />
 					</Col>
 					<Col span={18}>
-						<Deck cards={deck} />
+						<Deck ViewCard={handleViewCard} cards={deck} />
 					</Col>
 				</Row>
 			</div>

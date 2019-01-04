@@ -75,16 +75,16 @@
 			"file": "js/components/Builder/Builder.js",
 			"settings":
 			{
-				"buffer_size": 1127,
+				"buffer_size": 1429,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/components/Builder/CardSelector.js",
+			"file": "js/components/Builder/Deck.js",
 			"settings":
 			{
-				"buffer_size": 540,
+				"buffer_size": 541,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -93,7 +93,7 @@
 			"file": "js/stores/BuilderStore.js",
 			"settings":
 			{
-				"buffer_size": 766,
+				"buffer_size": 1049,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -102,25 +102,52 @@
 			"file": "js/actions/BuilderActions.js",
 			"settings":
 			{
-				"buffer_size": 359,
+				"buffer_size": 545,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/utils/api.js",
+			"file": "js/constants/Actions.js",
 			"settings":
 			{
-				"buffer_size": 434,
+				"buffer_size": 180,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/constants/stubs/Serieses.js",
+			"file": "js/components/partials/Builder/CardItem.js",
 			"settings":
 			{
-				"buffer_size": 82,
+				"buffer_size": 751,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "styles/builder.less",
+			"settings":
+			{
+				"buffer_size": 217,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "styles/styles.less",
+			"settings":
+			{
+				"buffer_size": 126,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/router.js",
+			"settings":
+			{
+				"buffer_size": 1172,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -167,28 +194,29 @@
 	"expanded_folders":
 	[
 		"/C/WSProject",
-		"/C/WSProject/js",
-		"/C/WSProject/js/actions",
-		"/C/WSProject/js/components"
+		"/C/WSProject/js"
 	],
 	"file_history":
 	[
+		"/C/WSProject/webpack.config.js",
+		"/C/WSProject/styles/builder.less",
+		"/C/WSProject/js/components/Builder/Card.js",
+		"/C/WSProject/js/components/Builder/Deck.js",
+		"/C/WSProject/js/components/partials/Builder/CardItem.js",
+		"/C/WSProject/js/components/Builder/CardSelector.js",
+		"/C/WSProject/js/constants/stubs/Serieses.js",
+		"/C/WSProject/js/utils/api.js",
+		"/C/WSProject/js/actions/BuilderActions.js",
+		"/C/WSProject/js/stores/BuilderStore.js",
 		"/C/WSProject/js/components/Builder/SeriesSelect.js",
 		"/C/WSProject/js/constants/Actions.js",
-		"/C/WSProject/js/actions/BuilderActions.js",
 		"/C/WSProject/js/constants/stubs/Cards.js",
-		"/C/WSProject/webpack.config.js",
 		"/C/WSProject/js/router.js",
 		"/C/WSProject/js/constants/stubs/Series.js",
-		"/C/WSProject/js/components/Builder/Card.js",
-		"/C/WSProject/js/stores/BuilderStore.js",
 		"/C/WSProject/js/components/Card.js",
-		"/C/WSProject/js/utils/api.js",
 		"/C/WSProject/js/components/Builder.js",
 		"/C/WSProject/js/components/partials/Card/Property.js",
-		"/C/WSProject/js/constants/stubs/Serieses.js",
 		"/C/WSProject/.gitignore",
-		"/C/WSProject/styles/builder.less",
 		"/C/WSProject/js/constants/stubs/Test.js",
 		"/C/WSProject/js/app.js",
 		"/D/clausehound/js/router.js",
@@ -216,7 +244,7 @@
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 27.0
 	},
 	"find_in_files":
 	{
@@ -253,7 +281,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 7,
 			"sheets":
 			[
 				{
@@ -262,15 +290,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1127,
+						"buffer_size": 1429,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								257,
-								267
+								1048,
+								1048
 							]
 						],
 						"settings":
@@ -278,27 +306,27 @@
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 108.0,
+						"translation.y": 378.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "js/components/Builder/CardSelector.js",
+					"file": "js/components/Builder/Deck.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 540,
+						"buffer_size": 541,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								183,
-								184
+								369,
+								369
 							]
 						],
 						"settings":
@@ -310,7 +338,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -319,15 +347,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 766,
+						"buffer_size": 1049,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								587,
-								587
+								339,
+								339
 							]
 						],
 						"settings":
@@ -340,7 +368,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
@@ -349,20 +377,106 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 359,
+						"buffer_size": 545,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								341,
-								341
+								545,
+								545
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "js/constants/Actions.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 180,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								31,
+								31
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "js/components/partials/Builder/CardItem.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 751,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								633,
+								633
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "styles/builder.less",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 217,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								101,
+								101
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LESS/Syntaxes/LESS.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -372,59 +486,62 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "js/utils/api.js",
+					"buffer": 7,
+					"file": "styles/styles.less",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 434,
+						"buffer_size": 126,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								428,
-								428
+								126,
+								126
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"auto_name": "",
+							"syntax": "Packages/LESS/Syntaxes/LESS.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "js/constants/stubs/Serieses.js",
+					"buffer": 8,
+					"file": "js/router.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 82,
+						"buffer_size": 1172,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								82,
-								82
+								450,
+								450
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]

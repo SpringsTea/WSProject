@@ -9,15 +9,15 @@ class CardItem extends Component {
 		const { handleItemHover, card } = this.props;
 		return(
 			<List.Item 
-			onMouseOver={ () => handleItemHover(card)}
+			onMouseEnter={ () => handleItemHover(card)}
 			className="card-item">
 				<List.Item.Meta 
 					/*TODO create an icon that can represent color and card type*/
-					title={card.name}
+					title={`${card.name} ${card.quantity > 0 && `(${card.quantity})`}`}
 				/>
 				<Button.Group>
-					<Button icon="minus" className="success" onClick={ () => removeDeckCard(card) }></Button>
-					<Button icon="plus" className="danger" onClick={ () => addDeckCard(card) }></Button>
+					<Button icon="minus" className="danger" onClick={ () => removeDeckCard(card) }></Button>
+					<Button icon="plus" className="success" onClick={ () => addDeckCard(card) }></Button>
 				</Button.Group>
 			</List.Item>
 		)

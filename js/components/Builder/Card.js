@@ -12,7 +12,9 @@ class Card extends Component {
 				data ?
 				<div className="card">		
 					<div>{data.name || 'NaN'}</div>
-					<img src={data.image} />
+					<div className='cardimage'>
+						<img src={data.image} />
+					</div>
 					<div className="cardtext">{data.cardText}</div>
 					<div className="extra"> 
 						<Row type='flex'>
