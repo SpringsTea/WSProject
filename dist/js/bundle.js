@@ -2136,7 +2136,7 @@ eval("exports = module.exports = __webpack_require__(/*! ../../../css-loader/lib
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \".container-card {\\n  border: 1px solid black;\\n  padding: 10px;\\n  text-align: center;\\n}\\n.container-card .card .cardtext {\\n  background: lightgray;\\n}\\n.container-card .card .container-property {\\n  text-align: left;\\n}\\n.card-item {\\n  padding: 6px 0;\\n}\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./styles/builder.less?./node_modules/css-loader!./node_modules/less-loader/dist/cjs.js??ref--5-2");
+eval("exports = module.exports = __webpack_require__(/*! ../node_modules/css-loader/lib/css-base.js */ \"./node_modules/css-loader/lib/css-base.js\")(false);\n// imports\n\n\n// module\nexports.push([module.i, \".container-card {\\n  height: 500px;\\n  width: 480px;\\n  border: 1px solid black;\\n  padding: 10px;\\n  text-align: center;\\n}\\n.container-card .card .cardtext {\\n  padding: 5px;\\n  max-height: 190px;\\n  overflow-y: auto;\\n  background: lightgray;\\n}\\n.container-card .card .container-property {\\n  text-align: left;\\n}\\n.card-item {\\n  padding: 6px 0;\\n}\\n\", \"\"]);\n\n// exports\n\n\n//# sourceURL=webpack:///./styles/builder.less?./node_modules/css-loader!./node_modules/less-loader/dist/cjs.js??ref--5-2");
 
 /***/ }),
 
