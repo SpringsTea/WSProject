@@ -1,4 +1,5 @@
 import { Serieses } from './stubs/Serieses'
+import { Konosuba } from './stubs/Series'
 
 module.exports = function(app){
 
@@ -8,6 +9,10 @@ module.exports = function(app){
 
   app.get("/api/serieslist", (req, res) =>
     res.send(Serieses)
+  );
+
+  app.get("/api/series", (req, res) => 
+    res.send(Konosuba)
   );
     
 }
