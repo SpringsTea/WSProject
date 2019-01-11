@@ -1,10 +1,5 @@
-const express = require("express");
-const os = require("os");
+require('@babel/register')({
+  ignore: [],
+})
 
-const app = express();
-
-app.use(express.static("dist"));
-
-require('./routes.js')(app);
-
-app.listen(8080, () => console.log("Listening on port 8080!"));
+module.exports = require('./server.js')

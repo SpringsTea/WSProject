@@ -29,6 +29,7 @@
     "@babel/polyfill": "^7.0.0-beta.51",
     "@babel/preset-env": "^7.0.0-beta.51",
     "@babel/preset-react": "^7.0.0-beta.51",
+    "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-import": "^1.11.0",
     "clean-webpack-plugin": "^1.0.0",
