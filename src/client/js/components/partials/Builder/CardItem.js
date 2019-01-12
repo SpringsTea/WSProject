@@ -13,7 +13,7 @@ class CardItem extends Component {
 			className="card-item">
 				<List.Item.Meta 
 					/*TODO create an icon that can represent color and card type*/
-					title={`${card.name} ${card.quantity > 0 && `(${card.quantity})`}`}
+					title={`${card.name} ${card.quantity ? `(${card.quantity})` : ''}`}
 				/>
 				<Button.Group>
 					<Button icon="minus" className="danger" onClick={ () => removeDeckCard(card) }></Button>

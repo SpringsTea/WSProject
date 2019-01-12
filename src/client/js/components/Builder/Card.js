@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
+import { Image } from 'cloudinary-react';
 
 import Property from '../partials/Builder/Card/Property';
 
@@ -13,7 +14,8 @@ class Card extends Component {
 				<div className="card">		
 					<div>{data.name || 'NaN'}</div>
 					<div className='cardimage'>
-						<img src={data.image} />
+					<Image cloudName="difwry0zl" publicId={data.image} >
+					</Image>
 					</div>
 					<div className="cardtext">{data.cardText}</div>
 					<div className="extra"> 

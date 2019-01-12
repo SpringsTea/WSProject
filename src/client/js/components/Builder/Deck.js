@@ -5,6 +5,14 @@ import CardSelector from './CardSelector';
 
 class Deck extends Component {
 
+	state = { 
+		decksize: 0 
+	} 
+ 
+	shouldComponentUpdate(nextProps){ 
+		return this.state.decksize !== nextProps.cards.length; 
+	} 
+
 	handleItemHover = (card) =>{
 		const { ViewCard } = this.props;
 		ViewCard(card);
@@ -12,6 +20,8 @@ class Deck extends Component {
 
 	calculateCardQuantity = () =>{
 		const { cards } = this.props;
+
+		this.setState({ decksize: cards.length }) 
 
 		//Removes duplicate cards, giving each unique card a quantity instead
 		return cards.reduce( (a,b) => {
@@ -26,6 +36,7 @@ class Deck extends Component {
 
 		//TODO This componenet renders on cardView, which call this logic way too often
 		let deckcards = calculateCardQuantity();
+		console.log('Deck Render'); 
 
 		return(
 			<div className="container-deck">
