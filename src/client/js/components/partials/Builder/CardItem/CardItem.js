@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { List, Button, Icon } from 'antd';
+import { List, Button, Icon, Avatar } from 'antd';
 
-import { addDeckCard, removeDeckCard } from '../../../actions/BuilderActions';
+import CardItemIcon from './CardItemIcon';
+
+import { addDeckCard, removeDeckCard } from 'Actions/BuilderActions';
 
 class CardItem extends Component {
 
@@ -12,7 +14,7 @@ class CardItem extends Component {
 			onMouseEnter={ () => handleItemHover(card)}
 			className="card-item">
 				<List.Item.Meta 
-					/*TODO create an icon that can represent color and card type*/
+					avatar={<CardItemIcon card={card} />}
 					title={`${card.name} ${card.quantity ? `(${card.quantity})` : ''}`}
 				/>
 				<Button.Group>

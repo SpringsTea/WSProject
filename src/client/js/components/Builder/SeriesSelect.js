@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Select } from 'antd';
 
 import { fetchSeries } from '../../utils/api'; 
-import { receiveSeries } from '../../actions/BuilderActions';
+import { receiveSeries } from 'Actions/BuilderActions';
 
 const Option = Select.Option; 
 

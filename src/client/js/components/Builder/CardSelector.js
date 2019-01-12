@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { List, Icon } from 'antd';
 
-import CardItem from '../partials/Builder/CardItem'
+import CardItem from '../partials/Builder/CardItem/CardItem'
 
 class CardSelector extends Component {
 

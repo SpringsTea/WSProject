@@ -48,4 +48,10 @@ module.exports = {
       //favicon: "./public/favicon.ico"
     })
   ],
+  resolve: {
+    alias: {
+      Actions: path.resolve(__dirname, 'src/client/js/actions'),
+      Utils: path.resolve(__dirname, 'src/client/js/utils'),
+    }
+  }
 }
