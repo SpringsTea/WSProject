@@ -49,13 +49,14 @@ class Builder extends Component {
 		const { selectedCard, serieses, buildercards, deck } = this.state;
 		return(
 			<div className="container-builder">
-				<Row>
-					<Col span={6}>
+				<Row gutter={16}>
+					<Col xxl={8} xl={8} lg={12} md={24}
+          className='container-series-selector'>
 						<SeriesSelect serieses={serieses} />
 						<CardSelector ViewCard={handleViewCard} cards={buildercards} />
 						<Card data={selectedCard.card} />
 					</Col>
-					<Col span={18}>
+					<Col xxl={16} xl={16} lg={12} md={24}> 
 						<Deck ViewCard={handleViewCard} cards={deck} />
 					</Col>
 				</Row>

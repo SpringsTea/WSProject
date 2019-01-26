@@ -16,7 +16,6 @@ class CardSelector extends Component {
 		return(
 			<div className="container-card-selector">
 				<List
-					itemLayout="horizontal"
 					dataSource={cards}
 					renderItem={ card => (
 						<CardItem card={card} handleItemHover={handleItemHover} />

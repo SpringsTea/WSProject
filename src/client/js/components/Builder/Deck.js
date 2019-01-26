@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { List } from 'antd';
 
 import CardSelector from './CardSelector';
+import Header from '../partials/Builder/Deck/Header';
 
 class Deck extends Component {
 
@@ -40,9 +41,7 @@ class Deck extends Component {
 
 		return(
 			<div className="container-deck">
-				<div className="deck-header">
-					{ cards.length }
-				</div>
+				<Header cards={cards}/>
 				<div className="deck-body">
 					<div>Charicters</div>
 						<div>

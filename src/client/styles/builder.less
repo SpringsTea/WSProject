@@ -1,5 +1,15 @@
 @import "colors.less";
 
+.container-builder{
+	padding: 5px;
+	overflow-x: hidden;
+}
+
+.container-series-selector .container-card-selector{
+	height: 40vh;
+	overflow-y: auto;
+}
+
 .container-card{
 	height:500px;
 
@@ -23,6 +33,10 @@
 
 .card-item{
 	padding: 6px 0;
+
+	.ant-list-item-meta{
+		flex: 2.5;
+	}
 
 	.ant-avatar.ws-Red{
 		background-color: @ws-red-bright;
