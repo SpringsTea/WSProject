@@ -2,3 +2,5 @@ node_modules/
 dist/
 project.sublime-project
 project\.sublime-workspace
+
+nodemon\.json

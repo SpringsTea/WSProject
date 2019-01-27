@@ -8,6 +8,7 @@
     "start": "npm run build && node src/server/index.js",
     "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
     "server": "nodemon src/server/index.js",
+    "db": "sudo service mongodb start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "keywords": [],
@@ -16,8 +17,10 @@
   "dependencies": {
     "antd": "^3.11.6",
     "axios": "^0.18.0",
+    "body-parser": "^1.18.3",
     "cloudinary-react": "^1.1.0",
     "express": "^4.16.4",
+    "mongoose": "^5.4.7",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router": "^4.3.1"
