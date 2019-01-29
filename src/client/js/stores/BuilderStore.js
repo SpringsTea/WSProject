@@ -23,7 +23,7 @@ const BuilderStore = {
         serieslist = props.data;
         break;
       case AT.SERIES_RECEIVE:
-        buildercards = props.data.concat(props.data).concat(props.data).concat(props.data).concat(props.data);
+        buildercards = props.data;
         break;
       case AT.ADD_DECK_CARD:
         deck.push(props.card);

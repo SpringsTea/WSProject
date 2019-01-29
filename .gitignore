@@ -4,3 +4,5 @@ project.sublime-project
 project\.sublime-workspace
 
 nodemon\.json
+
+npm-debug\.log

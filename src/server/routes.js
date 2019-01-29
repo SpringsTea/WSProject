@@ -1,9 +1,10 @@
 import mongoose from 'mongoose'
 
-import { Serieses } from './stubs/Serieses'
+//import { Serieses } from './stubs/Serieses'
 import { Konosuba } from './stubs/Series'
 
 import Card from './api/models/card'
+import Series from './api/models/series'
 
 module.exports = function(app){
 
@@ -20,7 +21,7 @@ module.exports = function(app){
   	.catch( err => console.log(err) );
   	res.status(201).json({
   		message: "/test",
-  		createdCArd: card
+  		createdCard: card
   	})
 
   })
@@ -29,12 +30,41 @@ module.exports = function(app){
     res.send({ test: 'success' })
   );
 
-  app.get("/api/serieslist", (req, res) =>
-    res.send(Serieses)
-  );
+  app.get("/api/serieslist", (req, res) =>{
+    Series.find().exec()
+    .then( docs => {
+      console.log('Series list requested');
+      res.status(200).json(docs)
+    })
+    .catch( err => {
+      console.log(err);
+      res.status(500).json({
+        error: err,
+        message: 'something went wrong'
+      })
+    })
+  });
 
-  app.get("/api/series", (req, res) => 
-    res.send(Konosuba)
-  );
+  app.get("/api/series/:id/cards", (req, res) => {
+
+    Series.find({_id: req.params.id}).limit(1).exec()
+    .then( docs => {
+      if( docs.length > 0 ){
+        Card.find({ set: docs[0].set, release: docs[0].release }).limit(300).exec()
+        .then( cards => {
+          res.status(200).json(cards)
+        })
+      }
+      else{
+        res.status(500).json({
+          error: true,
+          message: 'Set was not found'
+        })
+      }
+    })
+
+
+
+  });
     
 }

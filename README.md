@@ -1,4 +1,4 @@
-#**WSProject**
+# **WSProject**
 
 I am currently in the developing stages of this project, which aims for fill the void left by wsdecks shutting down.
 
@@ -8,7 +8,7 @@ Any time or experience you can lend are greatly appreciated.
 
 **My goal** is to have a simplified beta version out as quickly as possible. There will be no users, or deck editing. Just decks tied to links. At that point I can release it for testing, and getting community feedback. Users, deck editing, and deck searching can come afterwards.
 
-###Things you can do to help
+### Things you can do to help
 
 * Design
 
@@ -20,7 +20,12 @@ Any time or experience you can lend are greatly appreciated.
 
 * Data
 
-    I haven't actually got anything planned out for populating my database with the large amount of sets that this project will need to support, so I could definitely use some help with that. Maybe the data already exists, maybe I'll have to make a scraper for heart of the cards, I haven't really given it much thought yet.
+    ~~I haven't actually got anything planned out for populating my database with the large amount of sets that this project will need to support, so I could definitely use some help with that. Maybe the data already exists, maybe I'll have to make a scraper for heart of the cards, I haven't really given it much thought yet.~~
+    Big Thanks to greatwanz for making his translation project available for me to use. 
+    
+* Images
+
+    The project will of course need images, either that I was host, or are already hosted. I have no solution for that as of yet. It's important that all images or of consistant qualtity and resolution.
 
 * Deployment
 
@@ -30,5 +35,5 @@ If you have any feedback or offerings, feel free to shoot me an email @ shawn.sp
 
 **Credit where due:**
 
-Boiler plate: https://github.com/crsandeep/simple-react-full-stack
-Design Framework: https://ant.design/
+* Boiler plate: https://github.com/crsandeep/simple-react-full-stack
+* Design Framework: https://ant.design/

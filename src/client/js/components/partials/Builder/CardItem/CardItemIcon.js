@@ -8,7 +8,7 @@ class CardItemIcon extends Component {
 	render(){
 		const { card } = this.props;
 		return(
-			<Avatar shape='square' className={`ws-${card.color}`} style={{ verticalAlign: 'middle' }} size="large">
+			<Avatar shape='square' className={`ws-${card.colour}`} style={{ verticalAlign: 'middle' }} size="large">
 	          { calculateShortHand(card) }
 	        </Avatar>
 		)

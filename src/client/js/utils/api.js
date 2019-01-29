@@ -13,6 +13,6 @@ export async function fetchSerieses() {
 }
 
 //Return a single weiss set
-export async function fetchSeries() {
-	return (await axios.get('api/series/')).data;
+export async function fetchSeries(seriesid) {
+	return (await axios.get(`api/series/${seriesid}/cards`)).data;
 }

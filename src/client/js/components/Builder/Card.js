@@ -14,10 +14,12 @@ class Card extends Component {
 				<div className="card">		
 					<div>{data.name || 'NaN'}</div>
 					<div className='cardimage'>
-					<Image cloudName="difwry0zl" publicId={data.image} >
+					<Image cloudName="difwry0zl" publicId={`Series/${data.side}${data.release}/${data.sid}.gif`} >
 					</Image>
 					</div>
-					<div className="cardtext">{data.cardText}</div>
+					<div className="cardtext">
+						{ data.ability.map( (ability) => <div>{ability}</div> ) }
+					</div>
 					<div className="extra"> 
 						<Row type='flex'>
 							<Property name='Type' value={data.type} />
@@ -26,10 +28,14 @@ class Card extends Component {
 							<Property name='Color' value={data.color} />
 							<Property name='Power' value={data.power} />
 							<Property name='Soul' value={data.soul} />
-							<Property name='Card No' value={data.cardID} />
-							<Property name='Trait' value={data.trait1} />
-							<Property name='Trait' value={data.trait2} />
+							<Property name='Card No' value={`${data.set}/${data.release}-${data.sid}`} />
+							{
+								data.attributes.map( attribute =>  <Property name='Trait' value={attribute} />)
+							}
 						</Row>
+					</div>
+					<div>
+						<a target="_blank" href={`https://heartofthecards.com/code/cardlist.html?card=WS_${data.set}/${data.side}${data.release}-${data.sid}`}>Link</a>
 					</div>
 				</div>
 				: <span>No card found</span>

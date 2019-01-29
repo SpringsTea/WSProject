@@ -1,23 +1,27 @@
 export const Konosuba = [
 	{
-		id: 'a5b0851b-9e8e-4c82-bc2a-5ba17842dab8',
+		_id: 'a5b0851b-9e8e-4c82-bc2a-5ba17842dab8',
 		name: '"Crimson Demon" Megumin',
-		series: 'KS/W49',
-		cardID: 'KS/W49-034',
+		set: 'KS',
+		release: '49',
+		sid: '34',
 		rarity: 'RR',
-		color: 'Red',
-		side: 'Weiss',
-		type: 'Charicter',
+		color: 'RED',
+		side: 'W',
+		type: 'CH',
 		level: 3,
 		power: '9500',
 		cost: 2,
 		soul: 2,
-		trait1: '冒険者 (Adventurer)',
-		trait2: '魔法 (Magic)',
-		triggers: 'soul',
-		cardText: `[A] When this is placed from hand to the Stage, put the top card of your Library in the Waiting Room, and choose up to 1 of your Opponent's Level X or lower Characters and put it in the Waiting Room. X = the Level of that card. (Climax cards are considered Level 0 for this effect)
-		[A] CX COMBO [Discard a card from your hand to the Waiting Room] At the start of your Encore Step, if "Explosion Magic" is in your Climax Zone, you have another '"Full of Concerns" Kazuma', and this is in the Front Row, you may pay cost. If so, deal 5 Damage to your Opponent. (Damage Cancel can occur) `,
-		link: 'https://heartofthecards.com/code/cardlist.html?card=WS_KS/W49-034',
+		attributes: [
+			'Adventurer',
+			'Magic'
+		],
+		trigger: ['SOUL'],
+		"ability": [
+			`【ACT】 When this is placed from hand to the Stage, put the top card of your Library in the Waiting Room, and choose up to 1 of your Opponent's Level X or lower Characters and put it in the Waiting Room. X = the Level of that card. (Climax cards are considered Level 0 for this effect)`,
+			`【ACT】 CX COMBO [Discard a card from your hand to the Waiting Room] At the start of your Encore Step, if "Explosion Magic" is in your Climax Zone, you have another '"Full of Concerns" Kazuma', and this is in the Front Row, you may pay cost. If so, deal 5 Damage to your Opponent. (Damage Cancel can occur)`
+		],
 		image: 'Series/KS-W49/ks-w49-034.gif'
 	},
 	{

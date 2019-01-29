@@ -28,7 +28,7 @@ class SeriesSelect extends Component {
 					onSelect={onSelect}
 				>
 					{
-						serieses.map( (series) => <Option key={series.id} value={series.id}>{series.name}</Option> )
+						serieses.map( (series) => <Option key={series._id} value={series._id}>{series.name}</Option> )
 					}
 				</Select>
 			</div>
