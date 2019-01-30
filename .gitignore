@@ -6,3 +6,5 @@ project\.sublime-workspace
 nodemon\.json
 
 npm-debug\.log
+
+package-lock\.json
