@@ -16,6 +16,6 @@ const cardSchema = mongoose.Schema({
 	rarity: String,
 	attributes: [String],
 	ability: [String]
-})
+}, {collection: 'card'})
 
 module.exports = mongoose.model('Card', cardSchema);

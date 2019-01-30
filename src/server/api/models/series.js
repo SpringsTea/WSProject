@@ -5,6 +5,6 @@ const seriesSchema = mongoose.Schema({
 	set: String,
 	release: String,
 	name: String
-})
+}, { collection: 'series' })
 
 module.exports = mongoose.model('Series', seriesSchema);
