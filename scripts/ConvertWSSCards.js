@@ -16,7 +16,7 @@ WSS_SETS.forEach( (wss_set) => {
 
 		let card = {
 			sid: wss_card.id,
-			name: wss_card.name,
+			name: cleanText(wss_card.name),
 			set: wss_card.set,
 			side: wss_card.side,
 			release: wss_card.release,
@@ -28,8 +28,12 @@ WSS_SETS.forEach( (wss_set) => {
 			soul: parseInt(wss_card.soul),
 			rarity: wss_card.rarity,
 			attributes: wss_card.specialAttrib || [],
-			ability: wss_card.ability || []
+			ability: []
 		}
+
+		wss_card.ability && wss_card.ability.forEach( (text, i) => { 
+			card.ability.push(cleanText(text));
+		})
 
 		set.push(card);
 	})
@@ -37,3 +41,11 @@ WSS_SETS.forEach( (wss_set) => {
 	writeFile(wss_set+'.json', JSON.stringify(set), 'utf8', (res) => console.log(res) );
 
 })
+
+function cleanText(text){
+	let cleantext = text;
+	cleantext = cleantext.replace(/[\u201C\u201D]/g, '\"');
+	cleantext = cleantext.replace(/[\u2019]/g, "\'")
+
+	return cleantext;
+}
