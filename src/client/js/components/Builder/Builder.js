@@ -4,6 +4,7 @@ import { Input, Row, Col } from 'antd'
 import Card from './Card';
 import SeriesSelect from './SeriesSelect';
 import CardSelector from './CardSelector';
+import Filters from '../partials/Builder/CardSelector/Filters'
 
 import Deck from './Deck';
 
@@ -54,6 +55,7 @@ class Builder extends Component {
 					<Col xxl={8} xl={8} lg={12} md={24}
           className='container-series-selector'>
 						<SeriesSelect serieses={serieses} />
+            <Filters />
 						<CardSelector ViewCard={handleViewCard} cards={buildercards} />
 						<Card data={selectedCard.card} />
 					</Col>

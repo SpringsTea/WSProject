@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { List, Icon } from 'antd';
 
-import Filters from '../partials/Builder/CardSelector/Filters'
 import CardItem from '../partials/Builder/CardItem/CardItem'
 
 class CardSelector extends Component {
@@ -16,7 +15,7 @@ class CardSelector extends Component {
 		const { cards } = this.props;
 		return(
 			<div className="container-card-selector">
-				<Filters />
+				
 				<List
 					dataSource={cards}
 					renderItem={ card => (
