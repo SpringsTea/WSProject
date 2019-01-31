@@ -1,5 +1,6 @@
 import Store from './Store';
 import { BuilderActions as AT } from '../constants/Actions';
+import { sortall } from '../utils/cardsort';
 import { register } from '../dispatcher';
 
 let test = {};
@@ -39,7 +40,7 @@ const BuilderStore = {
         serieslist = props.data;
         break;
       case AT.SERIES_RECEIVE:
-        buildercards = props.data;
+        buildercards = sortall(props.data);
         filterBuilderCards()
         break;
       case AT.ADD_DECK_CARD:
