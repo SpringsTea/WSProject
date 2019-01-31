@@ -5,23 +5,18 @@ import { register } from '../dispatcher';
 let test = {};
 let serieslist = [];//Top level list of available series
 let buildercards = [];
-let builderfilters = {};
+let fbuildercards = [];//Buildercards after filters
+let builderfilters = {
+  cardtype: [],
+};
 
 let deck = [];
 
 function filterBuilderCards() {
-  buildercards = buildercards.filter( (card) => {
+  fbuildercards = buildercards.filter( (card) => {
 
-    if (builderfilters['CH'] === false && card.cardtype === 'CH'){
-      return false
-    }
-
-    if (builderfilters['CX'] === false && card.cardtype === 'CX'){
-      return false
-    }
-
-    if (builderfilters['EV'] === false && card.cardtype === 'EV'){
-      return false
+    if( builderfilters.cardtype.includes( card.cardtype ) ){
+      return false;
     }
 
     return true;
@@ -32,7 +27,7 @@ const BuilderStore = {
   ...Store,
   getTestData: () => test,
   getSeriesesData: () => serieslist,
-  getBuilderCards: () => buildercards,
+  getBuilderCards: () => fbuildercards,
   getBuilderFilters: () => builderfilters,
   getDeckCards: () => deck,
   reducer: register(async ({ type, ...props }) => {
@@ -45,6 +40,7 @@ const BuilderStore = {
         break;
       case AT.SERIES_RECEIVE:
         buildercards = props.data;
+        filterBuilderCards()
         break;
       case AT.ADD_DECK_CARD:
         deck.push(props.card);
@@ -54,7 +50,14 @@ const BuilderStore = {
         deck.splice(indextoremove, 1);
         break;
       case AT.FILTER_BUILDER:
-        builderfilters[props.data.filter] = props.data.value
+
+        if( props.data.value === false ){
+            builderfilters[props.data.type].push(props.data.filter);
+        }
+        else{
+          builderfilters[props.data.type].splice( builderfilters[props.data.type].indexOf(props.data.filter), 1 )
+        }
+        
         filterBuilderCards()
         break;
       default: return;

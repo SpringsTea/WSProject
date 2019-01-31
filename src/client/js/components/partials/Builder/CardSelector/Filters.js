@@ -30,13 +30,13 @@ class Filters extends Component {
           toggle === true &&
           <div className="toggles">
             <span>
-              Charicters <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ filter: 'CH', value: val }) } />
+              Charicters <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'CH', value: val }) } />
             </span>
             <span>
-              Events <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ filter: 'EV', value: val }) } />
+              Events <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'EV', value: val }) } />
             </span>
             <span>
-              Cx <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ filter: 'CX', value: val }) } />
+              Cx <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'CX', value: val }) } />
             </span>
           </div>
         }
