@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
-import { Image } from 'cloudinary-react';
 
 import Property from '../partials/Builder/Card/Property';
 
@@ -14,11 +13,10 @@ class Card extends Component {
 				<div className="card">		
 					<div>{data.name || 'NaN'}</div>
 					<div className='cardimage'>
-					<Image cloudName="difwry0zl" publicId={`Series/${data.side}${data.release}/${data.sid}.gif`} >
-					</Image>
+					<img src={`/images/${data.set}/${data.side}${data.release}/${data.sid}.gif`}></img>
 					</div>
 					<div className="cardtext">
-						{ data.ability.map( (ability) => <div>{ability}</div> ) }
+						{ data.ability.map( (ability) => <div key={ability}>{ability}</div> ) }
 					</div>
 					<div className="extra"> 
 						<Row type='flex'>
@@ -30,7 +28,7 @@ class Card extends Component {
 							<Property name='Soul' value={data.soul} />
 							<Property name='Card No' value={`${data.set}/${data.release}-${data.sid}`} />
 							{
-								data.attributes.map( attribute =>  <Property name='Trait' value={attribute} />)
+								data.attributes.map( attribute =>  <Property key={attribute} name='Trait' value={attribute} />)
 							}
 						</Row>
 					</div>

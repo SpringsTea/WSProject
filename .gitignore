@@ -1,5 +1,6 @@
 node_modules/
 dist/
+public/images
 project.sublime-project
 project\.sublime-workspace
 
