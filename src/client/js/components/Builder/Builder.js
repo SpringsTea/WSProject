@@ -13,6 +13,7 @@ const buildState = () => ({
   serieses: BuilderStore.getSeriesesData(),
   buildercards: BuilderStore.getBuilderCards(),
   deck: BuilderStore.getDeckCards(),
+  builderfilters: BuilderStore.getBuilderFilters(),
 });
 
 class Builder extends Component {

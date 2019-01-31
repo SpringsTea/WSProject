@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Switch, Icon } from 'antd';
 
+import { filterBuilder } from 'Actions/BuilderActions';
+
 class Filters extends Component {
 
   state = {
@@ -28,13 +30,13 @@ class Filters extends Component {
           toggle === true &&
           <div className="toggles">
             <span>
-              Charicters <Switch defaultChecked size="small" />
+              Charicters <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ filter: 'CH', value: val }) } />
             </span>
             <span>
-              Events <Switch defaultChecked size="small" />
+              Events <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ filter: 'EV', value: val }) } />
             </span>
             <span>
-              Cx <Switch defaultChecked size="small" />
+              Cx <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ filter: 'CX', value: val }) } />
             </span>
           </div>
         }

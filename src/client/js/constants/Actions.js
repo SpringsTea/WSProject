@@ -4,4 +4,5 @@ export const BuilderActions = [
   'SERIES_RECEIVE',
   'ADD_DECK_CARD',
   'REMOVE_DECK_CARD',
+  'FILTER_BUILDER',
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});
