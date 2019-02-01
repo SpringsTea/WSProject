@@ -7,7 +7,7 @@ const CHANGE_EVENT = Symbol('change');
 
 const Store = {
   ...EventEmitter.prototype,
-  emitChange() {
+  emitChange(type) {
     this.emit(CHANGE_EVENT);
   },
 

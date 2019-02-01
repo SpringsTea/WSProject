@@ -5,11 +5,6 @@ import CardItem from '../partials/Builder/CardItem/CardItem'
 
 class CardSelector extends Component {
 
-	handleItemHover = (card) =>{
-		const { ViewCard } = this.props;
-		ViewCard(card);
-	}
-
 	render(){
 		const { handleItemHover } = this;
 		const { cards } = this.props;
@@ -19,7 +14,7 @@ class CardSelector extends Component {
 				<List
 					dataSource={cards}
 					renderItem={ card => (
-						<CardItem card={card} handleItemHover={handleItemHover} />
+						<CardItem card={card} />
 					)}
 				/>
 			</div>

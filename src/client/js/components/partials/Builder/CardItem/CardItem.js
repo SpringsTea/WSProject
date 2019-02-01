@@ -3,15 +3,15 @@ import { List, Button, Icon, Avatar } from 'antd';
 
 import CardItemIcon from './CardItemIcon';
 
-import { addDeckCard, removeDeckCard } from 'Actions/BuilderActions';
+import { addDeckCard, removeDeckCard, selectCard } from 'Actions/BuilderActions';
 
 class CardItem extends Component {
 
 	render(){
-		const { handleItemHover, card } = this.props;
+		const { card } = this.props;
 		return(
 			<List.Item 
-			onMouseEnter={ () => handleItemHover(card)}
+			onMouseEnter={ () => selectCard({card})}
 			className="card-item">
 				<List.Item.Meta 
 					avatar={<CardItemIcon card={card} />}

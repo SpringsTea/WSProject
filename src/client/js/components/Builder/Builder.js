@@ -13,6 +13,7 @@ import BuilderStore from '../../stores/BuilderStore';
 const buildState = () => ({
   serieses: BuilderStore.getSeriesesData(),
   buildercards: BuilderStore.getBuilderCards(),
+  selectedCard: BuilderStore.getSelectedCard(),
   deck: BuilderStore.getDeckCards(),
   builderfilters: BuilderStore.getBuilderFilters(),
 });
@@ -20,10 +21,6 @@ const buildState = () => ({
 class Builder extends Component {
 
   state = {
-  	selectedCard: {
-  		card: null,
-  		location: null,
-  	},
   	...buildState()
   }
 
@@ -37,17 +34,7 @@ class Builder extends Component {
     BuilderStore.removeChangeListener(this.onChange);
   }
 
-  handleViewCard = (card) =>{
-  	this.setState({
-  		selectedCard:{
-  			card:card,
-  			location:null,
-  		}
-  	})
-  }
-
 	render(){
-		const { handleViewCard } = this;
 		const { selectedCard, serieses, buildercards, deck } = this.state;
 		return(
 			<div className="container-builder">
@@ -56,11 +43,11 @@ class Builder extends Component {
           className='container-series-selector'>
 						<SeriesSelect serieses={serieses} />
             <Filters />
-						<CardSelector ViewCard={handleViewCard} cards={buildercards} />
+						<CardSelector cards={buildercards} />
 						<Card data={selectedCard.card} />
 					</Col>
 					<Col xxl={16} xl={16} lg={12} md={24}> 
-						<Deck ViewCard={handleViewCard} cards={deck} />
+						<Deck cards={deck} />
 					</Col>
 				</Row>
 			</div>

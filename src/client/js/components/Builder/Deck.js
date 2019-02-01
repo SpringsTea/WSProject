@@ -9,35 +9,28 @@ class Deck extends Component {
 	state = { 
 		decksize: 0 
 	} 
- 
-	shouldComponentUpdate(nextProps){ 
-		return this.state.decksize !== nextProps.cards.length; 
-	} 
 
-	handleItemHover = (card) =>{
-		const { ViewCard } = this.props;
-		ViewCard(card);
-	}
+	shouldComponentUpdate(nextProps, nextState){ 
+		console.log(this.props, nextProps, nextState);
+		return true;
+	} 
 
 	calculateCardQuantity = () =>{
 		const { cards } = this.props;
 
-		this.setState({ decksize: cards.length }) 
-
 		//Removes duplicate cards, giving each unique card a quantity instead
 		return cards.reduce( (a,b) => {
-		    var i = a.findIndex( x => x.id === b.id);
+		    var i = a.findIndex( x => x._id === b._id);
 		    return i === -1 ? a.push({ ...b, quantity : 1 }) : a[i].quantity++, a;
 		}, []);
 	}
 
 	render(){
-		const { handleItemHover, calculateCardQuantity } = this;
+		const { calculateCardQuantity } = this;
 		const { cards } = this.props;
-
+		console.log('render deck')
 		//TODO This componenet renders on cardView, which call this logic way too often
 		let deckcards = calculateCardQuantity();
-		console.log('Deck Render'); 
 
 		return(
 			<div className="container-deck">
@@ -45,15 +38,15 @@ class Deck extends Component {
 				<div className="deck-body">
 					<div>Charicters</div>
 						<div>
-							<CardSelector ViewCard={handleItemHover} cards={deckcards.filter( (card) => card.type === 'Charicter' )} />
+							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CH' )} />
 						</div>
 					<div>Events</div>
 						<div>
-							<CardSelector ViewCard={handleItemHover} cards={deckcards.filter( (card) => card.type === 'Event' )} />
+							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'EV' )} />
 						</div>
 					<div>Climaxes</div>
 						<div>
-							<CardSelector ViewCard={handleItemHover} cards={deckcards.filter( (card) => card.type === 'Climax' )} />
+							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CX' )} />
 						</div>
 				</div>
 			</div>

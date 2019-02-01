@@ -12,8 +12,13 @@ let builderfilters = {
 };
 
 let deck = [];
+let selectedCard = {
+  card: null,
+  location: null,
+};
 
 function filterBuilderCards() {
+  console.log('Filter buildercards');
   fbuildercards = buildercards.filter( (card) => {
 
     if( builderfilters.cardtype.includes( card.cardtype ) ){
@@ -31,6 +36,7 @@ const BuilderStore = {
   getBuilderCards: () => fbuildercards,
   getBuilderFilters: () => builderfilters,
   getDeckCards: () => deck,
+  getSelectedCard: () => selectedCard,
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case AT.TEST_RECEIVE:
@@ -43,11 +49,17 @@ const BuilderStore = {
         buildercards = sortall(props.data);
         filterBuilderCards()
         break;
+      case AT.SELECT_CARD:
+        selectedCard = {
+          card: props.data.card,
+          location: props.data.location
+        };
+        break;
       case AT.ADD_DECK_CARD:
         deck.push(props.card);
         break;
       case AT.REMOVE_DECK_CARD:
-        let indextoremove = deck.findIndex( (el) => el.id === props.card.id )
+        let indextoremove = deck.findIndex( (el) => el._id === props.card._id )
         deck.splice(indextoremove, 1);
         break;
       case AT.FILTER_BUILDER:
@@ -63,7 +75,7 @@ const BuilderStore = {
         break;
       default: return;
     }
-    BuilderStore.emitChange();
+    BuilderStore.emitChange(type);
   }),
 };
 
