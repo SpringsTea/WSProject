@@ -11,8 +11,7 @@ class Deck extends Component {
 	} 
 
 	shouldComponentUpdate(nextProps, nextState){ 
-		console.log(this.props, nextProps, nextState);
-		return true;
+		return this.props.cards.length !== nextProps.cards.length;
 	} 
 
 	calculateCardQuantity = () =>{

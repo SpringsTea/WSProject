@@ -35,7 +35,7 @@ const BuilderStore = {
   getSeriesesData: () => serieslist,
   getBuilderCards: () => fbuildercards,
   getBuilderFilters: () => builderfilters,
-  getDeckCards: () => deck,
+  getDeckCards: () => Object.assign([],deck),//assigning this instead of mutating lets me compare in Deck.shouldComponentUpdate,
   getSelectedCard: () => selectedCard,
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
