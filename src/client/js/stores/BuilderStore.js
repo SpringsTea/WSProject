@@ -1,3 +1,5 @@
+import Fuse from 'fuse.js'
+
 import Store from './Store';
 import { BuilderActions as AT } from '../constants/Actions';
 import { sortall } from '../utils/cardsort';
