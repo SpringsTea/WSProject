@@ -11,6 +11,7 @@ let buildercards = [];
 let fbuildercards = [];//Buildercards after filters
 let builderfilters = {
   cardtype: [],
+  text: null
 };
 
 let deck = [];
@@ -24,6 +25,11 @@ function filterBuilderCards() {
   fbuildercards = buildercards.filter( (card) => {
 
     if( builderfilters.cardtype.includes( card.cardtype ) ){
+      return false;
+    }
+
+    //Match search text
+    if( builderfilters.text && builderfilters.text.length >= 3 && !card.name.toUpperCase().includes( builderfilters.text.toUpperCase() ) ){
       return false;
     }
 
@@ -66,10 +72,13 @@ const BuilderStore = {
         break;
       case AT.FILTER_BUILDER:
 
-        if( props.data.value === false ){
+        if( props.data.type === 'text' ){
+          builderfilters.text = props.data.value;
+        }
+        else if( props.data.value === false ){//Add value onto type array
             builderfilters[props.data.type].push(props.data.filter);
         }
-        else{
+        else{//Remove value from type array
           builderfilters[props.data.type].splice( builderfilters[props.data.type].indexOf(props.data.filter), 1 )
         }
         

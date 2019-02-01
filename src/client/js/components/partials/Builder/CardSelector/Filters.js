@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Icon, Tabs, Input } from 'antd';
+import { throttle } from 'throttle-debounce';
 
 import { filterBuilder } from 'Actions/BuilderActions';
 
@@ -16,9 +17,13 @@ class Filters extends Component {
     this.setState({toggle: !toggle})
   }
 
+  handleTextSearch = throttle( 500, (text) =>{
+    filterBuilder({ type: 'text', value: text });
+  })
+
   render(){
 
-    const { handleToggle } = this;
+    const { handleToggle, handleTextSearch } = this;
     const { toggle } = this.state;
 
     return(
@@ -45,7 +50,7 @@ class Filters extends Component {
             </div>
             </TabPane>
             <TabPane tab="Text" key="2">
-              <Input placeholder="Search card names" onChange={ (e) => console.log(e) } />
+              <Input placeholder="Search card names" onChange={ (e) => handleTextSearch(e.target.value ) } />
             </TabPane>
           </Tabs>
         }
