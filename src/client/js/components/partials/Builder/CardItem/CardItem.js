@@ -18,8 +18,8 @@ class CardItem extends Component {
 					title={`${card.name} ${card.quantity ? `(${card.quantity})` : ''}`}
 				/>
 				<Button.Group>
-					<Button icon="minus" className="danger" onClick={ () => removeDeckCard(card) }></Button>
-					<Button icon="plus" className="success" onClick={ () => addDeckCard(card) }></Button>
+					<Button icon="minus" className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
+					<Button icon="plus" className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
 				</Button.Group>
 			</List.Item>
 		)

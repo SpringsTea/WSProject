@@ -40,7 +40,7 @@ class Builder extends Component {
 			<div className="container-builder">
 				<Row gutter={16}>
 					<Col xxl={8} xl={8} lg={12} md={24}
-          className='container-series-selector'>
+          className='container-series-selector  nice-scroll'>
 						<SeriesSelect serieses={serieses} />
             <Filters />
 						<CardSelector cards={buildercards} />

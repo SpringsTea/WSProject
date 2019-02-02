@@ -5,19 +5,20 @@
 	overflow-x: hidden;
 }
 
-.container-series-selector .container-card-selector{
-	height: 40vh;
-	overflow-y: auto;
-
+.container-series-selector{
 	.container-filters{
 		padding: 5px;
 		border: 1px solid lightgray;
-		border-radius: 8px;
 		.toggles{
 			span{
 				margin-left: 15px;
 			}
 		}
+	}
+
+	.container-card-selector{
+		height: 40vh;
+		overflow-y: auto;
 	}
 }
 
@@ -43,22 +44,26 @@
 }
 
 .card-item{
-	padding: 6px 0;
+	padding: 0px 0px;
 
 	.ant-list-item-meta{
 		flex: 2.5;
 	}
 
-	.ant-avatar.ws-RED{
-		background-color: @ws-red-bright;
-	}
-	.ant-avatar.ws-BLUE{
-		background-color: @ws-blue-bright;
-	}
-	.ant-avatar.ws-GREEN{
-		background-color: @ws-green-bright;
-	}
-	.ant-avatar.ws-YELLOW{
-		background-color: @ws-yellow-bright;
+	.ant-avatar{
+		border-radius: 0px;
+
+		&.ws-RED{
+			background-color: @ws-red-bright;
+		}
+		&.ws-BLUE{
+			background-color: @ws-blue-bright;
+		}
+		&.ws-GREEN{
+			background-color: @ws-green-bright;
+		}
+		&.ws-YELLOW{
+			background-color: @ws-yellow-bright;
+		}
 	}
 }
