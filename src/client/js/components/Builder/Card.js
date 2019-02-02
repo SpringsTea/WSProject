@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Row, Col } from 'antd';
+import { Row, Col, Icon } from 'antd';
+import Img from 'react-image';
 
 import Property from '../partials/Builder/Card/Property';
 
@@ -11,9 +12,14 @@ class Card extends Component {
 				{
 				data ?
 				<div className="card">		
-					<div>{data.name || 'NaN'}</div>
+					<h2>{data.name || 'NaN'}</h2>
 					<div className='cardimage'>
-					<img src={`/images/${data.set}/${data.side}${data.release}/${data.sid}.gif`}></img>
+						<Img
+					    src={[
+					      `/images/${data.set}/${data.side}${data.release}/${data.sid}.gif`,
+					    ]}
+					    unloader={<Icon className="image-not-found" type="question-circle" />}
+					  />
 					</div>
 					<div className="cardtext">
 						{ data.ability.map( (ability) => <div key={ability}>{ability}</div> ) }

@@ -8,35 +8,21 @@ const { TabPane } = Tabs;
 
 class Filters extends Component {
 
-  state = {
-    toggle: false
-  }
-
-  handleToggle = () =>{
-    const { toggle } = this.state;
-    this.setState({toggle: !toggle})
-  }
-
   handleTextSearch = throttle( 500, (text) =>{
     filterBuilder({ type: 'text', value: text });
   })
 
   render(){
 
-    const { handleToggle, handleTextSearch } = this;
-    const { toggle } = this.state;
+    const { handleTextSearch } = this;
 
     return(
       <div className="container-filters">
-        <span className="clickable icon-button" onClick={handleToggle} >
-          <Icon type={ toggle ? "minus-circle" : "plus-circle"} />
-          Filters
-        </span> 
-
-        {
-          toggle === true &&
           <Tabs defaultActiveKey="1" size='small'>
-            <TabPane tab="Type" key="1">
+            <TabPane tab="Text" key="1">
+              <Input placeholder="Search card names" onChange={ (e) => handleTextSearch(e.target.value ) } />
+            </TabPane>
+            <TabPane tab="Type" key="2">
             <div className="toggles">
               <span>
                 Charicters <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'CH', value: val }) } />
@@ -49,11 +35,7 @@ class Filters extends Component {
               </span>
             </div>
             </TabPane>
-            <TabPane tab="Text" key="2">
-              <Input placeholder="Search card names" onChange={ (e) => handleTextSearch(e.target.value ) } />
-            </TabPane>
           </Tabs>
-        }
       </div>
     )
   }
