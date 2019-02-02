@@ -32,7 +32,7 @@ class Card extends Component {
 							<Property name='Color' value={data.color} />
 							<Property name='Power' value={data.power} />
 							<Property name='Soul' value={data.soul} />
-							<Property name='Card No' value={`${data.set}/${data.release}-${data.sid}`} />
+							<Property name='Card No' value={`${data.set}/${data.side}${data.release}-${data.sid}`} />
 							{
 								data.attributes.map( attribute =>  <Property key={attribute} name='Trait' value={attribute} />)
 							}
