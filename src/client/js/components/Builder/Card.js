@@ -21,9 +21,12 @@ class Card extends Component {
 					    unloader={<Icon className="image-not-found" type="question-circle" />}
 					  />
 					</div>
-					<div className="cardtext">
-						{ data.ability.map( (ability) => <div key={ability}>{ability}</div> ) }
-					</div>
+					{	
+						data.ability && data.ability.length > 0 &&
+						<div className="cardtext">
+							{ data.ability.map( (ability) => <div key={ability}>{ability}</div> ) }
+						</div>
+					}
 					<div className="extra"> 
 						<Row type='flex'>
 							<Property name='Type' value={data.type} />

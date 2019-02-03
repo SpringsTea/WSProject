@@ -5,30 +5,9 @@ import { Konosuba } from './stubs/Series'
 
 import Card from './api/models/card'
 import Series from './api/models/series'
+import Deck from './api/models/deck'
 
 module.exports = function(app){
-
-  app.post("/api/test", (req,res) => {
-
-  	const card = new Card({
-  		_id: new mongoose.Types.ObjectId(),
-  		name: req.body.name
-  	});
-
-  	card.save().then(result => {
-  		//console.log(result)
-  	})
-  	.catch( err => console.log(err) );
-  	res.status(201).json({
-  		message: "/test",
-  		createdCard: card
-  	})
-
-  })
-
-  app.get("/api/test", (req, res) =>
-    res.send({ test: 'success' })
-  );
 
   app.get("/api/serieslist", (req, res) =>{
     Series.find().exec()
@@ -62,9 +41,27 @@ module.exports = function(app){
         })
       }
     })
-
-
-
   });
+
+  app.post("/api/deck", (req, res) => {
+    Deck.create(req.body, (err, data) => {
+      res.status(200).send({ deck: data })
+    });
+  })
+
+  app.get("/api/deck/:id", (req, res) => {
+    Deck.find({_id: req.params.id}).limit(1).populate('cards').exec()
+    .then( docs => {
+      if( docs.length > 0 ){
+        res.status(200).json(docs)
+      }
+      else{
+        res.status(500).json({
+          error: true,
+          message: 'Deck was not found'
+        })
+      }
+    })
+  })
     
 }
