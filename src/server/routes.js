@@ -44,7 +44,16 @@ module.exports = function(app){
   });
 
   app.post("/api/deck", (req, res) => {
-    Deck.create(req.body, (err, data) => {
+
+    const d = req.body;
+
+    let deckdata = {
+      ...d,
+      userid: null,
+      valid: d.cards && d.cards.length === 50//valid decks have 50 cards. TODO also check that the deck has only one SET?
+    }
+
+    Deck.create(deckdata, (err, data) => {
       res.status(200).send({ deck: data })
     });
   })

@@ -8,7 +8,7 @@ const deckSchema = mongoose.Schema({
 	description: { type: String, default: '' }, 
 	datecreated: { type: Date, default: Date.now },
 	datemodified: { type: Date, default: Date.now },
-	complete: { type: Boolean, default: false },
+	valid: { type: Boolean, default: false },
 	cards: [{ type: String, ref: 'Card' }]
 }, { collection: 'deck' });
 
