@@ -28,6 +28,7 @@ WSS_SETS.forEach( (wss_set) => {
 			soul: parseInt(wss_card.soul),
 			rarity: wss_card.rarity,
 			attributes: wss_card.specialAttrib || [],
+			trigger: wss_card.trigger || [],
 			ability: []
 		}
 
