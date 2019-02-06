@@ -1,5 +1,3 @@
-import Fuse from 'fuse.js'
-
 import Store from './Store';
 import { BuilderActions as AT } from '../constants/Actions';
 import { sortall } from '../utils/cardsort';
@@ -54,7 +52,7 @@ const BuilderStore = {
         serieslist = props.data;
         break;
       case AT.SERIES_RECEIVE:
-        buildercards = sortall(props.data);
+        buildercards = props.data.sort(sortall);
         filterBuilderCards()
         break;
       case AT.SELECT_CARD:

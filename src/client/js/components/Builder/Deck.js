@@ -4,6 +4,8 @@ import { List } from 'antd';
 import CardSelector from './CardSelector';
 import Header from '../partials/Builder/Deck/Header';
 
+import { sortlevel } from '../../utils/cardsort';
+
 class Deck extends Component {
 
 	state = { 
@@ -28,24 +30,24 @@ class Deck extends Component {
 		const { calculateCardQuantity } = this;
 		const { cards } = this.props;
 		console.log('render deck')
-		//TODO This componenet renders on cardView, which call this logic way too often
+
 		let deckcards = calculateCardQuantity();
 
 		return(
-			<div className="container-deck">
+			<div className="container-deck nice-scroll">
 				<Header cards={cards}/>
 				<div className="deck-body">
 					<div>Charicters</div>
-						<div>
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CH' )} />
+						<div className="CH card-category">
+							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CH' ).sort(sortlevel) } />
 						</div>
 					<div>Events</div>
-						<div>
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'EV' )} />
+						<div className="EV card-category">
+							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'EV' ).sort(sortlevel)} />
 						</div>
 					<div>Climaxes</div>
-						<div>
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CX' )} />
+						<div className="CX card-category">
+							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CX' ).sort(sortlevel)} />
 						</div>
 				</div>
 			</div>
