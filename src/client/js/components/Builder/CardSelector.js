@@ -13,6 +13,7 @@ class CardSelector extends Component {
 				
 				<List
 					dataSource={cards}
+					locale={ { emptyText: 'No Cards' } }
 					renderItem={ card => (
 						<CardItem card={card} />
 					)}
