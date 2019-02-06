@@ -20,7 +20,7 @@ class Filters extends Component {
       <div className="container-filters">
           <Tabs defaultActiveKey="1" size='small'>
             <TabPane tab="Text" key="1">
-              <Input placeholder="Search card names" onChange={ (e) => handleTextSearch(e.target.value ) } />
+              <Input allowClear placeholder="Search card names" onChange={ (e) => handleTextSearch(e.target.value ) } />
             </TabPane>
             <TabPane tab="Type" key="2">
             <div className="toggles">
