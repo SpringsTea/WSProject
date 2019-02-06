@@ -9,3 +9,5 @@ nodemon\.json
 npm-debug\.log
 
 package-lock\.json
+
+src/server/config/
