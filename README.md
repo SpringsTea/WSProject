@@ -23,13 +23,11 @@ Any time or experience you can lend are greatly appreciated.
     ~~I haven't actually got anything planned out for populating my database with the large amount of sets that this project will need to support, so I could definitely use some help with that. Maybe the data already exists, maybe I'll have to make a scraper for heart of the cards, I haven't really given it much thought yet.~~
     Big Thanks to greatwanz for making his translation project available for me to use. 
     
-* Images
-
-    The project will of course need images, either that I was host, or are already hosted. I have no solution for that as of yet. It's important that all images or of consistant qualtity and resolution.
 
 * Deployment
 
-    I'll need a place to deploy this for the beta and beyond. I don't really know how much the upkeep will cost. I may have to seek funding, or someone to volunteer server space. I'm currently storing images in a 3rd party cdn. I don't know if this is my best solution or not, so some expertise on how to store large amount of images, and deliver them efficiently would be very great.
+    ~~I'll need a place to deploy this for the beta and beyond. I don't really know how much the upkeep will cost. I may have to seek funding, or someone to volunteer server space. I'm currently storing images in a 3rd party cdn. I don't know if this is my best solution or not, so some expertise on how to store large amount of images, and deliver them efficiently would be very great.~~
+    Big thanks to pwyll for offering to help with hosting and administration
 
 If you have any feedback or offerings, feel free to shoot me an email @ shawn.springstead@gmail.com
 
