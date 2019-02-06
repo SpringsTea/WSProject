@@ -29,20 +29,17 @@ class Card extends Component {
 					}
 					<div className="extra"> 
 						<Row type='flex'>
-							<Property name='Type' value={data.type} />
 							<Property name='Level' value={data.level} />
-							<Property name='Cost' value={data.cost} />						
-							<Property name='Color' value={data.color} />
+							<Property name='Cost' value={data.cost} />			
+							<Property name='Trigger' value={ data.trigger.join(', ') } />			
+							<Property name='Color' value={data.colour} />
 							<Property name='Power' value={data.power} />
 							<Property name='Soul' value={data.soul} />
-							<Property name='Card No' value={`${data.set}/${data.side}${data.release}-${data.sid}`} />
 							{
 								data.attributes.map( attribute =>  <Property key={attribute} name='Trait' value={attribute} />)
 							}
+							<Property name='Card No' value={`${data.set}/${data.side}${data.release}-${data.sid}`} />
 						</Row>
-					</div>
-					<div>
-						<a target="_blank" href={`https://heartofthecards.com/code/cardlist.html?card=WS_${data.set}/${data.side}${data.release}-${data.sid}`}>Link</a>
 					</div>
 				</div>
 				: <span>No card found</span>

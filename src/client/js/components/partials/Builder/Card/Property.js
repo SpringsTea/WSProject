@@ -5,7 +5,7 @@ class Property extends Component {
 	render(){
 		const { name, value } = this.props; 
 		return(
-			value ?
+			value !== '' ?
 			<Col span={8}>
 				<div className="container-property">
 					<span>{name}</span> : <span>{value}</span>
