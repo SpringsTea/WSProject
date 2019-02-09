@@ -16,3 +16,7 @@ export async function fetchSerieses() {
 export async function fetchSeries(seriesid) {
 	return (await axios.get(`api/series/${seriesid}/cards`)).data;
 }
+
+export async function saveDeck(data) {
+	return (await axios.post(`api/deck`, data));
+}

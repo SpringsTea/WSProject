@@ -5,24 +5,47 @@ import {
 
 import DeckSaveForm from './DeckSaveForm';
 
+import { saveDeck } from 'Utils/api'; 
+
 const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
   // eslint-disable-next-line
   class extends React.Component {
 
-  	handleSaveDeck = () => {
-	    const { form, deck } = this.props;
+  	state = {
+  		loading: false
+  	}
+
+  	handleSubmitForm = () => {
+  		const { form } = this.props;
 
 	    form.validateFields((err, values) => {
 	      if (err) {
 	        console.log(err);
 	      }
-
-	      console.log(values, deck);
+	      else{
+	      	this.handleSaveDeck(values)
+	      }
 	    });
-	  }
+  	}
+
+  	handleSaveDeck = async(values) => {
+  		const { deck } = this.props;
+  		this.setState({loading: true});
+		const [
+		  res
+		] = await Promise.all([
+		    saveDeck({
+		      	...values,
+			  	cards: deck
+		    })
+		]);
+		this.setState({loading: false});
+		console.log(res);   
+	}
 
     render() {
-      const { handleSaveDeck } = this;
+      const { handleSubmitForm } = this;
+      const { loading } = this.state;
       const {
         visible, togglevisible, form,
       } = this.props;
@@ -31,8 +54,9 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
           visible={visible}
           title="Save Deck"
           okText="Save"
+          confirmLoading={loading}
           onCancel={() => togglevisible(false)}
-          onOk={handleSaveDeck}
+          onOk={handleSubmitForm}
         >
          <DeckSaveForm form={form} />
         </Modal>

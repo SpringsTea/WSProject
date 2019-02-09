@@ -5,10 +5,12 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 const deckSchema = mongoose.Schema({
 	name: String,
 	userid: ObjectId,
+	deckid: { type: String, default: '' },
 	description: { type: String, default: '' }, 
 	datecreated: { type: Date, default: Date.now },
 	datemodified: { type: Date, default: Date.now },
 	valid: { type: Boolean, default: false },
+	standard: { type: Boolean, default: true },
 	cards: [{ type: String, ref: 'Card' }]
 }, { collection: 'deck' });
 
