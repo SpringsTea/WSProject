@@ -1,11 +1,12 @@
 import mongoose from 'mongoose'
+import shortid from 'shortid';
 
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const deckSchema = mongoose.Schema({
 	name: String,
 	userid: ObjectId,
-	deckid: { type: String, default: '' },
+	deckid: { type: String, default: shortid.generate },
 	description: { type: String, default: '' }, 
 	datecreated: { type: Date, default: Date.now },
 	datemodified: { type: Date, default: Date.now },

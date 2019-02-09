@@ -29,7 +29,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
   	}
 
   	handleSaveDeck = async(values) => {
-  		const { deck } = this.props;
+  		const { deck, togglevisible } = this.props;
   		this.setState({loading: true});
 		const [
 		  res
@@ -39,12 +39,14 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
 			  	cards: deck
 		    })
 		]);
+		console.log(res)
 		this.setState({loading: false});
-		console.log(res);   
+		togglevisible(false);  
 	}
 
     render() {
       const { handleSubmitForm } = this;
+      const { deck } = this.props;
       const { loading } = this.state;
       const {
         visible, togglevisible, form,
@@ -58,7 +60,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
           onCancel={() => togglevisible(false)}
           onOk={handleSubmitForm}
         >
-         <DeckSaveForm form={form} />
+         <DeckSaveForm form={form} deck={deck} />
         </Modal>
       );
     }
