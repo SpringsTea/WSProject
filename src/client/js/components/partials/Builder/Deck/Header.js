@@ -34,7 +34,7 @@ class Header extends Component {
 
 				<div>
 					{
-						[0,1,2,3].map( (level) => <span> Level {level} : { countCardLevel(cards, level) } </span> )
+						[0,1,2,3].map( (level) => <span key={level}> Level {level} : { countCardLevel(cards, level) } </span> )
 					}
 				</div>
 			</Card>
