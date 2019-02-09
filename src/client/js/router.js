@@ -17,6 +17,7 @@ import {
 
 // React components
 import Builder from './components/Builder/Builder';
+import Header from './components/Header/Header';
 
 // Styles
 import '../styles/styles.less'
@@ -42,6 +43,11 @@ WS.event.on('page.app.load', async props => {
   await domLoaded;
   render(<Builder {...props} />, document.querySelector(props.el));
 });
+
+WS.event.on('page.header', async props => {
+  await domLoaded;
+  render(<Header />, document.querySelector(props.el));
+})
 
 async function loadBuilderData() {
   const [

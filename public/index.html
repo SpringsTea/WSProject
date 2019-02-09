@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		
-	</head>
 	<body>
+		<div id="header">
+
+		</div>
 		<div id="app">
 			
 		</div>
 	</body>
+	<footer>
+		<hr />
+		<div class="disclaimer">
+		The card images used on this site have been obtained and re-posted from Bushiroad websites in accordance to the guidelines stated there. Re-use of these images (re-post, distribution) is strictly prohibited.
+©bushiroad All Rights Reserved.
+		</div>
+	</footer>
 	<script>
 	  WS.event.emit('page.app.load', {el:'#app'});
+	  WS.event.emit('page.header', {el:'#header'})
 	</script>
 </html>

@@ -1,5 +1,33 @@
 @import "colors.less";
 
+.container-header{
+	display: inline-block;
+	height: 44px;
+	font-size: 17px;
+	color: #f1f1f1;
+	background-color: #5f5f5f;
+	width: 100%;
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+
+	.header-button{
+		padding: 10px 15px 9px 15px;
+		float: left;
+		width: auto;
+		display: block;
+		text-align: center;
+		color: inherit;
+		vertical-align: middle;
+
+		&.right{
+			float: right;
+		}
+
+		&:hover{
+			background-color: #000000;
+		}
+	}
+}
+
 button{
 
 	&.success{
@@ -36,7 +64,7 @@ button{
 .nice-scroll{
 
 	::-webkit-scrollbar {
-	  width: 4px;
+	  width: 6px;
 	  height: 4px;
 	}
 	::-webkit-scrollbar-button {
@@ -68,4 +96,19 @@ button{
 	::-webkit-scrollbar-corner {
 	  background: transparent;
 	}
+}
+
+footer{
+	hr{
+		display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0; 
+	}
+	.disclaimer{
+		text-align: center;
+		color: gray;
+	}	
 }

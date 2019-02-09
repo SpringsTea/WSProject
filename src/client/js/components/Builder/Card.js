@@ -11,8 +11,10 @@ class Card extends Component {
 			<div className="container-card">
 				{
 				data ?
-				<div className="card">		
-					<h2>{data.name || 'NaN'}</h2>
+				<div className="card">
+					<a target="_blank" href={`https://heartofthecards.com/code/cardlist.html?card=WS_${data.set}/${data.side}${data.release}-${data.sid}`}>		
+						<h2>{data.name || 'NaN'}</h2>
+					</a>
 					<div className='cardimage'>
 						<Img
 					    src={[
