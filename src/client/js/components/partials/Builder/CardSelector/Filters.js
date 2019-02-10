@@ -3,6 +3,8 @@ import { Switch, Icon, Tabs, Input } from 'antd';
 import { throttle } from 'throttle-debounce';
 
 import { filterBuilder } from 'Actions/BuilderActions';
+import { colours } from 'Constants/sortorder';
+import { Capitalize } from 'Utils/stringfunctions';
 
 const { TabPane } = Tabs;
 
@@ -35,6 +37,18 @@ class Filters extends Component {
               </span>
             </div>
             </TabPane>
+             <TabPane tab="Colour" key="3">
+              <div className="toggles">
+                {
+                  colours.map( (colour) => 
+                    <span key={colour}>
+                      {Capitalize(colour)} <Switch className={colour} defaultChecked size="small" 
+                      onChange={ (val) => filterBuilder({ type:'colour', filter: colour, value: val }) } />
+                    </span> 
+                  )
+                }
+              </div>
+             </TabPane>
           </Tabs>
       </div>
     )
