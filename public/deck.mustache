@@ -4,9 +4,12 @@
 		<div id="header">
 
 		</div>
+		<div id="deckview">
+
+		</div>
 	</body>
 	<script>
 	  WS.event.emit('page.header', {el:'#header'})
-	  WS.event.emit('deck.viewer', { el: '#deckview', deckid: '{{deckid}}' })
+	  WS.event.emit('deckview.load', { el: '#deckview', deckid: '{{deckid}}' })
 	</script>
 </html>

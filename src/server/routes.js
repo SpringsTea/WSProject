@@ -56,11 +56,12 @@ module.exports = function(app){
     });
   })
 
-  app.get("/api/deck/:id", (req, res) => {
-    Deck.find({_id: req.params.id}).limit(1).populate('cards').exec()
+  app.get("/api/deck/:deckid", (req, res) => {
+    Deck.find({deckid: req.params.deckid}, '-_id cards datemodified deckid description name userid')
+    .limit(1).populate('cards').exec()
     .then( docs => {
       if( docs.length > 0 ){
-        res.status(200).json(docs)
+        res.status(200).json(docs[0])
       }
       else{
         res.status(500).json({
