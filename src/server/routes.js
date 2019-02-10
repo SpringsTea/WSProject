@@ -1,9 +1,6 @@
 import mongoose from 'mongoose'
 import path from 'path';
 
-//import { Serieses } from './stubs/Serieses'
-import { Konosuba } from './stubs/Series'
-
 import Card from './api/models/card'
 import Series from './api/models/series'
 import Deck from './api/models/deck'
@@ -74,8 +71,8 @@ module.exports = function(app){
     })
   })
 
-  app.get('/deck', function(req, res){
-    res.sendFile(path.resolve('dist/deck.html'));
+  app.get("/deck/:deckid", function(req, res){
+    res.render("deck", { deckid: req.params.deckid });
   });
     
 }

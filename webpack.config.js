@@ -8,7 +8,8 @@ module.exports = {
   entry: "./src/client/js/router.js",
   output: {
     path: path.join(__dirname, outputDirectory),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -31,7 +32,7 @@ module.exports = {
             javascriptEnabled: true
           }
         }]
-      },
+      }
     ]
   },
   plugins: [
@@ -42,8 +43,8 @@ module.exports = {
       //favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, 'dist/deck.html'),
-      template: path.resolve(__dirname, "./public/deck.html"),
+      filename: path.resolve(__dirname, 'dist/deck.mustache'),
+      template: path.resolve(__dirname, "./public/deck.mustache"),
       //favicon: "./public/favicon.ico"
     })
   ],

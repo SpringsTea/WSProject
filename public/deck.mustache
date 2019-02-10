@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="nice-scroll">
 	<body>
 		<div id="header">
 
@@ -7,5 +7,6 @@
 	</body>
 	<script>
 	  WS.event.emit('page.header', {el:'#header'})
+	  WS.event.emit('deck.viewer', { el: '#deckview', deckid: '{{deckid}}' })
 	</script>
 </html>
