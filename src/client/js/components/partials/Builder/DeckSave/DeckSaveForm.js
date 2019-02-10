@@ -13,7 +13,7 @@ class DeckSaveForm extends Component {
     let alerts = [];
 
     if( deck.length !== 50 ){
-      alerts.push({ type: 'warning', message: 'Your deck is not 50 cards', description: 'You can still save your deck and complete it later' });
+      alerts.push({ type: 'warning', message: 'Your deck does not have 50 cards', description: 'You can still save your deck and complete it later' });
     } 
 
     return(

@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "npm run build && node src/server/index.js",
-    "client": "webpack-dev-server --mode development --devtool inline-source-map --hot",
+    "client": "webpack --watch --mode development",
     "server": "nodemon src/server/index.js",
     "db": "sudo service mongodb start",
     "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -53,7 +53,6 @@
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.3",
     "webpack-visualizer-plugin": "^0.1.11"
   }

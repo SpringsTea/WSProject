@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+import path from 'path';
 
 //import { Serieses } from './stubs/Serieses'
 import { Konosuba } from './stubs/Series'
@@ -72,5 +73,9 @@ module.exports = function(app){
       }
     })
   })
+
+  app.get('/deck', function(req, res){
+    res.sendFile(path.resolve('dist/deck.html'));
+  });
     
 }
