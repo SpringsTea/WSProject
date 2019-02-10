@@ -3,7 +3,7 @@
 import EventEmitter from 'events';
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, browserHistory } from 'react-router';
+//import { Router, Route, browserHistory } from 'react-router';
 
 import {
   receiveSerieses,
@@ -26,6 +26,7 @@ import DeckView from './components/DeckView/DeckView';
 // Styles
 import '../styles/styles.less'
 import '../styles/builder.less'
+import '../styles/deckview.less'
 
 // Export the globals we'll want elsewhere
 window.WS = Object.assign(window.WS || {}, {
@@ -54,8 +55,8 @@ WS.event.on('page.header', async props => {
 })
 
 WS.event.on('deckview.load', async props => {
-  loadDeckViewData({deckid: props.deckid});
-  await domLoaded;
+  await Promise.all([ loadDeckViewData({deckid: props.deckid}), domLoaded ]);
+
   render( <DeckView />, document.querySelector(props.el));
 })
 

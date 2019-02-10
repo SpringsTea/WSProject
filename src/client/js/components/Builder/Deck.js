@@ -4,7 +4,8 @@ import { List } from 'antd';
 import CardSelector from './CardSelector';
 import Header from '../partials/Builder/Deck/Header';
 
-import { sortlevel } from '../../utils/cardsort';
+import { sortlevel } from 'Utils/cardsort';
+import { filterCardQuantity } from 'Utils/cardfilter';
 
 class Deck extends Component {
 
@@ -16,22 +17,11 @@ class Deck extends Component {
 		return this.props.cards.length !== nextProps.cards.length;
 	} 
 
-	calculateCardQuantity = () =>{
-		const { cards } = this.props;
-
-		//Removes duplicate cards, giving each unique card a quantity instead
-		return cards.reduce( (a,b) => {
-		    var i = a.findIndex( x => x._id === b._id);
-		    return i === -1 ? a.push({ ...b, quantity : 1 }) : a[i].quantity++, a;
-		}, []);
-	}
-
 	render(){
-		const { calculateCardQuantity } = this;
 		const { cards } = this.props;
 		console.log('render deck')
 
-		let deckcards = calculateCardQuantity();
+		let deckcards = filterCardQuantity(cards);
 
 		return(
 			<div className="container-deck nice-scroll">

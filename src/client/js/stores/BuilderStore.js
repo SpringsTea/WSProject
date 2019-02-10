@@ -20,7 +20,6 @@ let selectedCard = {
 
 function filterBuilderCards() {
   console.log('Filter buildercards');
-  console.log(builderfilters);
   fbuildercards = buildercards.filter( (card) => {
 
 
