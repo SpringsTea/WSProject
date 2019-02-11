@@ -21,6 +21,7 @@
     "express": "^4.16.4",
     "fuse.js": "^3.3.0",
     "mongoose": "^5.4.7",
+    "mustache-express": "^1.2.8",
     "mustache-loader": "^1.4.3",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
