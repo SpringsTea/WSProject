@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
-    "start": "npm run build && node src/server/index.js",
+    "start": "npm run build && forever start src/server/index.js",
     "client": "webpack --watch --mode development",
     "server": "nodemon src/server/index.js",
     "db": "sudo service mongodb start",
@@ -19,6 +19,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "forever": "^0.15.3",
     "fuse.js": "^3.3.0",
     "mongoose": "^5.4.7",
     "mustache-express": "^1.2.8",
