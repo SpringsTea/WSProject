@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'antd';
+import Sticky from 'react-stickynode';
 
 import DeckStore from '../../stores/DeckStore';
 
@@ -37,7 +38,9 @@ class DeckView extends Component {
 						<DeckDisplay deck={deck} />
 					</Col>
 					<Col xxl={6} xl={8} lg={10} md={24}>
-						<Card data={selectedCard.card} />
+						<Sticky enabled={true} top={50} >
+						    <Card data={selectedCard.card} />
+						</Sticky>	
 					</Col>
 				</Row>
 			</div>
