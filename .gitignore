@@ -11,3 +11,7 @@ npm-debug\.log
 package-lock\.json
 
 src/server/config/
+
+scripts/Cards/
+
+scripts/SetData/
