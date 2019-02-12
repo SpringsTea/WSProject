@@ -31,18 +31,22 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
   	handleSaveDeck = async(values) => {
   		const { deck, togglevisible } = this.props;
   		this.setState({loading: true});
-		const [
-		  res
-		] = await Promise.all([
-		    saveDeck({
-		      	...values,
-			  	cards: deck
-		    })
-		]);
-		console.log(res)
-		this.setState({loading: false});
-		togglevisible(false);  
-	}
+  		const [
+  		  res
+  		] = await Promise.all([
+  		    saveDeck({
+  		      	...values,
+  			  	cards: deck
+  		    })
+  		]);
+      if( res.status === 200 && res.data ){
+        window.location.href = `/deck/${res.data.deck.deckid}`;
+      }
+      else{
+        this.setState({loading: false});
+        console.log('Something went wrong', res)
+      }
+  	}
 
     render() {
       const { handleSubmitForm } = this;
