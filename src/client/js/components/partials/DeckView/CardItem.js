@@ -20,7 +20,7 @@ class CardItem extends Component {
 				  />
 				</div>
 				</Badge>
-				<div>
+				<div className="card-name">
 					{card.name}
 				</div>
 			</div>

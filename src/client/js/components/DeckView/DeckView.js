@@ -30,15 +30,13 @@ class DeckView extends Component {
 	render(){
 		const { deck, selectedCard } = this.state;
 
-		console.log(selectedCard)
-
 		return(
 			<div className="container-deckview">
 				<Row gutter={8}>
-					<Col span={16}>
+					<Col xxl={16} xl={14} lg={12} md={24}>
 						<DeckDisplay deck={deck} />
 					</Col>
-					<Col span={6}>
+					<Col xxl={6} xl={8} lg={10} md={24}>
 						<Card data={selectedCard.card} />
 					</Col>
 				</Row>

@@ -4,8 +4,29 @@
 	padding: 10px;
 }
 
+.container-deckview{
+	.header{
+		font-weight: bolder;
+		color: gray;
+	}
+	.container-card{
+
+	}
+}
+
 
 .container-carditem{
 	text-align: center;
 	margin-top: 10px;
+	min-height: 240px;
+
+	.card-name{
+		/*this stuff lets card name wrap two lines and then hide overflow*/
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	
 }
