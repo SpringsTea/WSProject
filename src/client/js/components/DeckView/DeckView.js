@@ -4,6 +4,7 @@ import Sticky from 'react-stickynode';
 
 import DeckStore from '../../stores/DeckStore';
 
+import DeckHeader from './DeckHeader';
 import Card from '../Builder/Card';
 import DeckDisplay from '../partials/DeckView/DeckDisplay';
 
@@ -33,6 +34,7 @@ class DeckView extends Component {
 
 		return(
 			<div className="container-deckview">
+				<DeckHeader cards={deck.cards} deck={deck} />
 				<Row gutter={8}>
 					<Col xxl={16} xl={14} lg={12} md={24}>
 						<DeckDisplay deck={deck} />
