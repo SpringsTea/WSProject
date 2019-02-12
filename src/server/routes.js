@@ -52,7 +52,12 @@ module.exports = function(app){
     }
 
     Deck.create(deckdata, (err, data) => {
-      res.status(200).send({ deck: data })
+      if(err){
+        res.status(500).send({error: err})
+      }
+      else{
+        res.status(200).send({ deck: data })
+      }
     });
   })
 

@@ -28,13 +28,19 @@ class DeckSaveForm extends Component {
         }
         <Form.Item label="Name">
           {getFieldDecorator('name', {
-            rules: [{ required: true, message: 'Give your deck a name!' }],
+            rules: [{ required: true, message: 'Give your deck a name!' },
+              { max: 100, message: 'Keep names to 100 charicters long' }
+            ],
           })(
             <Input />
           )}
         </Form.Item>
         <Form.Item label="Description">
-          {getFieldDecorator('description')(<TextArea autosize={{minRows: 4, maxRows: 4}} />)}
+          {getFieldDecorator('description', {
+            rules: [{ max: 2000, message: 'Keep descriptions to 2000 charicters long' }]
+          })(
+            <TextArea autosize={{minRows: 4, maxRows: 4}} />
+          )}
         </Form.Item>
       </Form>
     )

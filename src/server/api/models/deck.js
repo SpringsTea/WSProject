@@ -4,10 +4,13 @@ import shortid from 'shortid';
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const deckSchema = mongoose.Schema({
-	name: String,
+	name: {
+		type: String,
+		maxlength: 100
+	},
 	userid: ObjectId,
 	deckid: { type: String, default: shortid.generate },
-	description: { type: String, default: '' }, 
+	description: { type: String, maxlength: 2000, default: '' }, 
 	datecreated: { type: Date, default: Date.now },
 	datemodified: { type: Date, default: Date.now },
 	valid: { type: Boolean, default: false },
