@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const cardSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
