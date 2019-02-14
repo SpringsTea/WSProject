@@ -5,13 +5,14 @@
 }
 
 .container-deckview{
+	overflow-x: hidden;
 	.header{
 		font-weight: bolder;
 		color: gray;
 	}
 	.deck-header{
 		.deck-description{
-			max-height: 6em;
+			max-height: 7em;
 			overflow-y: auto;
 		}
 	}
@@ -22,6 +23,11 @@
 	text-align: center;
 	margin-top: 10px;
 	min-height: 240px;
+
+	.cardimage{
+		min-height: 130px;
+		font-size: 5em;
+	}
 
 	.card-name{
 		/*this stuff lets card name wrap two lines and then hide overflow*/

@@ -18,7 +18,7 @@ class Card extends Component {
 					<div className='cardimage'>
 						<Img
 					    src={[
-					      `/images/${data.set}/${data.side}${data.release}/${data.sid}.gif`,
+					      `/images/${data.side}${data.release}/${data.sid}.gif`,
 					    ]}
 					    unloader={<Icon className="image-not-found" type="question-circle" />}
 					  />

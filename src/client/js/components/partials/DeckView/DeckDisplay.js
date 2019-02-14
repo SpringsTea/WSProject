@@ -28,13 +28,6 @@ class DeckDisplay extends Component {
 						</Col> 
 						)
 					}
-					{
-						cards.filter( (card) => card.level === 0 && card.cardtype !== 'CX' ).map( (card, i) => 
-						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
-							<CardItem card={card} />
-						</Col> 
-						)
-					}
 				</Row>
 				<div className="header">Level 1 </div>
 				<Row gutter={8}>

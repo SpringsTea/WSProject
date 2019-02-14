@@ -5,7 +5,7 @@ const { readdirSync, readFileSync } = require('fs')
 const SET_PATH = './SetData';
 const MODEL_PATH = '../src/server/api/models/card';
 const SIDE = 'S';
-const RELEASE = '35';
+const RELEASE = '45';
 const sid = null;
 
 const CardModel = require(MODEL_PATH)
@@ -37,12 +37,26 @@ let cardsToUpdate = setContent.filter( (cards) => {
 
 cardsToUpdate.forEach( async (sourcecard) => {
   let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, 'sid': sourcecard.sid});
-  
-  remotecard.name = sourcecard.name;
-  remotecard.ability = sourcecard.ability;
 
-  remotecard.save();
-  console.log('Card Saevd', remotecard);
+  if( remotecard ){
+    //Update existing card
+    remotecard.name = sourcecard.name;
+    remotecard.ability = sourcecard.ability;
+
+    remotecard.save();
+    console.log('Card Saved', remotecard);
+  }
+  else{
+    CardModel.create(sourcecard, function(err, data){
+      if(err){
+        console.log('Something went wrong', err);
+      }
+      else{
+        console.log('Card added:', sourcecard.sid);
+      }
+    })
+  }  
+  
 })
 
 

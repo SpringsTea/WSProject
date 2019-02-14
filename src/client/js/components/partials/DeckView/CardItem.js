@@ -14,7 +14,7 @@ class CardItem extends Component {
 				<div className='cardimage' onMouseEnter={ () => selectCard({card})}>
 					<Img
 				    src={[
-				      `/images/${card.set}/${card.side}${card.release}/${card.sid}.gif`,
+				      `/images/${card.side}${card.release}/${card.sid}.gif`,
 				    ]}
 				    unloader={<Icon className="image-not-found" type="question-circle" />}
 				  />

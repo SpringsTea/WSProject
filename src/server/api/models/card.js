@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 const cardSchema = mongoose.Schema({
-	_id: mongoose.Schema.Types.ObjectId,
 	sid: String,
 	name: String,
 	set: String,
@@ -15,6 +14,10 @@ const cardSchema = mongoose.Schema({
 	soul: Number,
 	rarity: String,
 	attributes: [String],
-	ability: [String]
+	ability: [String],
+	trigger: {
+		type: [String],
+		default: []
+	}
 }, {collection: 'card'});
 module.exports = mongoose.model('Card', cardSchema);
