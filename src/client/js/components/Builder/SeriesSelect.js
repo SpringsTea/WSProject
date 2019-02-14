@@ -8,12 +8,18 @@ const Option = Select.Option;
 
 class SeriesSelect extends Component {
 
-	onSelect = async(seriesid) => {
-		const [series] = await Promise.all([
-			fetchSeries(seriesid)
-		]);	
+	onSelect = async(seriesid, remove = false) => {
 
-		receiveSeries(series);
+		if( remove === false ){
+			const [series] = await Promise.all([
+				fetchSeries(seriesid)
+			]);	
+
+			receiveSeries(series, remove);
+		}
+		else{
+			receiveSeries(seriesid, remove)
+		}		
 	}
 
 	render(){
@@ -25,7 +31,9 @@ class SeriesSelect extends Component {
 					mode="multiple"
 					style={{width:'100%'}}
 					placeholder="Select one or more series"
-					onSelect={onSelect}
+					filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+					onSelect={(val) => onSelect(val, false)}
+					onDeselect={(val) => onSelect(val, true)}
 				>
 					{
 						serieses.map( (series) => <Option key={series._id} value={series._id}>{series.name}</Option> )

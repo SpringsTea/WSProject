@@ -50,10 +50,23 @@ const BuilderStore = {
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case AT.SERIESES_RECEIVE:
-        serieslist = props.data;
+        serieslist = props.data.sort((a, b)=> (a.name < b.name ? -1: 1 ));
         break;
       case AT.SERIES_RECEIVE:
-        buildercards = props.data.sort(sortall);
+        if(props.remove === false){
+          buildercards = buildercards.concat(props.data)
+        }
+        else{
+          //On remove, props.data = seriesid
+          let seriesToRemove = serieslist.find( (s) => s._id == props.data );
+          buildercards = buildercards.filter( ( card ) => {
+            console.log(card.release, seriesToRemove.release);
+            return card.side + card.release != seriesToRemove.side + seriesToRemove.release;
+          })
+
+        }
+
+        buildercards = buildercards.sort(sortall);
         filterBuilderCards()
         break;
       case AT.SELECT_CARD:

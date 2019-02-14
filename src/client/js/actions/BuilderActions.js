@@ -3,7 +3,7 @@ import { BuilderActions as AT } from '../constants/Actions';
 import { throttle } from 'throttle-debounce';
 
 export const receiveSerieses = (data) => dispatch({ type: AT.SERIESES_RECEIVE, data });
-export const receiveSeries = (data) => dispatch({ type: AT.SERIES_RECEIVE, data });
+export const receiveSeries = (data, remove) => dispatch({ type: AT.SERIES_RECEIVE, data, remove });
 export const receiveDeck = (data) => dispatch({ type: AT.DECK_RECEIVE, data });
 
 export const selectCard = throttle( 500, (data) => dispatch({ type: AT.SELECT_CARD, data }) );
