@@ -14,14 +14,14 @@ var mongooseOptions = {
   useNewUrlParser: true
 }
 
-console.log('connecting to mongoose...')
-mongoose.connect(`mongodb://127.0.0.1:27017/wsdata?authSource=admin`, mongooseOptions);
-console.log('connected');
-
 if( config.AUTH === true ){
   mongooseOptions.user = config.APP_USERNAME;
   mongooseOptions.pass = config.APP_PASSWORD;
 }
+
+console.log('connecting to mongoose...')
+mongoose.connect(`mongodb://127.0.0.1:27017/wsdata?authSource=admin`, mongooseOptions);
+console.log('connected');
 
 let setContent = JSON.parse(readFileSync(`${SET_PATH}/${SIDE}${RELEASE}.json`, { encoding: 'utf8'}));
 
