@@ -4,8 +4,8 @@ const { readdirSync, readFileSync } = require('fs')
 
 const SET_PATH = './SetData';
 const MODEL_PATH = '../src/server/api/models/card';
-const SIDE = 'S';
-const RELEASE = '45';
+const SIDE = proccess.env.SIDE || 'S';
+const RELEASE = proccess.env.RELEASE || '35';
 const sid = null;
 
 const CardModel = require(MODEL_PATH)
