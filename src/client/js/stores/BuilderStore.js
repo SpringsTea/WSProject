@@ -19,7 +19,6 @@ let selectedCard = {
 };
 
 function filterBuilderCards() {
-  console.log('Filter buildercards');
   fbuildercards = buildercards.filter( (card) => {
 
 

@@ -63,6 +63,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
           confirmLoading={loading}
           onCancel={() => togglevisible(false)}
           onOk={handleSubmitForm}
+          okButtonProps={ deck.length === 0 ? { disabled: true } : {} }
         >
          <DeckSaveForm form={form} deck={deck} />
         </Modal>

@@ -5,6 +5,15 @@ import CardItem from '../partials/Builder/CardItem/CardItem'
 
 class CardSelector extends Component {
 
+	shouldComponentUpdate(nextProps){
+		//TODO I should not have to do this, why does this component render on card select
+		if( nextProps.cards.length === this.props.cards.length ){
+			return false;
+		}
+
+		return true;
+	}
+
 	render(){
 		const { handleItemHover } = this;
 		const { cards } = this.props;

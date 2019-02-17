@@ -12,7 +12,10 @@ class DeckSaveForm extends Component {
 
     let alerts = [];
 
-    if( deck.length !== 50 ){
+    if( deck.length === 0 ){
+      alerts.push({ type: 'warning', message: 'You cannot save a deck with no cards'});
+    }
+    else if( deck.length !== 50 ){
       alerts.push({ type: 'warning', message: 'Your deck does not have 50 cards', description: 'You can still save your deck and complete it later' });
     } 
 
@@ -28,8 +31,9 @@ class DeckSaveForm extends Component {
         }
         <Form.Item label="Name">
           {getFieldDecorator('name', {
-            rules: [{ required: true, message: 'Give your deck a name!' },
-              { max: 100, message: 'Keep names to 100 charicters long' }
+            rules: [
+              { required: true, message: 'Give your deck a name!', transform(v) { return v.trim()} },
+              { max: 100, message: 'Keep names to 100 characters long' },
             ],
           })(
             <Input />
@@ -37,7 +41,7 @@ class DeckSaveForm extends Component {
         </Form.Item>
         <Form.Item label="Description">
           {getFieldDecorator('description', {
-            rules: [{ max: 2000, message: 'Keep descriptions to 2000 charicters long' }]
+            rules: [{ max: 2000, message: 'Keep descriptions to 2000 characters long' }]
           })(
             <TextArea autosize={{minRows: 4, maxRows: 4}} />
           )}

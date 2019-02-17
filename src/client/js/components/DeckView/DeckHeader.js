@@ -24,7 +24,7 @@ class DeckHeader extends Component {
 					<Col xl={6}>
 						<div>
 							<span>
-								Charicters : { sumCardQuantity(cards, 'CH') } {' '}
+								Characters : { sumCardQuantity(cards, 'CH') } {' '}
 							</span>
 							<span>
 								Events : { sumCardQuantity(cards, 'EV') } {' '}

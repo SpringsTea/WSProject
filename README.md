@@ -29,7 +29,7 @@ Any time or experience you can lend are greatly appreciated.
     ~~I'll need a place to deploy this for the beta and beyond. I don't really know how much the upkeep will cost. I may have to seek funding, or someone to volunteer server space. I'm currently storing images in a 3rd party cdn. I don't know if this is my best solution or not, so some expertise on how to store large amount of images, and deliver them efficiently would be very great.~~
     Big thanks to pwyll for offering to help with hosting and administration
 
-If you have any feedback or offerings, feel free to shoot me an email @ shawn.springstead@gmail.com
+If you have any feedback or offerings, anyone is welcome to join the development discord: https://discord.gg/cFsZJCq
 
 **Credit where due:**
 

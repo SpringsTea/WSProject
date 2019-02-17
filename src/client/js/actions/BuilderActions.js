@@ -7,7 +7,7 @@ export const receiveSeries = (data, remove) => dispatch({ type: AT.SERIES_RECEIV
 export const receiveDeck = (data) => dispatch({ type: AT.DECK_RECEIVE, data });
 
 export const selectCard = throttle( 500, (data) => dispatch({ type: AT.SELECT_CARD, data }) );
-export const filterBuilder = (data) => dispatch({ type: AT.FILTER_BUILDER, data });
+export const filterBuilder = throttle( 1000, (data) => dispatch({ type: AT.FILTER_BUILDER, data }) );
 
 /*Deck actions*/
 export const addDeckCard = (card) => dispatch({ type: AT.ADD_DECK_CARD, card });

@@ -9,6 +9,7 @@ class CardItem extends Component {
 
 	render(){
 		const { card } = this.props;
+
 		return(
 			<List.Item 
 			onMouseEnter={ () => selectCard({card})}

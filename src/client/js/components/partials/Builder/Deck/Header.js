@@ -22,7 +22,7 @@ class Header extends Component {
 						Cards : { cards.length }
 					</span>
 					<span>
-						Charicters : { sumCardQuantity(cards, 'CH') }
+						Characters : { sumCardQuantity(cards, 'CH') }
 					</span>
 					<span>
 						Events : { sumCardQuantity(cards, 'EV') }

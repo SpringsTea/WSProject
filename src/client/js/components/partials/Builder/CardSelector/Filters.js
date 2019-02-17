@@ -10,9 +10,9 @@ const { TabPane } = Tabs;
 
 class Filters extends Component {
 
-  handleTextSearch = throttle( 500, (text) =>{
+  handleTextSearch = (text) =>{
     filterBuilder({ type: 'text', value: text });
-  })
+  }
 
   render(){
 
@@ -27,7 +27,7 @@ class Filters extends Component {
             <TabPane tab="Type" key="2">
             <div className="toggles">
               <span>
-                Charicters <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'CH', value: val }) } />
+                Characters <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'CH', value: val }) } />
               </span>
               <span>
                 Events <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'EV', value: val }) } />

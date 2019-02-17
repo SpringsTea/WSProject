@@ -19,15 +19,13 @@ class Deck extends Component {
 
 	render(){
 		const { cards } = this.props;
-		console.log('render deck')
-
 		let deckcards = filterCardQuantity(cards);
 
 		return(
 			<div className="container-deck nice-scroll">
 				<Header cards={cards}/>
 				<div className="deck-body">
-					<div>Charicters</div>
+					<div>Characters</div>
 						<div className="CH card-category">
 							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CH' ).sort(sortlevel) } />
 						</div>
