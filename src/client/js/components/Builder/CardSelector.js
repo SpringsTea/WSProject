@@ -7,7 +7,7 @@ class CardSelector extends Component {
 
 	shouldComponentUpdate(nextProps){
 		//TODO I should not have to do this, why does this component render on card select
-		if( nextProps.cards.length === this.props.cards.length ){
+		if( nextProps.cards.length === this.props.cards.length && this.props.quantity !== true ){
 			return false;
 		}
 

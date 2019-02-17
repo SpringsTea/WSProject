@@ -27,15 +27,15 @@ class Deck extends Component {
 				<div className="deck-body">
 					<div>Characters</div>
 						<div className="CH card-category">
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CH' ).sort(sortlevel) } />
+							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CH' ).sort(sortlevel) } quantity />
 						</div>
 					<div>Events</div>
 						<div className="EV card-category">
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'EV' ).sort(sortlevel)} />
+							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'EV' ).sort(sortlevel)} quantity />
 						</div>
 					<div>Climaxes</div>
 						<div className="CX card-category">
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CX' ).sort(sortlevel)} />
+							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CX' ).sort(sortlevel)} quantity />
 						</div>
 				</div>
 			</div>
