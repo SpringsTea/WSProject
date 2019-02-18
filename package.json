@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "antd": "^3.11.6",
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
