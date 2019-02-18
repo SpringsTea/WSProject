@@ -22,6 +22,7 @@ import {
 import Builder from './components/Builder/Builder';
 import Header from './components/Header/Header';
 import DeckView from './components/DeckView/DeckView';
+import DeckSearch from './components/DeckSearch/DeckSearch';
 
 // Styles
 import '../styles/styles.less'
@@ -58,6 +59,11 @@ WS.event.on('deckview.load', async props => {
   await Promise.all([ loadDeckViewData({deckid: props.deckid}), domLoaded ]);
 
   render( <DeckView />, document.querySelector(props.el));
+})
+
+WS.event.on('decksearch.load', async props => {
+
+  render( <DeckSearch />, document.querySelector(props.el));
 })
 
 async function loadBuilderData() {

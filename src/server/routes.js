@@ -77,8 +77,13 @@ module.exports = function(app){
     })
   })
 
+  //Static assets
   app.get("/deck/:deckid", function(req, res){
     res.render("deck", { deckid: req.params.deckid });
+  });
+
+  app.get("/decks", function(req, res){
+    res.render("decksearch", {});
   });
     
 }

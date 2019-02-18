@@ -46,6 +46,11 @@ module.exports = {
       filename: path.resolve(__dirname, 'dist/deck.mustache'),
       template: path.resolve(__dirname, "./public/deck.mustache"),
       //favicon: "./public/favicon.ico"
+    }),
+    new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/decksearch.mustache'),
+      template: path.resolve(__dirname, "./public/decksearch.mustache"),
+      //favicon: "./public/favicon.ico"
     })
   ],
   resolve: {
