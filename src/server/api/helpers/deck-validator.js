@@ -1,6 +1,8 @@
 'use strict';
 
+// mappings
 const neoStandardMap = require('../mappings/neo-standard-map');
+const armyMap = require('../mappings/army-map');
 
 module.exports = (deck) => {
     // deck legality object
@@ -19,39 +21,50 @@ module.exports = (deck) => {
     // check deck for card limits
     let cardCount = {};
     let cxCount = 0;
-    let armyCheck = {};
     let setCodes = new Set();
     for (let card of deck.cards) {
-        // Add card set to Set (LOL)
+        // build card number (remove variant indicators)
+        let cardNumber = `${card.set}/${card.side}${card.release}-${card.sid.replace(/[a-z]/g, '')}`;
+        // add card set to Set 
         setCodes.add(card.set);
-        if (cardCount[card.name] === undefined || cardCount[card.name] < 4) {
-            cardCount[card.name] = cardCount[card.name] ? cardCount[card.name] + 1 : 1;
+        // check if card count has exceeded standard of 4
+        if (cardCount[cardNumber] === undefined || cardCount[cardNumber] < 4) {
+            cardCount[cardNumber] = cardCount[cardNumber] ? cardCount[cardNumber] + 1 : 1;
             // count climaxes
             if (card.cardtype == "CX") {
                 cxCount++;
             }
         } else {
-            // check if card is army if we haven't already
-            if (armyCheck[card.name] === undefined) {
-                armyCheck[card.name] = false;
-                if (card.ability.toString().indexOf("You can put any number of cards with the same card name as this card into your deck.") > -1) {
-                    // card is legal for multiple insert
-                    armyCheck[card.name] = true;
+            // if the card number is in the army map, evaluate
+            if (armyMap[cardNumber] !== undefined) {
+                // check unlimited flag
+                if (armyMap[cardNumber] === -1) {
+                    cardCount[cardNumber] = cardCount[cardNumber] ? cardCount[cardNumber] + 1 : 1;
+                } 
+                // else, there is a defined limit
+                else {
+                    // If card is not over specified limit, count
+                    if (cardCount[cardNumber] < armyMap[cardNumber]) {
+                        cardCount[cardNumber] = cardCount[cardNumber] ? cardCount[cardNumber] + 1 : 1;
+                    } 
+                    // else, deck is not legal
+                    else {
+                        deckLegality.failReason = card.name + " (" + cardNumber + ") was over per-card limit.";
+                        return deckLegality;
+                    }
                 }
             }
-            // evaluate if card is flagged as army
-            if (armyCheck[card.name]) {
-                cardCount[card.name] = cardCount[card.name] ? cardCount[card.name] + 1 : 1;
-            } 
+            // else, deck is not legal
             else {
-                deckLegality.failReason = card.name + " was over per-card limit.";
+                deckLegality.failReason = cardNumber + " was over per-card limit.";
                 return deckLegality;
             }
         }
     }
 
-    if (cxCount !== 8) {
-        deckLegality.failReason = "This deck didn't contain 8 climax cards.";
+    // check if climaxes exceed maximum of 8
+    if (cxCount > 8) {
+        deckLegality.failReason = "Too many Climax cards.";
         return deckLegality;
     }
 

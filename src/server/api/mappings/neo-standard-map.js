@@ -1,3 +1,9 @@
+'use-strict';
+
+/**
+ * This file maps valid Neo-Standard series to their respective constituent sets.
+ */
+
 module.exports = {
     "Accel World": ["AW"],
     "Angel Beats! / Kud": ["AB","KW"],
