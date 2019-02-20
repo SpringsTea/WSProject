@@ -15,7 +15,7 @@
  */
 
 module.exports = {
-    "AOT/S35-094": -1, // "Predation" Titan
-    "AOT/S35-095": -1, // "Invasion" Titan
-    "SY/WE09-19": 8   // Endless Eight
+    "AOT/S50-088": -1, // "Pursuit" Titan
+    "AOT/S50-095": -1, // "Predation" Titan
+    "SY/WE09-019": 8   // Endless Eight
 }

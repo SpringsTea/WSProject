@@ -5,7 +5,8 @@
  */
 
 import Deck from '../models/deck'
-// import DeckValidator from '../helpers/deck-validator'
+import Card from '../models/card'
+import DeckValidator from '../helpers/deck-validator'
 
 /**
  * Get Series Cards
@@ -20,15 +21,18 @@ module.exports = async (request, response, next) => {
         const d = request.body;
         let deckdata = {
             ...d,
-            userid: null,
-            valid: d.cards && d.cards.length === 50 //false
+            userid: null
         };
 
-        // determine neo standard legality NOTE: Disabled until approved
-        // let deckLegality = DeckValidator(deckdata);
-        // deckdata.valid = deckLegality.neoLegal;
-        // deckdata.neo_sets = deckLegality.neoSets;
-        // deckdata.neo_fail = deckLegality.failReason;
+        const cardData = await Card.find({ 
+            '_id' : deckdata.cards
+        }).exec();
+
+        //determine neo standard legality
+        let deckLegality = DeckValidator({...deckdata, carddata: cardData});
+        deckdata.valid = deckLegality.deckvalid;
+        deckdata.neo_sets = deckLegality.neoSets;
+        deckdata.neo_fail = deckLegality.failReason;
 
         // create deck 
         let createdDeck = await Deck.create(deckdata);

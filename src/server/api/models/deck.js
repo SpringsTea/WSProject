@@ -14,10 +14,9 @@ const deckSchema = mongoose.Schema({
 	datecreated: { type: Date, default: Date.now },
 	datemodified: { type: Date, default: Date.now },
 	valid: { type: Boolean, default: false },
-	standard: { type: Boolean, default: false },
 	cards: [{ type: String, ref: 'Card' }],
-	// neo_sets: { type: Array, default: [] },
-	// neo_fail: { type: String, default: '' }
+	neo_sets: { type: Array, default: [] },
+	neo_fail: { type: String, default: '' },
 }, { collection: 'deck' });
 
 
