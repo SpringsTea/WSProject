@@ -14,8 +14,13 @@ import {
 } from './actions/DeckActions';
 
 import {
+  receiveDecks
+} from './actions/DeckSearchActions';
+
+import {
 	fetchDeck,
   fetchSerieses,
+  searchDeck,
 } from './utils/api'
 
 // React components
@@ -62,7 +67,7 @@ WS.event.on('deckview.load', async props => {
 })
 
 WS.event.on('decksearch.load', async props => {
-
+  loadDeckSearchData();
   render( <DeckSearch />, document.querySelector(props.el));
 })
 
@@ -85,4 +90,14 @@ async function loadDeckViewData(data){
 
   receiveDeck(deck);
 
+}
+
+async function loadDeckSearchData() {
+  const [
+    decks
+  ] = await Promise.all([
+    searchDeck({})
+  ]);
+
+  receiveDecks(decks)
 }

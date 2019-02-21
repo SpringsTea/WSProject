@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Input, Row, Col, Button } from 'antd'
 
-import DeckSearhStore from '../../stores/DeckSearchStore';
+import DeckSearchStore from '../../stores/DeckSearchStore';
 
 const buildState = () => ({
-
+  decks: DeckSearchStore.getDecks(),
 });
 
 class DeckSearch extends Component {
@@ -16,17 +16,17 @@ class DeckSearch extends Component {
   onChange = () => this.setState(buildState);
 
   componentDidMount() {
-    DeckSearhStore.addChangeListener(this.onChange);
+    DeckSearchStore.addChangeListener(this.onChange);
   }
 
   componentWillUnmount() {
-    DeckSearhStore.removeChangeListener(this.onChange);
+    DeckSearchStore.removeChangeListener(this.onChange);
   }
 
 	render(){
 		return(
 			<div className="container-decksearch">
-				FUCK
+				DECKS
 			</div>
 		)
 	}
