@@ -17,7 +17,7 @@ export async function fetchDeck(deckid) {
 export async function saveDeck(data) {
 	return (await axios.post(`/api/deck`, data));
 }
-]
+
 //Search decks with various parameters
 export async function searchDeck(data){
 	return (await axios.get(`/api/search/deck`, {

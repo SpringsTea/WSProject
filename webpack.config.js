@@ -8,8 +8,13 @@ module.exports = {
   entry: "./src/client/js/router.js",
   output: {
     path: path.join(__dirname, outputDirectory),
-    filename: "bundle.js",
+    filename: "[name].[contenthash].js",
     publicPath: '/'
+  },
+  optimization: {
+    splitChunks:{
+      chunks: 'all'
+    }
   },
   module: {
     rules: [
