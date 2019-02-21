@@ -17,5 +17,20 @@
 module.exports = {
     "AOT/S50-088": -1, // "Pursuit" Titan
     "AOT/S50-095": -1, // "Predation" Titan
-    "SY/WE09-019": 8   // Endless Eight
+    "SY/WE09-019": 8,  // Endless Eight
+    "KC/S25-166": -1,  // Maruyu, Type 3 Submerged Transport Ship
+    "RG/W26-023": -1,  // Sisters
+    "GG/S23-087": -1,  // Whalesquid
+    "SG/W19-038": -1,  // Noise (Episode 4)
+    "KS/W55-089": -1,  // "Walking on the Street" Axis Cultist
+    "KI/S44-015": -1,  // Goromin
+    "DG/S02-038": -1,  // Prinny
+    "DG/S02-T02": -1,  // Prinny again
+    "PY/S38-078": -1,  // Red Puyo
+    "FXX/S57-014": -1, // Mass-Produced Franxx
+    "TF/S32-084": -1,  // "Abominable Being" Terraformar
+    "PD/S29-046": 8,   // Hatsune Miku "Conflict"
+    "GL/S52-094": -1,  // Mugann
+    "RZ/S55-015": -1,  // Fingertips
+    "KS/W49-057": -1,  // Cabbage
 }

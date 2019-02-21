@@ -35,7 +35,7 @@ module.exports = (deck) => {
         }
 
         // build card number (remove variant indicators)
-        let cardNumber = `${card.set}/${card.side}${card.release}-${card.sid.replace(/[a-z]/g, '')}`;
+        let cardNumber = `${card.set}/${card.side}${card.release}-${card.sid.replace(/[a-z]$/g, '')}`;
         // add card set to Set 
         setCodes.add(card.set);
         // check if card count has exceeded standard of 4
