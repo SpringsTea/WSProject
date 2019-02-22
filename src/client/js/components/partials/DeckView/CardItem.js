@@ -12,11 +12,11 @@ class CardItem extends Component {
         <Badge count={card.quantity} style={{backgroundColor: '#000000'}}>
           <div className='cardimage' onMouseEnter={ () => selectCard({card})}>
             <Img
-				    src={[
-				      `/images/${card.side}${card.release}/${card.sid}.gif`,
-				    ]}
-				    unloader={<Icon className="image-not-found" type="question-circle" />}
-				  />
+              src={[
+                `/images/${card.side}${card.release}/${card.sid}.gif`,
+              ]}
+              unloader={<Icon className="image-not-found" type="question-circle" />}
+            />
           </div>
         </Badge>
         <div className="card-name">

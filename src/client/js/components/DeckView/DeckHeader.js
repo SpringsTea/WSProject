@@ -23,25 +23,25 @@ class DeckHeader extends Component {
           <Col xl={6}>
             <div>
               <span>
-								Characters : { sumCardQuantity(cards, 'CH') } {' '}
+                                Characters : { sumCardQuantity(cards, 'CH') } {' '}
               </span>
               <span>
-								Events : { sumCardQuantity(cards, 'EV') } {' '}
+                                Events : { sumCardQuantity(cards, 'EV') } {' '}
               </span>
               <span>
-								Climaxes : { sumCardQuantity(cards, 'CX') }
+                                Climaxes : { sumCardQuantity(cards, 'CX') }
               </span>
             </div>
             <div>
-							(
+                            (
               {
                 [0, 1, 2, 3].map( (level) => <span key={level}> Level {level}: { countCardLevel(cards, level) }{level !== 3 && ','} </span> )
               }
-							)
+                            )
             </div>
           </Col>
           <Col xl={16}>
-						Description:
+                        Description:
             <div className="deck-description">
               { deck.description }
             </div>

@@ -10,37 +10,37 @@ const buildState = () => ({
 });
 
 class DeckSearch extends Component {
-  state = {
-  	...buildState(),
-  }
+    state = {
+      ...buildState(),
+    }
 
-  onChange = () => this.setState(buildState);
+    onChange = () => this.setState(buildState);
 
-  componentDidMount() {
-    DeckSearchStore.addChangeListener(this.onChange);
-  }
+    componentDidMount() {
+      DeckSearchStore.addChangeListener(this.onChange);
+    }
 
-  componentWillUnmount() {
-    DeckSearchStore.removeChangeListener(this.onChange);
-  }
+    componentWillUnmount() {
+      DeckSearchStore.removeChangeListener(this.onChange);
+    }
 
-  render() {
-    const {decks} = this.state;
+    render() {
+      const {decks} = this.state;
 
-    return (
-      <div className="container-decksearch">
-        <Row gutter={18}>
-  				{
-            decks.map( (deck) =>
-              <Col span={3} key={deck.deckid}>
-                <DeckCard deck={deck} />
-              </Col>
-            )
-          }
-        </Row>
-      </div>
-    );
-  }
+      return (
+        <div className="container-decksearch">
+          <Row gutter={18}>
+            {
+              decks.map( (deck) =>
+                <Col span={3} key={deck.deckid}>
+                  <DeckCard deck={deck} />
+                </Col>
+              )
+            }
+          </Row>
+        </div>
+      );
+    }
 }
 
 export default DeckSearch;

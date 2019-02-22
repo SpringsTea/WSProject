@@ -22,10 +22,10 @@ module.exports = async (request, response, next) => {
         '-_id cards datemodified datecreated deckid description name userid valid neo_fail'
     ).limit(limit)
         .populate({
-        	path: 'cards',
-        	options: {
-        		limit: 1,
-        	},
+          path: 'cards',
+          options: {
+            limit: 1,
+          },
         })
         .where('valid').equals(true)
         .sort('-datecreated');

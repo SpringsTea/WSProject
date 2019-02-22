@@ -18,16 +18,16 @@ class Header extends Component {
       <Card className="deck-header">
         <div>
           <span>
-						Cards : { cards.length }
+                        Cards : { cards.length }
           </span>
           <span>
-						Characters : { sumCardQuantity(cards, 'CH') }
+                        Characters : { sumCardQuantity(cards, 'CH') }
           </span>
           <span>
-						Events : { sumCardQuantity(cards, 'EV') }
+                        Events : { sumCardQuantity(cards, 'EV') }
           </span>
           <span>
-						Climaxes : { sumCardQuantity(cards, 'CX') }
+                        Climaxes : { sumCardQuantity(cards, 'CX') }
           </span>
         </div>
 
