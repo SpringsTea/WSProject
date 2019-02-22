@@ -50,22 +50,19 @@ module.exports = (deck) => {
         // check unlimited flag
         if (armyMap[cardNumber] === -1) {
           cardCount[cardNumber] = cardCount[cardNumber] ? cardCount[cardNumber] + 1 : 1;
-        }
-        // else, there is a defined limit
-        else {
+          // else, there is a defined limit
+        } else {
           // If card is not over specified limit, count
           if (cardCount[cardNumber] < armyMap[cardNumber]) {
             cardCount[cardNumber] = cardCount[cardNumber] ? cardCount[cardNumber] + 1 : 1;
-          }
           // else, deck is not legal
-          else {
+          } else {
             deckLegality.failReason = card.name + ' (' + cardNumber + ') was over per-card limit.';
             return deckLegality;
           }
         }
-      }
       // else, deck is not legal
-      else {
+      } else {
         deckLegality.failReason = cardNumber + ' was over per-card limit.';
         return deckLegality;
       }
