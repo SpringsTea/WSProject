@@ -33,6 +33,7 @@ import DeckSearch from './components/DeckSearch/DeckSearch';
 import '../styles/styles.less'
 import '../styles/builder.less'
 import '../styles/deckview.less'
+import '../styles/decksearch.less'
 
 // Export the globals we'll want elsewhere
 window.WS = Object.assign(window.WS || {}, {

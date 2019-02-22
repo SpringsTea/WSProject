@@ -4,6 +4,8 @@ import Img from 'react-image';
 
 import Property from '../partials/Builder/Card/Property';
 
+import { generateCardImageLink } from 'Utils/cardshorthands';
+
 class Card extends Component {
 	render(){
 		const { data } = this.props;
@@ -18,7 +20,7 @@ class Card extends Component {
 					<div className='cardimage'>
 						<Img
 					    src={[
-					      `/images/${data.side}${data.release}/${data.sid}.gif`,
+					      generateCardImageLink(data),
 					    ]}
 					    unloader={<Icon className="image-not-found" type="question-circle" />}
 					  />
