@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {List, Button, Icon, Avatar} from 'antd';
+import {List, Button} from 'antd';
 
 import CardItemIcon from './CardItemIcon';
 

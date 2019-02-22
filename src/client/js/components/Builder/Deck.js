@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {List} from 'antd';
 
 import CardSelector from './CardSelector';
 import Header from '../partials/Builder/Deck/Header';

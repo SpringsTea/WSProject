@@ -5,7 +5,6 @@ const {TextArea} = Input;
 
 class DeckSaveForm extends Component {
   render() {
-    const {generateAlerts} = this;
     const {form, deck} = this.props;
     const {getFieldDecorator} = form;
 

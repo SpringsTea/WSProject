@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Row, Col} from 'antd';
+import {Card} from 'antd';
 
 class Header extends Component {
   sumCardQuantity(cards, type ='CH') {

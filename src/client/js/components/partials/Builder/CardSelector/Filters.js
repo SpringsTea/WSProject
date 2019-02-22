@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Switch, Icon, Tabs, Input} from 'antd';
-import {throttle} from 'throttle-debounce';
+import {Switch, Tabs, Input} from 'antd';
 
 import {filterBuilder} from 'Actions/BuilderActions';
 import {colours} from 'Constants/sortorder';

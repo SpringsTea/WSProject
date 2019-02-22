@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Avatar, Icon} from 'antd';
+import {Card} from 'antd';
 
 import {generateCardImageLink} from 'Utils/cardshorthands';
 

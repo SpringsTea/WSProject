@@ -1,6 +1,6 @@
 const config = require('../src/server/config/mongo.js');
 const mongoose = require('mongoose');
-const {readdirSync, readFileSync} = require('fs');
+const {readFileSync} = require('fs');
 
 const SET_PATH = './SetData';
 const MODEL_PATH = '../src/server/api/models/card';

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Row, Col, Icon} from 'antd';
+import {Row, Icon} from 'antd';
 import Img from 'react-image';
 
 import Property from '../partials/Builder/Card/Property';

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {
-  Button, Modal, Form, Input, Radio,
+  Modal, Form,
 } from 'antd';
 
 import DeckSaveForm from './DeckSaveForm';
@@ -28,7 +28,7 @@ const DeckSaveModal = Form.create({name: 'deck_save_modal'})(
         }
 
         handleSaveDeck = async (values) => {
-          const {deck, togglevisible} = this.props;
+          const {deck} = this.props;
           this.setState({loading: true});
           const [
             res,

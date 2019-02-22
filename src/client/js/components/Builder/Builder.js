@@ -1,5 +1,5 @@
 import {Component} from 'react';
-import {Input, Row, Col, Button} from 'antd';
+import {Row, Col, Button} from 'antd';
 
 import Card from './Card';
 import SeriesSelect from './SeriesSelect';
