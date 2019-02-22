@@ -1,4 +1,4 @@
-import { Dispatcher } from 'flux';
+import {Dispatcher} from 'flux';
 
 const AppDispatcher = new Dispatcher();
 const dispatch = AppDispatcher.dispatch.bind(AppDispatcher);
@@ -12,4 +12,4 @@ const register = (receivers, onComplete) => AppDispatcher.register((payload) => 
 });
 
 export default AppDispatcher;
-export { register, dispatch, waitFor };
+export {register, dispatch, waitFor};

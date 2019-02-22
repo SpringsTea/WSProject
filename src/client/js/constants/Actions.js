@@ -8,10 +8,10 @@ export const BuilderActions = [
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});
 
 export const DeckViewActions = [
-	'DECK_RECEIVE',
-	'SELECT_CARD',
+  'DECK_RECEIVE',
+  'SELECT_CARD',
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});
 
 export const DeckSearchActions = [
-	'DECKS_RECEIVE'
+  'DECKS_RECEIVE',
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});

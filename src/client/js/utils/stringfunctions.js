@@ -1,1 +1,1 @@
-export const Capitalize = (lower) => lower.toLowerCase().replace(/^\w/, c => c.toUpperCase());
+export const Capitalize = (lower) => lower.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());

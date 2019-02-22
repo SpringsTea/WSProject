@@ -1,5 +1,5 @@
-import { Component } from 'react';
-import { Input, Row, Col, Button } from 'antd'
+import {Component} from 'react';
+import {Input, Row, Col, Button} from 'antd';
 
 import Card from './Card';
 import SeriesSelect from './SeriesSelect';
@@ -20,10 +20,9 @@ const buildState = () => ({
 });
 
 class Builder extends Component {
-
   state = {
   	...buildState(),
-  	savemodalopen: false
+  	savemodalopen: false,
   }
 
   onChange = () => this.setState(buildState);
@@ -37,31 +36,31 @@ class Builder extends Component {
   }
 
   handleToggleSaveModal = (bool) =>{
-  	this.setState({savemodalopen:bool})
+  	this.setState({savemodalopen: bool});
   }
 
-	render(){
-		const { handleToggleSaveModal } = this;
-		const { selectedCard, serieses, buildercards, deck, savemodalopen } = this.state;
-		return(
-			<div className="container-builder">
-				<DeckSaveModal deck={deck} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
-				<Row gutter={16}>
-					<Col xxl={8} xl={8} lg={12} md={24}
+  render() {
+    const {handleToggleSaveModal} = this;
+    const {selectedCard, serieses, buildercards, deck, savemodalopen} = this.state;
+    return (
+      <div className="container-builder">
+        <DeckSaveModal deck={deck} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
+        <Row gutter={16}>
+          <Col xxl={8} xl={8} lg={12} md={24}
           			className='container-series-selector nice-scroll'>
-						<SeriesSelect serieses={serieses} />
+            <SeriesSelect serieses={serieses} />
             			<Filters />
-						<CardSelector cards={buildercards} />
-						<Card data={selectedCard.card} />
-					</Col>
-					<Col xxl={16} xl={16} lg={12} md={24}> 
-						<Deck cards={deck} />
-						<Button className="btn-deck-save" type="primary" icon="save" size='large' onClick={()=> handleToggleSaveModal(true)}>Save Deck</Button>
-					</Col>
-				</Row>
-			</div>
-		)
-	}
+            <CardSelector cards={buildercards} />
+            <Card data={selectedCard.card} />
+          </Col>
+          <Col xxl={16} xl={16} lg={12} md={24}>
+            <Deck cards={deck} />
+            <Button className="btn-deck-save" type="primary" icon="save" size='large' onClick={()=> handleToggleSaveModal(true)}>Save Deck</Button>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
 }
 
 export default Builder;

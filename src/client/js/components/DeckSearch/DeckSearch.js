@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'antd'
+import React, {Component} from 'react';
+import {Row, Col} from 'antd';
 
 import DeckCard from '../partials/DeckSearch/DeckCard';
 
@@ -10,7 +10,6 @@ const buildState = () => ({
 });
 
 class DeckSearch extends Component {
-
   state = {
   	...buildState(),
   }
@@ -25,23 +24,23 @@ class DeckSearch extends Component {
     DeckSearchStore.removeChangeListener(this.onChange);
   }
 
-	render(){
-    const { decks } = this.state;
+  render() {
+    const {decks} = this.state;
 
-		return(
-			<div className="container-decksearch">
+    return (
+      <div className="container-decksearch">
         <Row gutter={18}>
   				{
-            decks.map( (deck) => 
+            decks.map( (deck) =>
               <Col span={3} key={deck.deckid}>
-                <DeckCard deck={deck} /> 
+                <DeckCard deck={deck} />
               </Col>
             )
           }
         </Row>
-			</div>
-		)
-	}
+      </div>
+    );
+  }
 }
 
 export default DeckSearch;

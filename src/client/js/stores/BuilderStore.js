@@ -1,18 +1,18 @@
 import Store from './Store';
-import { BuilderActions as AT } from '../constants/Actions';
-import { sortall } from '../utils/cardsort';
-import { register } from '../dispatcher';
+import {BuilderActions as AT} from '../constants/Actions';
+import {sortall} from '../utils/cardsort';
+import {register} from '../dispatcher';
 
-let serieslist = [];//Top level list of available series
+let serieslist = [];// Top level list of available series
 let buildercards = [];
-let fbuildercards = [];//Buildercards after filters
-let builderfilters = {
+let fbuildercards = [];// Buildercards after filters
+const builderfilters = {
   cardtype: [],
   colour: [],
-  text: null
+  text: null,
 };
 
-let deck = [];
+const deck = [];
 let selectedCard = {
   card: null,
   location: null,
@@ -20,23 +20,21 @@ let selectedCard = {
 
 function filterBuilderCards() {
   fbuildercards = buildercards.filter( (card) => {
-
-
-    if( builderfilters.cardtype.includes( card.cardtype ) ){
+    if ( builderfilters.cardtype.includes( card.cardtype ) ) {
       return false;
     }
 
-    if( builderfilters.colour.includes( card.colour ) ){
+    if ( builderfilters.colour.includes( card.colour ) ) {
       return false;
     }
 
-    //Match search text
-    if( builderfilters.text && builderfilters.text.length >= 3 && !card.name.toUpperCase().includes( builderfilters.text.toUpperCase() ) ){
+    // Match search text
+    if ( builderfilters.text && builderfilters.text.length >= 3 && !card.name.toUpperCase().includes( builderfilters.text.toUpperCase() ) ) {
       return false;
     }
 
     return true;
-  })
+  });
 }
 
 const BuilderStore = {
@@ -44,56 +42,52 @@ const BuilderStore = {
   getSeriesesData: () => serieslist,
   getBuilderCards: () => fbuildercards,
   getBuilderFilters: () => builderfilters,
-  getDeckCards: () => Object.assign([],deck),//assigning this instead of mutating lets me compare in Deck.shouldComponentUpdate,
+  getDeckCards: () => Object.assign([], deck), // assigning this instead of mutating lets me compare in Deck.shouldComponentUpdate,
   getSelectedCard: () => selectedCard,
-  reducer: register(async ({ type, ...props }) => {
-    switch(type) {
+  reducer: register(async ({type, ...props}) => {
+    switch (type) {
       case AT.SERIESES_RECEIVE:
         serieslist = props.data.sort((a, b)=> (a.name < b.name ? -1: 1 ));
         break;
       case AT.SERIES_RECEIVE:
-        if(props.remove === false){
-          buildercards = buildercards.concat(props.data)
-        }
-        else{
-          //On remove, props.data = seriesid
-          let seriesToRemove = serieslist.find( (s) => s._id == props.data );
+        if (props.remove === false) {
+          buildercards = buildercards.concat(props.data);
+        } else {
+          // On remove, props.data = seriesid
+          const seriesToRemove = serieslist.find( (s) => s._id == props.data );
           buildercards = buildercards.filter( ( card ) => {
             console.log(card.release, seriesToRemove.release);
             return card.side + card.release != seriesToRemove.side + seriesToRemove.release;
-          })
-
+          });
         }
 
         buildercards = buildercards.sort(sortall);
-        filterBuilderCards()
+        filterBuilderCards();
         break;
       case AT.SELECT_CARD:
         selectedCard = {
           card: props.data.card,
-          location: props.data.location
+          location: props.data.location,
         };
         break;
       case AT.ADD_DECK_CARD:
         deck.push(props.card);
         break;
       case AT.REMOVE_DECK_CARD:
-        let indextoremove = deck.findIndex( (el) => el._id === props.card._id )
+        const indextoremove = deck.findIndex( (el) => el._id === props.card._id );
         deck.splice(indextoremove, 1);
         break;
       case AT.FILTER_BUILDER:
 
-        if( props.data.type === 'text' ){
+        if ( props.data.type === 'text' ) {
           builderfilters.text = props.data.value;
+        } else if ( props.data.value === false ) {// Add value onto type array
+          builderfilters[props.data.type].push(props.data.filter);
+        } else {// Remove value from type array
+          builderfilters[props.data.type].splice( builderfilters[props.data.type].indexOf(props.data.filter), 1 );
         }
-        else if( props.data.value === false ){//Add value onto type array
-            builderfilters[props.data.type].push(props.data.filter);
-        }
-        else{//Remove value from type array
-          builderfilters[props.data.type].splice( builderfilters[props.data.type].indexOf(props.data.filter), 1 )
-        }
-        
-        filterBuilderCards()
+
+        filterBuilderCards();
         break;
       default: return;
     }

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'antd';
+import React, {Component} from 'react';
+import {Row, Col} from 'antd';
 import Sticky from 'react-stickynode';
 
 import DeckStore from '../../stores/DeckStore';
@@ -14,9 +14,8 @@ const buildState = () => ({
 });
 
 class DeckView extends Component {
-
   state = {
-  	...buildState()
+  	...buildState(),
   }
 
   onChange = () => this.setState(buildState);
@@ -29,25 +28,25 @@ class DeckView extends Component {
     DeckStore.removeChangeListener(this.onChange);
   }
 
-	render(){
-		const { deck, selectedCard } = this.state;
+  render() {
+    const {deck, selectedCard} = this.state;
 
-		return(
-			<div className="container-deckview">
-				<DeckHeader cards={deck.cards} deck={deck} />
-				<Row gutter={8}>
-					<Col xxl={16} xl={14} lg={12} md={24}>
-						<DeckDisplay deck={deck} />
-					</Col>
-					<Col xxl={6} xl={8} lg={10} md={24}>
-						<Sticky enabled={true} top={50} >
+    return (
+      <div className="container-deckview">
+        <DeckHeader cards={deck.cards} deck={deck} />
+        <Row gutter={8}>
+          <Col xxl={16} xl={14} lg={12} md={24}>
+            <DeckDisplay deck={deck} />
+          </Col>
+          <Col xxl={6} xl={8} lg={10} md={24}>
+            <Sticky enabled={true} top={50} >
 						    <Card data={selectedCard.card} />
-						</Sticky>	
-					</Col>
-				</Row>
-			</div>
-		)
-	}
+            </Sticky>
+          </Col>
+        </Row>
+      </div>
+    );
+  }
 }
 
 export default DeckView;
