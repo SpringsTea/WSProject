@@ -3,7 +3,7 @@ import shortid from 'shortid';
 
 const ObjectId = mongoose.Schema.Types.ObjectId;
 
-const deckSchema = mongoose.Schema({
+const deckSchema = new mongoose.Schema({
   name: {
     type: String,
     maxlength: 100,

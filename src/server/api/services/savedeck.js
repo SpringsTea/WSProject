@@ -29,7 +29,7 @@ module.exports = async (request, response, next) => {
     }).exec();
 
     // determine neo standard legality
-    const deckLegality = DeckValidator({...deckdata, carddata: cardData});
+    const deckLegality = new DeckValidator({...deckdata, carddata: cardData});
     deckdata.valid = deckLegality.deckvalid;
     deckdata.neo_sets = deckLegality.neoSets;
     deckdata.neo_fail = deckLegality.failReason;

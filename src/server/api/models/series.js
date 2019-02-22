@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const seriesSchema = mongoose.Schema({
+const seriesSchema = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   set: String,
   release: String,
