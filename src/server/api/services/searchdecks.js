@@ -20,7 +20,7 @@ module.exports = async (request, response, next) => {
     try {
         let query = Deck.find(
             {}, 
-            '-_id cards datemodified datecreated deckid description name userid valid neo_fail'
+            '-_id cards datemodified datecreated deckid description name userid valid neo_sets'
         ).limit(limit)
         .populate({
         	path: 'cards',

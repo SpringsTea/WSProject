@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'antd'
+import { Component } from 'react';
 
-import DeckCard from '../partials/DeckSearch/DeckCard';
+import DeckListDisplay from './DeckListDisplay';
 
 import DeckSearchStore from '../../stores/DeckSearchStore';
 
@@ -30,15 +29,7 @@ class DeckSearch extends Component {
 
 		return(
 			<div className="container-decksearch">
-        <Row gutter={18}>
-  				{
-            decks.map( (deck) => 
-              <Col span={3} key={deck.deckid}>
-                <DeckCard deck={deck} /> 
-              </Col>
-            )
-          }
-        </Row>
+        <DeckListDisplay decks={decks} />
 			</div>
 		)
 	}
