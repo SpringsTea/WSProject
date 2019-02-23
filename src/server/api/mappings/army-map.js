@@ -20,6 +20,7 @@ module.exports = {
     "SY/WE09-019": 8,  // Endless Eight
     "KC/S25-166": -1,  // Maruyu, Type 3 Submerged Transport Ship
     "RG/W26-023": -1,  // Sisters
+    "GG/S23-085": -1,  // Young Hideauze Lifeform
     "GG/S23-087": -1,  // Whalesquid
     "SG/W19-038": -1,  // Noise (Episode 4)
     "KS/W55-089": -1,  // "Walking on the Street" Axis Cultist
@@ -27,10 +28,16 @@ module.exports = {
     "DG/S02-038": -1,  // Prinny
     "DG/S02-T02": -1,  // Prinny again
     "PY/S38-078": -1,  // Red Puyo
+    "PY/S38-018": -1,  // Yellow Puyo
+    "PY/S38-051": -1,  // Green Puyo
+    "PY/S38-105": -1,  // Blue Puyo
     "FXX/S57-014": -1, // Mass-Produced Franxx
     "TF/S32-084": -1,  // "Abominable Being" Terraformar
     "PD/S29-046": 8,   // Hatsune Miku "Conflict"
     "GL/S52-094": -1,  // Mugann
     "RZ/S55-015": -1,  // Fingertips
     "KS/W49-057": -1,  // Cabbage
+    "RW/W48-090": -1,  // "Made by Kotori-san" Monster
+    "BD/W47-T11": 5,   // My Favorite item
+    "MM/W35-091": -1,  // Kyubey Going "Kyu"
 }
