@@ -28,9 +28,10 @@ module.exports = async ({query:params}, response, next) => {
         		limit: 1
         	}
         })
-        //.where('valid').equals(true)
+        .where('valid').equals( params.invalid !== undefined ? false : true )//valid decks only be default
         .sort('-datecreated')
 
+        //Filter by one set
         if( params.set ){
             query.where({ sets : params.set })
         }
