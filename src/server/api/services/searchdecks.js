@@ -13,23 +13,28 @@ import Deck from '../models/deck'
  * @param {object} response HTTP response
  * @param {function} next function callback
  */
-module.exports = async (request, response, next) => {
+module.exports = async ({query:params}, response, next) => {
 
-	const limit = parseInt(request.query.limit) || 10;
-
+	const limit = parseInt(params.limit) || 10;
     try {
         let query = Deck.find(
-            {}, 
+            {  }, 
             '-_id cards datemodified datecreated deckid description name userid valid neo_sets'
-        ).limit(limit)
+        )
+        .limit(limit)
         .populate({
         	path: 'cards',
         	options: {
         		limit: 1
         	}
         })
-        .where('valid').equals(true)
+        //.where('valid').equals(true)
         .sort('-datecreated')
+
+        if( params.set ){
+            query.where({ sets : params.set })
+        }
+
 
         let docs = await query.exec();
         response.status(200).json(docs)

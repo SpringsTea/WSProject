@@ -40,4 +40,5 @@ module.exports = {
     "RW/W48-090": -1,  // "Made by Kotori-san" Monster
     "BD/W47-T11": 5,   // My Favorite item
     "MM/W35-091": -1,  // Kyubey Going "Kyu"
+    "SW/S49-042": -1,  // Gamorrean
 }

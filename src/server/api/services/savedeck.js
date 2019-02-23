@@ -7,6 +7,7 @@
 import Deck from '../models/deck'
 import Card from '../models/card'
 import DeckValidator from '../helpers/deck-validator'
+import DeckSets from '../helpers/deck-sets';
 
 /**
  * Get Series Cards
@@ -33,6 +34,8 @@ module.exports = async (request, response, next) => {
         deckdata.valid = deckLegality.deckvalid;
         deckdata.neo_sets = deckLegality.neoSets;
         deckdata.neo_fail = deckLegality.failReason;
+        //Get a list of all set ids that are present in the deck
+        deckdata.sets = DeckSets(deckdata, cardData);
 
         // create deck 
         let createdDeck = await Deck.create(deckdata);

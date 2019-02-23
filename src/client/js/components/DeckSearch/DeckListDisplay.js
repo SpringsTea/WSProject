@@ -11,7 +11,7 @@ class DeckListDisplay extends Component {
 				<Row gutter={18}>
 					{
 						decks.map( (deck) => 
-							<Col xxl={4} xl={6} lg={8} md={12} key={deck.deckid}>
+							<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
 								<DeckCard deck={deck} /> 
 							</Col>
 						)

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 
 import DeckListDisplay from './DeckListDisplay';
+import DeckFilters from './DeckFilters';
 
 import DeckSearchStore from '../../stores/DeckSearchStore';
 
@@ -26,10 +27,11 @@ class DeckSearch extends Component {
   }
 
 	render(){
-    const { decks } = this.state;
+    const { decks, serieses } = this.state;
 
 		return(
 			<div className="container-decksearch">
+        <DeckFilters serieses={serieses} />
         <DeckListDisplay decks={decks} />
 			</div>
 		)
