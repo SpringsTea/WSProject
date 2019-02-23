@@ -13,5 +13,6 @@ export const DeckViewActions = [
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});
 
 export const DeckSearchActions = [
-	'DECKS_RECEIVE'
+	'DECKS_RECEIVE',
+	'SERIESES_RECEIVE',
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});

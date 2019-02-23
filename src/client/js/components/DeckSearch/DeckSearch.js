@@ -6,6 +6,7 @@ import DeckSearchStore from '../../stores/DeckSearchStore';
 
 const buildState = () => ({
   decks: DeckSearchStore.getDecks(),
+  serieses: DeckSearchStore.getSerieses(),
 });
 
 class DeckSearch extends Component {
