@@ -26,9 +26,7 @@ class DeckFilters extends Component {
 
 	handleSetFilter = (value) =>{
 		const { updateDecks } = this;
-		let { filters } = this.state;
-
-		console.log('Fire!');
+		let { filters, nodeck } = this.state;
 
 		filters.set = value;
 		this.setState({filters}, updateDecks);

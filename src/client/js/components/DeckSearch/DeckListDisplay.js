@@ -8,15 +8,23 @@ class DeckListDisplay extends Component {
 		const { decks } = this.props; 
 		return(
 			<div className="container-deckdisplay">
-				<Row gutter={18}>
-					{
-						decks.map( (deck) => 
-							<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
-								<DeckCard deck={deck} /> 
-							</Col>
-						)
-					}
-				</Row>
+				{
+					decks.length > 0 ?
+					<Row gutter={18}>
+						{
+							decks.map( (deck) => 
+								<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
+									<DeckCard deck={deck} /> 
+								</Col>
+							)
+						}
+					</Row>
+					:
+					<div className="nodecks">
+						No Decks Were Found
+					</div>
+				}
+				
 			</div>
 		)
 	}
