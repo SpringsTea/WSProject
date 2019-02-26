@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { Select, Row, Col } from 'antd';
+import { Select, Input, Row, Col } from 'antd';
+import { throttle } from 'throttle-debounce';
 
 import { searchDeck } from 'Utils/api';
 import { receiveDecks } from 'Actions/DeckSearchActions';
@@ -26,14 +27,26 @@ class DeckFilters extends Component {
 
 	handleSetFilter = (value) =>{
 		const { updateDecks } = this;
-		let { filters, nodeck } = this.state;
+		let { filters } = this.state;
 
 		filters.set = value;
 		this.setState({filters}, updateDecks);
 	}
 
+	handleTextFilter = throttle( 1000, (value) =>{
+		const { updateDecks } = this;
+		let { filters } = this.state;
+
+		if( value.length <= 3 && value.length > 0 ){
+			return false;
+		}
+
+		filters.text = value;
+		this.setState({filters}, updateDecks);
+	})
+
 	render(){
-		const { handleSetFilter } = this;
+		const { handleSetFilter, handleTextFilter } = this;
 		const { serieses } = this.props;
 		return(
 			<div className="container-deckfilters">
@@ -46,6 +59,7 @@ class DeckFilters extends Component {
 								filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
 								onChange={handleSetFilter}
 								allowClear
+								showSearch
 							>
 								{
 									serieses.map( (series) => 
@@ -56,6 +70,11 @@ class DeckFilters extends Component {
 										</Option> )
 								}
 							</Select>
+						</div>
+					</Col>
+					<Col xxl={4} xl={6} lg={8} md={12}>
+						<div className="filter">
+							<Input placeholder="Search deckname" onChange={(e) => handleTextFilter(e.target.value)} />
 						</div>
 					</Col>
 				</Row>

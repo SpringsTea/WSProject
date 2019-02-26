@@ -4,10 +4,7 @@ import shortid from 'shortid';
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const deckSchema = mongoose.Schema({
-	name: {
-		type: String,
-		maxlength: 100
-	},
+	name: { type: String, maxlength: 100 },
 	userid: ObjectId,
 	deckid: { type: String, default: shortid.generate },
 	description: { type: String, maxlength: 2000, default: '' }, 
@@ -19,4 +16,7 @@ const deckSchema = mongoose.Schema({
 	neo_sets: { type: Array, default: [] },
 	neo_fail: { type: String, default: '' },
 }, { collection: 'deck' });
+
+deckSchema.index({ 'description': 'text' });
+
 module.exports = mongoose.model('Deck', deckSchema);

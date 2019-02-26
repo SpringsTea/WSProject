@@ -36,6 +36,9 @@ module.exports = async ({query:params}, response, next) => {
             query.where({ sets : params.set })
         }
 
+        if( params.text ){
+            query.where({ $text: { $search : params.text }});
+        }
 
         let docs = await query.exec();
         response.status(200).json(docs)

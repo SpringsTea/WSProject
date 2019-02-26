@@ -88,6 +88,6 @@ module.exports = {
     "Visual Arts": ["VA"],
     "Vividred Operation": ["VR"],
     "ViVid Strike!": ["VS"],
-    "Wooser": ["Woo"],
+    "Wooser": ["WOO"],
     "Yuuna": ["YYS"]
 };
