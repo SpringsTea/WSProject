@@ -9,6 +9,7 @@ let fbuildercards = [];//Buildercards after filters
 let builderfilters = {
   cardtype: [],
   colour: [],
+  level: [],
   text: null
 };
 
@@ -21,7 +22,11 @@ let selectedCard = {
 function filterBuilderCards() {
   fbuildercards = buildercards.filter( (card) => {
 
-    if( builderfilters.cardtype.includes( card.cardtype ) ){
+    if( builderfilters.cardtype.length > 0 && !builderfilters.cardtype.includes( card.cardtype ) ){
+      return false;
+    }
+
+    if( builderfilters.level.length > 0 && !builderfilters.level.includes( card.level ) ){
       return false;
     }
 
@@ -58,7 +63,6 @@ const BuilderStore = {
           //On remove, props.data = seriesid
           let seriesToRemove = serieslist.find( (s) => s._id == props.data );
           buildercards = buildercards.filter( ( card ) => {
-            console.log(card.release, seriesToRemove.release);
             return card.side + card.release != seriesToRemove.side + seriesToRemove.release;
           })
 
