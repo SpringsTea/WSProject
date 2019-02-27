@@ -17,7 +17,7 @@ module.exports = async ({query:params}, response, next) => {
     try {
         const limit = 30;
         let query = {
-            //valid: params.invalid !== undefined ? false : true //valid decks only be default
+            valid: params.invalid !== undefined ? false : true //valid decks only be default
         }
 
         const options = {

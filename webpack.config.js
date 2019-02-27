@@ -61,8 +61,8 @@ module.exports = {
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       inject: 'body',
-      filename: path.resolve(__dirname, 'dist/index.html'),
-      template: path.resolve(__dirname, "./public/index.html"),
+      filename: path.resolve(__dirname, 'dist/builder.mustache'),
+      template: path.resolve(__dirname, "./public/builder.mustache"),
       chunks: ['builder', 'commons']
       //favicon: "./public/favicon.ico"
     }),

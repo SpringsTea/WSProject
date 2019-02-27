@@ -7,5 +7,6 @@ module.exports = {
     SearchDecks: require('./searchdecks'),
     SaveDeck: require('./savedeck'),
     RenderDeck: require('./renderdeck'),
-    RenderDeckSearch: require('./renderdecksearch')
+    RenderDeckSearch: require('./renderdecksearch'),
+    RenderDeckBuilder: require('./renderdeckbuilder')
 }
