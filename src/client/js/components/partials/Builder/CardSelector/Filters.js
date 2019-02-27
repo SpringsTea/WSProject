@@ -42,7 +42,7 @@ class Filters extends Component {
                 {
                   colours.map( (colour) => 
                     <span key={colour}>
-                      {Capitalize(colour)} <Switch className={colour} defaultChecked size="small" 
+                      {Capitalize(colour)} <Switch className={colour} size="small" 
                       onChange={ (val) => filterBuilder({ type:'colour', filter: colour, value: val }) } />
                     </span> 
                   )
