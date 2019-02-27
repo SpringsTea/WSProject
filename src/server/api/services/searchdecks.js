@@ -45,7 +45,8 @@ module.exports = async ({query:params}, response, next) => {
         }
 
         if( params.text ){
-            query.$text = { $search : params.text }
+            const regex = new RegExp(params.text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), 'gi');
+            query.name = regex;
         }
 
         await Deck.paginate(query, options, (err, result) => {

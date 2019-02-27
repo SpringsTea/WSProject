@@ -15,7 +15,9 @@ import Series from '../models/series'
  */
 module.exports = async (request, response, next) => {
     try {
-        let docs = await Series.find().exec();
+        let docs = await Series.find()
+        .sort({ name: 1 })
+        .exec();
         console.log('Series list requested');
         response.status(200).json(docs);
     } catch (error) {
