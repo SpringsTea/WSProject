@@ -16,13 +16,16 @@ class DeckFilters extends Component {
 	}
 
 	updateDecks = async () =>{
+		const { setLoading } = this.props;
 		const { filters } = this.state;
 
+		setLoading(true);
 		const [decks] = await Promise.all([
 			searchDeck(filters)
 		]);	
 
-		receiveDecks(decks);		
+		receiveDecks(decks);
+		setLoading(false);		
 	}
 
 	handleSetFilter = (value) =>{

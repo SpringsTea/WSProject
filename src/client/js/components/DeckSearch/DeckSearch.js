@@ -14,6 +14,7 @@ class DeckSearch extends Component {
 
   state = {
   	...buildState(),
+    loading: false,
   }
 
   onChange = () => this.setState(buildState);
@@ -26,13 +27,16 @@ class DeckSearch extends Component {
     DeckSearchStore.removeChangeListener(this.onChange);
   }
 
+  handleLoading = (val) => this.setState({loading:val})
+
 	render(){
-    const { pages, serieses } = this.state;
+    const { handleLoading } = this;
+    const { pages, serieses, loading } = this.state;
 
 		return(
 			<div className="container-decksearch">
-        <DeckFilters serieses={serieses} />
-        <DeckListDisplay decks={pages.decks} />
+        <DeckFilters serieses={serieses} setLoading={handleLoading} />
+        <DeckListDisplay pages={pages} setLoading={handleLoading} loading={loading} />
 			</div>
 		)
 	}

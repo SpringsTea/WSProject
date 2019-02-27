@@ -15,16 +15,16 @@ import Deck from '../models/deck'
  */
 module.exports = async ({query:params}, response, next) => {
     try {
-
+        const limit = 30;
         let query = {
-            valid: params.invalid !== undefined ? false : true //valid decks only be default
+            //valid: params.invalid !== undefined ? false : true //valid decks only be default
         }
 
         const options = {
             select: '-_id cards datemodified datecreated deckid description name userid valid neo_sets',
             sort: { datecreated: -1 },
             page: params.page || 1,
-            limit: 20,
+            limit: limit,
             populate: {
                 path: 'cards',
                 options: {
@@ -33,7 +33,9 @@ module.exports = async ({query:params}, response, next) => {
             },
             customLabels: {
                 docs: 'decks',
-                totalDocs: 'totalDecks' 
+                totalDocs: 'totalDecks',
+                page: 'page',
+                totalPages: 'totalPages'
             }
         }
 
@@ -49,7 +51,7 @@ module.exports = async ({query:params}, response, next) => {
         await Deck.paginate(query, options, (err, result) => {
             if (err) throw "Pagination Error"
 
-            response.status(200).json(result)
+            response.status(200).json({...result, pagelimit:limit})
         })
     } catch (error) {
         console.log(error);
