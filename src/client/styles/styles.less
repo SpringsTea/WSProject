@@ -12,6 +12,7 @@
 	.header-button{
 		padding: 10px 15px 9px 15px;
 		float: left;
+		height: inherit;
 		width: auto;
 		display: block;
 		text-align: center;
@@ -24,6 +25,42 @@
 
 		&:hover{
 			background-color: #000000;
+		}
+
+		img{
+			max-height: 100%;
+			max-width: 100%;
+		}
+	}
+}
+
+.container-card{
+	min-height:470px;
+
+	border: 1px solid black;
+	padding: 10px;
+	margin-bottom: 5px;
+	text-align: center;
+
+	.card{
+
+		.cardimage{
+			min-height: 200px;
+
+			.image-not-found{
+				font-size: 10em;
+			}
+		}
+
+		.cardtext{
+			padding: 5px;
+			max-height: 150px;
+			overflow-y: auto;
+			background: lightgray;
+		}
+
+		.container-property{
+			text-align: left;
 		}
 	}
 }

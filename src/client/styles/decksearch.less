@@ -1,0 +1,89 @@
+.container-decksearch{
+	padding: 10px;
+}
+
+.container-deckfilters{
+	margin-bottom:15px;
+	padding: 10px;
+	border: 1px solid #e8e8e8;
+}
+
+.pagination{
+	margin-top: 10px;
+}
+
+.container-deckdisplay{
+	padding: 10px;
+	border: 1px solid #e8e8e8;
+	height: 80vh;
+	overflow-y: auto;
+
+	.nodecks{
+		text-align: center;
+		font-size: 3em;
+		padding-top: 50px;
+		color: gray;
+	}
+
+	.container-deckcard{
+
+		margin-bottom: 15px;
+
+		.ant-card{
+			height: 300px;
+		}
+
+		.ant-card-body{
+			padding: 15px;
+		}
+
+		.title{
+			font-weight: bolder;
+			.deckname{
+				max-height: 3em;
+				display: block;
+				overflow:hidden;
+
+				/*Better shiny webkit solution to name overflowing*/
+				display: -webkit-box;
+				-webkit-line-clamp: 2;
+				-webkit-box-orient: vertical;  
+			}
+			a{
+				white-space: normal;
+				&.user{
+					color: rgba(0, 0, 0, 0.85);
+					text-decoration: none;
+				}
+			}
+			
+		}
+
+		.deck-image{
+			overflow: hidden;
+			height: 100px;
+			text-align: center;
+			font-size: 5em;
+
+			i{
+				color: gray;
+			}
+
+			img{
+				width: 100%;
+				min-height: 200px;
+				margin-top: -26%;
+				object-fit: cover;
+			}
+		}
+
+		.ant-card-meta-description{
+			height:3em;
+			overflow: hidden;
+
+			display: -webkit-box;
+			-webkit-line-clamp: 2;
+			-webkit-box-orient: vertical;  
+		}
+	}
+}

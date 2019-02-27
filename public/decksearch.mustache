@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html class="nice-scroll">
+	<body>
+		<div id="header">
+
+		</div>
+		<div id="decksearch">
+
+		</div>
+	</body>
+	<script>
+	  WS.event.emit('page.header', {el:'#header'})
+	  WS.event.emit('decksearch.load', { el: '#decksearch' })
+	</script>
+</html>

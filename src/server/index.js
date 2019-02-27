@@ -9,6 +9,8 @@ var mongooseOptions = {
 	useNewUrlParser: true
 }
 
+mongoose.set('useCreateIndex', true);
+
 if( config.AUTH === true ){
 	mongooseOptions.user = config.APP_USERNAME;
 	mongooseOptions.pass = config.APP_PASSWORD;

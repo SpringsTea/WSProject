@@ -36,7 +36,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
   		] = await Promise.all([
   		    saveDeck({
   		      	...values,
-  			  	cards: deck
+  			  	cards: deck.map( (c) => c._id )
   		    })
   		]);
       if( res.status === 200 && res.data ){

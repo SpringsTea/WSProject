@@ -18,6 +18,7 @@ app.set("views", path.resolve("dist"));
 app.use(express.static("dist"));
 app.use('/images', express.static("public/images"));
 
-require('./routes.js')(app);
+let routes = require('./routes');
+app.use(routes);
 
 app.listen(8080, () => console.log("Listening on port 8080!"));
