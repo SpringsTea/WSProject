@@ -63,21 +63,21 @@ module.exports = {
       inject: 'body',
       filename: path.resolve(__dirname, 'dist/builder.mustache'),
       template: path.resolve(__dirname, "./public/builder.mustache"),
-      chunks: ['builder', 'commons']
-      //favicon: "./public/favicon.ico"
+      chunks: ['builder', 'commons'],
+      favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({
       inject: 'body',
       filename: path.resolve(__dirname, 'dist/deck.mustache'),
       template: path.resolve(__dirname, "./public/deck.mustache"),
-      chunks: ['deckview', 'commons']
-      //favicon: "./public/favicon.ico"
+      chunks: ['deckview', 'commons'],
+      favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, 'dist/decksearch.mustache'),
       template: path.resolve(__dirname, "./public/decksearch.mustache"),
       chunks: ['descksearch', 'commons'],
-      //favicon: "./public/favicon.ico"
+      favicon: "./public/favicon.ico"
     })
   ],
   resolve: {
