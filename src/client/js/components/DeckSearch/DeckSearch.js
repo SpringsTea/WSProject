@@ -6,7 +6,7 @@ import DeckFilters from './DeckFilters';
 import DeckSearchStore from '../../stores/DeckSearchStore';
 
 const buildState = () => ({
-  decks: DeckSearchStore.getDecks(),
+  pages: DeckSearchStore.getDecks(),
   serieses: DeckSearchStore.getSerieses(),
 });
 
@@ -27,12 +27,12 @@ class DeckSearch extends Component {
   }
 
 	render(){
-    const { decks, serieses } = this.state;
+    const { pages, serieses } = this.state;
 
 		return(
 			<div className="container-decksearch">
         <DeckFilters serieses={serieses} />
-        <DeckListDisplay decks={decks} />
+        <DeckListDisplay decks={pages.decks} />
 			</div>
 		)
 	}

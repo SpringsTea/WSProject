@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import shortid from 'shortid';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
@@ -18,5 +19,6 @@ const deckSchema = mongoose.Schema({
 }, { collection: 'deck' });
 
 deckSchema.index({ 'description': 'text' });
+deckSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Deck', deckSchema);

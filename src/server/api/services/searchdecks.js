@@ -14,34 +14,43 @@ import Deck from '../models/deck'
  * @param {function} next function callback
  */
 module.exports = async ({query:params}, response, next) => {
-
-	const limit = parseInt(params.limit) || 10;
     try {
-        let query = Deck.find(
-            {  }, 
-            '-_id cards datemodified datecreated deckid description name userid valid neo_sets'
-        )
-        .limit(limit)
-        .populate({
-        	path: 'cards',
-        	options: {
-        		limit: 1
-        	}
-        })
-        .where('valid').equals( params.invalid !== undefined ? false : true )//valid decks only be default
-        .sort('-datecreated')
+
+        let query = {
+            valid: params.invalid !== undefined ? false : true //valid decks only be default
+        }
+
+        const options = {
+            select: '-_id cards datemodified datecreated deckid description name userid valid neo_sets',
+            sort: { datecreated: -1 },
+            page: params.page || 1,
+            limit: 20,
+            populate: {
+                path: 'cards',
+                options: {
+                    limit: 1
+                }
+            },
+            customLabels: {
+                docs: 'decks',
+                totalDocs: 'totalDecks' 
+            }
+        }
 
         //Filter by one set
         if( params.set ){
-            query.where({ sets : params.set })
+            query.sets = params.set;
         }
 
         if( params.text ){
-            query.where({ $text: { $search : params.text }});
+            query.$text = { $search : params.text }
         }
 
-        let docs = await query.exec();
-        response.status(200).json(docs)
+        await Deck.paginate(query, options, (err, result) => {
+            if (err) throw "Pagination Error"
+
+            response.status(200).json(result)
+        })
     } catch (error) {
         console.log(error);
         response.status(500).json({

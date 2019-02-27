@@ -18,6 +18,62 @@ class DeckListDisplay extends Component {
 								</Col>
 							)
 						}
+						{
+							decks.map( (deck) => 
+								<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
+									<DeckCard deck={deck} /> 
+								</Col>
+							)
+						}
+						{
+							decks.map( (deck) => 
+								<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
+									<DeckCard deck={deck} /> 
+								</Col>
+							)
+						}
+						{
+							decks.map( (deck) => 
+								<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
+									<DeckCard deck={deck} /> 
+								</Col>
+							)
+						}
+						{
+							decks.map( (deck) => 
+								<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
+									<DeckCard deck={deck} /> 
+								</Col>
+							)
+						}
+						{
+							decks.map( (deck) => 
+								<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
+									<DeckCard deck={deck} /> 
+								</Col>
+							)
+						}
+						{
+							decks.map( (deck) => 
+								<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
+									<DeckCard deck={deck} /> 
+								</Col>
+							)
+						}
+						{
+							decks.map( (deck) => 
+								<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
+									<DeckCard deck={deck} /> 
+								</Col>
+							)
+						}
+						{
+							decks.map( (deck) => 
+								<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
+									<DeckCard deck={deck} /> 
+								</Col>
+							)
+						}
 					</Row>
 					:
 					<div className="nodecks">

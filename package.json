@@ -23,6 +23,7 @@
     "forever": "^0.15.3",
     "fuse.js": "^3.3.0",
     "mongoose": "^5.4.7",
+    "mongoose-paginate-v2": "^1.0.23",
     "mustache-express": "^1.2.8",
     "mustache-loader": "^1.4.3",
     "react": "^16.5.2",
