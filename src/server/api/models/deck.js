@@ -18,7 +18,7 @@ const deckSchema = mongoose.Schema({
 	neo_fail: { type: String, default: '' },
 }, { collection: 'deck' });
 
-deckSchema.index({ 'description': 'text' });
+deckSchema.index({ 'name': 'text' });
 deckSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Deck', deckSchema);
