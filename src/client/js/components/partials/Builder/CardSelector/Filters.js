@@ -27,28 +27,44 @@ class Filters extends Component {
             <TabPane tab="Type" key="2">
             <div className="toggles">
               <span>
-                Characters <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'CH', value: val }) } />
+                Characters <Switch size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'CH', value: val }) } />
               </span>
               <span>
-                Events <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'EV', value: val }) } />
+                Events <Switch size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'EV', value: val }) } />
               </span>
               <span>
-                Cx <Switch defaultChecked size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'CX', value: val }) } />
+                Cx <Switch size="small" onChange={ (val) => filterBuilder({ type:'cardtype', filter: 'CX', value: val }) } />
               </span>
             </div>
             </TabPane>
-             <TabPane tab="Colour" key="3">
+            <TabPane tab="Level" key="3">
+              <div className="toggles">
+                <span>
+                  Level 0 <Switch size="small" onChange={ (val) => filterBuilder({ type:'level', filter: 0, value: val }) } />
+                </span>
+                <span>
+                  Level 1 <Switch size="small" onChange={ (val) => filterBuilder({ type:'level', filter: 1, value: val }) } />
+                </span>
+                <span>
+                  Level 2 <Switch size="small" onChange={ (val) => filterBuilder({ type:'level', filter: 2, value: val }) } />
+                </span>
+                <span>
+                  Level 3 <Switch size="small" onChange={ (val) => filterBuilder({ type:'level', filter: 3, value: val }) } />
+                </span>
+              </div> 
+            </TabPane>
+            <TabPane tab="Colour" key="4">
               <div className="toggles">
                 {
                   colours.map( (colour) => 
                     <span key={colour}>
-                      {Capitalize(colour)} <Switch className={colour} defaultChecked size="small" 
+                      {Capitalize(colour)} <Switch className={colour} size="small" 
                       onChange={ (val) => filterBuilder({ type:'colour', filter: colour, value: val }) } />
                     </span> 
                   )
                 }
               </div>
-             </TabPane>
+            </TabPane>
           </Tabs>
       </div>
     )

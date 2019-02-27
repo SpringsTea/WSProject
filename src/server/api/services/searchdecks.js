@@ -15,13 +15,13 @@ import Deck from '../models/deck'
  */
 module.exports = async ({query:params}, response, next) => {
     try {
-        const limit = 30;
+        const limit = 24;
         let query = {
             valid: params.invalid !== undefined ? false : true //valid decks only be default
         }
 
         const options = {
-            select: '-_id cards datemodified datecreated deckid description name userid valid neo_sets',
+            select: '-_id cards datemodified datecreated deckid description name userid valid sets',
             sort: { datecreated: -1 },
             page: params.page || 1,
             limit: limit,

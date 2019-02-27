@@ -93,7 +93,7 @@ module.exports = (deck) => {
 
     if (neoStandardSets.length > 0) {
         deckLegality.neoLegal = true; 
-        deckLegality.failReason = "n/a";
+        deckLegality.failReason = null;
         deckLegality.neoSets = neoStandardSets;
     }
 

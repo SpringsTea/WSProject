@@ -65,9 +65,9 @@ class DeckFilters extends Component {
 								showSearch
 							>
 								{
-									serieses.map( (series) => 
+									serieses.map( (series, i) => 
 										<Option 
-											key={series._id} 
+											key={i} 
 											value={`${series.set}/${series.side}${series.release}`}>
 											{series.name}
 										</Option> )
