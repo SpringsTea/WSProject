@@ -8,5 +8,6 @@ module.exports = {
     SaveDeck: require('./savedeck'),
     RenderDeck: require('./renderdeck'),
     RenderDeckSearch: require('./renderdecksearch'),
-    RenderDeckBuilder: require('./renderdeckbuilder')
+    RenderDeckBuilder: require('./renderdeckbuilder'),
+    RenderPageNotFound: require('./renderpagenotfound')
 }

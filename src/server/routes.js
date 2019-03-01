@@ -10,7 +10,8 @@ router.post("/api/deck", services.SaveDeck);
 // ui endpoints
 router.get("/", services.RenderDeckSearch);
 router.get("/deck/:deckid", services.RenderDeck);
-router.get("/builder", services.RenderDeckBuilder)
+router.get("/builder", services.RenderDeckBuilder);
+router.get("*", services.RenderPageNotFound);
 
 
 module.exports = router;
