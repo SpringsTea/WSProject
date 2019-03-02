@@ -71,6 +71,10 @@ const BuilderStore = {
         buildercards = buildercards.sort(sortall);
         filterBuilderCards()
         break;
+      case AT.CARDS_CLEAR:
+        buildercards = [];
+        filterBuilderCards()
+        break;
       case AT.SELECT_CARD:
         selectedCard = {
           card: props.data.card,

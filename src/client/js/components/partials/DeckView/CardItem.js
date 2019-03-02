@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Icon, Badge } from 'antd';
 import Img from 'react-image';
 
+import { generateCardImageLink } from 'Utils/cardshorthands';
 import { selectCard } from 'Actions/DeckActions';
 
 class CardItem extends Component {
@@ -14,7 +15,7 @@ class CardItem extends Component {
 				<div className='cardimage' onMouseEnter={ () => selectCard({card})}>
 					<Img
 				    src={[
-				      `/images/${card.side}${card.release}/${card.sid}.gif`,
+				      generateCardImageLink(card),
 				    ]}
 				    unloader={<Icon className="image-not-found" type="question-circle" />}
 				  />
