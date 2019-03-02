@@ -21,7 +21,8 @@ module.exports = async (request, response, next) => {
         if (docs.length > 0) {
             let cards = await Card.find({ 
                 set: docs[0].set, 
-                release: docs[0].release 
+                release: docs[0].release,
+                lang: docs[0].lang,
             }).limit(300).exec();
             response.status(200).json(cards)
         } else {
