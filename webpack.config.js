@@ -9,7 +9,8 @@ module.exports = {
   entry: {
     builder: "./src/client/js/builderRouter.js",
     deckview: "./src/client/js/deckviewRouter.js",
-    descksearch: "./src/client/js/decksearchRouter.js"
+    descksearch: "./src/client/js/decksearchRouter.js",
+    pagenotfound: "./src/client/js/pagenotfoundRouter.js",
   },  
   output: {
     path: path.join(__dirname, outputDirectory),
@@ -63,21 +64,27 @@ module.exports = {
       inject: 'body',
       filename: path.resolve(__dirname, 'dist/builder.mustache'),
       template: path.resolve(__dirname, "./public/builder.mustache"),
-      chunks: ['builder', 'commons']
-      //favicon: "./public/favicon.ico"
+      chunks: ['builder', 'commons'],
+      favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({
       inject: 'body',
       filename: path.resolve(__dirname, 'dist/deck.mustache'),
       template: path.resolve(__dirname, "./public/deck.mustache"),
-      chunks: ['deckview', 'commons']
-      //favicon: "./public/favicon.ico"
+      chunks: ['deckview', 'commons'],
+      favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, 'dist/decksearch.mustache'),
       template: path.resolve(__dirname, "./public/decksearch.mustache"),
       chunks: ['descksearch', 'commons'],
-      //favicon: "./public/favicon.ico"
+      favicon: "./public/favicon.ico"
+    }),
+    new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/pagenotfound.mustache'),
+      template: path.resolve(__dirname, "./public/pagenotfound.mustache"),
+      chunks: ['commons', 'pagenotfound'],
+      favicon: "./public/favicon.ico"
     })
   ],
   resolve: {

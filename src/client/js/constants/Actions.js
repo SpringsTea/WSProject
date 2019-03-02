@@ -1,6 +1,7 @@
 export const BuilderActions = [
   'SERIESES_RECEIVE',
   'SERIES_RECEIVE',
+  'CARDS_CLEAR',
   'SELECT_CARD',
   'ADD_DECK_CARD',
   'REMOVE_DECK_CARD',

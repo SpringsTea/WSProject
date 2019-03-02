@@ -28,11 +28,11 @@ class DeckFilters extends Component {
 		setLoading(false);		
 	}
 
-	handleSetFilter = (value) =>{
+	handleFilter = (value, prop) =>{
 		const { updateDecks } = this;
 		let { filters } = this.state;
 
-		filters.set = value;
+		filters[prop] = value;
 		this.setState({filters}, updateDecks);
 	}
 
@@ -49,18 +49,40 @@ class DeckFilters extends Component {
 	})
 
 	render(){
-		const { handleSetFilter, handleTextFilter } = this;
+		const { handleFilter, handleTextFilter } = this;
 		const { serieses } = this.props;
 		return(
 			<div className="container-deckfilters">
 				<Row gutter={10}>
 					<Col xxl={4} xl={6} lg={8} md={12}>
 						<div className="filter">
+							<span>Language:</span>
+							<Select
+								style={{width:'100%'}}
+								placeholder="Select a language"
+								defaultValue={null}
+								onChange={(val) => handleFilter(val, 'lang')}
+							>
+								<Option value={null}>
+									All
+								</Option>
+								<Option value={'JP'}>
+									Japanese
+								</Option>
+								<Option value={'EN'}>
+									English
+								</Option>
+							</Select>
+						</div>
+					</Col>
+					<Col xxl={4} xl={6} lg={8} md={12}>
+						<div className="filter">
+							<span>Series:</span>
 							<Select
 								style={{width:'100%'}}
 								placeholder="Select a series"
 								filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-								onChange={handleSetFilter}
+								onChange={(val) => handleFilter(val, 'set')}
 								allowClear
 								showSearch
 							>
@@ -76,7 +98,8 @@ class DeckFilters extends Component {
 						</div>
 					</Col>
 					<Col xxl={4} xl={6} lg={8} md={12}>
-						<div className="filter">
+						<div className="filter">	
+							<span>Search:</span>
 							<Input placeholder="Search deckname" onChange={(e) => handleTextFilter(e.target.value)} />
 						</div>
 					</Col>

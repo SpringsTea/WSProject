@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<link rel="shortcut icon" href="favicon.ico">
+<html class="nice-scroll">
+  <head>
+    <title>Page Could Not Be Found</title>
+  </head>
+  <body>
+    <div id="header">
+
+    </div>
+    <div id="page">
+
+    </div>
+  </body>
+  <script>
+    WS.event.emit('page.header', {el:'#header'})
+    WS.event.emit('pagenotfound.load', { el: '#page' })
+  </script>
+</html>

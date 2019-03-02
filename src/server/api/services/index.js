@@ -6,7 +6,8 @@ module.exports = {
     GetDeckById: require('./getdeckbyid'),
     SearchDecks: require('./searchdecks'),
     SaveDeck: require('./savedeck'),
-    RenderDeck: require('./renderdeck'),
-    RenderDeckSearch: require('./renderdecksearch'),
-    RenderDeckBuilder: require('./renderdeckbuilder')
+    RenderDeck: require('./pages/renderdeck'),
+    RenderDeckSearch: require('./pages/renderdecksearch'),
+    RenderDeckBuilder: require('./pages/renderdeckbuilder'),
+    RenderPageNotFound: require('./pages/renderpagenotfound')
 }
