@@ -47,7 +47,7 @@ cardsToUpdate.forEach( async (sourcecard) => {
     console.log('Card Saved', remotecard);
   }
   else{
-    CardModel.create(sourcecard, function(err, data){
+    CardModel.create({...sourcecard, lang:'JP'}, function(err, data){
       if(err){
         console.log('Something went wrong', err);
       }
