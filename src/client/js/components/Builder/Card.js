@@ -40,7 +40,8 @@ class Card extends Component {
 							<Property name='Power' value={data.power} />
 							<Property name='Soul' value={data.soul} />
 							{
-								data.attributes.map( attribute =>  <Property key={attribute} name='Trait' value={attribute} />)
+								data.attributes.map( attribute => attribute.length > 1 &&//ignore empty traits
+									<Property key={attribute} name='Trait' value={attribute} />)
 							}
 							<Property name='Card No' value={`${data.set}/${data.side}${data.release}-${data.sid}`} />
 						</Row>
