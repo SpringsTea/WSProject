@@ -64,7 +64,7 @@ class DeckFilters extends Component {
 								onChange={(val) => handleFilter(val, 'lang')}
 							>
 								<Option value={null}>
-									Both
+									All
 								</Option>
 								<Option value={'JP'}>
 									Japanese
