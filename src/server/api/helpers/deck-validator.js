@@ -4,7 +4,7 @@
 const neoStandardMap = require('../mappings/neo-standard-map');
 const armyMap = require('../mappings/army-map');
 
-module.exports = (deck) => {
+module.exports = (deck, carddata) => {
     // deck legality object
     let deckLegality = {
         deckvalid: false,
@@ -26,7 +26,7 @@ module.exports = (deck) => {
     for (let cardID of deck.cards) {
 
         //get card data from ID
-        let card = deck.carddata.find( c => c._id == cardID );
+        let card = carddata.find( c => c._id == cardID );
 
         //If the cardID dosnt exist something has gone really wrong
         if (!card || card === undefined){

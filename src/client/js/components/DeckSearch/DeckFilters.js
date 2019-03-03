@@ -51,6 +51,7 @@ class DeckFilters extends Component {
 	render(){
 		const { handleFilter, handleTextFilter } = this;
 		const { serieses } = this.props;
+		const { filters } = this.state;
 		return(
 			<div className="container-deckfilters">
 				<Row gutter={10}>
@@ -87,11 +88,12 @@ class DeckFilters extends Component {
 								showSearch
 							>
 								{
-									serieses.map( (series, i) => 
+									serieses.filter((s) => filters.lang ? s.lang === filters.lang : true)//filter by lang if selected
+									.map( (series, i) => 
 										<Option 
 											key={i} 
-											value={`${series.set}/${series.side}${series.release}`}>
-											{series.name}
+											value={series._id}>
+											{`${series.name} (${series.lang})`}
 										</Option> )
 								}
 							</Select>
