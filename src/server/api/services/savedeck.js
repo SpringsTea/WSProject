@@ -36,7 +36,7 @@ module.exports = async (request, response, next) => {
         deckdata.neo_sets = deckLegality.neoSets;
         deckdata.neo_fail = deckLegality.failReason;
         //Get a list of all set ids that are present in the deck
-        deckdata.sets = DeckSets(deckdata, cardData);
+        deckdata.sets = await DeckSets(deckdata, cardData);
         //Get deck language
         deckdata.lang = DeckLanguage(cardData);
 

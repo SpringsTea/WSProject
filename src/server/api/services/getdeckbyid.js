@@ -19,7 +19,7 @@ module.exports = async (request, response, next) => {
         let docs = await Deck.find(
             {deckid: deckId}, 
             '-_id cards datemodified deckid description name userid valid sets neo_fail' //valid neo_fail neo_sets'
-        ).limit(1).populate('cards').exec();
+        ).limit(1).populate('cards').populate('sets').exec();
         if( docs.length > 0 ){
             response.status(200).json(docs[0])
         } else {

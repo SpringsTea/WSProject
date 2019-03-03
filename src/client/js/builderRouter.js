@@ -50,7 +50,7 @@ async function loadBuilderData() {
   const [
     serieses,
   ] = await Promise.all([
-    fetchSerieses(),
+    fetchSerieses('JP'),
   ]);
 
   receiveSerieses(serieses);

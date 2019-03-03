@@ -14,7 +14,7 @@ const deckSchema = mongoose.Schema({
 	lang: { type: String, default: 'JP' },
 	valid: { type: Boolean, default: false },
 	cards: [{ type: String, ref: 'Card' }],
-	sets: [{type: String}],
+	sets: [{type: String, ref: 'Series'}],
 	neo_sets: { type: Array, default: [] },
 	neo_fail: { type: String, default: '' },
 }, { collection: 'deck' });

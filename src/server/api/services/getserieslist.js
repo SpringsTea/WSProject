@@ -14,9 +14,17 @@ import Series from '../models/series'
  * @param {function} next function callback
  */
 module.exports = async (request, response, next) => {
-    const lang = request.params.lang || 'JP';
+
+    let query = {
+
+    };
+
+    if(request.params.lang){
+        query.lang = request.params.lang;
+    }
+
     try {
-        let docs = await Series.find({lang: lang})
+        let docs = await Series.find(query)
         .sort({ name: 1 })
         .exec();
         console.log('Series list requested');
