@@ -7,7 +7,7 @@ router.get("/api/series/:id/cards", services.GetSeriesCards);
 router.get("/api/deck/:deckid", services.GetDeckById);
 router.get("/api/search/deck", services.SearchDecks)
 router.post("/api/deck", services.NewDeck);
-router.post("/api/fixdecks", services.FixDecks)
+router.get("/api/fixdecks", services.FixDecks)
 // ui endpoints
 router.get("/", services.RenderDeckSearch);
 router.get("/deck/:deckid", services.RenderDeck);
