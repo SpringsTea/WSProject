@@ -8,16 +8,16 @@ import { generateCardImageLink } from 'Utils/cardshorthands';
 
 class Card extends Component {
 	render(){
-		const { data } = this.props;
+		const { data, locked, onCardSelect } = this.props;
 		return(
-			<div className="container-card">
+			<div className={`container-card ${locked ? 'locked' : ''}`}>
 				{
 				data ?
 				<div className="card">
 					<a target="_blank" href={`https://heartofthecards.com/code/cardlist.html?card=WS_${data.set}/${data.side}${data.release}-${data.sid}`}>		
 						<h2>{data.name || 'NaN'}</h2>
 					</a>
-					<div className='cardimage'>
+					<div className='cardimage clickable' onClick={() => onCardSelect(data)}>
 						<Img
 					    src={[
 					      generateCardImageLink(data),
