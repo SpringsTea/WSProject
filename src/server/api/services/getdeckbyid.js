@@ -6,6 +6,25 @@
 
 import Deck from '../models/deck'
 
+const GetDeckById = async (deckid) => {
+    try {
+        let docs = await Deck.find(
+            {deckid: deckid}, 
+            '-_id cards datemodified deckid description name userid valid sets neo_fail' //valid neo_fail neo_sets'
+        ).limit(1).populate('cards').populate('sets').exec();
+        if( docs.length > 0 ){
+           return docs[0]
+        } else {
+            return null;
+        }
+    } catch (error) {
+        return {
+            error: true,
+            message: 'Deck was not found'
+        };
+    }
+}
+
 /**
  * Get Deck By ID
  * 
@@ -13,23 +32,19 @@ import Deck from '../models/deck'
  * @param {object} response HTTP response
  * @param {function} next function callback
  */
-module.exports = async (request, response, next) => {
-    let deckId = request.params.deckid;
-    try {
-        let docs = await Deck.find(
-            {deckid: deckId}, 
-            '-_id cards datemodified deckid description name userid valid sets neo_fail' //valid neo_fail neo_sets'
-        ).limit(1).populate('cards').populate('sets').exec();
-        if( docs.length > 0 ){
-            response.status(200).json(docs[0])
-        } else {
-            throw new Error();
+
+module.exports = 
+{
+    route: async (request, response, next) => {
+        let deckid = request.params.deckid;
+        let deck = await GetDeckById(deckid);
+
+        if(deck && deck.error !== true){
+            response.status(200).json(deck)
         }
-    } catch (error) {
-        console.log(error);
-        response.status(500).json({
-            error: true,
-            message: 'Deck was not found'
-        });
-    }
+        else{
+            response.status(500).json(deck); 
+        }
+    },
+    GetDeckById: GetDeckById
 }

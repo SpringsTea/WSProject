@@ -4,7 +4,7 @@ let services = require('./api/services');
 // api endpoints
 router.get("/api/serieslist/:lang?", services.GetSeriesList);
 router.get("/api/series/:id/cards", services.GetSeriesCards);
-router.get("/api/deck/:deckid", services.GetDeckById);
+router.get("/api/deck/:deckid", services.GetDeckById.route);
 router.get("/api/search/deck", services.SearchDecks)
 router.post("/api/deck", services.NewDeck);
 router.post("/api/fixdecks", services.FixDecks)
