@@ -64,7 +64,7 @@ module.exports = (req, res) => {
                                             }
                                         })
                         
-                                        const resetTemplate = {
+                                        const verifyTemplate = {
                                             to: user.email,
                                             from: process.env.MAILER,
                                             subject: 'Email Verification',
@@ -73,7 +73,7 @@ module.exports = (req, res) => {
                                                 'http://localhost:8080/api/verify/' + token + '\n\n'
                                         }
                         
-                                        transporter.sendMail(resetTemplate, (err) => {
+                                        transporter.sendMail(verifyTemplate, (err) => {
                                             if(err) {
                                                 res.status(500).json({
                                                     error: err
