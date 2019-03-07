@@ -3,6 +3,7 @@ import { Row, Col, Alert } from 'antd';
 import Sticky from 'react-stickynode';
 
 import DeckStore from '../../stores/DeckStore';
+import { selectCard } from 'Actions/DeckActions';
 
 import DeckHeader from './DeckHeader';
 import Card from '../Builder/Card';
@@ -29,7 +30,12 @@ class DeckView extends Component {
     DeckStore.removeChangeListener(this.onChange);
   }
 
+  handleToggleCardLock = (card) =>{
+    selectCard({card}, true);
+  }
+
 	render(){
+		const { handleToggleCardLock } = this;
 		const { deck, selectedCard } = this.state;
 
 		return(
@@ -45,7 +51,7 @@ class DeckView extends Component {
 					</Col>
 					<Col xxl={6} xl={8} lg={10} md={24}>
 						<Sticky enabled={true} top={50} >
-						    <Card data={selectedCard.card} />
+						    <Card data={selectedCard.card} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
 						</Sticky>	
 					</Col>
 				</Row>

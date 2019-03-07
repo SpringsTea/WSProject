@@ -10,9 +10,9 @@ class CardItem extends Component {
 	render(){
 		const { card } = this.props;
 		return(
-			<div className="container-carditem">
+			<div className="container-carditem clickable">
 				<Badge count={card.quantity} style={{ backgroundColor: '#000000' }}>
-				<div className='cardimage' onMouseEnter={ () => selectCard({card})}>
+				<div className='cardimage' onMouseEnter={ () => selectCard({card})} onClick={ () => selectCard({card}, true) }>
 					<Img
 				    src={[
 				      generateCardImageLink(card),

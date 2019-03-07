@@ -37,12 +37,11 @@ const domLoaded = new Promise(res =>
 // Route via events
 WS.event.on('page.header', async props => {
   await domLoaded;
-  render(<Header />, document.querySelector(props.el));
+  render(<Header title={props.title} />, document.querySelector(props.el));
 })
 
 WS.event.on('deckview.load', async props => {
   await Promise.all([ loadDeckViewData({deckid: props.deckid}), domLoaded ]);
-
   render( <DeckView />, document.querySelector(props.el));
 })
 

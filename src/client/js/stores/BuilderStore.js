@@ -16,7 +16,7 @@ let builderfilters = {
 let deck = [];
 let selectedCard = {
   card: null,
-  location: null,
+  lock: false,
 };
 
 function filterBuilderCards() {
@@ -76,10 +76,21 @@ const BuilderStore = {
         filterBuilderCards()
         break;
       case AT.SELECT_CARD:
-        selectedCard = {
-          card: props.data.card,
-          location: props.data.location
-        };
+        //when a selected card is locked, hover event will not not change selected card
+        if( props.lock ){
+          if( props.data.card._id === selectedCard.card._id ){
+            selectedCard.lock = !selectedCard.lock;
+          }
+          else{
+            selectedCard = {
+              lock: true,
+              card: props.data.card
+            }
+          }
+        }
+        else if( selectedCard.lock === false ){
+          selectedCard.card = props.data.card;
+        }
         break;
       case AT.ADD_DECK_CARD:
         deck.push(props.card);
