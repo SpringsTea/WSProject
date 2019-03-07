@@ -16,6 +16,7 @@ import { GetDeckById } from '../getdeckbyid';
 module.exports = async (request, response, next) => {
     let deckid = request.params.deckid;
     let deck = await GetDeckById(deckid);
+    console.log("Fire!");
     try {
         response.render("deck", { deckid: deckid, deckname: deck.name });
     } catch (error) {

@@ -8,7 +8,7 @@ import { generateCardImageLink } from 'Utils/cardshorthands';
 
 class Card extends Component {
 	render(){
-		const { data, locked, onCardSelect } = this.props;
+		const { data, locked, onCardSelect = () => {} } = this.props;
 		return(
 			<div className={`container-card ${locked ? 'locked' : ''}`}>
 				{
