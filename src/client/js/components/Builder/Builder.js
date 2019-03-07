@@ -6,11 +6,10 @@ import SeriesSelect from './SeriesSelect';
 import CardSelector from './CardSelector';
 import Filters from '../partials/Builder/CardSelector/Filters';
 import DeckSaveModal from '../partials/Builder/DeckSave/DeckSaveModal';
+
 import Deck from './Deck';
 
 import BuilderStore from '../../stores/BuilderStore';
-
-import { selectCard } from 'Actions/BuilderActions';
 
 const buildState = () => ({
   serieses: BuilderStore.getSeriesesData(),
@@ -41,12 +40,8 @@ class Builder extends Component {
   	this.setState({savemodalopen:bool})
   }
 
-  handleToggleCardLock = (card) =>{
-    selectCard({card}, true);
-  }
-
 	render(){
-		const { handleToggleSaveModal, handleToggleCardLock } = this;
+		const { handleToggleSaveModal } = this;
 		const { selectedCard, serieses, buildercards, deck, savemodalopen } = this.state;
 		return(
 			<div className="container-builder">
@@ -57,7 +52,7 @@ class Builder extends Component {
 						<SeriesSelect serieses={serieses} />
             			<Filters />
 						<CardSelector cards={buildercards} />
-						<Card data={selectedCard.card} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
+						<Card data={selectedCard.card} />
 					</Col>
 					<Col xxl={16} xl={16} lg={12} md={24}> 
 						<Deck cards={deck} />

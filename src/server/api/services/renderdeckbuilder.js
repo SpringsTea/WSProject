@@ -1,13 +1,11 @@
 'use strict';
 
 /** 
- * @module GetSeriesList
+ * @module RenderDeckBuilder
  */
 
-const Series = require('../models/series');
-
 /**
- * Get Series List
+ * Render Deck Builder
  * 
  * @param {object} request HTTP request
  * @param {object} response HTTP response
@@ -15,11 +13,7 @@ const Series = require('../models/series');
  */
 module.exports = async (request, response, next) => {
     try {
-        let docs = await Series.find()
-        .sort({ name: 1 })
-        .exec();
-        console.log('Series list requested');
-        response.status(200).json(docs);
+        response.render("builder");
     } catch (error) {
         console.log(error);
         response.status(500).json({

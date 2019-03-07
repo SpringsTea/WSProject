@@ -15,8 +15,6 @@ class CardItem extends Component {
 			onMouseEnter={ () => selectCard({card})}
 			className="card-item">
 				<List.Item.Meta 
-					className="clickable"
-					onClick={ () => selectCard({card}, true) }
 					avatar={<CardItemIcon card={card} />}
 					title={`${card.name} ${card.quantity ? `(${card.quantity})` : ''}`}
 				/>

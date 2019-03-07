@@ -1,25 +1,20 @@
 'use strict';
 
 /** 
- * @module GetSeriesList
+ * @module RenderDeck
  */
 
-const Series = require('../models/series');
-
 /**
- * Get Series List
+ * Render Deck
  * 
  * @param {object} request HTTP request
  * @param {object} response HTTP response
  * @param {function} next function callback
  */
 module.exports = async (request, response, next) => {
+    let deckId = request.params.deckid;
     try {
-        let docs = await Series.find()
-        .sort({ name: 1 })
-        .exec();
-        console.log('Series list requested');
-        response.status(200).json(docs);
+        response.render("deck", { deckid: deckId });
     } catch (error) {
         console.log(error);
         response.status(500).json({

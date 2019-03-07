@@ -9,8 +9,7 @@ module.exports = {
   entry: {
     builder: "./src/client/js/builderRouter.js",
     deckview: "./src/client/js/deckviewRouter.js",
-    descksearch: "./src/client/js/decksearchRouter.js",
-    pagenotfound: "./src/client/js/pagenotfoundRouter.js",
+    descksearch: "./src/client/js/decksearchRouter.js"
   },  
   output: {
     path: path.join(__dirname, outputDirectory),
@@ -78,12 +77,6 @@ module.exports = {
       filename: path.resolve(__dirname, 'dist/decksearch.mustache'),
       template: path.resolve(__dirname, "./public/decksearch.mustache"),
       chunks: ['descksearch', 'commons'],
-      favicon: "./public/favicon.ico"
-    }),
-    new HtmlWebpackPlugin({
-      filename: path.resolve(__dirname, 'dist/pagenotfound.mustache'),
-      template: path.resolve(__dirname, "./public/pagenotfound.mustache"),
-      chunks: ['commons', 'pagenotfound'],
       favicon: "./public/favicon.ico"
     })
   ],

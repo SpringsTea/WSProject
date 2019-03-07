@@ -6,7 +6,6 @@ const cardSchema = mongoose.Schema({
 	set: String,
 	side: String,
 	release: String,
-	lang: String,
 	cardtype: String,
 	colour: String,
 	level: Number,

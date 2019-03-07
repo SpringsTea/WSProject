@@ -48,7 +48,7 @@ class DeckHeader extends Component {
 						</div>
 					</Col>
 					<Col className="display">
-						Sets: { deck.sets.map( (set) => <Tag>{`${set.name}(${set.set}/${set.side}${set.release})`}</Tag> ) }
+						Sets: { deck.sets.map( (set) => <Tag>{set}</Tag> ) }
 					</Col>
 				</Row>
 			</Card>

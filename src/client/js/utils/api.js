@@ -1,8 +1,8 @@
 import axios from 'axios'; 
 
 //Return the full list of available weiss sets
-export async function fetchSerieses(lang) {
-  return (await axios.get(`/api/serieslist/${lang || ''}`)).data;
+export async function fetchSerieses() {
+  return (await axios.get('/api/serieslist/')).data;
 }
 
 //Return a single weiss set

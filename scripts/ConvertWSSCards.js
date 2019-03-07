@@ -1,5 +1,3 @@
-//Convert individual card json files provided by WSOnline into on file for import
-
 const { readdirSync, readFileSync, writeFile, statSync } = require('fs')
 const { join, extname } = require('path')
 var WSS_PATH = process.env.WSS_PATH || './Cards/';
@@ -34,7 +32,6 @@ WSS_SERIES.forEach( (wss_series) => {
 				set: wss_card.set,
 				side: wss_card.side,
 				release: wss_card.release,
-				lang: 'JP',
 				cardtype: wss_card.cardType,
 				colour: wss_card.colour,
 				level: parseInt(wss_card.level),

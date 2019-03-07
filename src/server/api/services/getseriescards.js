@@ -17,12 +17,11 @@ import Card from '../models/card'
 module.exports = async (request, response, next) => {
     let seriesId = request.params.id;
     try {
-        let series = await Series.findById(seriesId).exec();
-        if (series) {
+        let docs = await Series.find({_id: seriesId}).limit(1).exec();
+        if (docs.length > 0) {
             let cards = await Card.find({ 
-                side: series.side, 
-                release: series.release,
-                lang: series.lang,
+                set: docs[0].set, 
+                release: docs[0].release 
             }).limit(300).exec();
             response.status(200).json(cards)
         } else {

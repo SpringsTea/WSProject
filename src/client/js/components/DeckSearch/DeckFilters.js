@@ -28,11 +28,11 @@ class DeckFilters extends Component {
 		setLoading(false);		
 	}
 
-	handleFilter = (value, prop) =>{
+	handleSetFilter = (value) =>{
 		const { updateDecks } = this;
 		let { filters } = this.state;
 
-		filters[prop] = value;
+		filters.set = value;
 		this.setState({filters}, updateDecks);
 	}
 
@@ -49,59 +49,34 @@ class DeckFilters extends Component {
 	})
 
 	render(){
-		const { handleFilter, handleTextFilter } = this;
+		const { handleSetFilter, handleTextFilter } = this;
 		const { serieses } = this.props;
-		const { filters } = this.state;
 		return(
 			<div className="container-deckfilters">
 				<Row gutter={10}>
 					<Col xxl={4} xl={6} lg={8} md={12}>
 						<div className="filter">
-							<span>Language:</span>
-							<Select
-								style={{width:'100%'}}
-								placeholder="Select a language"
-								defaultValue={null}
-								onChange={(val) => handleFilter(val, 'lang')}
-							>
-								<Option value={null}>
-									All
-								</Option>
-								<Option value={'JP'}>
-									Japanese
-								</Option>
-								<Option value={'EN'}>
-									English
-								</Option>
-							</Select>
-						</div>
-					</Col>
-					<Col xxl={4} xl={6} lg={8} md={12}>
-						<div className="filter">
-							<span>Series:</span>
 							<Select
 								style={{width:'100%'}}
 								placeholder="Select a series"
 								filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-								onChange={(val) => handleFilter(val, 'set')}
+								onChange={handleSetFilter}
 								allowClear
 								showSearch
 							>
 								{
-									serieses.filter((s) => filters.lang ? s.lang === filters.lang : true)//filter by lang if selected
-									.map( (series, i) => 
+									serieses.map( (series, i) => 
 										<Option 
 											key={i} 
-											value={series._id}>
-											{`${series.name} (${series.lang})`}
+											value={`${series.set}/${series.side}${series.release}`}>
+											{series.name}
 										</Option> )
 								}
 							</Select>
 						</div>
 					</Col>
 					<Col xxl={4} xl={6} lg={8} md={12}>
-						<div className="filter">	
-							<span>Search:</span>
+						<div className="filter">
 							<Input placeholder="Search deckname" onChange={(e) => handleTextFilter(e.target.value)} />
 						</div>
 					</Col>

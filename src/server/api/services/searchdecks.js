@@ -44,10 +44,6 @@ module.exports = async ({query:params}, response, next) => {
             query.sets = params.set;
         }
 
-        if( params.lang ){
-            query.lang = params.lang;
-        }
-
         if( params.text ){
             const regex = new RegExp(params.text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), 'gi');
             query.name = regex;
