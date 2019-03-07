@@ -1,6 +1,6 @@
 'use strict';
 
-import { GetDeckById } from '../getdeckbyid';
+import GetDeckById from '../../helpers/get-deck-by-id';
 
 /** 
  * @module RenderDeck
