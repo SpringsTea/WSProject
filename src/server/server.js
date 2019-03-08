@@ -17,13 +17,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // Register '.mustache' extension with The Mustache Express
-//app.engine('mustache', mustacheExpress());
+app.engine('mustache', mustacheExpress());
 
-//app.set('view engine', 'mustache');
-//app.set("views", path.resolve("dist"));
+app.set('view engine', 'mustache');
+app.set("views", path.resolve("dist"));
 
-//app.use(express.static("dist"));
-//app.use('/images', express.static("public/images"));
+app.use(express.static("dist"));
+app.use('/images', express.static("public/images"));
 
 //authentication middlware
 app.use(passport.initialize());
