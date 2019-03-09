@@ -5,9 +5,15 @@ let services = require('./api/services');
 router.get("/api/serieslist/:lang?", services.GetSeriesList);
 router.get("/api/series/:id/cards", services.GetSeriesCards);
 router.get("/api/deck/:deckid", services.GetDeckById);
-router.get("/api/search/deck", services.SearchDecks)
+router.get("/api/search/deck", services.SearchDecks);
 router.post("/api/deck", services.NewDeck);
-router.get("/api/fixdecks", services.FixDecks)
+router.get("/api/fixdecks", services.FixDecks);
+router.get("/api/verify/:token", services.VerifyEmail);
+router.post("/api/login", services.Login);
+router.post("/api/reset",services.PasswordReset);
+router.post("/api/reset/:token", services.SetNewPassword);
+router.post("/api/register", services.RegisterUser);
+
 // ui endpoints
 router.get("/", services.RenderDeckSearch);
 router.get("/deck/:deckid", services.RenderDeck);

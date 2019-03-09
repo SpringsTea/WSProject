@@ -2,8 +2,8 @@ require('@babel/register')({
   
 })
 
-var config = require('./config/mongo.js')
-const mongoose = require('mongoose')
+var config = require('./config/mongo.js');
+const mongoose = require('mongoose');
 
 var mongooseOptions = {
 	useNewUrlParser: true
@@ -17,6 +17,6 @@ if( config.AUTH === true ){
 }
 
 
-mongoose.connect(`mongodb://127.0.0.1:27017/wsdata?authSource=admin`, mongooseOptions);
+mongoose.connect(process.env.CONNECTION, mongooseOptions);
 
 module.exports = require('./server.js')

@@ -2,8 +2,15 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import mustacheExpress from 'mustache-express';
+import passport from 'passport';
 
 const app = express();
+
+//access environmental variables
+require('dotenv').config();
+
+//Passport config
+require('./passport')(passport);
 
 //Here we are configuring express to use body-parser as middle-ware.
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -17,6 +24,9 @@ app.set("views", path.resolve("dist"));
 
 app.use(express.static("dist"));
 app.use('/images', express.static("public/images"));
+
+//authentication middlware
+app.use(passport.initialize());
 
 let routes = require('./routes');
 app.use(routes);
