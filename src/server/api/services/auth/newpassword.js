@@ -7,7 +7,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-const User = require('../models/user');
+const User = require('../../models/user');
 
 /**
  * Change user's password provided token matches and is still valid.

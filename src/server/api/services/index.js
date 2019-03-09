@@ -11,10 +11,10 @@ module.exports = {
     RenderDeckSearch: require('./pages/renderdecksearch'),
     RenderDeckBuilder: require('./pages/renderdeckbuilder'),
     RenderPageNotFound: require('./pages/renderpagenotfound'),
-    RegisterUser: require('./registeruser'),
-    PasswordReset : require('./resetpassword'),
-    SetNewPassword : require ('./newpassword'),
-    Login: require('./login'),
-    Auth: require('./auth'),
-    VerifyEmail: require('./verify')
+    RegisterUser: require('./auth/registeruser'),
+    PasswordReset : require('./auth/resetpassword'),
+    SetNewPassword : require ('./auth/newpassword'),
+    Login: require('./auth/login'),
+    Auth: require('./auth/auth'),
+    VerifyEmail: require('./auth/verify')
 }

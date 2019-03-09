@@ -6,9 +6,6 @@ import passport from 'passport';
 
 const app = express();
 
-//access environmental variables
-require('dotenv').config();
-
 //Passport config
 require('./passport')(passport);
 

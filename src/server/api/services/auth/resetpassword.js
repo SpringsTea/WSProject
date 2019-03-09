@@ -7,7 +7,7 @@
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
-const User = require('../models/user');
+const User = require('../../models/user');
 
 let emailRegex = new RegExp(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/);
 
@@ -50,7 +50,7 @@ module.exports = (req, res) => {
                     subject: 'Reset Password',
                     text: 
                         'Click the link below to reset password: \n\n' +
-                        'http://localhost:8080/api/reset/' + token + '\n\n'
+                        `${process.env.SITE}/api/reset/${token}` + '\n\n'
                 }
 
                 transporter.sendMail(resetTemplate, (err) => {

@@ -4,29 +4,29 @@
  * @module VerifyEmail
  */
 
-const User = require('../models/user');
+const User = require('../../models/user');
 
 /**
- * Activate user account.
+ * Verify user account.
  * 
  * @param {object} request HTTP request
  * @param {object} response HTTP response
  */
 
 module.exports = (req, res) => {
-    User.findOne({activeToken: req.params.token})
+    User.findOne({verifyToken: req.params.token})
         .then((user) => {
             if(!user) {
-                return res.status(401).json({message: 'Activation token invalid.'});
+                return res.status(401).json({message: 'Verification token invalid.'});
             }
             
-            user.active = true;
-            user.activeToken = null;
+            user.verify = true;
+            user.verifyToken = null;
 
             user.save()
               .then(() => {
                   res.status(200).json({
-                      message: 'Account activated'
+                      message: 'Account verified'
                   });
             })
         })

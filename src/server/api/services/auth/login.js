@@ -23,10 +23,6 @@ module.exports = (req, res, next) => {
         if (!user) { 
             return res.status(401).json({message: 'Invalid username/password.'}); 
         }
-        
-        if(!user.active){
-            return res.status(403).json({message: 'Account has not been activated, please check your email'});
-        }
 
         const body = {_id : user._id, username : user.name};
         const token = jwt.sign({ user: body }, process.env.SECRET_KEY );

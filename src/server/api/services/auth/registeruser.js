@@ -9,7 +9,7 @@ const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 
-const User = require('../models/user');
+const User = require('../../models/user');
 
 /**
  * Create new user provided email and username are not already registered.
@@ -50,8 +50,8 @@ module.exports = (req, res) => {
                                         email: email,
                                         name: username,
                                         password: pwHash,
-                                        active: false,
-                                        activeToken: token
+                                        verify: false,
+                                        verifyToken: token
                                     });
                                     user
                                     .save()
@@ -70,7 +70,7 @@ module.exports = (req, res) => {
                                             subject: 'Email Verification',
                                             text: 
                                                 'Click the link below to verify your email address: \n\n' +
-                                                'http://localhost:8080/api/verify/' + token + '\n\n'
+                                                `${process.env.SITE}/api/verify/${token}` + '\n\n'
                                         }
                         
                                         transporter.sendMail(verifyTemplate, (err) => {

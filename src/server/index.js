@@ -2,6 +2,9 @@ require('@babel/register')({
   
 })
 
+//access environmental variables
+var dotenv = require('dotenv').config()
+
 var config = require('./config/mongo.js');
 const mongoose = require('mongoose');
 
@@ -16,7 +19,6 @@ if( config.AUTH === true ){
 	mongooseOptions.pass = config.APP_PASSWORD;
 }
 
-
-mongoose.connect(process.env.CONNECTION, mongooseOptions);
+mongoose.connect(process.env.CONNECTION || `mongodb://127.0.0.1:27017/wsdata?authSource=admin`, mongooseOptions);
 
 module.exports = require('./server.js')
