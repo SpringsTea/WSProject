@@ -37,7 +37,7 @@ module.exports = (req, res) => {
                     //save changes and login user
                     user.save()
                     .then(() => {
-                        const body = {_id : user._id, username : user.name};
+                        const body = {_id : user._id, email : user.email};
                         const token = jwt.sign({ user: body }, process.env.SECRET_KEY );
                         res.status(200).json({
                             message: 'Password updated!',
