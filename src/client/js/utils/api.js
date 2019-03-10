@@ -24,3 +24,7 @@ export async function searchDeck(data){
 		params:data
 	})).data;
 }
+
+export async function login(data){
+	return (await axios.post(`/api/login`, data)); 
+}

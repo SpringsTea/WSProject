@@ -98,7 +98,8 @@ module.exports = {
     alias: {
       Actions: path.resolve(__dirname, 'src/client/js/actions'),
       Utils: path.resolve(__dirname, 'src/client/js/utils'),
-      Constants: path.resolve(__dirname, 'src/client/js/constants')
+      Constants: path.resolve(__dirname, 'src/client/js/constants'),
+      Partials: path.resolve(__dirname, 'src/client/js/components/partials'),
     }
   }
 }

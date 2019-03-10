@@ -9,6 +9,7 @@ import Login from './components/Login/Login';
 
 // Styles
 import '../styles/styles.less';
+import '../styles/login.less';
 
 // Export the globals we'll want elsewhere
 window.WS = Object.assign(window.WS || {}, {
