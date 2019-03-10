@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import {
-  Form, Icon, Input, Button, Checkbox, Alert
+  Form, Icon, Input, Button, Alert
 } from 'antd';
 
 
@@ -45,6 +45,7 @@ class LoginForm extends Component {
   render(){
     const { getFieldDecorator } = this.props.form;
     const { handleSubmit } = this;
+    const { handleFormChange } = this.props;
     const { loading, error } = this.state;
     return(
        <Form onSubmit={handleSubmit} className="login-form">
@@ -73,7 +74,7 @@ class LoginForm extends Component {
               Log in
             </Button>
           </div>
-          Or <a href="">register now!</a>
+          Or <a onClick={() => handleFormChange('register')}>register now!</a>
         </Form.Item>
       </Form>
     )
