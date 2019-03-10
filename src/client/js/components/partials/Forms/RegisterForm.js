@@ -3,22 +3,75 @@ import {
   Form, Icon, Input, Button, Checkbox, Tooltip, Alert
 } from 'antd';
 
+import { register } from 'Utils/api';
+
 class RegisterForm extends Component {
 
+  state = {
+    confirmDirty: false,
+    loading: false,
+  }
+
   handleSubmit = (e) => {
+    const { register } = this;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log(values)
+        register(values)
       }
     });
+  }
+
+  register = async(formdata) => {
+    const { handleFormChange  } = this.props;
+    this.setState({loading: true});
+
+    let res = await register(formdata)
+
+    //Register successful
+    if(res.success){
+      this.setState({error: null})
+      handleFormChange('login', { logindata: {...formdata, message:'Registration successful' }})
+    }
+    else{
+      this.setState({error: res.response.data.message})
+    }
+    
+    this.setState({loading: false});
+  }
+
+  handleConfirmBlur = (e) => {
+    const value = e.target.value;
+    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+  }
+
+  compareToFirstPassword = (rule, value, callback) => {
+    const form = this.props.form;
+    if (value && value !== form.getFieldValue('password')) {
+      callback('Two passwords do not match');
+    } else {
+      callback();
+    }
+  }
+
+  validateToNextPassword = (rule, value, callback) => {
+    const form = this.props.form;
+    if (value && this.state.confirmDirty) {
+      form.validateFields(['confirm'], { force: true });
+    }
+    callback();
   }
 
   render(){
     const { getFieldDecorator } = this.props.form;
     const { handleFormChange } = this.props;
+    const { error, loading } = this.state;
     return(
        <Form onSubmit={this.handleSubmit}>
+        {
+          error &&
+          <Alert message={error} type="warning" />
+        }
         <Form.Item
           label={(
             <span>
@@ -45,7 +98,11 @@ class RegisterForm extends Component {
           {getFieldDecorator('password', {
             rules: [{
               required: true, message: 'Please input your password!',
-            }, {
+            },
+            {
+              min: 6, message: 'Password must be atleast 6 charicters'
+            }
+            , {
               validator: this.validateToNextPassword,
             }],
           })(
@@ -68,14 +125,14 @@ class RegisterForm extends Component {
         <Form.Item
           label="User Name"
         >
-          {getFieldDecorator('nickname', {
-            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+          {getFieldDecorator('username', {
+            rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
           })(
             <Input />
           )}
         </Form.Item>
         <Form.Item>
-          <Button type="primary" htmlType="submit">Register</Button>
+          <Button type="primary" htmlType="submit" loading={loading}>Register</Button>
           <div>
             Already have an account? <a onClick={() => handleFormChange('login')}>Login</a>
           </div>

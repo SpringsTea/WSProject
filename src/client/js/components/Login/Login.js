@@ -9,16 +9,17 @@ const { TabPane } = Tabs;
 class Login extends Component {
 
 	state = {
-		tab: 'register'
+		tab: 'login',
+		logindata: {},//store user password from register
 	}
 
-	handleTabChange = (tab) =>{
-		this.setState({tab: tab});
+	handleTabChange = (tab, data = {}) =>{
+		this.setState({tab: tab, ...data});
 	}
 
 	render(){
 		const { handleTabChange } = this;
-		const { tab } = this.state;
+		const { tab, logindata } = this.state;
 		return(
 		  <div className="container-login">
 		  	<div className="header">
@@ -27,8 +28,8 @@ class Login extends Component {
 		  	</div>
 		  	<div className="container-login-form">
 		  		<Tabs activeKey={tab} tabBarStyle={{display:'none'}}>
-		  			<TabPane key="login" tab="Login">
-		    			<LoginForm handleFormChange={handleTabChange} />
+		  			<TabPane logindata key="login" tab="Login">
+		    			<LoginForm handleFormChange={handleTabChange} logindata={logindata} />
 		    		</TabPane>
 		    		<TabPane key="register" tab="Register">
 		    			<RegisterForm handleFormChange={handleTabChange} />

@@ -23,18 +23,27 @@ module.exports = (req, res) => {
     
     let username = req.body.username, email = req.body.email, password = req.body.password;
 
+    if( password.length < 6 ){
+        return res.status(422).json({
+            error: true,
+            message: 'Password must be atleast 6 charicters'
+        });
+    }
+
     User.find({email: email})
         .then(emailQueryResult => {
             if(emailQueryResult.length >= 1) {
                 return res.status(422).json({
-                    message: 'Error: That email is already in use!'
+                    error: true,
+                    message: 'That email is already in use!'
                 });
             } else {
                 User.find({ name: username })
                     .then(userQueryResult => {
                         if(userQueryResult.length >= 1) {
                             return res.status(422).json({
-                                message: 'Error: That username is taken!'
+                                error: true,
+                                message: 'That username is taken!'
                             });
                         } else {
                             bcrypt.hash(password, 10, (err, pwHash) => {
@@ -82,7 +91,8 @@ module.exports = (req, res) => {
                                         })
 
                                         res.status(201).json({
-                                            message: 'Success: Your account has been registered, please check you email.'
+                                            success: true,
+                                            message: 'Your account has been registered, please check you email.'
                                         })
                                     })
                                     .catch(err => {

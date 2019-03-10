@@ -1,17 +1,5 @@
 import axios from 'axios'; 
 
-const UNAUTHORIZED = 401;
-axios.interceptors.response.use(
-  response => response,
-  error => {
-      const {status} = error.response;
-      if (status === UNAUTHORIZED) {
-        return { data: { error: true, message: 'Authentication failed' } };
-      }
-      return { data: { error: true, message: 'Something went wrong' } };
- }
-);
-
 //Return the full list of available weiss sets
 export async function fetchSerieses(lang) {
   return (await axios.get(`/api/serieslist/${lang || ''}`)).data;
@@ -43,4 +31,13 @@ export async function login(data){
 	}).catch(err => {
 		return err
 	}) 
+}
+
+export async function register(data){
+	return axios.post(`/api/register`, data).then((res) =>{
+		return res.data
+	}).catch(err => {
+		console.log(err);
+		return err
+	})
 }

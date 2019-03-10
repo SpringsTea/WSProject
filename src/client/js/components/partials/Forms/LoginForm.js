@@ -36,7 +36,7 @@ class LoginForm extends Component {
       //TODO redirect to user page
     }
     else{
-      this.setState({error: 'Incorrect email/password'})
+      this.setState({error: res.response.data.message})
     }
     
     this.setState({loading: false});
@@ -45,7 +45,7 @@ class LoginForm extends Component {
   render(){
     const { getFieldDecorator } = this.props.form;
     const { handleSubmit } = this;
-    const { handleFormChange } = this.props;
+    const { handleFormChange, logindata = {} } = this.props;
     const { loading, error } = this.state;
     return(
        <Form onSubmit={handleSubmit} className="login-form">
@@ -53,9 +53,14 @@ class LoginForm extends Component {
           error &&
           <Alert message={error} type="warning" />
         }
+        {
+          logindata.message &&
+          <Alert message={`${logindata.message}`} type="info" />
+        }
         <Form.Item>
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your email!' }],
+            initialValue: logindata.email
           })(
             <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
           )}
@@ -63,6 +68,7 @@ class LoginForm extends Component {
         <Form.Item>
           {getFieldDecorator('password', {
             rules: [{ required: true, message: 'Please input your Password!' }],
+            initialValue: logindata.password
           })(
             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
           )}
