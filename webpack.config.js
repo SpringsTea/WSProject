@@ -10,6 +10,7 @@ module.exports = {
     builder: "./src/client/js/builderRouter.js",
     deckview: "./src/client/js/deckviewRouter.js",
     descksearch: "./src/client/js/decksearchRouter.js",
+    login: "./src/client/js/loginRouter.js",
     pagenotfound: "./src/client/js/pagenotfoundRouter.js",
   },  
   output: {
@@ -81,9 +82,15 @@ module.exports = {
       favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/login.mustache'),
+      template: path.resolve(__dirname, "./public/login.mustache"),
+      chunks: ['login', 'commons'],
+      favicon: "./public/favicon.ico"
+    }),
+    new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, 'dist/pagenotfound.mustache'),
       template: path.resolve(__dirname, "./public/pagenotfound.mustache"),
-      chunks: ['commons', 'pagenotfound'],
+      chunks: ['pagenotfound', 'commons'],
       favicon: "./public/favicon.ico"
     })
   ],
