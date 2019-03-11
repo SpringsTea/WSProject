@@ -11,6 +11,7 @@ module.exports = {
     deckview: "./src/client/js/deckviewRouter.js",
     descksearch: "./src/client/js/decksearchRouter.js",
     login: "./src/client/js/loginRouter.js",
+    user: "./src/client/js/userRouter.js",
     pagenotfound: "./src/client/js/pagenotfoundRouter.js",
   },  
   output: {
@@ -85,6 +86,12 @@ module.exports = {
       filename: path.resolve(__dirname, 'dist/login.mustache'),
       template: path.resolve(__dirname, "./public/login.mustache"),
       chunks: ['login', 'commons'],
+      favicon: "./public/favicon.ico"
+    }),
+    new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/user.mustache'),
+      template: path.resolve(__dirname, "./public/user.mustache"),
+      chunks: ['user', 'commons'],
       favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({

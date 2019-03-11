@@ -19,5 +19,6 @@ module.exports = {
     RenderDeckSearch: require('./pages/renderdecksearch'),
     RenderDeckBuilder: require('./pages/renderdeckbuilder'),
     RenderLogin: require('./pages/renderlogin'),
+    RenderUser: require('./pages/renderuser'),
     RenderPageNotFound: require('./pages/renderpagenotfound'),
 }
