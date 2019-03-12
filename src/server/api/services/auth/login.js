@@ -15,7 +15,7 @@ const jwt = require('jsonwebtoken');
  * @param {object} response HTTP response
  * @param {function} next function callback
  */
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
 
         if (err) { return next(err); }

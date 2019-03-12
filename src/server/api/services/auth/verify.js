@@ -13,10 +13,10 @@ const User = require('../../models/user');
  * @param {object} response HTTP response
  */
 
-module.exports = (req, res) => {
-    User.findOne({verifyToken: req.params.token})
-        .then((user) => {
-            if(!user) {
+module.exports = async (req, res) => {
+    try {
+        let userQuery = await User.findOne({verifyToken: req.params.token});
+            if(!userQuery) {
                 return res.status(401).json({message: 'Verification token invalid.'});
             }
             
@@ -29,5 +29,11 @@ module.exports = (req, res) => {
                       message: 'Account verified'
                   });
             })
-        })
+    } catch (error) {
+        console.log(error);
+        response.status(500).json({
+            error: error,
+            message: 'something went wrong'
+        }) 
+    }   
 }
