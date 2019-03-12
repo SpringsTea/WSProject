@@ -7,14 +7,18 @@ module.exports = {
     SearchDecks: require('./searchdecks'),
     NewDeck: require('./newdeck'),
     FixDecks: require('./fixdecks'),
-    RenderDeck: require('./pages/renderdeck'),
-    RenderDeckSearch: require('./pages/renderdecksearch'),
-    RenderDeckBuilder: require('./pages/renderdeckbuilder'),
-    RenderPageNotFound: require('./pages/renderpagenotfound'),
+    ///////Auth//////
     RegisterUser: require('./auth/registeruser'),
     PasswordReset : require('./auth/resetpassword'),
     SetNewPassword : require ('./auth/newpassword'),
     Login: require('./auth/login'),
     Auth: require('./auth/auth'),
-    VerifyEmail: require('./auth/verify')
+    VerifyEmail: require('./auth/verify'),
+    //////Pages//////
+    RenderDeck: require('./pages/renderdeck'),
+    RenderDeckSearch: require('./pages/renderdecksearch'),
+    RenderDeckBuilder: require('./pages/renderdeckbuilder'),
+    RenderLogin: require('./pages/renderlogin'),
+    RenderUser: require('./pages/renderuser'),
+    RenderPageNotFound: require('./pages/renderpagenotfound'),
 }

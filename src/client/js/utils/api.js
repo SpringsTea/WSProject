@@ -24,3 +24,20 @@ export async function searchDeck(data){
 		params:data
 	})).data;
 }
+
+export async function login(data){
+	return axios.post(`/api/login`, data).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err
+	}) 
+}
+
+export async function register(data){
+	return axios.post(`/api/register`, data).then((res) =>{
+		return res.data
+	}).catch(err => {
+		console.log(err);
+		return err
+	})
+}
