@@ -3,7 +3,7 @@ require('@babel/register')({
 })
 
 //access environmental variables
-var dotenv = require('dotenv').config()
+require('dotenv').config();
 
 var config = require('./config/mongo.js');
 const mongoose = require('mongoose');

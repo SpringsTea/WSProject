@@ -100,7 +100,7 @@ class RegisterForm extends Component {
               required: true, message: 'Please input your password!',
             },
             {
-              min: 6, message: 'Password must be atleast 6 charicters'
+              min: 6, message: 'Password must be atleast 6 characters'
             }
             , {
               validator: this.validateToNextPassword,

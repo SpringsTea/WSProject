@@ -5,7 +5,6 @@
  */
 
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
 
@@ -16,40 +15,34 @@ const User = require('../../models/user');
  * @param {object} response HTTP response
  */
 
-module.exports = (req, res) => {
-    User.findOne({resetToken: req.params.token, tokenExpires: {$gt: Date.now() } })
-        .then((user) => {
-            if(!user) {
-                return res.status(401).json({message: 'Token expired, please request a new reset password link.'});
-            }
-            
-            //hash new password
-            bcrypt.hash(req.body.password, 10, (err, pwHash) => {
-                if (err){
-                    return res.status(500).json({
-                        error: err
-                    });
-                } else { 
-                    user.password = pwHash;
-                    user.resetToken = null;
-                    user.tokenExpires = null;
+module.exports = async (req, res) => {
+    try {
+        let userQuery = await User.findOne({resetToken: req.params.token, tokenExpires: {$gt: Date.now() } });
+        if(!userQuery) {
+            return res.status(401).json({message: 'Token expired, please request a new reset password link.'});
+        }
+        //hash new password
+        bcrypt.hash(req.body.password, 10, (err, pwHash) => {
+            if (err){
+                throw err;
+            } else { 
+                user.password = pwHash;
+                user.resetToken = null;
+                user.tokenExpires = null;
 
-                    //save changes and login user
-                    user.save()
-                    .then(() => {
-                        const body = {_id : user._id, email : user.email};
-                        const token = jwt.sign({ user: body }, process.env.SECRET_KEY );
-                        res.status(200).json({
-                            message: 'Password updated!',
-                            token: token
-                        });
-                    })
-                    .catch(err => {
-                        res.status(500).json({
-                            error: err
-                        });
-                    });      
-                }
-            });
-        })
+                //save changes
+                user.save();
+
+                res.status(200).json({
+                    message: 'Password updated!',
+                });
+                   
+            }
+        });
+    } catch (error) {
+        console.log(error);
+            response.status(500).json({
+                message: 'something went wrong'
+            }) 
+    }        
 }
