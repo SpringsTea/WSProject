@@ -6,9 +6,9 @@ const User = require('./api/models/user');
 module.exports = (passport) => {
     passport.use(
         new localStrategy(
-            (username, password, done) => {
+            (email, password, done) => {
                 try{
-                    User.findOne({ name: username }).then(user => {
+                    User.findOne({ email: email }).then(user => {
                         if(!user) {
                             return done(null, false);
                         }
