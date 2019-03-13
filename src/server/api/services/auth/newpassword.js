@@ -5,7 +5,6 @@
  */
 
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const User = require('../../models/user');
 
@@ -31,14 +30,11 @@ module.exports = async (req, res) => {
                 user.resetToken = null;
                 user.tokenExpires = null;
 
-                //save changes and login user
+                //save changes
                 user.save();
-                
-                const body = {_id : user._id, username : user.name};
-                const token = jwt.sign({ user: body }, process.env.SECRET_KEY );
+
                 res.status(200).json({
                     message: 'Password updated!',
-                    token: token
                 });
                    
             }
@@ -46,7 +42,6 @@ module.exports = async (req, res) => {
     } catch (error) {
         console.log(error);
             response.status(500).json({
-                error: error,
                 message: 'something went wrong'
             }) 
     }        

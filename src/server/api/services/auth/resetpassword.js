@@ -31,10 +31,10 @@ module.exports = async (req, res) => {
                 const token = crypto.randomBytes(20).toString('hex');
                 
                 //token expires in 1hr
-                user.resetToken = token;
-                user.tokenExpires = Date.now() + 3600000;
+                userQuery.resetToken = token;
+                userQuery.tokenExpires = Date.now() + 3600000;
 
-                user.save();
+                userQuery.save();
 
                 const transporter = nodemailer.createTransport({
                     service: process.env.SERVICE,
@@ -45,7 +45,7 @@ module.exports = async (req, res) => {
                 })
 
                 const resetTemplate = {
-                    to: user.email,
+                    to: userQuery.email,
                     from: process.env.MAILER,
                     subject: 'Reset Password',
                     text: 
@@ -64,7 +64,6 @@ module.exports = async (req, res) => {
         } catch (error) {
             console.log(error);
             response.status(500).json({
-              error: error,
               message: 'something went wrong'
             })
         }

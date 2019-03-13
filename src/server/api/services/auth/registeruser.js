@@ -75,7 +75,6 @@ module.exports = async (req, res) => {
     } catch (error) {
         console.log(error);
         response.status(500).json({
-            error: error,
             message: 'something went wrong'
         })
     }

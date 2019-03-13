@@ -12,6 +12,7 @@ module.exports = {
     PasswordReset : require('./auth/resetpassword'),
     SetNewPassword : require ('./auth/newpassword'),
     Login: require('./auth/login'),
+    Logout: require('./auth/logout'),
     Auth: require('./auth/auth'),
     VerifyEmail: require('./auth/verify'),
     //////Pages//////

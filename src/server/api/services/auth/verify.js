@@ -20,10 +20,10 @@ module.exports = async (req, res) => {
                 return res.status(401).json({message: 'Verification token invalid.'});
             }
             
-            user.verify = true;
-            user.verifyToken = null;
+            userQuery.verify = true;
+            userQuery.verifyToken = null;
 
-            user.save()
+            userQuery.save()
               .then(() => {
                   res.status(200).json({
                       message: 'Account verified'
@@ -32,7 +32,6 @@ module.exports = async (req, res) => {
     } catch (error) {
         console.log(error);
         response.status(500).json({
-            error: error,
             message: 'something went wrong'
         }) 
     }   
