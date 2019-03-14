@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Row, Col, Tag } from 'antd';
+import DeckStats from './DeckStats';
 
 class DeckHeader extends Component {
 
@@ -51,6 +52,7 @@ class DeckHeader extends Component {
 						Sets: { deck.sets.map( (set) => <Tag key={set._id}>{`${set.name}(${set.set}/${set.side}${set.release})`}</Tag> ) }
 					</Col>
 				</Row>
+				<DeckStats cards={cards} deck={deck} />
 			</Card>
 		)
 	}
