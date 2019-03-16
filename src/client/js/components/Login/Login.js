@@ -3,6 +3,7 @@ import { Row, Col, Tabs } from 'antd';
 
 import LoginForm from 'Partials/Forms/LoginForm';
 import RegisterForm from 'Partials/Forms/RegisterForm';
+import PasswordRecoveryForm from 'Partials/Forms/PasswordRecoveryForm';
 
 const { TabPane } = Tabs;
 
@@ -33,6 +34,9 @@ class Login extends Component {
 		    		</TabPane>
 		    		<TabPane key="register" tab="Register">
 		    			<RegisterForm handleFormChange={handleTabChange} />
+		    		</TabPane>
+		    		<TabPane key="password" tab="Password">
+		    			<PasswordRecoveryForm handleFormChange={handleTabChange} />
 		    		</TabPane>
 		    	</Tabs>
 		    </div>

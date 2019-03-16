@@ -55,3 +55,11 @@ export async function register(data){
 		return err
 	})
 }
+
+export async function passwordReset(data){
+	return axios.post(`/api/reset`, data).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}

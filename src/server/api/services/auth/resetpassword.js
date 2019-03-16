@@ -20,12 +20,12 @@ let emailRegex = new RegExp(/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?
 
 module.exports = async (req, res) => {
     if (!emailRegex.test(req.body.email)) {
-        return res.error(422).json({message: 'Please enter a valid email'});
+        return res.error(422).json({ success: false, message: 'Please enter a valid email'});
     }else {
         try {
             let userQuery = await User.findOne({email: req.body.email});
             if(!userQuery) {
-                return res.status(400).json({message: 'Invalid username/password'});
+                return res.status(400).json({ success: false, message: 'Email was not found'});
             }else {
                 //generate token
                 const token = crypto.randomBytes(20).toString('hex');
@@ -57,13 +57,14 @@ module.exports = async (req, res) => {
                     if(err) {
                        throw err;
                     }else {
-                        return res.status(200).json({message: 'email sent'});
+                        return res.status(200).json({ success: true, message: 'email sent'});
                     };
                 })
             }  
         } catch (error) {
             console.log(error);
             response.status(500).json({
+              success: false,
               message: 'something went wrong'
             })
         }

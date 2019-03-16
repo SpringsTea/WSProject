@@ -70,7 +70,7 @@ class LoginForm extends Component {
           })(
             <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
           )}
-          <a className="login-form-forgot" href="">Forgot password</a>
+          <a className="login-form-forgot" onClick={() => handleFormChange('password')}>Forgot password</a>
         </Form.Item>
         <Form.Item>
           <div>

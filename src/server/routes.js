@@ -9,6 +9,8 @@ router.post("/api/deck/claim/:deckid", services.ClaimDeck);
 router.get("/api/search/deck", services.SearchDecks);
 router.post("/api/deck", services.NewDeck);
 router.get("/api/fixdecks", services.FixDecks);
+
+// auth endpoints
 router.get("/api/verify/:token", services.VerifyEmail);
 router.post("/api/login", services.Login, (req, res) => {res.json({ success: true, message: 'sucessfully logged in'})});
 router.post("/api/logout", services.Logout);
