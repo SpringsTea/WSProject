@@ -20,6 +20,7 @@ import User from './components/User/User';
 // Styles
 import '../styles/styles.less';
 import '../styles/decksearch.less';
+import '../styles/user.less';
 
 // Export the globals we'll want elsewhere
 window.WS = Object.assign(window.WS || {}, {

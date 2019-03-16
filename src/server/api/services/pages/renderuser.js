@@ -32,9 +32,9 @@ module.exports = async (request, response, next) => {
         else if(  request.user ){
             username = request.user.name
         }
-
-    	if(!username){
-    		response.redirect('/login')
+    	else{
+    		response.redirect('/login');
+            return false;
     	}
 
         response.render("user", {loggedin: request.user ? true : false, username: username});
