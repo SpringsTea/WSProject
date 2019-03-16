@@ -1,11 +1,12 @@
 'use strict';
+import User from '../../models/user'
 
 /** 
- * @module RenderLogin
+ * @module RenderUser
  */
 
 /**
- * Render login page
+ * Render user page
  * 
  * @param {object} request HTTP request
  * @param {object} response HTTP response
@@ -14,11 +15,29 @@
 module.exports = async (request, response, next) => {
     try {
 
-    	if(!request.user){
+        let username = null;
+
+        if( request.params.username ){
+            let user = await User.findOne({name: request.params.username});
+
+            if( user ){
+                username = user.name
+            }
+            else{//No user with that name was found
+                response.redirect('/UserNotFound');
+                return false;
+            }
+            
+        }
+        else if(  request.user ){
+            username = request.user.name
+        }
+
+    	if(!username){
     		response.redirect('/login')
     	}
 
-        response.render("user", {loggedin: request.user ? true : false, userid: request.user._id, username: request.user.name});
+        response.render("user", {loggedin: request.user ? true : false, username: username});
     } catch (error) {
         console.log(error);
         response.status(500).json({

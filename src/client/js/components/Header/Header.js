@@ -32,7 +32,7 @@ class Header extends Component {
 				}
 				{
 					loggedin == 'true' &&
-					<a className="header-button clickable right"><Icon type="user" /></a>
+					<a className="header-button clickable right" href="/user"><Icon type="user" /></a>
 				}
 				
 			</div>

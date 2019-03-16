@@ -19,6 +19,7 @@ import User from './components/User/User';
 
 // Styles
 import '../styles/styles.less';
+import '../styles/decksearch.less';
 
 // Export the globals we'll want elsewhere
 window.WS = Object.assign(window.WS || {}, {
@@ -34,12 +35,12 @@ const domLoaded = new Promise(res =>
   }),
 );
 
-async function loadUserDecks(userid = true) {
+async function loadUserDecks(username = true) {
   const [
     decks,
     serieses,
   ] = await Promise.all([
-    searchDeck({userid: userid}),
+    searchDeck({username: username, invalid:true}),
     fetchSerieses()
   ]);
 
@@ -50,11 +51,11 @@ async function loadUserDecks(userid = true) {
 // Route via events
 WS.event.on('page.header', async props => {
   await domLoaded;
-  render(<Header loggedin={props.loggedin}/>, document.querySelector(props.el));
+  render(<Header loggedin={props.loggedin} title={props.title}/>, document.querySelector(props.el));
 });
 
 WS.event.on('user.load', async props => {
-  await loadUserDecks();
+  await loadUserDecks(props.username);
   await domLoaded;
   render( <User username={props.username} />, document.querySelector(props.el));
 })

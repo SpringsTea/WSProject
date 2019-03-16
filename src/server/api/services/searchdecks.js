@@ -5,6 +5,7 @@
  */
 
 import Deck from '../models/deck'
+import User from '../models/user'
 
 /**
  * Search deck given various parameters
@@ -17,7 +18,6 @@ module.exports = async ({query:params, user}, response, next) => {
     try {
         const limit = 24;
         let query = {
-            valid: params.invalid !== undefined ? false : true //valid decks only be default
         }
 
         const options = {
@@ -47,6 +47,10 @@ module.exports = async ({query:params, user}, response, next) => {
             }
         }
 
+        if( params.invalid === undefined ){//valid decks only be default
+            query.valid = true;
+        }
+
         //Filter by one set
         if( params.set ){
             query.sets = params.set;
@@ -61,6 +65,18 @@ module.exports = async ({query:params, user}, response, next) => {
             query.name = regex;
         }
 
+        if( params.username ){
+            if( params.username === 'true' ){
+                query.userid = user._id;
+            }
+            else{
+                let user = await User.findOne({name: params.username});
+                if( user ){
+                    query.userid = user._id;
+                }
+            }
+        }
+
         if( params.userid ){
             if( params.userid === 'true' ){
                 query.userid = user._id;
@@ -69,6 +85,8 @@ module.exports = async ({query:params, user}, response, next) => {
                 query.userid = params.user;
             }
         }
+
+        console.log(query);
 
         await Deck.paginate(query, options, (err, result) => {
             if (err) throw "Pagination Error"
