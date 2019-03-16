@@ -4,10 +4,11 @@ import { Row, Col } from 'antd';
 class User extends Component {
 
   render(){
+  	const { username } = this.props;
     return(
       <div className="container-user">
         <Row>
-          Howdy
+          Howdy {username}
         </Row>
       </div>
     )

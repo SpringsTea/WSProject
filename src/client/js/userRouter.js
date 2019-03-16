@@ -27,11 +27,11 @@ const domLoaded = new Promise(res =>
 // Route via events
 WS.event.on('page.header', async props => {
   await domLoaded;
-  render(<Header loggedin={props.loggedin} />, document.querySelector(props.el));
+  render(<Header loggedin={props.loggedin}/>, document.querySelector(props.el));
 });
 
 WS.event.on('user.load', async props => {
   await domLoaded;
 
-  render( <User />, document.querySelector(props.el));
+  render( <User username={props.username} />, document.querySelector(props.el));
 })
