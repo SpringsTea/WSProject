@@ -42,7 +42,7 @@ WS.event.on('page.header', async props => {
 
 WS.event.on('deckview.load', async props => {
   await Promise.all([ loadDeckViewData({deckid: props.deckid}), domLoaded ]);
-  render( <DeckView />, document.querySelector(props.el));
+  render( <DeckView loggedin={props.loggedin} />, document.querySelector(props.el));
 })
 
 async function loadDeckViewData(data){

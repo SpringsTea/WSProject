@@ -15,9 +15,7 @@ class DeckHeader extends Component {
 
 	claimDeck = async() =>{
 		const { deck } = this.props;
-		const res = await claimDeck(deck.deckid);
-
-		
+		const res = await claimDeck(deck.deckid);	
 		
 		if(res.success === true){
 			window.location.reload();
@@ -29,8 +27,10 @@ class DeckHeader extends Component {
 
 	render(){
 		const { sumCardQuantity, countCardLevel, claimDeck } = this;
-		const { cards, deck } = this.props;
-		const { userid: user } = deck;
+		const { cards, deck, loggedin } = this.props;
+		const { userid: deckuser } = deck;
+
+		console.log(loggedin);
 
 		return(
 			<Card className="deck-header">
@@ -38,7 +38,7 @@ class DeckHeader extends Component {
 					<div className="flex-container">
 						<h2 className="deck-name">{deck.name}</h2>
 						{
-							!user &&
+							(!deckuser && loggedin == 'true') &&
 							<Tooltip title="Claim this deck as yours. This can not be undone" placement="bottom">
 								<Button className="btn-claim" type="primary" icon="exclamation-circle" onClick={claimDeck}>
 									Claim This Deck
@@ -48,8 +48,8 @@ class DeckHeader extends Component {
 					</div>
 					<h3>
 						{
-							user ?
-							<a className="user" href={`/user/${user.name}`}>{ user.name }</a>
+							deckuser ?
+							<a className="user" href={`/user/${deckuser.name}`}>{ deckuser.name }</a>
 							:
 							<span>Anonymous</span>
 						}
