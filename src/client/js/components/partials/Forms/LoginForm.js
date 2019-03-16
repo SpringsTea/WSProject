@@ -30,11 +30,11 @@ class LoginForm extends Component {
     let res = await login(formdata)
 
     if(res.success === true){
-      window.location.replace("/user");
+      window.location = "/user";
     }
     else{
-      console.log(res)
-      this.setState({error: res.message})
+      console.log(res.message)
+      this.setState({error: 'Login was incorrect'})
       this.setState({loading: false});
     }  
     

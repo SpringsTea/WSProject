@@ -15,17 +15,5 @@ const passport = require('passport');
  * @param {function} next function callback
  */
 module.exports = async (req, res, next) => {
-    passport.authenticate('local', function(err, user) {
-
-    if(err){
-    	res.json({success:false, message: 'something went wrong', data: err})
-    }
-    else if(user.email){
-    	res.json({success:true})
-    }
-    else{
-    	res.json({success:false, message: 'Login Incorrect'})
-    }
-
-  })(req, res, next);
+    passport.authenticate('local')(req, res, next);
 }; 

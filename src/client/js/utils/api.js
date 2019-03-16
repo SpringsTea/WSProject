@@ -33,6 +33,12 @@ export async function login(data){
 	}) 
 }
 
+export async function logout(){
+	return axios.post(`/api/logout`).then((res) =>{
+		console.log(res);
+	})
+}
+
 export async function register(data){
 	return axios.post(`/api/register`, data).then((res) =>{
 		return res.data

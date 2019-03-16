@@ -16,9 +16,9 @@ import GetDeckById from '../../helpers/get-deck-by-id';
 module.exports = async (request, response, next) => {
     let deckid = request.params.deckid;
     let deck = await GetDeckById(deckid);
-    console.log("Fire!");
+
     try {
-        response.render("deck", { deckid: deckid, deckname: deck.name });
+        response.render("deck", { deckid: deckid, deckname: deck.name, loggedin: request.user ? true : false });
     } catch (error) {
         console.log(error);
         response.status(500).json({

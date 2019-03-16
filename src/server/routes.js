@@ -9,7 +9,7 @@ router.get("/api/search/deck", services.SearchDecks);
 router.post("/api/deck", services.NewDeck);
 router.get("/api/fixdecks", services.FixDecks);
 router.get("/api/verify/:token", services.VerifyEmail);
-router.post("/api/login", services.Login, (req, res) => {res.json({message: 'sucessfully logged in'})});
+router.post("/api/login", services.Login, (req, res) => {res.json({ success: true, message: 'sucessfully logged in'})});
 router.post("/api/logout", services.Logout);
 router.post("/api/reset",services.PasswordReset);
 router.post("/api/reset/:token", services.SetNewPassword);

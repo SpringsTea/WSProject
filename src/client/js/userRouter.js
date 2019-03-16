@@ -27,7 +27,7 @@ const domLoaded = new Promise(res =>
 // Route via events
 WS.event.on('page.header', async props => {
   await domLoaded;
-  render(<Header />, document.querySelector(props.el));
+  render(<Header loggedin={props.loggedin} />, document.querySelector(props.el));
 });
 
 WS.event.on('user.load', async props => {

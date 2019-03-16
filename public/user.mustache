@@ -12,7 +12,7 @@
     </div>
   </body>
   <script>
-    WS.event.emit('page.header', {el:'#header'})
+    WS.event.emit('page.header', {el:'#header', loggedin: '{{loggedin}}'})
     WS.event.emit('user.load', { el: '#user' })
   </script>
 </html>

@@ -13,7 +13,7 @@
  */
 module.exports = async (request, response, next) => {
     try {
-        response.render("login");
+        response.render("login", {loggedin: request.user ? true : false});
     } catch (error) {
         console.log(error);
         response.status(500).json({
