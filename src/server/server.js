@@ -33,7 +33,7 @@ app.use('/images', express.static("public/images"));
 app.use(
     session({
       secret: process.env.SECRET_KEY,
-      name: 'sessionid',
+      name: 'encoresesssionid',
       resave: true,
       saveUninitialized: true,
       store: new MongoStore({ mongooseConnection: mongoose.connection})

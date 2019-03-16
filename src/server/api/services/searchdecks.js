@@ -13,7 +13,7 @@ import Deck from '../models/deck'
  * @param {object} response HTTP response
  * @param {function} next function callback
  */
-module.exports = async ({query:params}, response, next) => {
+module.exports = async ({query:params, user}, response, next) => {
     try {
         const limit = 24;
         let query = {
@@ -25,12 +25,20 @@ module.exports = async ({query:params}, response, next) => {
             sort: { datecreated: -1 },
             page: params.page || 1,
             limit: limit,
-            populate: {
-                path: 'cards',
-                options: {
-                    limit: 1
+            populate: [
+                {
+                    path: 'cards',
+                    options: {
+                        limit: 1
+                    }
+                },
+                {
+                    path: 'userid',
+                    options: {
+                        select: 'name'
+                    }
                 }
-            },
+            ],
             customLabels: {
                 docs: 'decks',
                 totalDocs: 'totalDecks',
@@ -51,6 +59,15 @@ module.exports = async ({query:params}, response, next) => {
         if( params.text ){
             const regex = new RegExp(params.text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), 'gi');
             query.name = regex;
+        }
+
+        if( params.userid ){
+            if( params.userid === 'true' ){
+                query.userid = user._id;
+            }
+            else{
+                query.userid = params.user;
+            }
         }
 
         await Deck.paginate(query, options, (err, result) => {

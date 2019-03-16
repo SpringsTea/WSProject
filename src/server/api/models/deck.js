@@ -6,7 +6,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const deckSchema = mongoose.Schema({
 	name: { type: String, maxlength: 100 },
-	userid: ObjectId,
+	userid: { type: ObjectId, ref: 'User' },
 	deckid: { type: String, default: shortid.generate },
 	description: { type: String, maxlength: 2000, default: '' }, 
 	datecreated: { type: Date, default: Date.now },

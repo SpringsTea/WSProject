@@ -14,11 +14,20 @@ class DeckHeader extends Component {
 	render(){
 		const { sumCardQuantity, countCardLevel } = this;
 		const { cards, deck } = this.props;
+		const { userid: user } = deck;
 
 		return(
 			<Card className="deck-header">
 				<div>
-					<h2>{deck.name}</h2>
+					<h2 className="deck-name">{deck.name}</h2>
+					<h3>
+						{
+							user ?
+							<a className="user" href={`/user/${user.name}`}>{ user.name }</a>
+							:
+							<span>Anonymous</span>
+						}
+					</h3>
 				</div>
 				<Row gutter={6}>
 					<Col xl={6} className="display">
