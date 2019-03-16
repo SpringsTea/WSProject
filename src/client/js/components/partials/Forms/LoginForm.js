@@ -25,21 +25,20 @@ class LoginForm extends Component {
 
   login = async(formdata) => {
 
-    this.setState({loading: true});
+    this.setState({loading: true, error: null});
 
     let res = await login(formdata)
 
-    //Auth successful
-    if(res.token){
-      localStorage.setItem('encore-jwt', res.token)
-      this.setState({error: null})
-      //TODO redirect to user page
+    if(res.success === true){
+      window.location.replace("/user");
     }
     else{
-      this.setState({error: res.response.data.message})
-    }
+      console.log(res)
+      this.setState({error: res.message})
+      this.setState({loading: false});
+    }  
     
-    this.setState({loading: false});
+    
   }
 
   render(){
