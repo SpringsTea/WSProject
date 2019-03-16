@@ -18,6 +18,14 @@ export async function saveDeck(data) {
 	return (await axios.post(`/api/deck`, data));
 }
 
+export async function claimDeck(deckid){
+	return await axios.post(`/api/deck/claim/${deckid}`).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}
+
 //Search decks with various parameters
 export async function searchDeck(data){
 	return (await axios.get(`/api/search/deck`, {

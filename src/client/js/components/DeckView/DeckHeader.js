@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Row, Col, Tag } from 'antd';
+import { Card, Row, Col, Tag, Button, Tooltip, message } from 'antd';
+
+import { claimDeck } from 'Utils/api';
 
 class DeckHeader extends Component {
 
@@ -11,15 +13,39 @@ class DeckHeader extends Component {
 		return cards.filter( (card) => card.level === level && card.cardtype !== 'CX' ).length;
 	}
 
+	claimDeck = async() =>{
+		const { deck } = this.props;
+		const res = await claimDeck(deck.deckid);
+
+		
+		
+		if(res.success === true){
+			window.location.reload();
+		}
+		else{
+			message.error(res.message)
+		}
+	}
+
 	render(){
-		const { sumCardQuantity, countCardLevel } = this;
+		const { sumCardQuantity, countCardLevel, claimDeck } = this;
 		const { cards, deck } = this.props;
 		const { userid: user } = deck;
 
 		return(
 			<Card className="deck-header">
 				<div>
-					<h2 className="deck-name">{deck.name}</h2>
+					<div className="flex-container">
+						<h2 className="deck-name">{deck.name}</h2>
+						{
+							!user &&
+							<Tooltip title="Claim this deck as yours. This can not be undone" placement="bottom">
+								<Button className="btn-claim" type="primary" icon="exclamation-circle" onClick={claimDeck}>
+									Claim This Deck
+								</Button>
+							</Tooltip>
+						}						
+					</div>
 					<h3>
 						{
 							user ?
