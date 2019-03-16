@@ -30,8 +30,6 @@ class DeckHeader extends Component {
 		const { cards, deck, loggedin } = this.props;
 		const { userid: deckuser } = deck;
 
-		console.log(loggedin);
-
 		return(
 			<Card className="deck-header">
 				<div>
