@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
     try {
         let userQuery = await User.findOne({verifyToken: req.params.token});
             if(!userQuery) {
-                return res.status(401).json({message: 'Verification token invalid.'});
+                res.redirect('/NotFound')
             }
             
             userQuery.verify = true;
@@ -25,9 +25,7 @@ module.exports = async (req, res) => {
 
             userQuery.save()
               .then(() => {
-                  res.status(200).json({
-                      message: 'Account verified'
-                  });
+                res.redirect('/login')
             })
     } catch (error) {
         console.log(error);

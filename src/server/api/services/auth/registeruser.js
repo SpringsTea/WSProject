@@ -26,12 +26,14 @@ module.exports = async (req, res) => {
         let emailQuery = await User.find({email: email});
         if (emailQuery.length >=1) {
             return res.status(422).json({
+                success: false,
                 message: 'Error: That email is already in use'
             })
         }
         let usernameQuery = await User.find({name: username});
         if (usernameQuery.length >= 1) {
             return res.status(422).json({
+                success: false,
                 message: 'Error: that username is taken'
             })
         }
@@ -68,6 +70,7 @@ module.exports = async (req, res) => {
             transporter.sendMail(verifyTemplate);
     
             res.status(201).json({
+                success: true,
                 message: 'Success: Your account has been registered, please check you email.'
             }) 
                 
@@ -75,6 +78,7 @@ module.exports = async (req, res) => {
     } catch (error) {
         console.log(error);
         response.status(500).json({
+            success: false,
             message: 'something went wrong'
         })
     }
