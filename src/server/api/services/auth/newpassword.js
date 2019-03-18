@@ -17,9 +17,9 @@ const User = require('../../models/user');
 
 module.exports = async (req, res) => {
     try {
-        let userQuery = await User.findOne({resetToken: req.params.token, tokenExpires: {$gt: Date.now() } });
-        if(!userQuery) {
-            return res.status(401).json({message: 'Token expired, please request a new reset password link.'});
+        let user = await User.findOne({resetToken: req.params.token, tokenExpires: {$gt: Date.now() } });
+        if(!user) {
+            return res.status(401).json({success: false, message: 'Token expired, please request a new reset password link.'});
         }
         //hash new password
         bcrypt.hash(req.body.password, 10, (err, pwHash) => {
@@ -34,6 +34,7 @@ module.exports = async (req, res) => {
                 user.save();
 
                 res.status(200).json({
+                    success: true,
                     message: 'Password updated!',
                 });
                    
@@ -42,6 +43,7 @@ module.exports = async (req, res) => {
     } catch (error) {
         console.log(error);
             response.status(500).json({
+                success: false,
                 message: 'something went wrong'
             }) 
     }        

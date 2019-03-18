@@ -22,7 +22,7 @@ router.post("/api/register", services.RegisterUser);
 router.get("/", services.RenderDeckSearch);
 router.get("/deck/:deckid", services.RenderDeck);
 router.get("/builder", services.RenderDeckBuilder);
-router.get("/login", services.RenderLogin);
+router.get("/login/:tab?/:token?", services.RenderLogin);
 router.get("/user/:username?", services.RenderUser);
 router.get("*", services.RenderPageNotFound);
 

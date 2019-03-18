@@ -57,7 +57,7 @@ export async function register(data){
 }
 
 export async function passwordReset(data){
-	return axios.post(`/api/reset`, data).then((res) => {
+	return axios.post(`/api/reset/${data.token || ''}`, data).then((res) => {
 		return res.data
 	}).catch(err => {
 		return err.response.data

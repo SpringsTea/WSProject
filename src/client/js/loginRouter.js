@@ -34,5 +34,5 @@ WS.event.on('page.header', async props => {
 WS.event.on('login.load', async props => {
   await domLoaded;
 
-  render( <Login />, document.querySelector(props.el));
+  render( <Login tab={props.tab || null} token={props.token || null} />, document.querySelector(props.el));
 })

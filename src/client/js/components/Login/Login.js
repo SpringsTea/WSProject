@@ -4,13 +4,15 @@ import { Row, Col, Tabs } from 'antd';
 import LoginForm from 'Partials/Forms/LoginForm';
 import RegisterForm from 'Partials/Forms/RegisterForm';
 import PasswordRecoveryForm from 'Partials/Forms/PasswordRecoveryForm';
+import PasswordChangeForm from 'Partials/Forms/PasswordChangeForm';
 
 const { TabPane } = Tabs;
 
 class Login extends Component {
 
 	state = {
-		tab: 'login',
+		tab: this.props.tab || 'login',
+		token: this.props.token,//token needed for password change
 		logindata: {},//store user password from register
 	}
 
@@ -20,7 +22,7 @@ class Login extends Component {
 
 	render(){
 		const { handleTabChange } = this;
-		const { tab, logindata } = this.state;
+		const { tab, token, logindata } = this.state;
 		return(
 		  <div className="container-login">
 		  	<div className="header">
@@ -35,8 +37,11 @@ class Login extends Component {
 		    		<TabPane key="register" tab="Register">
 		    			<RegisterForm handleFormChange={handleTabChange} />
 		    		</TabPane>
-		    		<TabPane key="password" tab="Password">
+		    		<TabPane key="forgot" tab="Password Forgot">
 		    			<PasswordRecoveryForm handleFormChange={handleTabChange} />
+		    		</TabPane>
+		    		<TabPane key="reset" tab="Password Reset" >
+		    			<PasswordChangeForm handleFormChange={handleTabChange} token={token} />
 		    		</TabPane>
 		    	</Tabs>
 		    </div>

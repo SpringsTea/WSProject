@@ -13,7 +13,7 @@
  */
 module.exports = async (request, response, next) => {
     try {
-        response.render("login", {loggedin: request.user ? true : false});
+        response.render("login", {loggedin: request.user ? true : false, tab: request.params.tab, token: request.params.token});
     } catch (error) {
         console.log(error);
         response.status(500).json({

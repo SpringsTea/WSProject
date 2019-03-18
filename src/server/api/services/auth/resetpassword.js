@@ -50,14 +50,14 @@ module.exports = async (req, res) => {
                     subject: 'Reset Password',
                     text: 
                         'Click the link below to reset password: \n\n' +
-                        `${process.env.SITE}/api/reset/${token}` + '\n\n'
+                        `${process.env.SITE}/login/reset/${token}` + '\n\n'
                 }
 
                 transporter.sendMail(resetTemplate, (err) => {
                     if(err) {
                        throw err;
                     }else {
-                        return res.status(200).json({ success: true, message: 'email sent'});
+                        return res.status(200).json({ success: true, message: 'Email sent'});
                     };
                 })
             }  
