@@ -64,7 +64,7 @@ module.exports = async (req, res) => {
                 subject: 'Email Verification',
                 text: 
                     'Click the link below to verify your email address: \n\n' +
-                    'http://localhost:8080/api/verify/' + token + '\n\n'
+                    `${process.env.SITE}/api/verify/` + token + '\n\n'
             }
     
             transporter.sendMail(verifyTemplate);
