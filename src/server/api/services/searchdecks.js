@@ -86,8 +86,6 @@ module.exports = async ({query:params, user}, response, next) => {
             }
         }
 
-        console.log(query);
-
         await Deck.paginate(query, options, (err, result) => {
             if (err) throw "Pagination Error"
 
