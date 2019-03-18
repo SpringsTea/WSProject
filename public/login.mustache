@@ -1,18 +1,19 @@
 <!DOCTYPE html>
+<link rel="shortcut icon" href="favicon.ico">
 <html class="nice-scroll">
 	<head>
-		<title>Deck Search</title>
+		<title>Login</title>
 	</head>
 	<body>
 		<div id="header">
 
 		</div>
-		<div id="decksearch">
+		<div id="login">
 
 		</div>
 	</body>
 	<script>
 	  WS.event.emit('page.header', {el:'#header', loggedin: '{{loggedin}}'})
-	  WS.event.emit('decksearch.load', { el: '#decksearch' })
+	  WS.event.emit('login.load', { el: '#login', tab: '{{tab}}', token: '{{token}}' })
 	</script>
 </html>

@@ -23,7 +23,7 @@ module.exports = async (request, response, next) => {
         const d = request.body;
         let deckdata = {
             ...d,
-            userid: null
+            userid: request.user ? request.user._id : null
         };
 
         const cardData = await Card.find({ 

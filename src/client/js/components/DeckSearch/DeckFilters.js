@@ -11,7 +11,7 @@ class DeckFilters extends Component {
 
 	state = {
 		filters:{
-
+			...this.props.filters
 		}
 	}
 

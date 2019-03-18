@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html class="nice-scroll">
+  <head>
+  </head>
+  <body>
+    <div id="header">
+
+    </div>
+    <div id="user">
+
+    </div>
+  </body>
+  <script>
+    WS.event.emit('page.header', {el:'#header', loggedin: '{{loggedin}}', title: '{{username}}'})
+    WS.event.emit('user.load', { el: '#user', userid: '{{userid}}', username: '{{username}}' })
+  </script>
+</html>

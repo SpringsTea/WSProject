@@ -7,8 +7,20 @@ module.exports = {
     SearchDecks: require('./searchdecks'),
     NewDeck: require('./newdeck'),
     FixDecks: require('./fixdecks'),
+    ClaimDeck: require('./claimdeck'),
+    ///////Auth//////
+    RegisterUser: require('./auth/registeruser'),
+    PasswordReset : require('./auth/resetpassword'),
+    SetNewPassword : require ('./auth/newpassword'),
+    Login: require('./auth/login'),
+    Logout: require('./auth/logout'),
+    Auth: require('./auth/auth'),
+    VerifyEmail: require('./auth/verify'),
+    //////Pages//////
     RenderDeck: require('./pages/renderdeck'),
     RenderDeckSearch: require('./pages/renderdecksearch'),
     RenderDeckBuilder: require('./pages/renderdeckbuilder'),
-    RenderPageNotFound: require('./pages/renderpagenotfound')
+    RenderLogin: require('./pages/renderlogin'),
+    RenderUser: require('./pages/renderuser'),
+    RenderPageNotFound: require('./pages/renderpagenotfound'),
 }

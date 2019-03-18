@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<link rel="shortcut icon" href="favicon.ico">
 <html class="nice-scroll">
 	<head>
 		
@@ -13,7 +12,7 @@
 		</div>
 	</body>
 	<script>
-	  WS.event.emit('page.header', {el:'#header', title: '{{deckname}}'})
-	  WS.event.emit('deckview.load', { el: '#deckview', deckid: '{{deckid}}' })
+	  WS.event.emit('page.header', {el:'#header', title: '{{deckname}}', loggedin: '{{loggedin}}'})
+	  WS.event.emit('deckview.load', { el: '#deckview', deckid: '{{deckid}}', loggedin: '{{loggedin}}' })
 	</script>
 </html>

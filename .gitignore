@@ -15,3 +15,5 @@ src/server/config/
 scripts/Cards/
 
 scripts/SetData/
+
+.env
