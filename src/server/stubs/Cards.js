@@ -3,7 +3,7 @@ export const charicter =
 	_id: 'a5b0851b-9e8e-4c82-bc2a-5ba17842dab8',
 	name: '"Crimson Demon" Megumin',
 	set: 'KS',
-	release: '49'
+	release: '49',
 	sid: '34',
 	rarity: 'RR',
 	color: 'RED',

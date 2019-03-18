@@ -14,4 +14,13 @@ const passport = require('passport');
  * @param {Anonymous Object} options
  */
 
-module.exports = passport.authenticate('jwt', { session : false });
+module.exports = (req,res,next) => {
+    if(req.user) {
+        return next();
+    }else {
+        return res.status(401).json({
+            message: 'User authentication failed'
+        })
+    }
+
+};

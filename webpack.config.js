@@ -10,6 +10,8 @@ module.exports = {
     builder: "./src/client/js/builderRouter.js",
     deckview: "./src/client/js/deckviewRouter.js",
     descksearch: "./src/client/js/decksearchRouter.js",
+    login: "./src/client/js/loginRouter.js",
+    user: "./src/client/js/userRouter.js",
     pagenotfound: "./src/client/js/pagenotfoundRouter.js",
   },  
   output: {
@@ -81,9 +83,21 @@ module.exports = {
       favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/login.mustache'),
+      template: path.resolve(__dirname, "./public/login.mustache"),
+      chunks: ['login', 'commons'],
+      favicon: "./public/favicon.ico"
+    }),
+    new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/user.mustache'),
+      template: path.resolve(__dirname, "./public/user.mustache"),
+      chunks: ['user', 'commons'],
+      favicon: "./public/favicon.ico"
+    }),
+    new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, 'dist/pagenotfound.mustache'),
       template: path.resolve(__dirname, "./public/pagenotfound.mustache"),
-      chunks: ['commons', 'pagenotfound'],
+      chunks: ['pagenotfound', 'commons'],
       favicon: "./public/favicon.ico"
     })
   ],
@@ -91,7 +105,8 @@ module.exports = {
     alias: {
       Actions: path.resolve(__dirname, 'src/client/js/actions'),
       Utils: path.resolve(__dirname, 'src/client/js/utils'),
-      Constants: path.resolve(__dirname, 'src/client/js/constants')
+      Constants: path.resolve(__dirname, 'src/client/js/constants'),
+      Partials: path.resolve(__dirname, 'src/client/js/components/partials'),
     }
   }
 }

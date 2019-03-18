@@ -6,13 +6,13 @@ import { generateCardImageLink } from 'Utils/cardshorthands';
 
 const { Meta } = Card;
 
-const DeckTitle = ({ name, user, deckid }) => 
+const DeckTitle = ({ name, userid: user, deckid }) => 
 <div className="title">
 	<div className="deckname"><a href={`/deck/${deckid}`} title={name}>{ name || 'Deck' }</a></div>
 	<div> 
 		{
 			user ?
-				<a className="user" href={`/user/${user.id}`}>{ user.name }</a>
+				<a className="user" href={`/user/${user.name}`}>{ user.name }</a>
 			:
 				<div>Anonymous</div>
 		}

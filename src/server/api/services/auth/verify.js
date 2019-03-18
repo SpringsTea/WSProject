@@ -13,21 +13,24 @@ const User = require('../../models/user');
  * @param {object} response HTTP response
  */
 
-module.exports = (req, res) => {
-    User.findOne({verifyToken: req.params.token})
-        .then((user) => {
-            if(!user) {
-                return res.status(401).json({message: 'Verification token invalid.'});
+module.exports = async (req, res) => {
+    try {
+        let userQuery = await User.findOne({verifyToken: req.params.token});
+            if(!userQuery) {
+                res.redirect('/NotFound')
             }
             
-            user.verify = true;
-            user.verifyToken = null;
+            userQuery.verify = true;
+            userQuery.verifyToken = null;
 
-            user.save()
+            userQuery.save()
               .then(() => {
-                  res.status(200).json({
-                      message: 'Account verified'
-                  });
+                res.redirect('/login')
             })
-        })
+    } catch (error) {
+        console.log(error);
+        response.status(500).json({
+            message: 'something went wrong'
+        }) 
+    }   
 }
