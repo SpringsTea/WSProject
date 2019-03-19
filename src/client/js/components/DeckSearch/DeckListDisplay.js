@@ -13,12 +13,12 @@ class DeckListDisplay extends Component {
 	}
 
 	handlePaginate = async(page) =>{
-		const { setLoading } = this.props;
+		const { setLoading, filters } = this.props;
 		setLoading(true);
 		const [
 			pages,
 		] = await Promise.all([
-			searchDeck({page: page}),
+			searchDeck({...filters, page: page}),
 		]);
 
 		receiveDecks(pages);

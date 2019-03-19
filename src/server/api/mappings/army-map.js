@@ -21,6 +21,7 @@ module.exports = {
     "AOT/S50-095": -1, // "Predation" Titan
     "SY/WE09-19": 8,  // Endless Eight
     "KC/S25-166": -1,  // Maruyu, Type 3 Submerged Transport Ship
+    "KC/S31-020": -1,  // Maruyu, Type 3 Submerged Transport Maruyu-Kai
     "RG/W26-023": -1,  // Sisters
     "GG/S23-085": -1,  // Young Hideauze Lifeform
     "GG/S23-087": -1,  // Whalesquid
@@ -48,6 +49,7 @@ module.exports = {
     "AOT/S50-E095": -1, // "Predation" Titan
     "SY/WE09-E19": 8,  // Endless Eight
     "KC/S25-E166": -1,  // Maruyu, Type 3 Submerged Transport Ship
+    "KC/S31-E020": -1,  // Maruyu, Type 3 Submerged Transport Maruyu-Kai
     "KS/W55-E089": -1,  // "Walking on the Street" Axis Cultist
     "DG/S03-E075": -1,  // Prinny
     "DG/S03-PE01": -1,  // Prinny PROMO
