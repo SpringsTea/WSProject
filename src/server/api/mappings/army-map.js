@@ -49,6 +49,7 @@ module.exports = {
     "AOT/S50-E095": -1, // "Predation" Titan
     "SY/WE09-E19": 8,  // Endless Eight
     "KC/S25-E166": -1,  // Maruyu, Type 3 Submerged Transport Ship
+    "KC/S31-E020": -1,  // Maruyu, Type 3 Submerged Transport Maruyu-Kai
     "KS/W55-E089": -1,  // "Walking on the Street" Axis Cultist
     "DG/S03-E075": -1,  // Prinny
     "DG/S03-PE01": -1,  // Prinny PROMO
