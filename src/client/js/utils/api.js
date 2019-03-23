@@ -10,8 +10,10 @@ export async function fetchSeries(seriesid) {
 	return (await axios.get(`/api/series/${seriesid}/cards`)).data;
 }
 
-export async function fetchDeck(deckid) {
-	return (await axios.get(`/api/deck/${deckid}`)).data;
+export async function fetchDeck(deckid, data) {
+	return (await axios.get(`/api/deck/${deckid}`, {
+		params: data
+	})).data;
 }
 
 export async function saveDeck(data) {

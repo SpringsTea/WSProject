@@ -6,10 +6,12 @@ import { render } from 'react-dom';
 
 import {
   receiveSerieses,
+  receiveDeck,
 } from './actions/BuilderActions';
 
 import {
   fetchSerieses,
+  fetchDeck
 } from './utils/api'
 
 // React components
@@ -36,7 +38,7 @@ const domLoaded = new Promise(res =>
 
 // Route via events
 WS.event.on('page.app.load', async props => {
-  loadBuilderData()
+  loadBuilderData(props)
   await domLoaded;
   render(<Builder {...props} />, document.querySelector(props.el));
 });
@@ -46,12 +48,21 @@ WS.event.on('page.header', async props => {
   render(<Header loggedin={props.loggedin} />, document.querySelector(props.el));
 })
 
-async function loadBuilderData() {
+async function loadBuilderData(data={}) {
+
+  const promises = [];
+
+  promises.push(fetchSerieses('JP'));
+
+  if( data.mode && data.deckid ){//for editing and forking, load the deck without populating cards
+    promises.push(fetchDeck(data.deckid))
+  }
+
   const [
     serieses,
-  ] = await Promise.all([
-    fetchSerieses('JP'),
-  ]);
-
+    deck
+  ] = await Promise.all(promises);
+  
   receiveSerieses(serieses);
+  receiveDeck(deck);
 }

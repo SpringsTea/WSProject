@@ -29,15 +29,22 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
   	}
 
   	handleSaveDeck = async(values) => {
-  		const { deck, togglevisible } = this.props;
+  		const { deck, deckdata, togglevisible } = this.props;
   		this.setState({loading: true});
+
+      let submitdata = {
+        ...values,
+        cards: deck.map( (c) => c._id )
+      }
+
+      if ( deckdata ){
+        submitdata.deckid = deckdata.deckid;
+      }
+
   		const [
   		  res
   		] = await Promise.all([
-  		    saveDeck({
-  		      	...values,
-  			  	cards: deck.map( (c) => c._id )
-  		    })
+  		    saveDeck(submitdata)
   		]);
       if( res.status === 200 && res.data ){
         window.location.href = `/deck/${res.data.deck.deckid}`;
@@ -50,7 +57,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
 
     render() {
       const { handleSubmitForm } = this;
-      const { deck } = this.props;
+      const { deck, deckdata } = this.props;
       const { loading } = this.state;
       const {
         visible, togglevisible, form,
@@ -65,7 +72,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
           onOk={handleSubmitForm}
           okButtonProps={ deck.length === 0 ? { disabled: true } : {} }
         >
-         <DeckSaveForm form={form} deck={deck} />
+         <DeckSaveForm form={form} deck={deck} deckdata={deckdata} />
         </Modal>
       );
     }

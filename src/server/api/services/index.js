@@ -5,7 +5,7 @@ module.exports = {
     GetSeriesCards: require('./getseriescards'),
     GetDeckById: require('./getdeckbyid'),
     SearchDecks: require('./searchdecks'),
-    NewDeck: require('./newdeck'),
+    SaveDeck: require('./savedeck'),
     FixDecks: require('./fixdecks'),
     ClaimDeck: require('./claimdeck'),
     ///////Auth//////

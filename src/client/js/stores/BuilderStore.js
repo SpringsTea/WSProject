@@ -12,7 +12,9 @@ let builderfilters = {
   level: [],
   text: null
 };
+let deckdata = {
 
+};
 let deck = [];
 let selectedCard = {
   card: null,
@@ -49,6 +51,7 @@ const BuilderStore = {
   getBuilderCards: () => fbuildercards,
   getBuilderFilters: () => builderfilters,
   getDeckCards: () => Object.assign([],deck),//assigning this instead of mutating lets me compare in Deck.shouldComponentUpdate,
+  getDeckData: () => deckdata,
   getSelectedCard: () => selectedCard,
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
@@ -91,6 +94,11 @@ const BuilderStore = {
         else if( selectedCard.lock === false ){
           selectedCard.card = props.data.card;
         }
+        break;
+      case AT.DECK_RECEIVE: 
+        //Receive a whole deck at once, for deck editing
+        deckdata = props.data;
+        deck = props.data.cards;
         break;
       case AT.ADD_DECK_CARD:
         deck.push(props.card);

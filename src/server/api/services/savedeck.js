@@ -40,9 +40,19 @@ module.exports = async (request, response, next) => {
         //Get deck language
         deckdata.lang = DeckLanguage(cardData);
 
-        // create deck 
-        let createdDeck = await Deck.create(deckdata);
-        response.status(200).send({ deck: createdDeck });
+        //Edit existing deck
+        if(deckdata.deckid){
+            let existingdeck = await Deck.updateOne({deckid: deckdata.deckid}, deckdata);
+            response.status(200).send({ deck: deckdata });
+        }
+        else{
+            // create deck 
+            let createdDeck = await Deck.create(deckdata); 
+            response.status(200).send({ deck: createdDeck });
+        }
+
+        
+        
     } catch (error) {
         console.log(error);
         response.status(500).json({
