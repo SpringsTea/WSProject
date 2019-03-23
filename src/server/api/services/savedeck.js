@@ -48,7 +48,7 @@ module.exports = async (request, response, next) => {
                 response.status(500).send({ success: false, message: 'User not logged in' });
             }
 
-            let result = await Deck.updateOne({deckid: deckdata.deckid, userid: user._id}, deckdata);
+            let result = await Deck.updateOne({deckid: deckdata.deckid, userid: user._id}, {...deckdata, datemodified: new Date()});
             
             if( result.n  === 0 ){
                 response.status(500).send({ success: false, message: 'Deck not found' });

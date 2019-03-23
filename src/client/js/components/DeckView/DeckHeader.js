@@ -27,7 +27,7 @@ class DeckHeader extends Component {
 
 	render(){
 		const { sumCardQuantity, countCardLevel, claimDeck } = this;
-		const { cards, deck, loggedin } = this.props;
+		const { cards, deck, loggedin, currentuser } = this.props;
 		const { userid: deckuser } = deck;
 
 		return(
@@ -42,7 +42,17 @@ class DeckHeader extends Component {
 									Claim This Deck
 								</Button>
 							</Tooltip>
-						}						
+						}
+						<div className="controls">
+							{
+								deckuser._id === currentuser &&
+								<Button type="primary" icon="edit"
+								href={`/builder/edit/${deck.deckid}`}
+								>
+									Edit
+								</Button>
+							}
+						</div>						
 					</div>
 					<h3>
 						{

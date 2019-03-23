@@ -18,7 +18,12 @@ module.exports = async (request, response, next) => {
     let deck = await GetDeckById(deckid);
 
     try {
-        response.render("deck", { deckid: deckid, deckname: deck.name, loggedin: request.user ? true : false });
+        response.render("deck", { 
+            deckid: deckid, 
+            deckname: deck.name, 
+            userid: request.user ? request.user._id : null, 
+            loggedin: request.user ? true : false 
+        });
     } catch (error) {
         console.log(error);
         response.status(500).json({
