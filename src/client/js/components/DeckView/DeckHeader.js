@@ -45,7 +45,7 @@ class DeckHeader extends Component {
 						}
 						<div className="controls">
 							{
-								deckuser._id === currentuser &&
+								deckuser && deckuser._id === currentuser &&
 								<Button type="primary" icon="edit"
 								href={`/builder/edit/${deck.deckid}`}
 								>
