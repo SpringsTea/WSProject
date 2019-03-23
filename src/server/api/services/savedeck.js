@@ -42,11 +42,25 @@ module.exports = async (request, response, next) => {
 
         //Edit existing deck
         if(deckdata.deckid){
-            let existingdeck = await Deck.updateOne({deckid: deckdata.deckid}, deckdata);
-            response.status(200).send({ deck: deckdata });
+            let user = request.user;
+
+            if( !user ){
+                response.status(500).send({ success: false, message: 'User not logged in' });
+            }
+
+            let result = await Deck.updateOne({deckid: deckdata.deckid, userid: user._id}, deckdata);
+            
+            if( result.n  === 0 ){
+                response.status(500).send({ success: false, message: 'Deck not found' });
+            }
+            else{
+                response.status(200).send({ deck: deckdata });
+            }           
+            
         }
+        // create deck 
         else{
-            // create deck 
+            
             let createdDeck = await Deck.create(deckdata); 
             response.status(200).send({ deck: createdDeck });
         }

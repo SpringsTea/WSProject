@@ -17,7 +17,11 @@ export async function fetchDeck(deckid, data) {
 }
 
 export async function saveDeck(data) {
-	return (await axios.post(`/api/deck`, data));
+	return axios.post(`/api/deck`, data).then((res) => {
+		return res
+	}).catch(err => {
+		return err
+	}) 
 }
 
 export async function claimDeck(deckid){

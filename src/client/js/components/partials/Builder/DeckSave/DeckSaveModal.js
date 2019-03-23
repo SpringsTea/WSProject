@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  Button, Modal, Form, Input, Radio,
+  Button, Modal, Form, Input, Radio, message
 } from 'antd';
 
 import DeckSaveForm from './DeckSaveForm';
@@ -51,7 +51,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
       }
       else{
         this.setState({loading: false});
-        console.log('Something went wrong', res)
+        message.error(res.response.data.message)
       }
   	}
 
