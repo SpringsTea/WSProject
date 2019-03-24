@@ -5,6 +5,7 @@ let services = require('./api/services');
 router.get("/api/serieslist/:lang?", services.GetSeriesList);
 router.get("/api/series/:id/cards", services.GetSeriesCards);
 router.get("/api/deck/:deckid", services.GetDeckById);
+router.delete("/api/deck/:deckid", services.DeleteDeck);
 router.post("/api/deck/claim/:deckid", services.ClaimDeck);
 router.get("/api/search/deck", services.SearchDecks);
 router.post("/api/deck", services.SaveDeck);

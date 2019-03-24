@@ -8,6 +8,7 @@ module.exports = {
     SaveDeck: require('./savedeck'),
     FixDecks: require('./fixdecks'),
     ClaimDeck: require('./claimdeck'),
+    DeleteDeck: require('./deletedeck'),
     ///////Auth//////
     RegisterUser: require('./auth/registeruser'),
     PasswordReset : require('./auth/resetpassword'),

@@ -5,7 +5,7 @@ import Deck from '../models/deck'
 module.exports = async (deckid, populate = true) => {
     try {
         let deck = Deck.findOne(
-            {deckid: deckid}, 
+            {deckid: deckid, deleted: false}, 
             '-_id cards datemodified deckid description name userid valid sets neo_fail'
         )
 

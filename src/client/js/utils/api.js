@@ -24,6 +24,14 @@ export async function saveDeck(data) {
 	}) 
 }
 
+export async function deleteDeck(deckid) {
+	return axios.delete(`/api/deck/${deckid}`).then((res) => {
+		return res
+	}).catch(err => {
+		return err
+	}) 
+}
+
 export async function claimDeck(deckid){
 	return await axios.post(`/api/deck/claim/${deckid}`).then((res) => {
 		return res.data
