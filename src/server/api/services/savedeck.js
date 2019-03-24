@@ -40,9 +40,33 @@ module.exports = async (request, response, next) => {
         //Get deck language
         deckdata.lang = DeckLanguage(cardData);
 
+        //Edit existing deck
+        if(deckdata.deckid){
+            let user = request.user;
+
+            if( !user ){
+                response.status(500).send({ success: false, message: 'User not logged in' });
+            }
+
+            let result = await Deck.updateOne({deckid: deckdata.deckid, userid: user._id}, {...deckdata, datemodified: new Date()});
+            
+            if( result.n  === 0 ){
+                response.status(500).send({ success: false, message: 'Deck not found' });
+            }
+            else{
+                response.status(200).send({ deck: deckdata });
+            }           
+            
+        }
         // create deck 
-        let createdDeck = await Deck.create(deckdata);
-        response.status(200).send({ deck: createdDeck });
+        else{
+            
+            let createdDeck = await Deck.create(deckdata); 
+            response.status(200).send({ deck: createdDeck });
+        }
+
+        
+        
     } catch (error) {
         console.log(error);
         response.status(500).json({

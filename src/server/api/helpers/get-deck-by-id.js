@@ -2,19 +2,21 @@
 
 import Deck from '../models/deck'
 
-module.exports = async (deckid) => {
+module.exports = async (deckid, populate = true) => {
     try {
-        let docs = await Deck.find(
-            {deckid: deckid}, 
+        let deck = Deck.findOne(
+            {deckid: deckid, deleted: false}, 
             '-_id cards datemodified deckid description name userid valid sets neo_fail'
-        ).limit(1).populate('cards').populate('sets')
-        .populate('userid', 'name')
-        .exec();
-        if( docs.length > 0 ){
-           return docs[0]
-        } else {
-            return null;
+        )
+
+        if( populate === true ){
+            deck.populate('cards').populate('sets')
+            .populate('userid', 'name')
         }
+
+        await deck.exec();
+
+        return deck;
     } catch (error) {
         return {
             error: true,

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Card, Row, Col, Tag, Button, Tooltip, message } from 'antd';
+import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, message } from 'antd';
 
-import { claimDeck } from 'Utils/api';
+import { claimDeck, deleteDeck } from 'Utils/api';
 
 class DeckHeader extends Component {
 
@@ -25,9 +25,21 @@ class DeckHeader extends Component {
 		}
 	}
 
+	deletedDeck = async() =>{
+		const { deck } = this.props;
+		let res = await deleteDeck(deck.deckid);
+
+		if( res.data && res.data.success === true ){
+			window.location = '/user';
+		}
+		else{
+			message.error(res.data.message);
+		}
+	}
+
 	render(){
-		const { sumCardQuantity, countCardLevel, claimDeck } = this;
-		const { cards, deck, loggedin } = this.props;
+		const { sumCardQuantity, countCardLevel, claimDeck, deletedDeck } = this;
+		const { cards, deck, loggedin, currentuser } = this.props;
 		const { userid: deckuser } = deck;
 
 		return(
@@ -42,7 +54,24 @@ class DeckHeader extends Component {
 									Claim This Deck
 								</Button>
 							</Tooltip>
-						}						
+						}
+						<div className="controls">
+							{
+								deckuser && deckuser._id === currentuser &&
+								<Button.Group>
+									<Button type="primary" icon="edit"
+									href={`/builder/edit/${deck.deckid}`}
+									>
+										Edit
+									</Button>
+									<Popconfirm placement="bottomLeft" title={"Are your sure?"} onConfirm={deletedDeck} okText="Yes" cancelText="No">
+										<Button className="danger" type="primary">
+											Delete
+										</Button>
+									</Popconfirm>
+								</Button.Group>
+							}
+						</div>						
 					</div>
 					<h3>
 						{

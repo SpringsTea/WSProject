@@ -5,9 +5,10 @@ let services = require('./api/services');
 router.get("/api/serieslist/:lang?", services.GetSeriesList);
 router.get("/api/series/:id/cards", services.GetSeriesCards);
 router.get("/api/deck/:deckid", services.GetDeckById);
+router.delete("/api/deck/:deckid", services.DeleteDeck);
 router.post("/api/deck/claim/:deckid", services.ClaimDeck);
 router.get("/api/search/deck", services.SearchDecks);
-router.post("/api/deck", services.NewDeck);
+router.post("/api/deck", services.SaveDeck);
 router.get("/api/fixdecks", services.FixDecks);
 
 // auth endpoints
@@ -21,7 +22,7 @@ router.post("/api/register", services.RegisterUser);
 // ui endpoints
 router.get("/", services.RenderDeckSearch);
 router.get("/deck/:deckid", services.RenderDeck);
-router.get("/builder", services.RenderDeckBuilder);
+router.get("/builder/:mode?/:deckid?", services.RenderDeckBuilder);
 router.get("/login/:tab?/:token?", services.RenderLogin);
 router.get("/user/:username?", services.RenderUser);
 router.get("*", services.RenderPageNotFound);

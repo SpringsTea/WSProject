@@ -17,6 +17,7 @@ const buildState = () => ({
   buildercards: BuilderStore.getBuilderCards(),
   selectedCard: BuilderStore.getSelectedCard(),
   deck: BuilderStore.getDeckCards(),
+  deckdata: BuilderStore.getDeckData(),
   builderfilters: BuilderStore.getBuilderFilters(),
 });
 
@@ -47,10 +48,10 @@ class Builder extends Component {
 
 	render(){
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
-		const { selectedCard, serieses, buildercards, deck, savemodalopen } = this.state;
+		const { selectedCard, serieses, buildercards, deck, deckdata, savemodalopen } = this.state;
 		return(
 			<div className="container-builder">
-				<DeckSaveModal deck={deck} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
+				<DeckSaveModal deck={deck} deckdata={deckdata} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
 				<Row gutter={16}>
 					<Col xxl={8} xl={8} lg={12} md={24}
           			className='container-series-selector nice-scroll'>

@@ -10,12 +10,26 @@ export async function fetchSeries(seriesid) {
 	return (await axios.get(`/api/series/${seriesid}/cards`)).data;
 }
 
-export async function fetchDeck(deckid) {
-	return (await axios.get(`/api/deck/${deckid}`)).data;
+export async function fetchDeck(deckid, data) {
+	return (await axios.get(`/api/deck/${deckid}`, {
+		params: data
+	})).data;
 }
 
 export async function saveDeck(data) {
-	return (await axios.post(`/api/deck`, data));
+	return axios.post(`/api/deck`, data).then((res) => {
+		return res
+	}).catch(err => {
+		return err
+	}) 
+}
+
+export async function deleteDeck(deckid) {
+	return axios.delete(`/api/deck/${deckid}`).then((res) => {
+		return res
+	}).catch(err => {
+		return err
+	}) 
 }
 
 export async function claimDeck(deckid){

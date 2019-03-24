@@ -16,7 +16,9 @@ import GetDeckById from '../helpers/get-deck-by-id'
 
 module.exports =  async (request, response, next) => {
     let deckid = request.params.deckid;
-    let deck = await GetDeckById(deckid);
+    let populate = request.query.populate;
+
+    let deck = await GetDeckById(deckid, populate);
 
     if(deck && deck.error !== true){
         response.status(200).json(deck)

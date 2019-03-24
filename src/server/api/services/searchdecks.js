@@ -18,6 +18,7 @@ module.exports = async ({query:params, user}, response, next) => {
     try {
         const limit = 24;
         let query = {
+            deleted: 0
         }
 
         const options = {
