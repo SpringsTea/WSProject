@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Input, Row, Col, Button } from 'antd'
+import { Input, Row, Col, Button, Alert } from 'antd'
 
 import Card from './Card';
 import SeriesSelect from './SeriesSelect';
@@ -48,9 +48,16 @@ class Builder extends Component {
 
 	render(){
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
+    const { loggedin } = this.props;
 		const { selectedCard, serieses, buildercards, deck, deckdata, savemodalopen } = this.state;
 		return(
 			<div className="container-builder">
+        {
+          loggedin !== "true" &&
+          <Alert type="info" className="login-alert" message={ <div>
+            You are not signed in. You can create decks anonymously, but you will be unable to edit or remove them later. <a href="/login">Login</a> to keep your decks!
+          </div> } closable />
+        }
 				<DeckSaveModal deck={deck} deckdata={deckdata} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
 				<Row gutter={16}>
 					<Col xxl={8} xl={8} lg={12} md={24}
