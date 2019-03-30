@@ -6,6 +6,10 @@ import { claimDeck, deleteDeck } from 'Utils/api';
 
 class DeckHeader extends Component {
 
+	state = {
+		stattoggle:false
+	}
+
 	sumCardQuantity(cards, type ='CH'){
 		return cards.filter( (card) => card.cardtype === type).length;
 	}
@@ -41,6 +45,7 @@ class DeckHeader extends Component {
 	render(){
 		const { sumCardQuantity, countCardLevel, claimDeck, deletedDeck } = this;
 		const { cards, deck, loggedin, currentuser } = this.props;
+		const { stattoggle } = this.state;
 		const { userid: deckuser } = deck;
 
 		return(
@@ -103,6 +108,7 @@ class DeckHeader extends Component {
 							}
 							)
 						</div>
+						<a onClick={() => this.setState({stattoggle: !stattoggle})} >{`${stattoggle ? '-' : '+'} Deck Stats`}</a>
 					</Col>
 					<Col xl={12} className="display">
 						Description: 
@@ -114,7 +120,10 @@ class DeckHeader extends Component {
 						Sets: { deck.sets.map( (set) => <Tag key={set._id}>{`${set.name}(${set.set}/${set.side}${set.release})`}</Tag> ) }
 					</Col>
 				</Row>
-				<DeckStats cards={cards} deck={deck} />
+				{
+					stattoggle === true &&
+					<DeckStats cards={cards} deck={deck} />
+				}
 			</Card>
 		)
 	}
