@@ -7,7 +7,7 @@ class DeckSaveForm extends Component {
 
   render(){
     const { generateAlerts } = this;
-    const { form, deck } = this.props;
+    const { form, deck, deckdata = {} } = this.props;
     const { getFieldDecorator } = form;
 
     let alerts = [];
@@ -31,6 +31,7 @@ class DeckSaveForm extends Component {
         }
         <Form.Item label="Name">
           {getFieldDecorator('name', {
+            initialValue: deckdata.name || '',
             rules: [
               { required: true, message: 'Give your deck a name!', transform(v) { return v.trim()} },
               { max: 100, message: 'Keep names to 100 characters long' },
@@ -41,6 +42,7 @@ class DeckSaveForm extends Component {
         </Form.Item>
         <Form.Item label="Description">
           {getFieldDecorator('description', {
+            initialValue: deckdata.description || '',
             rules: [{ max: 2000, message: 'Keep descriptions to 2000 characters long' }]
           })(
             <TextArea autosize={{minRows: 4, maxRows: 4}} />

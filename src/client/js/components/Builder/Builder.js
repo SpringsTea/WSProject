@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Input, Row, Col, Button } from 'antd'
+import { Input, Row, Col, Button, Alert } from 'antd'
 
 import Card from './Card';
 import SeriesSelect from './SeriesSelect';
@@ -17,6 +17,7 @@ const buildState = () => ({
   buildercards: BuilderStore.getBuilderCards(),
   selectedCard: BuilderStore.getSelectedCard(),
   deck: BuilderStore.getDeckCards(),
+  deckdata: BuilderStore.getDeckData(),
   builderfilters: BuilderStore.getBuilderFilters(),
 });
 
@@ -47,10 +48,17 @@ class Builder extends Component {
 
 	render(){
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
-		const { selectedCard, serieses, buildercards, deck, savemodalopen } = this.state;
+    const { loggedin } = this.props;
+		const { selectedCard, serieses, buildercards, deck, deckdata, savemodalopen } = this.state;
 		return(
 			<div className="container-builder">
-				<DeckSaveModal deck={deck} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
+        {
+          loggedin !== "true" &&
+          <Alert type="info" className="login-alert" message={ <div>
+            You are not signed in. You can create decks anonymously, but you will be unable to edit or remove them later. <a href="/login">Login</a> to keep your decks!
+          </div> } closable />
+        }
+				<DeckSaveModal deck={deck} deckdata={deckdata} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
 				<Row gutter={16}>
 					<Col xxl={8} xl={8} lg={12} md={24}
           			className='container-series-selector nice-scroll'>

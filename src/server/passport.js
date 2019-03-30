@@ -1,6 +1,4 @@
 const localStrategy = require('passport-local').Strategy;
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
 const bcrypt = require('bcrypt');
 
 const User = require('./api/models/user');
@@ -8,37 +6,37 @@ const User = require('./api/models/user');
 module.exports = (passport) => {
     passport.use(
         new localStrategy(
-            (username, password, done) => {
-                User.findOne({ 
-                  name: username 
-                  }).then(user => {
-                      if(!user) {
-                        return done(null, false);
-                      }
-                      
-                      //compare hash
-                      bcrypt.compare(password, user.password, (err, match) => {
-                        if(match) {
-                            return done(null, user);
-                        }else {
+            (email, password, done) => {
+                try{
+                    User.findOne({ email: email }).then(user => {
+                        if(!user) {
                             return done(null, false);
                         }
-                      })
-                  });
+                            
+                        //compare hash
+                        bcrypt.compare(password, user.password, (err, match) => {
+                            if(match) {
+                                return done(null, user);
+                            }
+                            return done(null, false);
+                        })
+                    })
+                }catch (error) {
+                    console.log(error);
+                    return done(null,false);
+                }
             }
         )
     );
+    
+    passport.serializeUser(function(user, done) {
+        done(null, user.id);
+    });
 
-    passport.use(new JwtStrategy({
-            jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), 
-            secretOrKey: process.env.SECRET_KEY
-        },
-        (jwt_payload, done) => {
-            try{
-              return done(null, jwt_payload);
-            }catch(err) {
-                done(error);
-            }
-        }
-    ));
+    passport.deserializeUser((id, done) => {
+        User.findById(id, function(err, user) {
+            done(err,user);
+        })
+    })
+
 }

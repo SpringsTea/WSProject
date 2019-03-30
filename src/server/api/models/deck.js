@@ -6,7 +6,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const deckSchema = mongoose.Schema({
 	name: { type: String, maxlength: 100 },
-	userid: ObjectId,
+	userid: { type: ObjectId, ref: 'User' },
 	deckid: { type: String, default: shortid.generate },
 	description: { type: String, maxlength: 2000, default: '' }, 
 	datecreated: { type: Date, default: Date.now },
@@ -17,6 +17,7 @@ const deckSchema = mongoose.Schema({
 	sets: [{type: String, ref: 'Series'}],
 	neo_sets: { type: Array, default: [] },
 	neo_fail: { type: String, default: '' },
+	deleted: { type: Boolean, default: false },
 }, { collection: 'deck' });
 
 deckSchema.index({ name: 'text', description: 'text' });

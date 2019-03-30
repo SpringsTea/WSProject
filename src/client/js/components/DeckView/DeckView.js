@@ -36,6 +36,7 @@ class DeckView extends Component {
 
 	render(){
 		const { handleToggleCardLock } = this;
+		const { loggedin, userid } = this.props;
 		const { deck, selectedCard } = this.state;
 
 		return(
@@ -44,7 +45,7 @@ class DeckView extends Component {
 					deck.valid !== true &&
 					<Alert message="This deck is not valid, and will not apprear in searches" banner />
 				}
-				<DeckHeader cards={deck.cards} deck={deck} />
+				<DeckHeader cards={deck.cards} deck={deck} loggedin={loggedin} currentuser={userid || null} />
 				<Row gutter={8}>
 					<Col xxl={16} xl={14} lg={12} md={24}>
 						<DeckDisplay deck={deck} />

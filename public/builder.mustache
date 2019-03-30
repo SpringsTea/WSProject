@@ -19,7 +19,7 @@
 		</div>
 	</footer>
 	<script>
-	  WS.event.emit('page.app.load', {el:'#app'});
-	  WS.event.emit('page.header', {el:'#header'})
+	  WS.event.emit('page.app.load', {el:'#app', mode: '{{mode}}', deckid: '{{deckid}}', loggedin: '{{loggedin}}'});
+	  WS.event.emit('page.header', {el:'#header', loggedin: '{{loggedin}}'})
 	</script>
 </html>

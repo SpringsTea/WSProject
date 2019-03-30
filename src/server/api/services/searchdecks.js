@@ -5,6 +5,7 @@
  */
 
 import Deck from '../models/deck'
+import User from '../models/user'
 
 /**
  * Search deck given various parameters
@@ -13,11 +14,11 @@ import Deck from '../models/deck'
  * @param {object} response HTTP response
  * @param {function} next function callback
  */
-module.exports = async ({query:params}, response, next) => {
+module.exports = async ({query:params, user}, response, next) => {
     try {
         const limit = 24;
         let query = {
-            valid: params.invalid !== undefined ? false : true //valid decks only be default
+            deleted: 0
         }
 
         const options = {
@@ -25,18 +26,30 @@ module.exports = async ({query:params}, response, next) => {
             sort: { datecreated: -1 },
             page: params.page || 1,
             limit: limit,
-            populate: {
-                path: 'cards',
-                options: {
-                    limit: 1
+            populate: [
+                {
+                    path: 'cards',
+                    options: {
+                        limit: 1
+                    }
+                },
+                {
+                    path: 'userid',
+                    options: {
+                        select: 'name'
+                    }
                 }
-            },
+            ],
             customLabels: {
                 docs: 'decks',
                 totalDocs: 'totalDecks',
                 page: 'page',
                 totalPages: 'totalPages'
             }
+        }
+
+        if( params.invalid === undefined ){//valid decks only be default
+            query.valid = true;
         }
 
         //Filter by one set
@@ -51,6 +64,27 @@ module.exports = async ({query:params}, response, next) => {
         if( params.text ){
             const regex = new RegExp(params.text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&"), 'gi');
             query.name = regex;
+        }
+
+        if( params.username ){
+            if( params.username === 'true' ){
+                query.userid = user._id;
+            }
+            else{
+                let user = await User.findOne({name: params.username});
+                if( user ){
+                    query.userid = user._id;
+                }
+            }
+        }
+
+        if( params.userid ){
+            if( params.userid === 'true' ){
+                query.userid = user._id;
+            }
+            else{
+                query.userid = params.user;
+            }
         }
 
         await Deck.paginate(query, options, (err, result) => {

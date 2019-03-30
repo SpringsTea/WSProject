@@ -19,7 +19,6 @@ class CardSelector extends Component {
 		const { cards } = this.props;
 		return(
 			<div className="container-card-selector">
-				
 				<List
 					dataSource={cards}
 					locale={ { emptyText: 'No Cards' } }
