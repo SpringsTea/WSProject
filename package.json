@@ -39,6 +39,7 @@
     "react-image": "^2.0.0",
     "react-router": "^4.3.1",
     "react-stickynode": "^2.1.1",
+    "recharts": "^1.5.0",
     "shortid": "^2.2.14",
     "throttle-debounce": "^2.1.0"
   },
