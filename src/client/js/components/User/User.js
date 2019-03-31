@@ -41,7 +41,7 @@ class User extends Component {
 				</Row>
 				<Row>
 					<DeckFilters serieses={serieses} setLoading={handleLoading} filters={ {username: username }} />
-					<DeckListDisplay pages={pages} setLoading={handleLoading} loading={loading} />
+					<DeckListDisplay pages={pages} setLoading={handleLoading} filters={ {username: username } } loading={loading} />
 				</Row>
 			</div>
 		)

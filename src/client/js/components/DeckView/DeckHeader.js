@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, message } from 'antd';
+import DeckStats from './DeckStats';
 
 import { claimDeck, deleteDeck } from 'Utils/api';
 
 class DeckHeader extends Component {
+
+	state = {
+		stattoggle:false
+	}
 
 	sumCardQuantity(cards, type ='CH'){
 		return cards.filter( (card) => card.cardtype === type).length;
@@ -40,6 +45,7 @@ class DeckHeader extends Component {
 	render(){
 		const { sumCardQuantity, countCardLevel, claimDeck, deletedDeck } = this;
 		const { cards, deck, loggedin, currentuser } = this.props;
+		const { stattoggle } = this.state;
 		const { userid: deckuser } = deck;
 
 		return(
@@ -47,14 +53,6 @@ class DeckHeader extends Component {
 				<div>
 					<div className="flex-container">
 						<h2 className="deck-name">{deck.name}</h2>
-						{
-							(!deckuser && loggedin == 'true') &&
-							<Tooltip title="Claim this deck as yours. This can not be undone" placement="bottom">
-								<Button className="btn-claim" type="primary" icon="exclamation-circle" onClick={claimDeck}>
-									Claim This Deck
-								</Button>
-							</Tooltip>
-						}
 						<div className="controls">
 							{
 								deckuser && deckuser._id === currentuser &&
@@ -102,6 +100,7 @@ class DeckHeader extends Component {
 							}
 							)
 						</div>
+						<a onClick={() => this.setState({stattoggle: !stattoggle})} >{`${stattoggle ? '-' : '+'} Deck Stats`}</a>
 					</Col>
 					<Col xl={12} className="display">
 						Description: 
@@ -113,6 +112,10 @@ class DeckHeader extends Component {
 						Sets: { deck.sets.map( (set) => <Tag key={set._id}>{`${set.name}(${set.set}/${set.side}${set.release})`}</Tag> ) }
 					</Col>
 				</Row>
+				{
+					stattoggle === true &&
+					<DeckStats cards={cards} deck={deck} />
+				}
 			</Card>
 		)
 	}
