@@ -60,7 +60,13 @@
 			a{
 				white-space: normal;
 				&.user{
+					max-height: 2em;
+					display: block;
+					overflow:hidden;
 
+					display: -webkit-box;
+					-webkit-line-clamp: 1;
+					-webkit-box-orient: vertical;
 				}
 			}
 			
