@@ -45,6 +45,17 @@ class RegisterForm extends Component {
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   }
 
+  checkCharicters = (rule, value, callback) => {
+    let invalidchars = /^[^\\\/& ]*$/
+
+    if( value.match(invalidchars) ){
+      callback();
+    }
+    else{
+      callback("Username can not contain slashes or spaces")
+    }
+  }
+
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
@@ -63,6 +74,7 @@ class RegisterForm extends Component {
   }
 
   render(){
+    const { checkCharicters } = this;
     const { getFieldDecorator } = this.props.form;
     const { handleFormChange } = this.props;
     const { error, loading } = this.state;
@@ -126,7 +138,9 @@ class RegisterForm extends Component {
           label="User Name"
         >
           {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
+            rules: [{ required: true, message: 'Please input your username!', whitespace: true },
+                    { validator: checkCharicters }
+            ],
           })(
             <Input />
           )}
