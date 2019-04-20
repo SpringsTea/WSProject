@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Icon } from 'antd';
+import { Icon, Tooltip } from 'antd';
 
 import { logout } from 'Utils/api';
 
@@ -34,7 +34,9 @@ class Header extends Component {
 					loggedin == 'true' &&
 					<a className="header-button clickable right" href="/user"><Icon type="user" /></a>
 				}
-				
+				<Tooltip title="Get development updates!" placement="bottom">
+					<a target="_blank" className="header-button clickable right" href="https://discord.gg/cFsZJCq"> <img src="/images/assets/discord.png" /></a>
+				</Tooltip>
 			</div>
 		)
 	}
