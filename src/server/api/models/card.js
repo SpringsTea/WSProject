@@ -1,5 +1,11 @@
 const mongoose = require('mongoose')
 
+const locale = {
+	'name': String,
+	'attributes': [String],
+	'ability': [String]
+};
+
 const cardSchema = mongoose.Schema({
 	sid: String,
 	name: String,
@@ -19,6 +25,10 @@ const cardSchema = mongoose.Schema({
 	trigger: {
 		type: [String],
 		default: []
+	},
+	locale: {
+		'EN' : locale,
+		'NP' : locale
 	}
 }, {collection: 'card'});
 module.exports = mongoose.model('Card', cardSchema);

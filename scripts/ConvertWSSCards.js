@@ -1,9 +1,17 @@
 //Convert individual card json files provided by WSOnline into on file for import
+/*example:
+ SIDE=W RELEASE=54 LOCALE=NP node JPCardPatch.js
+
+LOCALE = NP for raw untranslated data, which is inserted into the NP locale
+LOCALE = JP for translated JP cards, which is instered into the EN locale
+*/
+
 
 const { readdirSync, readFileSync, writeFile, statSync } = require('fs')
 const { join, extname } = require('path')
-var WSS_PATH = process.env.WSS_PATH || './Cards/';
-var SETDATA_PATH = './SetData/';
+var LOCALE = process.env.LOCALE || 'EN';
+var WSS_PATH = process.env.WSS_PATH || `./Cards/${LOCALE}/`;
+var SETDATA_PATH = `./SetData/${LOCALE}/`;
 
 var WSS_SERIES = readdirSync(WSS_PATH).filter(f => statSync(join(WSS_PATH, f)).isDirectory())
 
@@ -25,12 +33,12 @@ WSS_SERIES.forEach( (wss_series) => {
 		wss_files.filter(( file ) => extname(file) === '.json').forEach( (wss_file) => {
 
 			let wss_content = readFileSync(`${WSS_PATH}${wss_series}/${wss_release}/${wss_file}`, { encoding: 'utf8'});
-
 			let wss_card = JSON.parse(wss_content);
+			let wss_cardname = LOCALE === 'EN' ? wss_card.name : wss_card.jpName;
 
 			let card = {
 				sid: wss_card.id,
-				name: cleanText(wss_card.name),
+				name: cleanText(wss_cardname),
 				set: wss_card.set,
 				side: wss_card.side,
 				release: wss_card.release,
