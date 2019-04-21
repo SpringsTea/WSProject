@@ -64,5 +64,9 @@ async function loadBuilderData(data={}) {
   ] = await Promise.all(promises);
   
   receiveSerieses(serieses);
-  receiveDeck(deck);
+
+  if( deck ){
+    receiveDeck(deck);
+  }
+  
 }
