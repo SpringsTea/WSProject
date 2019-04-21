@@ -2,6 +2,8 @@ const config = require('../src/server/config/mongo.js')
 const mongoose = require('mongoose')
 const { readdirSync, readFileSync } = require('fs')
 
+//RELEASE=63 LOCALE=NP SIDE=W node JPCardPatch
+
 const MODEL_PATH = '../src/server/api/models/card';
 const SIDE = process.env.SIDE || 'S';
 const RELEASE = process.env.RELEASE || '35';

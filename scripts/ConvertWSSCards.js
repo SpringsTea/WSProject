@@ -1,6 +1,6 @@
 //Convert individual card json files provided by WSOnline into on file for import
 /*example:
- SIDE=W RELEASE=54 LOCALE=NP node JPCardPatch.js
+ SIDE=W RELEASE=54 LOCALE=NP node ConvertWSSCards.js
 
 LOCALE = NP for raw untranslated data, which is inserted into the NP locale
 LOCALE = JP for translated JP cards, which is instered into the EN locale
