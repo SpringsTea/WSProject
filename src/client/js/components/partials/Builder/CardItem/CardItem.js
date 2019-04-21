@@ -8,7 +8,7 @@ import { addDeckCard, removeDeckCard, selectCard } from 'Actions/BuilderActions'
 class CardItem extends Component {
 
 	render(){
-		const { card } = this.props;
+		const { card, locale } = this.props;
 
 		return(
 			<List.Item 
@@ -18,7 +18,7 @@ class CardItem extends Component {
 					className="clickable"
 					onClick={ () => selectCard({card}, true) }
 					avatar={<CardItemIcon card={card} />}
-					title={`${card.name} ${card.quantity ? `(${card.quantity})` : ''}`}
+					title={`${locale.name} ${card.quantity ? `(${card.quantity})` : ''}`}
 				/>
 				<Button.Group>
 					<Button icon="minus" className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
