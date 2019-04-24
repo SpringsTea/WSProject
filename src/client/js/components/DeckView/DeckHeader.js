@@ -53,14 +53,6 @@ class DeckHeader extends Component {
 				<div>
 					<div className="flex-container">
 						<h2 className="deck-name">{deck.name}</h2>
-						{
-							(!deckuser && loggedin == 'true') &&
-							<Tooltip title="Claim this deck as yours. This can not be undone" placement="bottom">
-								<Button className="btn-claim" type="primary" icon="exclamation-circle" onClick={claimDeck}>
-									Claim This Deck
-								</Button>
-							</Tooltip>
-						}
 						<div className="controls">
 							{
 								deckuser && deckuser._id === currentuser &&

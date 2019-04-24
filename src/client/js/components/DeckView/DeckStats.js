@@ -39,8 +39,7 @@ class DeckStats extends Component {
       { "name": 'Level 0', "short": "0", "value": countCardLevel(cards, 0) },
       { "name": 'Level 1', "short": "1", "value": countCardLevel(cards, 1) },
       { "name": 'Level 2', "short": "2", "value": countCardLevel(cards, 2) },
-      { "name": 'Level 3', "short": "3", "value": countCardLevel(cards, 3) },
-      { "name": 'Climax', "short": "CX", "value": sumCardQuantity(cards, 'CX') }
+      { "name": 'Level 3', "short": "3", "value": countCardLevel(cards, 3) }
     ];
 
     const typedata = [
