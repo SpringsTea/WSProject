@@ -8,7 +8,6 @@ const locale = {
 
 const cardSchema = mongoose.Schema({
 	sid: String,
-	name: String,
 	set: String,
 	side: String,
 	release: String,
@@ -20,8 +19,6 @@ const cardSchema = mongoose.Schema({
 	power: Number,
 	soul: Number,
 	rarity: String,
-	attributes: [String],
-	ability: [String],
 	trigger: {
 		type: [String],
 		default: []
