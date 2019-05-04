@@ -39,9 +39,12 @@ cardsToUpdate.forEach( async (sourcecard) => {
   let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, 'sid': sourcecard.sid, 'lang': 'EN'});
 
   if( remotecard ){
-    //Update existing card
-    remotecard.name = sourcecard.name;
-    remotecard.ability = sourcecard.ability;
+   //Update existing card
+    remotecard.locale['EN'] = {
+      name: sourcecard.name,
+      ability: sourcecard.ability,
+      attributes: sourcecard.attributes
+    }
 
     remotecard.save();
     console.log('Card Saved', remotecard);
@@ -67,6 +70,9 @@ cardsToUpdate.forEach( async (sourcecard) => {
     newcard.power = isNaN(sourcecard.power) ? '0' : sourcecard.power;
     newcard.cost = isNaN(sourcecard.cost) ? '0' : sourcecard.cost;
     newcard.level = isNaN(sourcecard.level) ? '0' : sourcecard.level;
+    newcard.locale = {
+      ['EN']: { name:newcard.name, ability:newcard.ability, attributes: newcard.attributes }
+    }
 
     CardModel.create(newcard, function(err, data){
       if(err){
