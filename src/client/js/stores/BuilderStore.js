@@ -37,8 +37,18 @@ function filterBuilderCards() {
     }
 
     //Match search text
-    if( builderfilters.text && builderfilters.text.length >= 3 && !card.name.toUpperCase().includes( builderfilters.text.toUpperCase() ) ){
-      return false;
+    if( builderfilters.text && builderfilters.text.length >= 3){
+      //TODO need a better way of selecting locale
+      let cardname = ''; 
+
+      if(card.locale.EN.name){
+        cardname = card.locale.EN.name;
+      }
+      else if(card.locale.NP.name){
+        cardname = card.locale.NP.name;
+      }
+
+      return cardname.toUpperCase().includes( builderfilters.text.toUpperCase());
     }
 
     return true;
