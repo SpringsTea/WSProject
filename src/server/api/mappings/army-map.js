@@ -56,6 +56,8 @@ module.exports = {
     "DG/S03-E075": -1,  // Prinny
     "DG/S03-PE01": -1,  // Prinny PROMO
     "DG/S03-TE02": -1,  // Prinny TD (jfc)
+    "DG/S03-E094": -1,  // Reborn Krichevskoy
+    "DG/S03-TE12": -1,  // Reborn Krichevskoy TD
     "PD/S29-E046": 8,   // Hatsune Miku "Conflict"
     "GL/S52-E094": -1,  // Mugann
     "KS/W49-E057": -1,  // Cabbage
