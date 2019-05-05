@@ -45,7 +45,7 @@ class DeckView extends Component {
 			<div className="container-deckview">
 				{
 					deck.valid !== true &&
-					<Alert message="This deck is not valid, and will not apprear in searches" banner />
+					<Alert message="This deck is not valid, and will not appear in searches" banner />
 				}
 				<DeckHeader cards={deck.cards} deck={deck} loggedin={loggedin} currentuser={userid || null} />
 				<Row gutter={8}>

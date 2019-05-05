@@ -14,8 +14,15 @@ class Card extends Component {
 				{
 				card ?
 				<div className="card">
-					<a target="_blank" href={`https://heartofthecards.com/code/cardlist.html?card=WS_${card.set}/${card.side}${card.release}-${card.sid}`}>		
-						<h2>{locale.name || 'NaN'}</h2>
+					<a target="_blank" href={
+						card.lang === 'JP' ?
+						`https://heartofthecards.com/code/cardlist.html?card=WS_${card.set}/${card.side}${card.release}-${card.sid}`
+						:
+						`https://en.ws-tcg.com/cardlist/list/?cardno=${card.set}/${card.side}${card.release}-${card.sid}`
+					}
+
+					>		
+						<h2 className="card-name">{locale.name || 'NaN'} <Icon type="link" /></h2>
 					</a>
 					<div className='cardimage clickable' onClick={() => onCardSelect(card)}>
 						<Img
