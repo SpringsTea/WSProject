@@ -1,8 +1,13 @@
 const mongoose = require('mongoose')
 
+const locale = {
+	'name': String,
+	'attributes': [String],
+	'ability': [String]
+};
+
 const cardSchema = mongoose.Schema({
 	sid: String,
-	name: String,
 	set: String,
 	side: String,
 	release: String,
@@ -14,11 +19,13 @@ const cardSchema = mongoose.Schema({
 	power: Number,
 	soul: Number,
 	rarity: String,
-	attributes: [String],
-	ability: [String],
 	trigger: {
 		type: [String],
 		default: []
+	},
+	locale: {
+		'EN' : locale,
+		'NP' : locale
 	}
 }, {collection: 'card'});
 module.exports = mongoose.model('Card', cardSchema);

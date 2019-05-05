@@ -2,10 +2,13 @@ const config = require('../src/server/config/mongo.js')
 const mongoose = require('mongoose')
 const { readdirSync, readFileSync } = require('fs')
 
-const SET_PATH = './SetData/JP';
+//RELEASE=63 LOCALE=NP SIDE=W node JPCardPatch
+
 const MODEL_PATH = '../src/server/api/models/card';
 const SIDE = process.env.SIDE || 'S';
 const RELEASE = process.env.RELEASE || '35';
+const LOCALE = process.env.LOCALE || 'JP';
+const SET_PATH = `./SetData/${LOCALE}`;
 const sid = null;
 
 const CardModel = require(MODEL_PATH)
@@ -40,14 +43,20 @@ cardsToUpdate.forEach( async (sourcecard) => {
 
   if( remotecard ){
     //Update existing card
-    remotecard.name = sourcecard.name;
-    remotecard.ability = sourcecard.ability;
+    remotecard.locale[LOCALE == 'JP' ? 'EN' : LOCALE] = {
+      name: sourcecard.name,
+      ability: sourcecard.ability,
+      attributes: sourcecard.attributes
+    }
 
     remotecard.save();
-    console.log('Card Saved', remotecard);
+    console.log('Card Saved', remotecard.sid);
   }
   else{
-    CardModel.create({...sourcecard, lang:'JP'}, function(err, data){
+    CardModel.create({...sourcecard, locale: {
+      [LOCALE == 'JP' ? 'EN' : LOCALE]: { name:sourcecard.name, ability:sourcecard.ability, attributes: sourcecard.attributes }
+    }, 
+    lang:'JP'}, function(err, data){
       if(err){
         console.log('Something went wrong', err);
       }

@@ -31,6 +31,7 @@ module.exports = {
     "Gargantia": ["GG"],
     "Gigant Shooter Tsukasa": ["GST"],
     "Girl Friend Beta": ["GF"],
+    "Goblin Slayer": ["GBL"],
     "Godzilla": ["GZL"],
     "Guilty Crown": ["GC"],
     "Gurren Lagann": ["GL"],
