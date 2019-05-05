@@ -62,7 +62,7 @@ class DeckHeader extends Component {
 									>
 										Edit
 									</Button>
-									<Popconfirm placement="bottomLeft" title={"Are your sure?"} onConfirm={deletedDeck} okText="Yes" cancelText="No">
+									<Popconfirm placement="bottomLeft" title={"Are you sure?"} onConfirm={deletedDeck} okText="Yes" cancelText="No">
 										<Button className="danger" type="primary">
 											Delete
 										</Button>
