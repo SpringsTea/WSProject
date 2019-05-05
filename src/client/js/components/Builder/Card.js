@@ -8,42 +8,42 @@ import { generateCardImageLink } from 'Utils/cardshorthands';
 
 class Card extends Component {
 	render(){
-		const { data, locked, onCardSelect = () => {} } = this.props;
+		const { card, locale, locked, onCardSelect = () => {} } = this.props;
 		return(
 			<div className={`container-card ${locked ? 'locked' : ''}`}>
 				{
-				data ?
+				card ?
 				<div className="card">
-					<a target="_blank" href={`https://heartofthecards.com/code/cardlist.html?card=WS_${data.set}/${data.side}${data.release}-${data.sid}`}>		
-						<h2>{data.name || 'NaN'}</h2>
+					<a target="_blank" href={`https://heartofthecards.com/code/cardlist.html?card=WS_${card.set}/${card.side}${card.release}-${card.sid}`}>		
+						<h2>{locale.name || 'NaN'}</h2>
 					</a>
-					<div className='cardimage clickable' onClick={() => onCardSelect(data)}>
+					<div className='cardimage clickable' onClick={() => onCardSelect(card)}>
 						<Img
 					    src={[
-					      generateCardImageLink(data),
+					      generateCardImageLink(card),
 					    ]}
 					    unloader={<Icon className="image-not-found" type="question-circle" />}
 					  />
 					</div>
 					{	
-						data.ability && data.ability.length > 0 &&
+						locale.ability && locale.ability.length > 0 &&
 						<div className="cardtext">
-							{ data.ability.map( (ability) => <div key={ability}>{ability}</div> ) }
+							{ locale.ability.map( (ability) => <div key={ability}>{ability}</div> ) }
 						</div>
 					}
 					<div className="extra"> 
 						<Row type='flex'>
-							<Property name='Level' value={data.level} />
-							<Property name='Cost' value={data.cost} />			
-							<Property name='Trigger' value={ data.trigger.join(', ') } />			
-							<Property name='Color' value={data.colour} />
-							<Property name='Power' value={data.power} />
-							<Property name='Soul' value={data.soul} />
+							<Property name='Level' value={card.level} />
+							<Property name='Cost' value={card.cost} />			
+							<Property name='Trigger' value={ card.trigger.join(', ') } />			
+							<Property name='Color' value={card.colour} />
+							<Property name='Power' value={card.power} />
+							<Property name='Soul' value={card.soul} />
 							{
-								data.attributes.map( attribute => attribute.length > 1 &&//ignore empty traits
+								locale.attributes.map( attribute => attribute.length > 1 &&//ignore empty traits
 									<Property key={attribute} name='Trait' value={attribute} />)
 							}
-							<Property name='Card No' value={`${data.set}/${data.side}${data.release}-${data.sid}`} />
+							<Property name='Card No' value={`${card.set}/${card.side}${card.release}-${card.sid}`} />
 						</Row>
 					</div>
 				</div>

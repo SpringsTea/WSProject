@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { List, Icon } from 'antd';
 
-import CardItem from '../partials/Builder/CardItem/CardItem'
+import { getLocale } from 'Utils/cardlocale';
+import CardItem from '../partials/Builder/CardItem/CardItem';
 
 class CardSelector extends Component {
 
@@ -22,9 +23,7 @@ class CardSelector extends Component {
 				<List
 					dataSource={cards}
 					locale={ { emptyText: 'No Cards' } }
-					renderItem={ card => (
-						<CardItem card={card} />
-					)}
+					renderItem={ card => <CardItem card={card} locale={getLocale(card)} /> }
 				/>
 			</div>
 		)

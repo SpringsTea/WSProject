@@ -8,8 +8,9 @@ import Filters from '../partials/Builder/CardSelector/Filters';
 import DeckSaveModal from '../partials/Builder/DeckSave/DeckSaveModal';
 import Deck from './Deck';
 
-import BuilderStore from '../../stores/BuilderStore';
+import { getLocale } from 'Utils/cardlocale';
 
+import BuilderStore from '../../stores/BuilderStore';
 import { selectCard } from 'Actions/BuilderActions';
 
 const buildState = () => ({
@@ -65,7 +66,7 @@ class Builder extends Component {
 						<SeriesSelect serieses={serieses} />
             			<Filters />
 						<CardSelector cards={buildercards} />
-						<Card data={selectedCard.card} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
+						<Card card={selectedCard.card} locale={getLocale(selectedCard.card)} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
 					</Col>
 					<Col xxl={16} xl={16} lg={12} md={24}> 
 						<Deck cards={deck} />
