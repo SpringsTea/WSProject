@@ -14,8 +14,6 @@
  * 
  */
 
- const JPArmy = 
-
 module.exports = {
     "AOT/S35-094": -1, //"Predation" Titan
     "AOT/S50-088": -1, // "Pursuit" Titan
