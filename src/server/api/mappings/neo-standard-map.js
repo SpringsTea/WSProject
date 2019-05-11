@@ -10,6 +10,7 @@ module.exports = {
     "Attack on Titan": ["AOT"],
     "Bang Dream": ["BD"],
     "Black Rock Shooter": ["BR"],
+    "Bunny Girl Senpai": ["SBY"],
     "CANAAN": ["CN"],
     "Chain Chronicle": ["CC"],
     "Cardcaptor Sakura": ["CCS"],
