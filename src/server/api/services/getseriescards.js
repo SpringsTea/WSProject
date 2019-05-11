@@ -20,9 +20,7 @@ module.exports = async (request, response, next) => {
         let series = await Series.findById(seriesId).exec();
         if (series) {
             let cards = await Card.find({ 
-                side: series.side, 
-                release: series.release,
-                lang: series.lang,
+                series: series._id
             }).limit(300).exec();
             response.status(200).json(cards)
         } else {
