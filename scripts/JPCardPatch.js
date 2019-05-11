@@ -1,17 +1,15 @@
 const config = require('../src/server/config/mongo.js')
 const mongoose = require('mongoose')
-const { readdirSync, readFileSync } = require('fs')
+const { readdirSync, readFileSync, statSync } = require('fs')
+const { join } = require('path')
 
-//RELEASE=63 LOCALE=NP SIDE=W node JPCardPatch
-
-const MODEL_PATH = '../src/server/api/models/card';
-const SIDE = process.env.SIDE || 'S';
-const RELEASE = process.env.RELEASE || '35';
+const MODEL_PATH = '../src/server/api/models';
 const LOCALE = process.env.LOCALE || 'JP';
 const SET_PATH = `./SetData/${LOCALE}`;
-const sid = null;
+const SET_FILE = process.env.FILE || null;
 
-const CardModel = require(MODEL_PATH)
+const CardModel = require(`${MODEL_PATH}/card`)
+const SeriesModel = require(`${MODEL_PATH}/series`)
 
 var mongooseOptions = {
   useNewUrlParser: true
@@ -26,46 +24,63 @@ console.log('connecting to mongoose...')
 mongoose.connect(`mongodb://127.0.0.1:27017/wsdata?authSource=admin`, mongooseOptions);
 console.log('connected');
 
-let setContent = JSON.parse(readFileSync(`${SET_PATH}/${SIDE}${RELEASE}.json`, { encoding: 'utf8'}));
+var WSS_SERIES = readdirSync(SET_PATH).filter(f => statSync(join(SET_PATH, f)).isFile())
 
-//filter by sid if specified
-let cardsToUpdate = setContent.filter( (cards) => { 
-  if(sid){
-    return cards.sid === sid;
-  }
-  else{
-    return true;
-  }
-});
+//SET_FILE specified a single file to run through the patch
+if( SET_FILE ){
+  WSS_SERIES = WSS_SERIES.filter( (f) => f == SET_FILE )
+}
 
-cardsToUpdate.forEach( async (sourcecard) => {
-  let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, 'sid': sourcecard.sid, 'lang': 'JP'});
+WSS_SERIES.forEach( (FILE) => {
 
-  if( remotecard ){
-    //Update existing card
-    remotecard.locale[LOCALE == 'JP' ? 'EN' : LOCALE] = {
-      name: sourcecard.name,
-      ability: sourcecard.ability,
-      attributes: sourcecard.attributes
+  let setContent = JSON.parse(readFileSync(`${SET_PATH}/${FILE}`, { encoding: 'utf8'}));
+  //Holds the series cards belong to so we dont have to fetch the series each time
+  let series = null;
+
+  setContent.forEach( async (sourcecard) => {
+
+    //If series hasnt been fetched yet, or the card does not match the series of the previous cards
+    if( series == null || series.side != sourcecard.side || series.release != sourcecard.release ){
+      series = await SeriesModel.findOne({lang: 'JP', side: sourcecard.side, release: sourcecard.release});
+    } 
+
+    let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, sid: sourcecard.sid, lang: 'JP'});
+
+    if( remotecard ){
+      //Update existing card
+      remotecard.locale[LOCALE == 'JP' ? 'EN' : LOCALE] = {
+        name: sourcecard.name,
+        ability: sourcecard.ability,
+        attributes: sourcecard.attributes
+      }
+
+      //Only update series if there is none set
+      //Never override existing series because sometime is has to be manually set because fuck bushi
+      if( remotecard.series == null ){
+        remotecard.series = series ? series._id : null;
+      }      
+
+      remotecard.save();
+      console.log('Card Saved', remotecard._id);
     }
+    else{
+      CardModel.create({...sourcecard, 
+        locale: {
+          [LOCALE == 'JP' ? 'EN' : LOCALE]: { name:sourcecard.name, ability:sourcecard.ability, attributes: sourcecard.attributes }
+        }, 
+        series: series._id,
+        lang:'JP'
+      }, function(err, data){
+        if(err){
+          console.log('Something went wrong', err);
+        }
+        else{
+          console.log('Card added:', sourcecard.sid);
+        }
+      })
+    }  
+    
+  })
 
-    remotecard.save();
-    console.log('Card Saved', remotecard.sid);
-  }
-  else{
-    CardModel.create({...sourcecard, locale: {
-      [LOCALE == 'JP' ? 'EN' : LOCALE]: { name:sourcecard.name, ability:sourcecard.ability, attributes: sourcecard.attributes }
-    }, 
-    lang:'JP'}, function(err, data){
-      if(err){
-        console.log('Something went wrong', err);
-      }
-      else{
-        console.log('Card added:', sourcecard.sid);
-      }
-    })
-  }  
-  
 })
-
 

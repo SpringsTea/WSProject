@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const seriesSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
