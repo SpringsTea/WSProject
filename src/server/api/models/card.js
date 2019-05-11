@@ -1,5 +1,7 @@
 const mongoose = require('mongoose')
 
+var ObjectId = mongoose.Schema.Types.ObjectId;
+
 const locale = {
 	'name': String,
 	'attributes': [String],
@@ -10,6 +12,7 @@ const cardSchema = mongoose.Schema({
 	sid: String,
 	set: String,
 	side: String,
+	series: { type: ObjectId, ref: 'Series', default: null },
 	release: String,
 	lang: String,
 	cardtype: String,
