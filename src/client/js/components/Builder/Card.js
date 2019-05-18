@@ -4,7 +4,7 @@ import Img from 'react-image';
 
 import Property from '../partials/Builder/Card/Property';
 
-import { generateCardImageLink } from 'Utils/cardshorthands';
+import { generateCardImageLink, generateCardCode } from 'Utils/cardshorthands';
 
 class Card extends Component {
 	render(){
@@ -50,7 +50,7 @@ class Card extends Component {
 								locale.attributes.map( attribute => attribute.length > 1 &&//ignore empty traits
 									<Property key={attribute} name='Trait' value={attribute} />)
 							}
-							<Property name='Card No' value={`${card.set}/${card.side}${card.release}-${card.sid}`} />
+							<Property name='Card No' value={generateCardCode(card)} />
 						</Row>
 					</div>
 				</div>

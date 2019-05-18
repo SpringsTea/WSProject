@@ -34,15 +34,8 @@ if( SET_FILE ){
 WSS_SERIES.forEach( (FILE) => {
   let setContent = JSON.parse(readFileSync(`${SET_PATH}/${FILE}`, { encoding: 'utf8'}));
 
-  //Holds the series cards belong to so we dont have to fetch the series each time
-  let series = null;
-
   setContent.forEach( async (sourcecard) => {
-
-    //If series hasnt been fetched yet, or the card does not match the series of the previous cards
-    if( series == null || series.side != sourcecard.side || series.release != sourcecard.release ){
-      series = await SeriesModel.findOne({lang: 'EN', side: sourcecard.side, release: sourcecard.release});
-    }  
+    let series = await SeriesModel.findOne({lang: 'EN', side: sourcecard.side, release: sourcecard.release}); 
 
     let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, 'sid': sourcecard.sid, 'lang': 'EN'});
 
@@ -87,7 +80,7 @@ WSS_SERIES.forEach( (FILE) => {
       newcard.locale = {
         ['EN']: { name:newcard.name, ability:newcard.ability, attributes: newcard.attributes }
       }
-      newcard.series = series._id;
+      newcard.series = series ? series._id : null;
 
       CardModel.create(newcard, function(err, data){
         if(err){
