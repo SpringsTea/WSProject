@@ -18,3 +18,7 @@ export let calculateShortHand = (card) => {
 export let generateCardImageLink = (card) => {
 	return card ? `/images/${card.lang}/${card.side}${card.release}/${card.sid}.gif` : '';
 }
+
+export let generateCardCode = (card) => {
+	return card ? `${card.set}/${card.side}${card.release}${ card.side && card.release ? '-' : '' }${card.sid}` : '';
+}
