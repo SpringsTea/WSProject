@@ -20,8 +20,11 @@ module.exports = async (request, response, next) => {
     try {
 
         const Decks = await Deck.find({ 
-            //valid: true
+            valid: true,
+            datecreated: { $lt: new Date(2019, 5, 1) }
         }).exec();
+
+        console.log(Decks.length);
 
         for (let deck of Decks) {
             const cardData = await Card.find({ 
