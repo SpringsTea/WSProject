@@ -2,11 +2,11 @@
 
 import Deck from '../models/deck'
 
-module.exports = async (deckid, populate = true) => {
+module.exports = async (deckid, { populate }) => {
     try {
         let deck = Deck.findOne(
             {deckid: deckid, deleted: false}, 
-            '-_id cards datemodified deckid description name userid valid sets neo_fail'
+            '-_id cards datemodified deckid description name userid valid sets neo_fail views'
         )
 
         if( populate === true ){
@@ -18,6 +18,7 @@ module.exports = async (deckid, populate = true) => {
 
         return deck;
     } catch (error) {
+        console.log(error);
         return {
             error: true,
             message: 'Deck was not found'

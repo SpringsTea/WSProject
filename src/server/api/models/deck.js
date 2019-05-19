@@ -18,6 +18,7 @@ const deckSchema = mongoose.Schema({
 	neo_sets: { type: Array, default: [] },
 	neo_fail: { type: String, default: '' },
 	deleted: { type: Boolean, default: false },
+	views: { type: Number, default: 0 }
 }, { collection: 'deck' });
 
 deckSchema.index({ name: 'text', description: 'text' });
