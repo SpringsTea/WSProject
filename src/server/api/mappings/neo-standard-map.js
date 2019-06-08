@@ -29,6 +29,7 @@ module.exports = {
     "Familiar of Zero": ["ZM"],
     "Fate": ["FS","FU","FH","FZ"],
     "Fate/Apocrypha": ["APO"],
+    "Fujimi Bunko": ["F35", "Fab", "Fdd", "Fdl", "Fly", "Ffp", "Fhc", "Fii", "Fkm", "Fks", "Fkz", "Fmr", "Fos", "Foy", "Fra", "Fsi", "Fsl", "Ftr"],
     "Gargantia": ["GG"],
     "Gigant Shooter Tsukasa": ["GST"],
     "Girl Friend Beta": ["GF"],
@@ -48,7 +49,7 @@ module.exports = {
     "Kemono Friends": ["KMN"],
     "Kill La Kill": ["KLK"],
     "Kiznaiver": ["KI"],
-    "Kodokawa Bunko": ["Snk","Sks","Sst", "Ssy", "Snw", "Ssw", "Shh", "Smi", "Sls", "Seo", "Sky", "Ssk", "Ssh", "Shg", "Sfl", "Smc", "Smu", "Sle", "Srm"],
+    "Kodokawa Bunko": ["Snk","Sks","Sst", "Ssy", "Snw", "Ssw", "Shh", "Smi", "Sls", "Seo", "Sky", "Ssk", "Ssh", "Shg", "Sfl", "Smc", "Smu", "Sle", "Srm"],//Fml, ammiright?
     "Kono Suba": ["KS","Sks"],
     "Leapt thr. Space/My-Hime/Otome": ["SK","MH"],
     "Little Busters!": ["LB","KW"],
