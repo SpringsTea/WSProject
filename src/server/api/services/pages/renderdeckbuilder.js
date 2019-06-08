@@ -17,7 +17,10 @@ module.exports = async (request, response, next) => {
         let deckid = request.params.deckid;
 
         if(deckid){
-            let deck = await GetDeckById(deckid, false);
+            let deck = await GetDeckById(deckid, {
+                populate: false,
+                view: false
+            });
 
             //User is not the deck owner
             if( !request.user || !deck.userid.equals(request.user._id)){
