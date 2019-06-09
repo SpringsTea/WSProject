@@ -49,8 +49,9 @@ class Builder extends Component {
 
 	render(){
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
-    const { loggedin } = this.props;
+    const { loggedin, mode } = this.props;
 		const { selectedCard, serieses, buildercards, deck, deckdata, savemodalopen } = this.state;
+
 		return(
 			<div className="container-builder">
         {
@@ -59,7 +60,7 @@ class Builder extends Component {
             You are not signed in. You can create decks anonymously, but you will be unable to edit or remove them later. <a href="/login">Login</a> to keep your decks!
           </div> } closable />
         }
-				<DeckSaveModal deck={deck} deckdata={deckdata} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
+				<DeckSaveModal deck={deck} mode={mode} deckdata={deckdata} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
 				<Row gutter={16}>
 					<Col xxl={8} xl={8} lg={12} md={24}
           			className='container-series-selector nice-scroll'>

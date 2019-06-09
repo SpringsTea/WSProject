@@ -29,7 +29,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
   	}
 
   	handleSaveDeck = async(values) => {
-  		const { deck, deckdata, togglevisible } = this.props;
+  		const { deck, deckdata, mode, togglevisible } = this.props;
   		this.setState({loading: true});
 
       let submitdata = {
@@ -37,7 +37,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
         cards: deck.map( (c) => c._id )
       }
 
-      if ( deckdata ){
+      if ( deckdata && mode !== 'fork' ){
         submitdata.deckid = deckdata.deckid;
       }
 
