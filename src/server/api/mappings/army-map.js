@@ -38,6 +38,7 @@ module.exports = {
     "PD/S29-046": 8,   // Hatsune Miku "Conflict"
     "GL/S52-094": -1,  // Mugann
     "RZ/S55-015": -1,  // Fingertips
+    "RZ/S55-008": -1,  // Invisible hand
     "KS/W49-057": -1,  // Cabbage
     "RW/W48-090": -1,  // "Made by Kotori-san" Monster
     "BD/W47-T11": 5,   // My Favorite item
