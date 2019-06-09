@@ -21,12 +21,6 @@ module.exports = async (request, response, next) => {
                 populate: false,
                 view: false
             });
-
-            //User is not the deck owner
-            if( !request.user || !deck.userid.equals(request.user._id)){
-                response.redirect('/AccessDenied');
-                return false;
-            }
         }    
 
         response.render("builder", { 

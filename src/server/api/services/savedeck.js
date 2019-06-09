@@ -46,6 +46,7 @@ module.exports = async (request, response, next) => {
 
             if( !user ){
                 response.status(500).send({ success: false, message: 'User not logged in' });
+                return false;
             }
 
             let result = await Deck.updateOne({deckid: deckdata.deckid, userid: user._id}, {...deckdata, datemodified: new Date()});
@@ -60,7 +61,6 @@ module.exports = async (request, response, next) => {
         }
         // create deck 
         else{
-            
             let createdDeck = await Deck.create(deckdata); 
             response.status(200).send({ deck: createdDeck });
         }

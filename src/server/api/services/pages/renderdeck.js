@@ -30,7 +30,7 @@ module.exports = async (request, response, next) => {
                 loggedin: request.user ? true : false 
             });
 
-            if( !request.user || !deck.userid.equals(request.user._id) ){
+            if( !request.user || deck.userid != request.user._id ){
                 Deck.findOne({deckid: deckid}, function (err, doc) {
                   doc.views = deck.views + 1;
                   doc.save();
