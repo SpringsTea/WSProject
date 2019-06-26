@@ -44,6 +44,7 @@ module.exports = {
     "Imas Million Live": ["IMS","IAS"],
     "Index / Railgun": ["ID","RG"],
     "Is the Order a Rabbit??": ["GU"],
+    "Jojo’s Bizarre Adventure": ["JJ"],
     "KanColle": ["KC"],
     "Katanagatari": ["KG"],
     "Kemono Friends": ["KMN"],

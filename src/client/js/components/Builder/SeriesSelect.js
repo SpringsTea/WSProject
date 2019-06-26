@@ -60,8 +60,8 @@ class SeriesSelect extends Component {
 						}
 					</Select>
 				</Spin>
-				<Switch className="squared" onChange={ (val) => onLangChange(val === true ? 'JP' : 'EN')}
-					checkedChildren="JP" unCheckedChildren="EN" defaultChecked/>
+				<Switch className="squared" onChange={ (val) => onLangChange(val === true ? 'EN' : 'JP')}
+					checkedChildren="EN" unCheckedChildren="JP" defaultChecked/>
 			</div>
 		)
 	}
