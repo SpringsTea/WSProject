@@ -37,6 +37,9 @@ module.exports = {
     "TF/S32-084": -1,  // "Abominable Being" Terraformar
     "PD/S29-046": 8,   // Hatsune Miku "Conflict"
     "GL/S52-094": -1,  // Mugann
+    "GZL/S54-T01": -1, // Godzilla birdy
+    "GZL/S54-T02": -1, // Sudden Mutation
+    "GZL/S54-T03": -1, // Wild Animal
     "RZ/S55-015": -1,  // Fingertips
     "RZ/S55-008": -1,  // Invisible hand
     "KS/W49-057": -1,  // Cabbage
