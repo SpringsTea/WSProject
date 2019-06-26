@@ -52,7 +52,7 @@ async function loadBuilderData(data={}) {
 
   const promises = [];
 
-  promises.push(fetchSerieses('JP'));
+  promises.push(fetchSerieses('EN'));
 
   if( data.mode && data.deckid ){//for editing and forking, load the deck without populating cards
     promises.push(fetchDeck(data.deckid))
