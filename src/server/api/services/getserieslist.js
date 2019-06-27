@@ -16,7 +16,7 @@ import Series from '../models/series'
 module.exports = async (request, response, next) => {
 
     let query = {
-
+        enabled: {$ne: false}//not false allows defaults to apply
     };
 
     if(request.params.lang){

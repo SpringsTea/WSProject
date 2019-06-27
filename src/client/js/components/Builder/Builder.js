@@ -8,8 +8,9 @@ import Filters from '../partials/Builder/CardSelector/Filters';
 import DeckSaveModal from '../partials/Builder/DeckSave/DeckSaveModal';
 import Deck from './Deck';
 
-import BuilderStore from '../../stores/BuilderStore';
+import { getLocale } from 'Utils/cardlocale';
 
+import BuilderStore from '../../stores/BuilderStore';
 import { selectCard } from 'Actions/BuilderActions';
 
 const buildState = () => ({
@@ -48,8 +49,9 @@ class Builder extends Component {
 
 	render(){
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
-    const { loggedin } = this.props;
+    const { loggedin, mode } = this.props;
 		const { selectedCard, serieses, buildercards, deck, deckdata, savemodalopen } = this.state;
+
 		return(
 			<div className="container-builder">
         {
@@ -58,14 +60,14 @@ class Builder extends Component {
             You are not signed in. You can create decks anonymously, but you will be unable to edit or remove them later. <a href="/login">Login</a> to keep your decks!
           </div> } closable />
         }
-				<DeckSaveModal deck={deck} deckdata={deckdata} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
+				<DeckSaveModal deck={deck} mode={mode} deckdata={deckdata} visible={savemodalopen} togglevisible={handleToggleSaveModal} />
 				<Row gutter={16}>
 					<Col xxl={8} xl={8} lg={12} md={24}
           			className='container-series-selector nice-scroll'>
 						<SeriesSelect serieses={serieses} />
             			<Filters />
 						<CardSelector cards={buildercards} />
-						<Card data={selectedCard.card} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
+						<Card card={selectedCard.card} locale={getLocale(selectedCard.card)} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
 					</Col>
 					<Col xxl={16} xl={16} lg={12} md={24}> 
 						<Deck cards={deck} />

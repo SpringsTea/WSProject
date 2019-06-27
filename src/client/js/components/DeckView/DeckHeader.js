@@ -54,21 +54,29 @@ class DeckHeader extends Component {
 					<div className="flex-container">
 						<h2 className="deck-name">{deck.name}</h2>
 						<div className="controls">
+							<Button.Group>
+								<Tooltip placement="top" title="Copy this deck and save it as your own">
+									<Button type="primary" icon="fork"
+									href={`/builder/fork/${deck.deckid}`}>
+										Fork
+									</Button>
+								</Tooltip>
 							{
 								deckuser && deckuser._id === currentuser &&
-								<Button.Group>
-									<Button type="primary" icon="edit"
-									href={`/builder/edit/${deck.deckid}`}
-									>
-										Edit
-									</Button>
-									<Popconfirm placement="bottomLeft" title={"Are your sure?"} onConfirm={deletedDeck} okText="Yes" cancelText="No">
-										<Button className="danger" type="primary">
-											Delete
-										</Button>
-									</Popconfirm>
-								</Button.Group>
+								<Button type="primary" icon="edit"
+								href={`/builder/edit/${deck.deckid}`}>
+									Edit
+								</Button>
 							}
+							{
+								deckuser && deckuser._id === currentuser &&
+								<Popconfirm placement="bottomLeft" title={"Are you sure?"} onConfirm={deletedDeck} okText="Yes" cancelText="No">
+									<Button className="danger" type="primary">
+										Delete
+									</Button>
+								</Popconfirm>
+							}
+							</Button.Group>
 						</div>						
 					</div>
 					<h3>

@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+const mongoose = require('mongoose')
 
 const seriesSchema = mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
@@ -6,7 +6,8 @@ const seriesSchema = mongoose.Schema({
 	side: String,
 	release: String,
 	name: String,
-	lang: String
+	lang: String,
+	enabled: { type: Boolean, default: true }
 }, { collection: 'series' })
 
 module.exports = mongoose.model('Series', seriesSchema);

@@ -18,7 +18,7 @@ class DeckSearch extends Component {
   state = {
   	...buildState(),
     loading: false,
-    filters: {},
+    filters: this.props.filters || {},
   }
 
   onChange = () => this.setState(buildState);

@@ -10,7 +10,7 @@ module.exports = async(deck, carddata) => {
         let card = carddata.find( c => c._id == cardID );
 
         if( card ){
-        	let setparts = `${card.set}/${card.side}${card.release}/${card.lang}`
+        	let setparts = `${card.side}${card.release}/${card.lang}`
         	if( !setdata.has(setparts) ){
         		setdata.add(setparts)
 

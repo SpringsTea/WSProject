@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { Row, Col, Alert } from 'antd';
 import Sticky from 'react-stickynode';
 
-import DeckStore from '../../stores/DeckStore';
-import { selectCard } from 'Actions/DeckActions';
-
 import DeckHeader from './DeckHeader';
 import Card from '../Builder/Card';
 import DeckDisplay from '../partials/DeckView/DeckDisplay';
+
+import { getLocale } from 'Utils/cardlocale.js';
+
+import DeckStore from '../../stores/DeckStore';
+import { selectCard } from 'Actions/DeckActions';
 
 const buildState = () => ({
   deck: DeckStore.getDeckData(),
@@ -43,7 +45,7 @@ class DeckView extends Component {
 			<div className="container-deckview">
 				{
 					deck.valid !== true &&
-					<Alert message="This deck is not valid, and will not apprear in searches" banner />
+					<Alert message="This deck is not valid, and will not appear in searches" banner />
 				}
 				<DeckHeader cards={deck.cards} deck={deck} loggedin={loggedin} currentuser={userid || null} />
 				<Row gutter={8}>
@@ -52,7 +54,7 @@ class DeckView extends Component {
 					</Col>
 					<Col xxl={6} xl={8} lg={10} md={24}>
 						<Sticky enabled={true} top={50} >
-						    <Card data={selectedCard.card} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
+						    <Card card={selectedCard.card} locale={getLocale(selectedCard.card)} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
 						</Sticky>	
 					</Col>
 				</Row>

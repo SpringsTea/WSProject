@@ -14,8 +14,6 @@
  * 
  */
 
- const JPArmy = 
-
 module.exports = {
     "AOT/S35-094": -1, //"Predation" Titan
     "AOT/S50-088": -1, // "Pursuit" Titan
@@ -39,7 +37,11 @@ module.exports = {
     "TF/S32-084": -1,  // "Abominable Being" Terraformar
     "PD/S29-046": 8,   // Hatsune Miku "Conflict"
     "GL/S52-094": -1,  // Mugann
+    "GZL/S54-T01": -1, // Godzilla birdy
+    "GZL/S54-T02": -1, // Sudden Mutation
+    "GZL/S54-T03": -1, // Wild Animal
     "RZ/S55-015": -1,  // Fingertips
+    "RZ/S55-008": -1,  // Invisible hand
     "KS/W49-057": -1,  // Cabbage
     "RW/W48-090": -1,  // "Made by Kotori-san" Monster
     "BD/W47-T11": 5,   // My Favorite item
@@ -56,6 +58,8 @@ module.exports = {
     "DG/S03-E075": -1,  // Prinny
     "DG/S03-PE01": -1,  // Prinny PROMO
     "DG/S03-TE02": -1,  // Prinny TD (jfc)
+    "DG/S03-E094": -1,  // Reborn Krichevskoy
+    "DG/S03-TE12": -1,  // Reborn Krichevskoy TD
     "PD/S29-E046": 8,   // Hatsune Miku "Conflict"
     "GL/S52-E094": -1,  // Mugann
     "KS/W49-E057": -1,  // Cabbage
