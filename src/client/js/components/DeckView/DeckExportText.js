@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Button, Tooltip } from 'antd';
+import { Tooltip } from 'antd';
 import { getLocale } from 'Utils/cardlocale';
 import { filterCardQuantity } from 'Utils/cardfilter';
 
-class DeckExport extends Component {
+class DeckExportText extends Component {
   /*sumCardQuantity(cards = [], type) {
     return cards.filter((card) => card.cardtype === type).length;
   }*/
@@ -60,12 +60,12 @@ class DeckExport extends Component {
   render() {
     return (
       <Tooltip placement="top" title="Export this deck as a text file">
-      <Button type="primary" icon="export" onClick={this.downloadTxtFile}>
-        Export Deck (.txt)
-      </Button>
+      <span onClick={this.downloadTxtFile}>
+        Text File (.txt)
+      </span>
       </Tooltip>
     );
   }
 }
 
-export default DeckExport;
+export default DeckExportText;

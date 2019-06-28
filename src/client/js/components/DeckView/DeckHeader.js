@@ -3,7 +3,7 @@ import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, message } from 'antd'
 import DeckStats from './DeckStats';
 
 import { claimDeck, deleteDeck } from 'Utils/api';
-import DeckExport from './DeckExport';
+import DeckExportMenu from './DeckExportMenu';
 
 class DeckHeader extends Component {
 
@@ -62,7 +62,7 @@ class DeckHeader extends Component {
 										Fork
 									</Button>
 								</Tooltip>
-								<DeckExport cards={cards} deck={deck} />
+								<DeckExportMenu cards={cards} deck={deck} />
 							{
 								deckuser && deckuser._id === currentuser &&
 								<Button type="primary" icon="edit"
