@@ -87,6 +87,10 @@ module.exports = async ({query:params, user}, response, next) => {
             }
         }
 
+        if( params.attributes ){
+            query['attributes.name'] = { $all: params.attributes};
+        }
+
         await Deck.paginate(query, options, (err, result) => {
             if (err) throw "Pagination Error"
 

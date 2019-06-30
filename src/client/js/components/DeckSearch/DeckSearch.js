@@ -35,6 +35,8 @@ class DeckSearch extends Component {
     const { updateDecks } = this;
     let { filters } = this.state;
 
+    console.log(value, prop)
+
     filters[prop] = value;
     this.setState({filters}, updateDecks);
   }
