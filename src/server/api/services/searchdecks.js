@@ -22,7 +22,7 @@ module.exports = async ({query:params, user}, response, next) => {
         }
 
         const options = {
-            select: '-_id cards datemodified datecreated deckid description name userid valid sets',
+            select: '-_id cards datemodified datecreated deckid description name userid valid sets attributes',
             sort: { datecreated: -1 },
             page: params.page || 1,
             limit: limit,

@@ -37,10 +37,13 @@
 
 		.ant-card{
 			height: 300px;
+			display: flex;
+			flex-direction: column;
 		}
 
 		.ant-card-body{
 			padding: 15px;
+			flex-grow: 1;
 		}
 
 		.title{
@@ -97,6 +100,15 @@
 			display: -webkit-box;
 			-webkit-line-clamp: 2;
 			-webkit-box-orient: vertical;  
+		}
+
+		.attributes{
+			position: absolute;
+			bottom: 15px;
+
+			i{
+				margin-right: 5px;
+			}
 		}
 	}
 }

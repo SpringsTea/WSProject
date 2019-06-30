@@ -3,6 +3,7 @@ import { Card, Avatar, Icon } from 'antd';
 import Img from 'react-image';
 
 import { generateCardImageLink } from 'Utils/cardshorthands';
+import { attributeIcons } from 'Constants/attributes';
 
 const { Meta } = Card;
 
@@ -42,6 +43,12 @@ class DeckCard extends Component {
 						title={DeckTitle(deck)} 
 						description={deck.description || 'No Description'}
 					/>
+					<div className="attributes">
+						{
+							deck.attributes.map( (attr) => <Icon title={attr.name} 
+								type={attributeIcons[attr.name].icon} className={attributeIcons[attr.name].class} />)
+						}
+					</div>
 				</Card>
 			</div>
 		)
