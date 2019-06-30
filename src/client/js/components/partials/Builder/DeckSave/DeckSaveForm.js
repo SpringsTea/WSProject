@@ -6,7 +6,8 @@ const { TextArea } = Input;
 class DeckSaveForm extends Component {
 
   state = {
-    showrecord: this.props.deckdata.attributes.find( (a) => this.props.mode === 'edit' && a.name === "Tournament")
+    showrecord: this.props.deckdata.attributes ? 
+      this.props.deckdata.attributes.find( (a) => this.props.mode === 'edit' && a.name === "Tournament") : false
   }
 
   validateRecord = (rule, value, callback) => {
@@ -27,6 +28,7 @@ class DeckSaveForm extends Component {
     const { showrecord } = this.state;
     const { getFieldDecorator } = form;
     const tournamentAttribute = showrecord || {};
+    const attributes = deckdata.attributes || [];
 
     let alerts = [];
 
@@ -69,7 +71,7 @@ class DeckSaveForm extends Component {
 
         <Form.Item>
           {getFieldDecorator('attribute-group', {
-            initialValue: deckdata.attributes.map( (a) => mode === 'edit' && a.name ),
+            initialValue: attributes.map( (a) => mode === 'edit' && a.name ),
           })(
           <Checkbox.Group style={{width: '100%'}}>
             <Row>
