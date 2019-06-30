@@ -57,7 +57,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
 
     render() {
       const { handleSubmitForm } = this;
-      const { deck, deckdata } = this.props;
+      const { deck, deckdata, mode } = this.props;
       const { loading } = this.state;
       const {
         visible, togglevisible, form,
@@ -72,7 +72,7 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
           onOk={handleSubmitForm}
           okButtonProps={ deck.length === 0 ? { disabled: true } : {} }
         >
-         <DeckSaveForm form={form} deck={deck} deckdata={deckdata} />
+         <DeckSaveForm form={form} deck={deck} mode={mode} deckdata={deckdata} />
         </Modal>
       );
     }

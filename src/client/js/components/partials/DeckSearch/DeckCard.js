@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Card, Avatar, Icon } from 'antd';
 import Img from 'react-image';
 
+import AttributesList from 'Partials/AttributesList';
+
 import { generateCardImageLink } from 'Utils/cardshorthands';
 
 const { Meta } = Card;
@@ -42,6 +44,7 @@ class DeckCard extends Component {
 						title={DeckTitle(deck)} 
 						description={deck.description || 'No Description'}
 					/>
+					<AttributesList attributes={deck.attributes} />
 				</Card>
 			</div>
 		)

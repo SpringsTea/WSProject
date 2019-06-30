@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
-import { Form, Input, Alert } from 'antd';
+import { Form, Input, InputNumber, Alert, Checkbox, Icon, Tooltip, Row, Col } from 'antd';
 
 const { TextArea } = Input;
 
 class DeckSaveForm extends Component {
 
+  state = {
+    showrecord: this.props.deckdata.attributes ? 
+      this.props.deckdata.attributes.find( (a) => this.props.mode === 'edit' && a.name === "Tournament") : false
+  }
+
+  validateRecord = (rule, value, callback) => {
+    const { form } = this.props;
+    
+    if (value < 1 && form.getFieldValue('record-losses') < 1) {
+      callback("Record cannot be 0-0")
+    }
+    else{
+      callback();
+    }
+
+  }
+
   render(){
-    const { generateAlerts } = this;
-    const { form, deck, deckdata = {} } = this.props;
+    const { validateRecord } = this;
+    const { form, mode, deck, deckdata = {} } = this.props;
+    const { showrecord } = this.state;
     const { getFieldDecorator } = form;
+    const tournamentAttribute = showrecord || {};
+    const attributes = deckdata.attributes || [];
 
     let alerts = [];
 
@@ -48,6 +68,56 @@ class DeckSaveForm extends Component {
             <TextArea autosize={{minRows: 4, maxRows: 4}} />
           )}
         </Form.Item>
+
+        <Form.Item>
+          {getFieldDecorator('attribute-group', {
+            initialValue: attributes.map( (a) => mode === 'edit' && a.name ),
+          })(
+          <Checkbox.Group style={{width: '100%'}}>
+            <Row>
+              <Col span={12}>
+                <Tooltip title="Decks that have proved themselves effective in tournament play (locals included)">
+                  <Checkbox value="Tournament" onChange={(e) => this.setState({showrecord: e.target.checked})}>
+                    Tournament <Icon type="trophy" className="ws-tournament" />
+                  </Checkbox>
+                </Tooltip>
+              </Col>
+              <Col span={12}>
+                <Tooltip title="Decks that were made from love (Husbandos welcome)">
+                  <Checkbox defaultChecked={false} value="Waifu">
+                    Waifu <Icon type="heart" className="ws-heart" />
+                  </Checkbox>
+                </Tooltip>
+              </Col>
+            </Row>
+          </Checkbox.Group>
+          )}
+        </Form.Item>
+        {showrecord &&
+          <span>
+          Record:
+            <Row>
+              <Col span={6}>
+                <Form.Item label="Wins">
+                {getFieldDecorator('record-wins', {
+                  initialValue: tournamentAttribute.record ? tournamentAttribute.record.wins : 0, rules: [{validator: validateRecord}]
+                })(
+                    <InputNumber min={0} max={100} />
+                )}
+                </Form.Item>
+              </Col>
+              <Col span={6}>
+              <Form.Item label="Losses">
+              {getFieldDecorator('record-losses', {
+                initialValue: tournamentAttribute.record ? tournamentAttribute.record.losses : 0
+              })(
+                  <InputNumber min={0} max={100} />
+              )}
+              </Form.Item>
+              </Col>
+            </Row>
+          </span>
+        }
       </Form>
     )
   }
