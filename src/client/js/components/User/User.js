@@ -17,7 +17,7 @@ class User extends Component {
 					<h2>{username}s Decks</h2>
 				</Row>
 				<Row>
-					<DeckSearch filters={ {username: username }} />
+					<DeckSearch filters={ {username: username, invalid: true }} />
 				</Row>
 			</div>
 		)
