@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, message } from 'antd';
 import DeckStats from './DeckStats';
+import AttributesList from 'Partials/AttributesList';
 
 import { claimDeck, deleteDeck } from 'Utils/api';
 import DeckExportMenu from './DeckExportMenu';
@@ -47,13 +48,20 @@ class DeckHeader extends Component {
 		const { sumCardQuantity, countCardLevel, claimDeck, deletedDeck } = this;
 		const { cards, deck, loggedin, currentuser } = this.props;
 		const { stattoggle } = this.state;
+
 		const { userid: deckuser } = deck;
+		const tournament = deck.attributes.find( (a) => a.name === "Tournament" ) || null
 
 		return(
 			<Card className="deck-header">
 				<div>
 					<div className="flex-container">
 						<h2 className="deck-name">{deck.name}</h2>
+						<AttributesList attributes={deck.attributes} />
+						{
+							tournament &&
+							<h2 className="deck-score">{ `${tournament.record.wins} Wins | ${tournament.record.losses} Losses`}</h2>
+						}
 						<div className="controls">
 							<Button.Group>
 								<Tooltip placement="top" title="Copy this deck and save it as your own">

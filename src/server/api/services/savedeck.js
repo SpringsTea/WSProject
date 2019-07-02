@@ -40,6 +40,15 @@ module.exports = async (request, response, next) => {
         //Get deck language
         deckdata.lang = DeckLanguage(cardData);
 
+        deckdata.attributes = [];
+        deckdata['attribute-group'].map( (attrname) => {
+            let attribute = { name: attrname };
+            if( attrname === 'Tournament' ){
+                attribute.record = { wins: deckdata['record-wins'] || 0, losses: deckdata['record-losses'] || 0 }
+            }
+            deckdata.attributes.push(attribute);
+        })
+
         //Edit existing deck
         if(deckdata.deckid){
             let user = request.user;
