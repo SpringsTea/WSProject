@@ -3,40 +3,37 @@ import { Tooltip } from 'antd';
 import { getLocale } from 'Utils/cardlocale';
 import { filterCardQuantity } from 'Utils/cardfilter';
 
-class DeckExportText extends Component {
-
+class DeckExportCSV extends Component {
+  
   downloadTxtFile = () => {
     const { deck } = this.props;
 
     let cards = filterCardQuantity(deck.cards);
 
-    let FileName = deck.deckid +".txt";
+    let FileName = deck.deckid +".csv";
     
-    //Create string for deck
-    let DeckData = deck.name + "\n";
+    //CSV Headers
+    let DeckData = "Code,Name,Quantity\n";
     
     //Characters
-    DeckData += "Characters \n";
     cards.filter( (card) => card.cardtype == 'CH' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "\t" + locale.name + "\t" + card.quantity + "\n";
+      DeckData +=  cardcode + "," + "\""+ locale.name + "\"," + card.quantity + "\n";
     })
 
     //Events
-    DeckData += "Events \n";
     cards.filter( (card) => card.cardtype == 'EV' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "\t" + locale.name + "\t" + card.quantity + "\n";
+      DeckData +=  cardcode + "," + "\""+ locale.name + "\"," + card.quantity + "\n";
     })
 
     //Climaxes
-    DeckData += "Climaxes \n";
     cards.filter( (card) => card.cardtype == 'CX' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "\t" + locale.name + "\t" + card.quantity + "\n";
+      DeckData +=  cardcode + "," + "\""+ locale.name + "\"," + card.quantity + "\n";
     })
 
     const element = document.createElement("a");
@@ -49,13 +46,13 @@ class DeckExportText extends Component {
 
   render() {
     return (
-      <Tooltip placement="top" title="Export this deck as a text file">
+      <Tooltip placement="top" title="Export this deck as a comma-separted value file for spreadsheet software">
       <span onClick={this.downloadTxtFile}>
-        Text File (.txt)
+        Comma-separated Value (.csv)
       </span>
       </Tooltip>
     );
   }
 }
 
-export default DeckExportText;
+export default DeckExportCSV;
