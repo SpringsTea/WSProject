@@ -24,6 +24,7 @@ module.exports = {
     "RG/W26-023": -1,  // Sisters
     "GG/S23-085": -1,  // Young Hideauze Lifeform
     "GG/S23-087": -1,  // Whalesquid
+    "GGO/S59-088": -1, // ZEMAL, Machineguns are fun
     "SG/W19-038": -1,  // Noise (Episode 4)
     "KS/W55-089": -1,  // "Walking on the Street" Axis Cultist
     "KI/S44-015": -1,  // Goromin
@@ -62,6 +63,7 @@ module.exports = {
     "DG/S03-TE12": -1,  // Reborn Krichevskoy TD
     "PD/S29-E046": 8,   // Hatsune Miku "Conflict"
     "GL/S52-E094": -1,  // Mugann
+    "GGO/S59-E088": -1, // ZEMAL buff boys 
     "KS/W49-E057": -1,  // Cabbage
     "BD/W47-TE11": 5,   // My Favorite item
     "MM/W35-E091": -1,  // Kyubey Going "Kyu"

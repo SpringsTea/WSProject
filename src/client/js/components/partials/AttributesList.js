@@ -10,9 +10,13 @@ class AttributesList extends Component {
 		return(
 			<div className="container-attributes">
 				{
-					attributes.map( (attr, i) => <Icon title={attr.name} key={i}
-						type={attributeIcons[attr.name].icon} className={attributeIcons[attr.name].class} />
-					)
+					attributes.map( (attr = {}, i) => {
+
+						let idata = attributeIcons[attr.name] || {};
+
+						return <Icon title={attr.name} key={i}
+						type={idata.icon} className={idata.class} />
+					})
 				}
 			</div>
 		)
