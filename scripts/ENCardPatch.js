@@ -1,5 +1,6 @@
 const config = require('../src/server/config/mongo.js')
 const mongoose = require('mongoose')
+var ObjectId = mongoose.Types.ObjectId;
 
 const { readdirSync, readFileSync, statSync } = require('fs')
 const { join } = require('path')
@@ -36,7 +37,6 @@ WSS_SERIES.forEach( (FILE) => {
 
   setContent.forEach( async (sourcecard) => {
     let series = await SeriesModel.findOne({lang: 'EN', side: sourcecard.side, release: sourcecard.release}); 
-
     let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, 'sid': sourcecard.sid, 'lang': 'EN'});
 
     if( remotecard ){
@@ -91,6 +91,7 @@ WSS_SERIES.forEach( (FILE) => {
         }
       })
     }  
-    
+    series.hash = new ObjectId();//Generate new hash each time cards in a series have been updated
+    series.save();
   })
 })
