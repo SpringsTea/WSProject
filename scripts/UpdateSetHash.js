@@ -33,5 +33,4 @@ let serieses = SeriesModel.find(filters).then( (res) => {
 
 		console.log(`${series.name} updated`)
 	})
-	process.exit()
 } )
