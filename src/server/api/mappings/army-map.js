@@ -41,6 +41,7 @@ module.exports = {
     "GZL/S54-T01": -1, // Godzilla birdy
     "GZL/S54-T02": -1, // Sudden Mutation
     "GZL/S54-T03": -1, // Wild Animal
+    "GZL/SE33-07": -1,  // "Listen Closely" Old man
     "RZ/S55-015": -1,  // Fingertips
     "RZ/S55-008": -1,  // Invisible hand
     "KS/W49-057": -1,  // Cabbage
