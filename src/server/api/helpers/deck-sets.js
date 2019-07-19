@@ -18,7 +18,5 @@ module.exports = async(deck, carddata) => {
 
 	}
 
-	console.log(deckSets);
-
 	return Array.from(deckSets);
 }
