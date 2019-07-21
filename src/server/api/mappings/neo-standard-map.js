@@ -64,7 +64,7 @@ module.exports = {
     "Miku": ["PD"],
     "Milky Holmes": ["MK","MK2"],
     "Monogatari Series": ["BM","NM","MG"],
-    "Nanoha": ["NS","N1","NV","NA","N2","NR"],
+    "Nanoha": ["NS","N1","NV","NA","N2","NR", "ND"],
     "Nichijou": ["NJ"],
     "Nisekoi": ["NK"],
     "No Game No Life": ["NGL"],
