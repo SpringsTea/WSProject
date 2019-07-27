@@ -33,6 +33,15 @@ export let sortall = (a,b) => {
     return 1
   }
 
+  //Sort by id last so that sorted lists are always consistant
+  //With out this, the order of cards can varry depending on their original order in the array
+  if( a._id < b._id ){
+    return -1
+  }
+  if( a._id > b._id ){
+    return 1
+  }
+
   return 0
 }
 
@@ -50,6 +59,13 @@ export let sortlevel = (a,b) => {
     return -1
   }
   if( a.cost > b.cost ){
+    return 1
+  }
+  
+  if( a._id < b._id ){
+    return -1
+  }
+  if( a._id > b._id ){
     return 1
   }
 
