@@ -43,7 +43,7 @@ app.use(
       saveUninitialized: true,
       store: new MongoStore({ mongooseConnection: mongoose.connection}),
       cookie: {
-        secure: true,
+        secure: process.env.PROD == 'true' ? true : false,
         maxAge: 365 * 24 * 60 * 60 * 1000
       }
     })
