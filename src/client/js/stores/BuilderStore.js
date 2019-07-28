@@ -115,7 +115,8 @@ const BuilderStore = {
         break;
       case AT.REMOVE_DECK_CARD:
         let indextoremove = deck.findIndex( (el) => el._id === props.card._id )
-        deck.splice(indextoremove, 1);
+
+        deck.splice(indextoremove, indextoremove >= 0 ? 1 : 0);
         break;
       case AT.FILTER_BUILDER:
 

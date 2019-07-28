@@ -2,6 +2,7 @@
 
 import EventEmitter from 'events';
 import { render } from 'react-dom';
+import queryString from 'query-string';
 
 import {
   receiveDecks,
@@ -36,12 +37,14 @@ const domLoaded = new Promise(res =>
   }),
 );
 
+const qs = queryString.parse(location.search);
+
 async function loadUserDecks(username = true) {
   const [
     decks,
     serieses,
   ] = await Promise.all([
-    searchDeck({username: username, invalid:true}),
+    searchDeck({username: username, invalid:true, ...qs}),
     fetchSerieses()
   ]);
 
@@ -58,5 +61,5 @@ WS.event.on('page.header', async props => {
 WS.event.on('user.load', async props => {
   await loadUserDecks(props.username);
   await domLoaded;
-  render( <User username={props.username} />, document.querySelector(props.el));
+  render( <User filters={qs} username={props.username} />, document.querySelector(props.el));
 })
