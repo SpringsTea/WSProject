@@ -6,6 +6,7 @@ import DeckFilters from './DeckFilters';
 
 import DeckSearchStore from '../../stores/DeckSearchStore';
 import { searchDeck } from 'Utils/api';
+import setParam from 'Utils/querystringman';
 import { receiveDecks } from 'Actions/DeckSearchActions';
 
 const buildState = () => ({
@@ -35,7 +36,9 @@ class DeckSearch extends Component {
     const { updateDecks } = this;
     let { filters } = this.state;
 
-    filters[prop] = value;
+    let val = value ? value : undefined;//setting undefined fill remove key from querystring
+
+    filters[prop] = val;
     this.setState({filters}, updateDecks);
   }
 
@@ -47,7 +50,7 @@ class DeckSearch extends Component {
       return false;
     }
 
-    filters.text = value;
+    filters.text = value ? value : undefined;
     this.setState({filters}, updateDecks);
   })
 
@@ -58,7 +61,9 @@ class DeckSearch extends Component {
     handleLoading(true);
     const [decks] = await Promise.all([
       searchDeck(filters)
-    ]); 
+    ]);   
+
+    setParam({...filters, ...{invalid: undefined, username: undefined}})
 
     receiveDecks(decks);
     handleLoading(false);    
