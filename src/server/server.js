@@ -56,8 +56,6 @@ app.use(passport.session());
 let routes = require('./routes');
 app.use(routes);
 
-http.createServer(app).listen(8080, () => console.log("Listening on port 8080!"));
-
 if( process.env.PROD == 'true' ){
 	let privateKey = fs.readFileSync('src/server/config/keys/privateKey.key');
 	let certificate = fs.readFileSync('src/server/config/keys/certificate.crt');
@@ -66,4 +64,7 @@ if( process.env.PROD == 'true' ){
 	    key: privateKey,
 	    cert: certificate
 	}, app).listen(8081, () => console.log("Listening on port 8081!"));
+}
+else{
+  http.createServer(app).listen(8080, () => console.log("Listening on port 8080!"));
 }
