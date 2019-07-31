@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { List } from 'antd';
 
 import CardSelector from './CardSelector';
+import CardSelectorV from './CardSelectorV';
 import Header from '../partials/Builder/Deck/Header';
 
 import { sortlevel } from 'Utils/cardsort';
@@ -10,7 +11,7 @@ import { filterCardQuantity } from 'Utils/cardfilter';
 class Deck extends Component {
 
 	state = { 
-		decksize: 0 
+		visual: true,
 	} 
 
 	shouldComponentUpdate(nextProps, nextState){ 
@@ -19,6 +20,7 @@ class Deck extends Component {
 
 	render(){
 		const { cards } = this.props;
+		const { visual } = this.state;
 		let deckcards = filterCardQuantity(cards);
 
 		return(
@@ -26,16 +28,16 @@ class Deck extends Component {
 				<Header cards={cards}/>
 				<div className="deck-body">
 					<div>Characters</div>
-						<div className="CH card-category">
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CH' ).sort(sortlevel) } quantity />
+						<div className={`CH card-category ${visual === true ? 'visual' : ''}`}>
+							<CardSelectorV cards={deckcards.filter( (card) => card.cardtype === 'CH' ).sort(sortlevel) } quantity />
 						</div>
 					<div>Events</div>
-						<div className="EV card-category">
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'EV' ).sort(sortlevel)} quantity />
+						<div className={`EV card-category ${visual === true ? 'visual' : ''}`}>
+							<CardSelectorV cards={deckcards.filter( (card) => card.cardtype === 'EV' ).sort(sortlevel)} quantity />
 						</div>
 					<div>Climaxes</div>
-						<div className="CX card-category">
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CX' ).sort(sortlevel)} quantity />
+						<div className={`CX card-category ${visual === true ? 'visual' : ''}`}>
+							<CardSelectorV cards={deckcards.filter( (card) => card.cardtype === 'CX' ).sort(sortlevel)} quantity />
 						</div>
 				</div>
 			</div>
