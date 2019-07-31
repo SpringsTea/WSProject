@@ -49,6 +49,12 @@ class CardSelector extends Component {
 							</Col>
 						})
 					}
+					{
+						cards.length == 0 &&
+						<div style={{textAlign: 'center', color: 'rgba(0, 0, 0, 0.25)', height: '30px'}}>
+							No Cards
+						</div>
+					}
 				</Row>
 			</div>
 		)
