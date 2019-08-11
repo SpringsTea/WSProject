@@ -9,6 +9,7 @@ module.exports = {
     "Angel Beats! / Kud": ["AB","KW"],
     "Attack on Titan": ["AOT"],
     "Bang Dream": ["BD"],
+    "Batman Ninja": ["BNJ"],
     "Black Rock Shooter": ["BR"],
     "Bunny Girl Senpai": ["SBY"],
     "CANAAN": ["CN"],
