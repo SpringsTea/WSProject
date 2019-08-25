@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { List } from 'antd';
+import { List, Radio, Icon } from 'antd';
 
 import CardSelector from './CardSelector';
+import CardSelectorV from './CardSelectorV';
 import Header from '../partials/Builder/Deck/Header';
 
 import { sortlevel } from 'Utils/cardsort';
@@ -10,32 +11,51 @@ import { filterCardQuantity } from 'Utils/cardfilter';
 class Deck extends Component {
 
 	state = { 
-		decksize: 0 
+		selector: localStorage.getItem("encore-card-selector") || 'visual',
 	} 
 
 	shouldComponentUpdate(nextProps, nextState){ 
-		return this.props.cards.length !== nextProps.cards.length;
+		return this.props.cards.length !== nextProps.cards.length || this.state.selector !== nextState.selector;
 	} 
 
+	switchSelectorType = (value) => {
+
+		localStorage.setItem('encore-card-selector', value);
+		this.setState({selector: value});
+	}
+
 	render(){
+		const { switchSelectorType } = this;
 		const { cards } = this.props;
+		const { selector } = this.state;
 		let deckcards = filterCardQuantity(cards);
+
+		const SelectorComponent = selector === 'visual' ? CardSelectorV : CardSelector;
 
 		return(
 			<div className="container-deck nice-scroll">
 				<Header cards={cards}/>
+				<Radio.Group className="selector-control" size='small' defaultValue={selector} 
+				onChange={ (e) => switchSelectorType(e.target.value) }>
+					<Radio.Button value="visual">
+						<Icon type="appstore" />
+					</Radio.Button>
+					<Radio.Button value="list">
+						<Icon type="menu" />
+					</Radio.Button>
+				</Radio.Group>
 				<div className="deck-body">
 					<div>Characters</div>
-						<div className="CH card-category">
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CH' ).sort(sortlevel) } quantity />
+						<div className={`CH card-category ${selector}`}>
+							<SelectorComponent cards={deckcards.filter( (card) => card.cardtype === 'CH' ).sort(sortlevel) } quantity />
 						</div>
 					<div>Events</div>
-						<div className="EV card-category">
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'EV' ).sort(sortlevel)} quantity />
+						<div className={`EV card-category ${selector}`}>
+							<SelectorComponent cards={deckcards.filter( (card) => card.cardtype === 'EV' ).sort(sortlevel)} quantity />
 						</div>
 					<div>Climaxes</div>
-						<div className="CX card-category">
-							<CardSelector cards={deckcards.filter( (card) => card.cardtype === 'CX' ).sort(sortlevel)} quantity />
+						<div className={`CX card-category ${selector}`}>
+							<SelectorComponent cards={deckcards.filter( (card) => card.cardtype === 'CX' ).sort(sortlevel)} quantity />
 						</div>
 				</div>
 			</div>

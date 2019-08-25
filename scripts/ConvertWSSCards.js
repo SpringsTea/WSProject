@@ -11,7 +11,7 @@ const { readdirSync, readFileSync, writeFile, statSync } = require('fs')
 const { join, extname } = require('path')
 var LOCALE = process.env.LOCALE || 'EN';
 var WSS_PATH = process.env.WSS_PATH || `./Cards/${LOCALE}/`;
-var SETDATA_PATH = `./SetData/${LOCALE}/`;
+var SETDATA_PATH = `./SetData/${LOCALE == 'EN' ? 'JP' : LOCALE}/`;
 
 var WSS_SERIES = readdirSync(WSS_PATH).filter(f => statSync(join(WSS_PATH, f)).isDirectory())
 

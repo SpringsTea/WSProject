@@ -1,4 +1,4 @@
-@import "colors.less";
+@import "variables.less";
 
 .container-builder{
 	padding: 5px;
@@ -19,22 +19,42 @@
 			}
 		}
 
+		.selector-control{
+			margin-top: 3px;
+		}
+
 		.card-category{
-			overflow-y: auto;	
-		}
+			overflow-y: auto;
 
-		.CH{
-			max-height: 450px;
-			flex-grow: 1;			
-		}
+			&:not(.visual){
+				&.CH{
+					max-height: 450px;
+					flex-grow: 1;			
+				}
 
-		.EV{
-			max-height: 100px;
-		}
+				&.EV{
+					max-height: 100px;
+				}
 
-		.CX{
-			max-height: 100px;
-		}
+				&.CX{
+					max-height: 100px;
+				}
+			}
+
+			&.visual{
+				&.CH{
+					max-height: 600px;
+				}
+
+				&.EV{
+					max-height: 300px;
+				}
+
+				&.CX{
+					max-height: 300px;
+				}
+			}
+		}		
 	}
 
 	.btn-deck-save{
@@ -101,4 +121,28 @@
 			background-color: @ws-purple-bright;
 		}
 	}
+}
+
+.visual-card-item{
+	text-align: center;
+
+	.cardimage{
+		height: @card-height;
+	}
+
+	.image-not-found{
+		font-size: 8em;
+	}
+
+	.name{
+		height: 3em;
+		overflow-y: auto;
+	}
+
+	.controls{
+		margin-top: 3px;
+		display: flex; 
+    	justify-content: space-between;
+	}
+	
 }
