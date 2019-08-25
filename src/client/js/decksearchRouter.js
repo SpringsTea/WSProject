@@ -3,6 +3,7 @@
 import EventEmitter from 'events';
 import React from 'react';
 import { render } from 'react-dom';
+import queryString from 'query-string';
 
 import {
   receiveDecks,
@@ -36,6 +37,8 @@ const domLoaded = new Promise(res =>
   }),
 );
 
+const qs = queryString.parse(location.search);
+
 // Route via events
 WS.event.on('page.header', async props => {
   await domLoaded;
@@ -45,15 +48,16 @@ WS.event.on('page.header', async props => {
 WS.event.on('decksearch.load', async props => {
   await loadDeckSearchData();
   await domLoaded;
-  render( <DeckSearch />, document.querySelector(props.el));
+  render( <DeckSearch filters={qs} />, document.querySelector(props.el));
 })
 
 async function loadDeckSearchData() {
+
   const [
     decks,
     serieses,
   ] = await Promise.all([
-    searchDeck({}),
+    searchDeck(qs),
     fetchSerieses()
   ]);
 

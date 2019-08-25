@@ -126,7 +126,7 @@ class DeckHeader extends Component {
 						{ deck.description }
 						</div>
 					</Col>
-					<Col className="display">
+					<Col xl={6} className="display set-tags">
 						Sets: { deck.sets.map( (set) => <Tag key={set._id}>{`${set.name}(${set.set}/${set.side}${set.release})`}</Tag> ) }
 					</Col>
 				</Row>

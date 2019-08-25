@@ -23,14 +23,14 @@ module.exports = async (req, res) => {
     
     let username = req.body.username, email = req.body.email, password = req.body.password;
     try {
-        let emailQuery = await User.find({email: email});
+        let emailQuery = await User.find({email: new RegExp(email, "i")});
         if (emailQuery.length >=1) {
             return res.status(422).json({
                 success: false,
                 message: 'Error: That email is already in use'
             })
         }
-        let usernameQuery = await User.find({name: username});
+        let usernameQuery = await User.find({name: new RegExp(username, "i")});
         if (usernameQuery.length >= 1) {
             return res.status(422).json({
                 success: false,

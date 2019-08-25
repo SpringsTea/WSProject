@@ -41,7 +41,11 @@ app.use(
       name: 'encoresesssionid',
       resave: true,
       saveUninitialized: true,
-      store: new MongoStore({ mongooseConnection: mongoose.connection})
+      store: new MongoStore({ mongooseConnection: mongoose.connection}),
+      cookie: {
+        secure: process.env.PROD == 'true' ? true : false,
+        maxAge: 365 * 24 * 60 * 60 * 1000
+      }
     })
 );
 
@@ -52,7 +56,15 @@ app.use(passport.session());
 let routes = require('./routes');
 app.use(routes);
 
-http.createServer(app).listen(8080, () => console.log("Listening on port 8080!"));
+const httpApp = app;
+
+if( process.env.PROD == 'true' ){
+  httpApp.get("*", function (req, res, next) { //redirect to https equivilant page
+    res.redirect("https://" + req.headers.host + "/" + req.path);   
+  });
+}
+
+http.createServer(httpApp).listen(8080, () => console.log("Listening on port 8080!"));
 
 if( process.env.PROD == 'true' ){
 	let privateKey = fs.readFileSync('src/server/config/keys/privateKey.key');

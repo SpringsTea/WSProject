@@ -88,7 +88,8 @@ module.exports = async ({query:params, user}, response, next) => {
         }
 
         if( params.attributes ){
-            query['attributes.name'] = { $all: params.attributes};
+            query['attributes.name'] = Array.isArray(params.attributes) ? { $all: params.attributes} : params.attributes;
+            console.log(query['attributes.name'])
         }
 
         await Deck.paginate(query, options, (err, result) => {

@@ -24,6 +24,7 @@ module.exports = {
     "RG/W26-023": -1,  // Sisters
     "GG/S23-085": -1,  // Young Hideauze Lifeform
     "GG/S23-087": -1,  // Whalesquid
+    "GGO/S59-088": -1, // ZEMAL, Machineguns are fun
     "SG/W19-038": -1,  // Noise (Episode 4)
     "KS/W55-089": -1,  // "Walking on the Street" Axis Cultist
     "KI/S44-015": -1,  // Goromin
@@ -40,6 +41,7 @@ module.exports = {
     "GZL/S54-T01": -1, // Godzilla birdy
     "GZL/S54-T02": -1, // Sudden Mutation
     "GZL/S54-T03": -1, // Wild Animal
+    "GZL/SE33-07": -1,  // "Listen Closely" Old man
     "RZ/S55-015": -1,  // Fingertips
     "RZ/S55-008": -1,  // Invisible hand
     "KS/W49-057": -1,  // Cabbage
@@ -51,6 +53,7 @@ module.exports = {
     "AOT/S35-E094": -1, //"Predation" Titan
     "AOT/S50-E088": -1, // "Pursuit" Titan
     "AOT/S50-E095": -1, // "Invasion" Titan
+    "BNJ/SX01-078": -1, // Bat Clan
     "SY/WE09-E19": 8,  // Endless Eight
     "KC/S25-E166": -1,  // Maruyu, Type 3 Submerged Transport Ship
     "KC/S31-E020": -1,  // Maruyu, Type 3 Submerged Transport Maruyu-Kai
@@ -62,7 +65,10 @@ module.exports = {
     "DG/S03-TE12": -1,  // Reborn Krichevskoy TD
     "PD/S29-E046": 8,   // Hatsune Miku "Conflict"
     "GL/S52-E094": -1,  // Mugann
+    "GGO/S59-E088": -1, // ZEMAL buff boys 
     "KS/W49-E057": -1,  // Cabbage
     "BD/W47-TE11": 5,   // My Favorite item
     "MM/W35-E091": -1,  // Kyubey Going "Kyu"
+    "RZ/S55-E015": -1,  // Fingertips
+    "RZ/S55-E008": -1,  // Invisible hand
 }

@@ -1,5 +1,7 @@
 const config = require('../src/server/config/mongo.js')
 const mongoose = require('mongoose')
+var ObjectId = mongoose.Types.ObjectId;
+
 const { readdirSync, readFileSync, statSync } = require('fs')
 const { join } = require('path')
 
@@ -42,6 +44,8 @@ WSS_SERIES.forEach( (FILE) => {
     //If series hasnt been fetched yet, or the card does not match the series of the previous cards
     if( series == null || series.side != sourcecard.side || series.release != sourcecard.release ){
       series = await SeriesModel.findOne({lang: 'JP', side: sourcecard.side, release: sourcecard.release});
+      series.hash = new ObjectId(); //Generate new hash each time cards in a series have been updated
+      series.save();
     } 
 
     let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, sid: sourcecard.sid, lang: 'JP'});
