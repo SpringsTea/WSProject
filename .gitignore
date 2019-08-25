@@ -17,3 +17,4 @@ scripts/Cards/
 scripts/SetData/
 
 .env
+mongo.js

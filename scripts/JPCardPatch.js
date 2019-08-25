@@ -62,7 +62,9 @@ WSS_SERIES.forEach( (FILE) => {
       //Never override existing series because sometime is has to be manually set because fuck bushi
       if( remotecard.series == null ){
         remotecard.series = series ? series._id : null;
-      }      
+      }
+
+      remotecard.cardtype = sourcecard.cardtype;      
 
       remotecard.save();
       console.log('Card Saved', remotecard._id);
