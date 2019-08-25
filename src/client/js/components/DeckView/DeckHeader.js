@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, message } from 'antd';
 import DeckStats from './DeckStats';
 import AttributesList from 'Partials/AttributesList';
+import DeckExportMenu from './DeckExportMenu';
 
 import { claimDeck, deleteDeck } from 'Utils/api';
-import DeckExportMenu from './DeckExportMenu';
 
 class DeckHeader extends Component {
 
@@ -70,7 +70,6 @@ class DeckHeader extends Component {
 										Fork
 									</Button>
 								</Tooltip>
-								<DeckExportMenu cards={cards} deck={deck} />
 							{
 								deckuser && deckuser._id === currentuser &&
 								<Button type="primary" icon="edit"
@@ -78,6 +77,7 @@ class DeckHeader extends Component {
 									Edit
 								</Button>
 							}
+								<DeckExportMenu cards={cards} deck={deck} />
 							{
 								deckuser && deckuser._id === currentuser &&
 								<Popconfirm placement="bottomLeft" title={"Are you sure?"} onConfirm={deletedDeck} okText="Yes" cancelText="No">

@@ -10,7 +10,7 @@ class DeckExportCSV extends Component {
 
     let cards = filterCardQuantity(deck.cards);
 
-    let FileName = deck.deckid +".csv";
+    let FileName = deck.name +".csv";
     
     //CSV Headers
     let DeckData = "Code,Name,Quantity\n";
@@ -19,21 +19,21 @@ class DeckExportCSV extends Component {
     cards.filter( (card) => card.cardtype == 'CH' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "," + "\""+ locale.name + "\"," + card.quantity + "\n";
+      DeckData +=  cardcode + "," + locale.name + "," + card.quantity + "\n";
     })
 
     //Events
     cards.filter( (card) => card.cardtype == 'EV' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "," + "\""+ locale.name + "\"," + card.quantity + "\n";
+      DeckData +=  cardcode + "," + locale.name + "," + card.quantity + "\n";
     })
 
     //Climaxes
     cards.filter( (card) => card.cardtype == 'CX' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "," + "\""+ locale.name + "\"," + card.quantity + "\n";
+      DeckData +=  cardcode + "," + locale.name + "," + card.quantity + "\n";
     })
 
     const element = document.createElement("a");

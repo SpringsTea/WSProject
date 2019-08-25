@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Menu, Dropdown, Icon } from 'antd';
+import { Button, Menu, Dropdown, Icon, Tooltip } from 'antd';
 import DeckExportText from './DeckExportText';
 import DeckExportCSV from './DeckExportCSV';
 
@@ -16,9 +16,11 @@ class DeckExportMenu extends Component {
 
 		return(
             <Dropdown overlay={menu}>
-            <Button type="primary">
-                <Icon type="export" /> Export Deck As <Icon type="down" />
-            </Button>
+              <Tooltip title="Export deck to various file types" >
+                <Button type="primary">
+                    <Icon type="export" /> Export <Icon type="down" />
+                </Button>
+              </Tooltip>
             </Dropdown>
 		);
 	}
