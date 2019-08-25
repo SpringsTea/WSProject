@@ -10,7 +10,7 @@ class DeckExportText extends Component {
 
     let cards = filterCardQuantity(deck.cards);
 
-    let FileName = deck.deckid +".txt";
+    let FileName = deck.name +".txt";
     
     //Create string for deck
     let DeckData = deck.name + "\n";
