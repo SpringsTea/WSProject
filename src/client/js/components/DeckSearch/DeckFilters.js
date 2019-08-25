@@ -11,7 +11,6 @@ class DeckFilters extends Component {
 
 	render(){
 		const { serieses, filters, handleFilter, handleTextFilter } = this.props;
-
 		return(
 			<div className="container-deckfilters">
 				<Row gutter={10}>
@@ -72,6 +71,15 @@ class DeckFilters extends Component {
 							<Checkbox.Group style={{display: 'block', marginTop: '5px'}} 
 								options={Object.keys(attributeIcons)}
 								defaultValue={ Array.isArray(filters.attributes) ? filters.attributes : [filters.attributes]}
+								onChange={(val) => handleFilter(val, 'attributes')}>
+
+							</Checkbox.Group>
+						</div>
+					</Col>
+					<Col xxl={4} xl={6} lg={8} md={12}>
+						<div className="filter">	
+							<span>&nbsp;</span>
+							<Checkbox.Group style={{display: 'block', marginTop: '5px'}} options={Object.keys(attributeIcons)}
 								onChange={(val) => handleFilter(val, 'attributes')}>
 
 							</Checkbox.Group>
