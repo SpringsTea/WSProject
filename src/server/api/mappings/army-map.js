@@ -69,4 +69,6 @@ module.exports = {
     "KS/W49-E057": -1,  // Cabbage
     "BD/W47-TE11": 5,   // My Favorite item
     "MM/W35-E091": -1,  // Kyubey Going "Kyu"
+    "RZ/S55-E015": -1,  // Fingertips
+    "RZ/S55-E008": -1,  // Invisible hand
 }
