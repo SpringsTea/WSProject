@@ -46,6 +46,7 @@ class DeckFilters extends Component {
 								onChange={(val) => handleFilter(val, 'set')}
 								allowClear
 								showSearch
+								dropdownMatchSelectWidth={false}
 							>
 								{
 									serieses.filter((s) => filters.lang ? s.lang === filters.lang : true)//filter by lang if selected
