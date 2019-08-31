@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Button, Badge, Icon, Avatar } from 'antd';
 import Img from 'react-image';
 
+const ButtonGroup = Button.Group;
+
 import CardItemIcon from './CardItemIcon';
 
 import { addDeckCard, removeDeckCard, selectCard } from 'Actions/BuilderActions';
@@ -29,8 +31,10 @@ class CardItem extends Component {
 					</div>
 				</Badge>
 				<div className="controls">
-					<Button icon="minus" className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
-					<Button icon="plus" className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
+					<ButtonGroup>
+						<Button icon="minus" className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
+						<Button icon="plus" className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
+					</ButtonGroup>
 				</div>
 			</div>
 		)
