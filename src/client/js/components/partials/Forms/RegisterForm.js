@@ -46,13 +46,13 @@ class RegisterForm extends Component {
   }
 
   checkCharicters = (rule, value, callback) => {
-    let invalidchars = /^[^\\\/& ]*$/
+    let invalidchars = /^[^\\\/& #%{}\?\[\]]*$/
 
     if( value.match(invalidchars) ){
       callback();
     }
     else{
-      callback("Username can not contain slashes or spaces")
+      callback("Username can not contain slashes, spaces, or other special characters")
     }
   }
 
