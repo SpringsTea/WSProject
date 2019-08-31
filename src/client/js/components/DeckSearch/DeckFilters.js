@@ -46,6 +46,7 @@ class DeckFilters extends Component {
 								onChange={(val) => handleFilter(val, 'set')}
 								allowClear
 								showSearch
+								dropdownMatchSelectWidth={false}
 							>
 								{
 									serieses.filter((s) => filters.lang ? s.lang === filters.lang : true)//filter by lang if selected
@@ -71,15 +72,6 @@ class DeckFilters extends Component {
 							<Checkbox.Group style={{display: 'block', marginTop: '5px'}} 
 								options={Object.keys(attributeIcons)}
 								defaultValue={ Array.isArray(filters.attributes) ? filters.attributes : [filters.attributes]}
-								onChange={(val) => handleFilter(val, 'attributes')}>
-
-							</Checkbox.Group>
-						</div>
-					</Col>
-					<Col xxl={4} xl={6} lg={8} md={12}>
-						<div className="filter">	
-							<span>&nbsp;</span>
-							<Checkbox.Group style={{display: 'block', marginTop: '5px'}} options={Object.keys(attributeIcons)}
 								onChange={(val) => handleFilter(val, 'attributes')}>
 
 							</Checkbox.Group>

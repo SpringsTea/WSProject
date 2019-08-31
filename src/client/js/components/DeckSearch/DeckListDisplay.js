@@ -3,6 +3,7 @@ import { Row, Col, Pagination, Spin } from 'antd';
 
 import { searchDeck } from 'Utils/api';
 import { receiveDecks } from 'Actions/DeckSearchActions';
+import setParam from 'Utils/querystringman';
 
 import DeckCard from '../partials/DeckSearch/DeckCard';
 
@@ -20,6 +21,8 @@ class DeckListDisplay extends Component {
 		] = await Promise.all([
 			searchDeck({...filters, page: page}),
 		]);
+
+		setParam({...filters, ...{invalid: undefined, username: undefined, page: page}})
 
 		receiveDecks(pages);
 		setLoading(false);
@@ -48,7 +51,7 @@ class DeckListDisplay extends Component {
 						</div>
 					}
 				</div>
-				<Pagination className="pagination" defaultCurrent={pages.page} total={pages.totalDecks} 
+				<Pagination className="pagination" current={pages.page} total={pages.totalDecks} 
 					defaultPageSize={pages.pagelimit} onChange={handlePaginate} />
 			</Spin>
 		)
