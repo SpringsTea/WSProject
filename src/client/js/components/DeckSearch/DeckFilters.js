@@ -76,15 +76,6 @@ class DeckFilters extends Component {
 							</Checkbox.Group>
 						</div>
 					</Col>
-					<Col xxl={4} xl={6} lg={8} md={12}>
-						<div className="filter">	
-							<span>&nbsp;</span>
-							<Checkbox.Group style={{display: 'block', marginTop: '5px'}} options={Object.keys(attributeIcons)}
-								onChange={(val) => handleFilter(val, 'attributes')}>
-
-							</Checkbox.Group>
-						</div>
-					</Col>
 				</Row>
 			</div>
 		)
