@@ -60,10 +60,10 @@ class DeckSearch extends Component {
 
     handleLoading(true);
     const [decks] = await Promise.all([
-      searchDeck(filters)
+      searchDeck({...filters, page: 1})
     ]);   
 
-    setParam({...filters, ...{invalid: undefined, username: undefined}})
+    setParam({...filters, ...{invalid: undefined, username: undefined, page:1}})
 
     receiveDecks(decks);
     handleLoading(false);    
