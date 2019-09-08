@@ -91,7 +91,7 @@ module.exports = async(deck, carddata) => {
 
     if (neoStandardSets.length > 0) {
         deckLegality.neoLegal = true; 
-        deckLegality.neoSets = neoStandardSets.map( (set) => set.name );
+        deckLegality.neoSets = neoStandardSets.map( (set) => set._id );
     }
     else{
         deckLegality.failReason = `Sets not neo legal: ${setArray.join(',')}`
