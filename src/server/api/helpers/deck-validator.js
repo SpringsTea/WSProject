@@ -96,6 +96,9 @@ module.exports = (deck, carddata) => {
         deckLegality.failReason = null;
         deckLegality.neoSets = neoStandardSets;
     }
+    else{
+        deckLegality.failReason = `Sets not neo legal: ${setArray.join(',')}`
+    }
 
     return deckLegality;
 };
