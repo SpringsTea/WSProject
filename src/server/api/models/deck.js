@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
-import shortid from 'shortid';
-import mongoosePaginate from 'mongoose-paginate-v2';
+const mongoose = require('mongoose')
+const shortid = require('shortid');
+const mongoosePaginate = require('mongoose-paginate-v2');
 
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
