@@ -4,13 +4,15 @@
 const neoStandardMap = require('../mappings/neo-standard-map');
 const armyMap = require('../mappings/army-map');
 
-module.exports = (deck, carddata) => {
+const checkNeoStandard = require('./get-neo-standard-sets');
+
+module.exports = async(deck, carddata) => {
     // deck legality object
     let deckLegality = {
         deckvalid: false,
         neoLegal: false,
         neoSets: [],
-        failReason: "unknown"
+        failReason: null
     };
 
     // check card array length
@@ -84,17 +86,15 @@ module.exports = (deck, carddata) => {
 
     // Check for Neo Standard Legality
     let setArray = Array.from(setCodes);
-    let neoStandardSets = [];
-    for (let neoStandardSet of Object.keys(neoStandardMap)) {
-        if (setArray.every(checkSet => neoStandardMap[neoStandardSet].indexOf(checkSet) > -1)) {
-            neoStandardSets.push(neoStandardSet);
-        };
-    }
+
+    let neoStandardSets = await checkNeoStandard(setArray);
 
     if (neoStandardSets.length > 0) {
         deckLegality.neoLegal = true; 
-        deckLegality.failReason = null;
-        deckLegality.neoSets = neoStandardSets;
+        deckLegality.neoSets = neoStandardSets.map( (set) => set._id );
+    }
+    else{
+        deckLegality.failReason = `Sets not neo legal: ${setArray.join(',')}`
     }
 
     return deckLegality;

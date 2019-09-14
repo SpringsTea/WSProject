@@ -28,6 +28,8 @@ module.exports = {
     "SG/W19-038": -1,  // Noise (Episode 4)
     "KS/W55-089": -1,  // "Walking on the Street" Axis Cultist
     "KI/S44-015": -1,  // Goromin
+    "KR/SE30-47": -1,  // Damashigami
+    "KR/SE30-48": -1,  //Female Damashigami
     "DG/S02-038": -1,  // Prinny
     "DG/S02-T02": -1,  // Prinny again
     "PY/S38-078": -1,  // Red Puyo
