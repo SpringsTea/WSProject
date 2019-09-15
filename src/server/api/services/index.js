@@ -2,6 +2,7 @@
 
 module.exports = {
     GetSeriesList: require('./getserieslist'),
+    GetNeoSetList: require('./getneosetlist'),
     GetSeriesCards: require('./getseriescards'),
     GetDeckById: require('./getdeckbyid'),
     SearchDecks: require('./searchdecks'),
