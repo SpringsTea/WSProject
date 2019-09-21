@@ -5,6 +5,10 @@ export async function fetchSerieses(lang) {
   return (await axios.get(`/api/serieslist/${lang || ''}`)).data;
 }
 
+export async function fetchNeoSets() {
+	return (await axios.get(`/api/neosets`)).data;
+}
+
 //Return a single weiss set
 export async function fetchSeries(seriesid) {
 	return (await axios.get(`/api/series/${seriesid}/cards`)).data;

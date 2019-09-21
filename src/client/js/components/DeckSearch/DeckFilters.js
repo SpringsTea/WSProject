@@ -10,7 +10,7 @@ class DeckFilters extends Component {
 	}
 
 	render(){
-		const { serieses, filters, handleFilter, handleTextFilter } = this.props;
+		const { serieses, neosets, filters, handleFilter, handleTextFilter } = this.props;
 		return(
 			<div className="container-deckfilters">
 				<Row gutter={10}>
@@ -32,6 +32,30 @@ class DeckFilters extends Component {
 								<Option value={'EN'}>
 									English
 								</Option>
+							</Select>
+						</div>
+					</Col>
+					<Col xxl={4} xl={6} lg={8} md={12}>
+						<div className="filter">
+							<span>Neo Standard:</span>
+							<Select
+								style={{width:'100%'}}
+								placeholder="Select a set"
+								defaultValue={filters.neoset}
+								filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+								onChange={(val) => handleFilter(val, 'neoset')}
+								allowClear
+								showSearch
+								dropdownMatchSelectWidth={false}
+							>
+								{
+									neosets.map( (set, i) => 
+										<Option 
+											key={i} 
+											value={set._id}>
+											{`${set.name}`}
+										</Option> )
+								}
 							</Select>
 						</div>
 					</Col>

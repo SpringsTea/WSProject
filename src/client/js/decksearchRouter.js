@@ -8,10 +8,12 @@ import queryString from 'query-string';
 import {
   receiveDecks,
   receiveSerieses,
+  receiveNeoSets,
 } from './actions/DeckSearchActions';
 
 import {
   fetchSerieses,
+  fetchNeoSets,
   searchDeck,
 } from './utils/api'
 
@@ -56,11 +58,14 @@ async function loadDeckSearchData() {
   const [
     decks,
     serieses,
+    neosets,
   ] = await Promise.all([
     searchDeck(qs),
-    fetchSerieses()
+    fetchSerieses(),
+    fetchNeoSets()
   ]);
 
   receiveDecks(decks)
   receiveSerieses(serieses);
+  receiveNeoSets(neosets);
 }

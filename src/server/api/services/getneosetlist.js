@@ -15,7 +15,7 @@ import NeoSet from '../models/neoset'
  */
 module.exports = async (request, response, next) => {
     try {
-        let neosets = await NeoSet.find({enabled: true}).select('-enabled').exec();
+        let neosets = await NeoSet.find({enabled: true}).select('-enabled -__v').exec();
         response.status(200).json(neosets);
     } catch (error) {
         console.log(error);

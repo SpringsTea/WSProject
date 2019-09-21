@@ -7,10 +7,12 @@ import queryString from 'query-string';
 import {
   receiveDecks,
   receiveSerieses,
+  receiveNeoSets,
 } from './actions/DeckSearchActions';
 
 import {
   fetchSerieses,
+  fetchNeoSets,
   searchDeck,
 } from './utils/api'
 
@@ -43,13 +45,16 @@ async function loadUserDecks(username = true) {
   const [
     decks,
     serieses,
+    neosets,
   ] = await Promise.all([
     searchDeck({username: username, invalid:true, ...qs}),
-    fetchSerieses()
+    fetchSerieses(),
+    fetchNeoSets()
   ]);
 
-  receiveDecks(decks)
+  receiveDecks(decks);
   receiveSerieses(serieses);
+  receiveNeoSets(neosets);
 }
 
 // Route via events
