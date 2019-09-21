@@ -4,11 +4,13 @@ import { register } from '../dispatcher';
 
 let decks = [];
 let serieses = [];
+let neosets = [];
 
 const DeckSearchStore = {
   ...Store,
   getDecks: () => decks,
   getSerieses: () => serieses,
+  getNeoSets: () => neosets,
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case AT.DECKS_RECEIVE:
@@ -16,6 +18,9 @@ const DeckSearchStore = {
         break;
       case AT.SERIESES_RECEIVE:
         serieses = props.data;
+        break;
+      case AT.NEOSETS_RECEIVE:
+        neosets = props.data;
         break;
       default: return;
     }

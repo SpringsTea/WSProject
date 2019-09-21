@@ -7,6 +7,10 @@
 import Deck from '../models/deck'
 import User from '../models/user'
 
+const mongoose = require('mongoose')
+
+var ObjectId = mongoose.Types.ObjectId;
+
 /**
  * Search deck given various parameters
  * 
@@ -55,6 +59,10 @@ module.exports = async ({query:params, user}, response, next) => {
         //Filter by one set
         if( params.set ){
             query.sets = params.set;
+        }
+
+        if( params.neoset ){
+            query.neo_sets = ObjectId(params.neoset);
         }
 
         if( params.lang ){

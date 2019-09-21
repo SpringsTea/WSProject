@@ -56,6 +56,7 @@ module.exports = {
     "AOT/S50-E088": -1, // "Pursuit" Titan
     "AOT/S50-E095": -1, // "Invasion" Titan
     "BNJ/SX01-078": -1, // Bat Clan
+    "BNJ/SX01-049": -1, //Monkey Horde
     "SY/WE09-E19": 8,  // Endless Eight
     "KC/S25-E166": -1,  // Maruyu, Type 3 Submerged Transport Ship
     "KC/S31-E020": -1,  // Maruyu, Type 3 Submerged Transport Maruyu-Kai
