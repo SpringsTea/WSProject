@@ -1,7 +1,6 @@
 'use strict';
 
 // mappings
-const neoStandardMap = require('../mappings/neo-standard-map');
 const armyMap = require('../mappings/army-map');
 
 const checkNeoStandard = require('./get-neo-standard-sets');
