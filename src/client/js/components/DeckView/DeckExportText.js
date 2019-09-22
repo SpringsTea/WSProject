@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Tooltip } from 'antd';
+import { Tooltip, Menu } from 'antd';
 import { getLocale } from 'Utils/cardlocale';
 import { filterCardQuantity } from 'Utils/cardfilter';
 
@@ -49,10 +49,10 @@ class DeckExportText extends Component {
 
   render() {
     return (
-      <Tooltip placement="top" title="Export this deck as a text file">
-      <span onClick={this.downloadTxtFile}>
-        Text File (.txt)
-      </span>
+      <Tooltip placement="left" title="Export this deck as a text file">
+        <div onClick={this.downloadTxtFile}>
+          Text File (.txt)
+        </div>
       </Tooltip>
     );
   }
