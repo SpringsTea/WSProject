@@ -32,6 +32,7 @@ module.exports = {
     "KR/SE30-48": -1,  //Female Damashigami
     "DG/S02-038": -1,  // Prinny
     "DG/S02-T02": -1,  // Prinny again
+    "ND/W67-083": -1,  // Mass Production Type
     "PY/S38-078": -1,  // Red Puyo
     "PY/S38-018": -1,  // Yellow Puyo
     "PY/S38-051": -1,  // Green Puyo
