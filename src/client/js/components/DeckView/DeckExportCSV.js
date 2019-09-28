@@ -46,10 +46,10 @@ class DeckExportCSV extends Component {
 
   render() {
     return (
-      <Tooltip placement="top" title="Export this deck as a comma-separted value file for spreadsheet software">
-      <span onClick={this.downloadTxtFile}>
-        Comma-separated Value (.csv)
-      </span>
+      <Tooltip placement="left" title="Export this deck as a comma-separted value file for spreadsheet software">
+        <div onClick={this.downloadTxtFile}>
+          Comma-separated Value (.csv)
+        </div>
       </Tooltip>
     );
   }
