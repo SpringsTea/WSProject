@@ -52,6 +52,7 @@ module.exports = {
     "BD/W47-T11": 5,   // My Favorite item
     "MM/W35-091": -1,  // Kyubey Going "Kyu"
     "SW/S49-042": -1,  // Gamorrean
+    "SW/S49-045": 13, //Max Rebo and the funky bunch
     "JJ/S66-014": 6, //Sex Pistols
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
