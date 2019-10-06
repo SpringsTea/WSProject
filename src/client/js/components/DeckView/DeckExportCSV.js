@@ -13,27 +13,30 @@ class DeckExportCSV extends Component {
     let FileName = deck.name +".csv";
     
     //CSV Headers
-    let DeckData = "Code,Name,Quantity\n";
+    let DeckData = "Code,Quantity,Name\n";
     
     //Characters
     cards.filter( (card) => card.cardtype == 'CH' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "," + locale.name + "," + card.quantity + "\n";
+      var cardname = locale.name.replace('\n',' ');
+      DeckData +=  cardcode + "," + card.quantity + "," + cardname.replace(',',' ') + "\n";
     })
 
     //Events
     cards.filter( (card) => card.cardtype == 'EV' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "," + locale.name + "," + card.quantity + "\n";
+      var cardname = locale.name.replace('\n',' ');
+      DeckData +=  cardcode + "," + card.quantity + "," + cardname.replace(',',' ') + "\n";
     })
 
     //Climaxes
     cards.filter( (card) => card.cardtype == 'CX' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "," + locale.name + "," + card.quantity + "\n";
+      var cardname = locale.name.replace('\n',' ');
+      DeckData +=  cardcode + "," + card.quantity + "," + cardname.replace(',',' ') + "\n";
     })
 
     const element = document.createElement("a");
