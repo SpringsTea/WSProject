@@ -20,7 +20,7 @@ class DeckExportText extends Component {
     cards.filter( (card) => card.cardtype == 'CH' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "\t" + locale.name + "\t" + card.quantity + "\n";
+      DeckData +=  cardcode + "\t" + card.quantity + "\t" + locale.name + "\n";
     })
 
     //Events
@@ -28,7 +28,7 @@ class DeckExportText extends Component {
     cards.filter( (card) => card.cardtype == 'EV' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "\t" + locale.name + "\t" + card.quantity + "\n";
+      DeckData +=  cardcode + "\t" + card.quantity + "\t" + locale.name + "\n";
     })
 
     //Climaxes
@@ -36,7 +36,7 @@ class DeckExportText extends Component {
     cards.filter( (card) => card.cardtype == 'CX' && card.sid).map(function (card, i){
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
-      DeckData +=  cardcode + "\t" + locale.name + "\t" + card.quantity + "\n";
+      DeckData +=  cardcode + "\t" + card.quantity + "\t" + locale.name + "\n";
     })
 
     const element = document.createElement("a");
