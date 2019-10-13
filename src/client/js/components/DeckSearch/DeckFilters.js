@@ -90,15 +90,21 @@ class DeckFilters extends Component {
 							<Input defaultValue={filters.text} placeholder="Search deckname" onChange={(e) => handleTextFilter(e.target.value)} />
 						</div>
 					</Col>
-					<Col xxl={4} xl={6} lg={8} md={12}>
+					<Col xxl={8} xl={6} lg={8} md={12}>
 						<div className="filter">	
-							<span>&nbsp;</span>
 							<Checkbox.Group style={{display: 'block', marginTop: '5px'}} 
 								options={Object.keys(attributeIcons)}
 								defaultValue={ Array.isArray(filters.attributes) ? filters.attributes : [filters.attributes]}
 								onChange={(val) => handleFilter(val, 'attributes')}>
-
 							</Checkbox.Group>
+						</div>
+						<div className="filter">
+							<Checkbox
+								defaultChecked={filters.favorites === "true"}
+					            onChange={(e) => handleFilter(e.target.checked, 'favorites')}
+					        >
+					        	Favorites
+					        </Checkbox>
 						</div>
 					</Col>
 				</Row>

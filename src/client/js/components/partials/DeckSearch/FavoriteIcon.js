@@ -10,7 +10,9 @@ class FavoriteIcon extends Component {
 		const { loggedin, myfavorite, favoritecount,
 			handleFavorite } = this.props;
 		return(
-			<div className={`deck-favorite ${loggedin === "false" ? '' : 'clickable'}`} onClick={handleFavorite}>
+			<div className={`deck-favorite ${loggedin === "false" ? '' : 'clickable'}`} onClick={handleFavorite}
+				title={`${favoritecount} Favorites`}
+			>
 				<span className="fa-stack fa-2x">
 					<FontAwesomeIcon icon={myfavorite ? FillStar : Star} className="fa-stack-2x" />							
 					<strong className={`fa-stack-1x favorite-count ${myfavorite ? 'myfavorite' : ''}`}>{favoritecount}</strong>
