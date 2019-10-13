@@ -44,7 +44,7 @@ WSS_SERIES.forEach( (FILE) => {
       remotecard.locale['EN'] = {
         name: sourcecard.name,
         ability: sourcecard.ability,
-        attributes: sourcecard.attributes
+        attributes: sourcecard.attributes,
         cost: sourcecard.cost,
         level: sourcecard.level
       }
