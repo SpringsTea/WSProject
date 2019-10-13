@@ -22,11 +22,11 @@ module.exports = async ({query:params, user}, response, next) => {
     try {
         const limit = 24;
         let query = {
-            deleted: 0
+            deleted: 0,
         }
 
         const options = {
-            select: '-_id cards datemodified datecreated deckid description name userid valid sets attributes',
+            select: '-_id cards datemodified datecreated deckid description name userid valid sets attributes favoriteusers favoritecount myfavorite',
             sort: { datecreated: -1 },
             page: params.page || 1,
             limit: limit,
@@ -79,9 +79,9 @@ module.exports = async ({query:params, user}, response, next) => {
                 query.userid = user._id;
             }
             else{
-                let user = await User.findOne({name: params.username});
-                if( user ){
-                    query.userid = user._id;
+                let finduser = await User.findOne({name: params.username});
+                if( finduser ){
+                    query.userid = finduser._id;
                 }
             }
         }
@@ -95,15 +95,27 @@ module.exports = async ({query:params, user}, response, next) => {
             }
         }
 
+        if( params.favorites ){
+            query.favoriteusers = query.userid ? query.userid : user._id;
+            delete query.userid;//requesting favorites will any deck a user has favorited, ie ones they didnt make
+        }
+
         if( params.attributes ){
             query['attributes.name'] = Array.isArray(params.attributes) ? { $all: params.attributes} : params.attributes;
-            console.log(query['attributes.name'])
         }
 
         await Deck.paginate(query, options, (err, result) => {
             if (err) throw "Pagination Error"
 
-            response.status(200).json({...result, pagelimit:limit})
+            let decks = Object.assign([],result.decks);
+            decks.forEach(function(deck, i){
+                if(user && deck.favoriteusers.includes(user._id)){
+                    deck.myfavorite = true;
+                }
+                deck.favoriteusers = undefined;//Dont ever want to give this to the user
+            })                
+
+            response.status(200).json({decks: decks, pagelimit:limit})
         })
     } catch (error) {
         console.log(error);

@@ -16,6 +16,10 @@
   "license": "ISC",
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
+    "@fortawesome/fontawesome-svg-core": "^1.2.25",
+    "@fortawesome/free-regular-svg-icons": "^5.11.2",
+    "@fortawesome/free-solid-svg-icons": "^5.11.2",
+    "@fortawesome/react-fontawesome": "^0.1.6",
     "antd": "^3.11.6",
     "axios": "^0.18.0",
     "bcrypt": "^3.0.4",
@@ -61,6 +65,7 @@
     "concurrently": "^4.1.0",
     "copy-webpack-plugin": "^4.5.1",
     "css-loader": "^0.28.11",
+    "file-loader": "^4.2.0",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
     "less": "^3.9.0",

@@ -66,5 +66,5 @@ WS.event.on('page.header', async props => {
 WS.event.on('user.load', async props => {
   await loadUserDecks(props.username);
   await domLoaded;
-  render( <User filters={qs} username={props.username} />, document.querySelector(props.el));
+  render( <User loggedin={props.loggedin} filters={qs} username={props.username} />, document.querySelector(props.el));
 })

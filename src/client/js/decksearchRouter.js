@@ -50,7 +50,7 @@ WS.event.on('page.header', async props => {
 WS.event.on('decksearch.load', async props => {
   await loadDeckSearchData();
   await domLoaded;
-  render( <DeckSearch filters={qs} />, document.querySelector(props.el));
+  render( <DeckSearch loggedin={props.loggedin} filters={qs} />, document.querySelector(props.el));
 })
 
 async function loadDeckSearchData() {

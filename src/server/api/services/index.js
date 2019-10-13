@@ -10,6 +10,7 @@ module.exports = {
     FixDecks: require('./fixdecks'),
     ClaimDeck: require('./claimdeck'),
     DeleteDeck: require('./deletedeck'),
+    FavoriteDeck: require('./favoritedeck'),
     ///////Auth//////
     RegisterUser: require('./auth/registeruser'),
     PasswordReset : require('./auth/resetpassword'),

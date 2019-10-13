@@ -30,7 +30,7 @@ class DeckListDisplay extends Component {
 
 	render(){
 		const { handlePaginate } = this;
-		const { pages, loading } = this.props; 
+		const { pages, loading, loggedin } = this.props; 
 		return(
 			<Spin spinning={loading}>
 				<div className="container-deckdisplay">
@@ -40,7 +40,7 @@ class DeckListDisplay extends Component {
 								{
 									pages.decks.map( (deck) => 
 										<Col xxl={3} xl={4} lg={8} md={12} key={deck.deckid}>
-											<DeckCard deck={deck} /> 
+											<DeckCard deck={deck} loggedin={loggedin} /> 
 										</Col>
 									)
 								}
