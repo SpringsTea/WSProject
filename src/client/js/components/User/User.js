@@ -10,14 +10,14 @@ class User extends Component {
 	}
 
 	render(){
-		const { username, filters } = this.props;
+		const { username, filters, loggedin } = this.props;
 		return(
 			<div className="container-user">
 				<Row>
 					<h2>{username}s Decks</h2>
 				</Row>
 				<Row>
-					<DeckSearch filters={{username: username, invalid: true, ...filters}} />
+					<DeckSearch loggedin={loggedin} filters={{username: username, invalid: true, ...filters}} />
 				</Row>
 			</div>
 		)

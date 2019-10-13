@@ -74,15 +74,16 @@ class DeckSearch extends Component {
 
 	render(){
     const { handleLoading, handleFilter, handleTextFilter } = this;
+    const { loggedin } = this.props;
     const { pages, serieses, neosets, loading, filters } = this.state;
 
 		return(
 			<div className="container-decksearch">
         <DeckFilters 
           handleFilter={handleFilter} handleTextFilter={handleTextFilter} setLoading={handleLoading} 
-          serieses={serieses} neosets={neosets} filters={filters}
+          serieses={serieses} neosets={neosets} filters={filters} loggedin={loggedin}
           />
-        <DeckListDisplay filters={filters} pages={pages} setLoading={handleLoading} loading={loading} />
+        <DeckListDisplay filters={filters} pages={pages} setLoading={handleLoading} loading={loading} loggedin={loggedin} />
 			</div>
 		)
 	}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, message } from 'antd';
 import DeckStats from './DeckStats';
-import AttributesList from 'Partials/AttributesList';
+import AttributesList from 'Partials/DeckSearch/AttributesList';
 import DeckExportMenu from './DeckExportMenu';
 
 import { claimDeck, deleteDeck } from 'Utils/api';

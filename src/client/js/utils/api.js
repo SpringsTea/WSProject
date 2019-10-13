@@ -36,6 +36,14 @@ export async function deleteDeck(deckid) {
 	}) 
 }
 
+export async function favoriteDeck(deckid){
+	return await axios.post(`/api/deck/favorite/${deckid}`).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}
+
 export async function claimDeck(deckid){
 	return await axios.post(`/api/deck/claim/${deckid}`).then((res) => {
 		return res.data

@@ -43,6 +43,12 @@ module.exports = {
         }
       },
       {
+        test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
+        use: [{
+            loader: 'file-loader',
+        }]
+      },
+      {
       test: /\.less$/,
       use: [{
           loader: 'style-loader' // creates style nodes from JS strings
