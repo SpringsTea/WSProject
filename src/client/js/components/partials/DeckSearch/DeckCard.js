@@ -5,7 +5,6 @@ import Img from 'react-image';
 import AttributesList from 'Partials/DeckSearch/AttributesList';
 import FavoriteIcon from 'Partials/DeckSearch/FavoriteIcon';
 
-import { favoriteDeck } from 'Utils/api';
 import { generateCardImageLink } from 'Utils/cardshorthands';
 
 const { Meta } = Card;
@@ -25,33 +24,9 @@ const DeckTitle = ({ name, userid: user, deckid }) =>
 
 class DeckCard extends Component {
 
-	state = {
-		favoritecount: 0,
-		myfavorite: false
-	}
-
-	handleFavorite = async() =>{
-		const { deck, loggedin } = this.props;
-
-		if( loggedin === 'false' ){
-			return false;
-		}
-
-		const { success, favoritecount, myfavorite } = await favoriteDeck(deck.deckid)
-		if(success === true){
-			this.setState({favoritecount, myfavorite:myfavorite});
-		}
-	}
-
-	componentDidMount(){
-		const { deck } = this.props;
-		this.setState({favoritecount: deck.favoritecount, myfavorite: deck.myfavorite})
-	}
-
 	render(){
 		const { handleFavorite } = this;
-		const { deck, loggedin } = this.props; 
-		const { favoritecount, myfavorite } = this.state;
+		const { deck, loggedin } = this.props;
 
 		return(
 			<div className="container-deckcard">
@@ -74,8 +49,7 @@ class DeckCard extends Component {
 						description={deck.description || 'No Description'}
 					/>
 					<AttributesList attributes={deck.attributes} />
-					<FavoriteIcon favoritecount={favoritecount} myfavorite={myfavorite} loggedin={loggedin} 
-						handleFavorite={handleFavorite} />
+					<FavoriteIcon deck={deck} loggedin={loggedin} />
 				</Card>
 			</div>
 		)

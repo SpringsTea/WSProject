@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, message } from 'antd';
 import DeckStats from './DeckStats';
 import AttributesList from 'Partials/DeckSearch/AttributesList';
+import FavoriteIcon from 'Partials/DeckSearch/FavoriteIcon';
 import DeckExportMenu from './DeckExportMenu';
 
 import { claimDeck, deleteDeck } from 'Utils/api';
@@ -48,7 +49,7 @@ class DeckHeader extends Component {
 		const { sumCardQuantity, countCardLevel, claimDeck, deletedDeck } = this;
 		const { cards, deck, loggedin, currentuser } = this.props;
 		const { stattoggle } = this.state;
-
+		
 		const { userid: deckuser } = deck;
 		const tournament = deck.attributes.find( (a) => a.name === "Tournament" ) || null
 
@@ -58,6 +59,7 @@ class DeckHeader extends Component {
 					<div className="flex-container">
 						<h2 className="deck-name">{deck.name}</h2>
 						<AttributesList attributes={deck.attributes} />
+						<FavoriteIcon loggedin={loggedin} deck={deck} />
 						{
 							tournament &&
 							<h2 className="deck-score">{ `${tournament.record.wins} Wins | ${tournament.record.losses} Losses`}</h2>
