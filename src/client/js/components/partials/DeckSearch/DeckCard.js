@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Card, Avatar, Icon } from 'antd';
+import { Card, Avatar, Icon, Badge } from 'antd';
 import Img from 'react-image';
 
-import AttributesList from 'Partials/AttributesList';
+import AttributesList from 'Partials/DeckSearch/AttributesList';
 
+import { favoriteDeck } from 'Utils/api';
 import { generateCardImageLink } from 'Utils/cardshorthands';
 
 const { Meta } = Card;
@@ -22,8 +23,29 @@ const DeckTitle = ({ name, userid: user, deckid }) =>
 </div>;
 
 class DeckCard extends Component {
+
+	state = {
+		favoritecount: 0
+	}
+
+	handleFavorite = async() =>{
+		const { deck } = this.props;
+		const res = await favoriteDeck(deck.deckid)
+		
+		if(res.success === true){
+			this.setState({favoritecount: res.favoritecount});
+		}
+	}
+
+	ComponentWillMount(){
+		const { favoritecount } = this.props;
+		this.setState({favoritecount})
+	}
+
 	render(){
+		const { handleFavorite } = this;
 		const { deck } = this.props; 
+		const { favoritecount } = this.state;
 		return(
 			<div className="container-deckcard">
 				<Card
@@ -45,6 +67,12 @@ class DeckCard extends Component {
 						description={deck.description || 'No Description'}
 					/>
 					<AttributesList attributes={deck.attributes} />
+					<div className="deck-favorite clickable" onClick={handleFavorite}>
+						<span className="fa-stack fa-2x">
+							<i className="far fa-star fa-stack-2x"></i>
+							<strong className="fa-stack-1x favorite-count">{favoritecount}</strong>
+						</span>
+					</div>
 				</Card>
 			</div>
 		)
