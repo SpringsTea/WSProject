@@ -24,7 +24,6 @@ import DeckSearch from './components/DeckSearch/DeckSearch';
 // Styles
 import '../styles/styles.less'
 import '../styles/decksearch.less'
-import '@fortawesome/fontawesome-free/js/all'
 
 // Export the globals we'll want elsewhere
 window.WS = Object.assign(window.WS || {}, {
@@ -51,7 +50,7 @@ WS.event.on('page.header', async props => {
 WS.event.on('decksearch.load', async props => {
   await loadDeckSearchData();
   await domLoaded;
-  render( <DeckSearch filters={qs} />, document.querySelector(props.el));
+  render( <DeckSearch loggedin={props.loggedin} filters={qs} />, document.querySelector(props.el));
 })
 
 async function loadDeckSearchData() {

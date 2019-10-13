@@ -21,7 +21,8 @@ const deckSchema = mongoose.Schema({
 	views: { type: Number, default: 0 },
 	attributes: { type: Array, default: [] },
 	favoriteusers: [{ type: ObjectId, ref: 'User'}],
-	favoritecount: { type: Number, default: 0 }
+	favoritecount: { type: Number, default: 0 },
+	myfavorite: {type: Boolean, default: false},//placeholder value to be assigned on search, should never be set
 }, { collection: 'deck' });
 
 deckSchema.index({ name: 'text', description: 'text' });

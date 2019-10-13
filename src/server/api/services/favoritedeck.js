@@ -27,9 +27,12 @@ module.exports =  async (request, response, next) => {
 
     if(user && deck.error !== true){
 
+        let myfavorite = false;
+
         if( !deck.favoriteusers.includes(user._id) ){
             deck.favoriteusers.push(user._id);
             deck.favoritecount += 1;
+            myfavorite = true;
         }
         else{
             deck.favoriteusers = deck.favoriteusers.filter( (u) => !u.equals(user._id) )
@@ -41,12 +44,12 @@ module.exports =  async (request, response, next) => {
                 response.status(500).json(err)
             }
             else{
-                response.status(200).json({success: true, favoritecount: deck.favoritecount})
+                response.status(200).json({success: true, favoritecount: deck.favoritecount, myfavorite })
             }
         });
         
     }
     else{
-        response.status(500).json(deck); 
+        response.status(500).json({success: false}); 
     }
 }
