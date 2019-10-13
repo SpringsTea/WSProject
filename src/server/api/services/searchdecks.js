@@ -115,7 +115,7 @@ module.exports = async ({query:params, user}, response, next) => {
                 deck.favoriteusers = undefined;//Dont ever want to give this to the user
             })                
 
-            response.status(200).json({decks: decks, pagelimit:limit})
+            response.status(200).json({...result, decks: decks, pagelimit:limit})
         })
     } catch (error) {
         console.log(error);
