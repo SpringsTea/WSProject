@@ -20,6 +20,8 @@ const deckSchema = mongoose.Schema({
 	deleted: { type: Boolean, default: false },
 	views: { type: Number, default: 0 },
 	attributes: { type: Array, default: [] },
+	favoriteusers: [{ type: ObjectId, ref: 'User'}],
+	favoritecount: { type: Number, default: 0 }
 }, { collection: 'deck' });
 
 deckSchema.index({ name: 'text', description: 'text' });

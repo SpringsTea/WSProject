@@ -2,7 +2,7 @@
 
 import Deck from '../models/deck'
 
-module.exports = async (deckid, { populate }) => {
+module.exports = async (deckid, { populate = false }) => {
     try {
         let deck = Deck.findOne(
             {deckid: deckid, deleted: false}, 
