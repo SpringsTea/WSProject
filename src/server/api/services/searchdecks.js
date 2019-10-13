@@ -95,9 +95,9 @@ module.exports = async ({query:params, user}, response, next) => {
             }
         }
 
-        if( params.favorites && user ){
-            delete query.userid;//For now, requesting your favorites will always include favorites that are not your decks
-            query.favoriteusers = user._id;
+        if( params.favorites ){
+            query.favoriteusers = query.userid ? query.userid : user._id;
+            delete query.userid;//requesting favorites will any deck a user has favorited, ie ones they didnt make
         }
 
         if( params.attributes ){

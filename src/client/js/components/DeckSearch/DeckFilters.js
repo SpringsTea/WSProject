@@ -10,7 +10,7 @@ class DeckFilters extends Component {
 	}
 
 	render(){
-		const { serieses, neosets, filters, handleFilter, handleTextFilter } = this.props;
+		const { serieses, neosets, filters, loggedin, handleFilter, handleTextFilter } = this.props;
 		return(
 			<div className="container-deckfilters">
 				<Row gutter={10}>
@@ -91,20 +91,22 @@ class DeckFilters extends Component {
 						</div>
 					</Col>
 					<Col xxl={8} xl={6} lg={8} md={12}>
+						<span>&nbsp;</span>
 						<div className="filter">	
-							<Checkbox.Group style={{display: 'block', marginTop: '5px'}} 
+							<Checkbox.Group style={{marginTop: '5px'}} 
 								options={Object.keys(attributeIcons)}
 								defaultValue={ Array.isArray(filters.attributes) ? filters.attributes : [filters.attributes]}
 								onChange={(val) => handleFilter(val, 'attributes')}>
 							</Checkbox.Group>
-						</div>
-						<div className="filter">
-							<Checkbox
-								defaultChecked={filters.favorites === "true"}
-					            onChange={(e) => handleFilter(e.target.checked, 'favorites')}
-					        >
-					        	Favorites
-					        </Checkbox>
+							{
+								(loggedin === 'true' || filters.username) &&
+								<Checkbox
+									defaultChecked={filters.favorites === "true"}
+						            onChange={(e) => handleFilter(e.target.checked, 'favorites')}
+						        >
+						        	Favorites
+						        </Checkbox>
+							}
 						</div>
 					</Col>
 				</Row>
