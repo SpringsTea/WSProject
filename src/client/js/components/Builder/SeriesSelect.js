@@ -54,6 +54,7 @@ class SeriesSelect extends Component {
 						onSelect={(val) => onSelect(val, false)}
 						onDeselect={(val) => onSelect(val, true)}
 						onChange={(val) => this.setState({selectvals: val})}
+						autoClearSearchValue={false}
 					>
 						{
 							serieses.map( (series) => <Option key={series._id} value={series._id}>{series.name}</Option> )

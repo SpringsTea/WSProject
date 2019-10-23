@@ -49,7 +49,8 @@ class DeckFilters extends Component {
 								dropdownMatchSelectWidth={false}
 							>
 								{
-									neosets.map( (set, i) => 
+									neosets.sort((a,b) => (a.name > b.name) ? 1 : -1)
+									.map( (set, i) => 
 										<Option 
 											key={i} 
 											value={set._id}>
@@ -73,7 +74,8 @@ class DeckFilters extends Component {
 								dropdownMatchSelectWidth={false}
 							>
 								{
-									serieses.filter((s) => filters.lang ? s.lang === filters.lang : true)//filter by lang if selected
+									serieses.sort((a,b) => (a.name > b.name) ? 1 : -1)
+									.filter((s) => filters.lang ? s.lang === filters.lang : true)//filter by lang if selected
 									.map( (series, i) => 
 										<Option 
 											key={i} 
