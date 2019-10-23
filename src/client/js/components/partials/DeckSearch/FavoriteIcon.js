@@ -40,7 +40,7 @@ class FavoriteIcon extends Component {
 			>
 				<span className="fa-stack fa-2x">
 					<FontAwesomeIcon icon={myfavorite ? FillStar : Star} className="fa-stack-2x" />							
-					<strong className={`fa-stack-1x favorite-count ${myfavorite ? 'myfavorite' : ''}`}>{favoritecount}</strong>
+					<strong className={`fa-stack-1x favorite-count ${myfavorite ? 'myfavorite' : ''}`}>{favoritecount ? favoritecount : ''}</strong>
 				</span>
 			</div>
 		)
