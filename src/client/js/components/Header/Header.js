@@ -20,7 +20,7 @@ class Header extends Component {
 					title &&
 					<title>{title}</title>
 				}
-				<a className="header-button logo clickable" href="/"> <img src="/images/assets/logo.png" /> EncoreDecks</a>
+				<a className="header-button logo clickable" href="/"> <img src="/images/assets/ClappyNoText_240.png" /> EncoreDecks</a>
 				<a className="header-button clickable" href="/builder">Builder</a>
 				<a className="header-button clickable" href="/">Decks</a>
 				

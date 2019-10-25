@@ -26,8 +26,8 @@ class Login extends Component {
 		return(
 		  <div className="container-login">
 		  	<div className="header">
-		  		<img className="logo" src="/images/assets/logo.png" />
-		  		<h1>Encore Decks</h1>
+		  		<img className="logo" src="/images/assets/Clappy_240.png" />
+		  		<h1></h1>
 		  	</div>
 		  	<div className="container-login-form">
 		  		<Tabs activeKey={tab} tabBarStyle={{display:'none'}}>
