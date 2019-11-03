@@ -6,6 +6,7 @@ import FavoriteIcon from 'Partials/DeckSearch/FavoriteIcon';
 import DeckExportMenu from './DeckExportMenu';
 
 import { claimDeck, deleteDeck } from 'Utils/api';
+import { FormatDateString } from 'Utils/stringfunctions';
 
 class DeckHeader extends Component {
 
@@ -59,11 +60,11 @@ class DeckHeader extends Component {
 					<div className="flex-container">
 						<h2 className="deck-name">{deck.name}</h2>
 						<AttributesList attributes={deck.attributes} />
-						<FavoriteIcon loggedin={loggedin} deck={deck} />
 						{
 							tournament &&
 							<h2 className="deck-score">{ `${tournament.record.wins} Wins | ${tournament.record.losses} Losses`}</h2>
 						}
+						<FavoriteIcon loggedin={loggedin} deck={deck} />
 						<div className="controls">
 							<Button.Group>
 								<Tooltip placement="top" title="Copy this deck and save it as your own">
@@ -99,6 +100,17 @@ class DeckHeader extends Component {
 							<span>Anonymous</span>
 						}
 					</h3>
+					<div style={{color: '#cccccc'}}>
+						Last Updated: { 
+							FormatDateString(deck.datemodified, {
+							    weekday: undefined,
+							    month: "numeric",
+							    timeZoneName: undefined,
+							    hour: undefined,
+							    minute: undefined
+							}) 
+						}
+					</div>
 				</div>
 				<Row gutter={6}>
 					<Col xl={6} className="display">
