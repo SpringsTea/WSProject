@@ -37,7 +37,7 @@ function filterBuilderCards() {
     }
 
     //Match search text
-    if( builderfilters.text && builderfilters.text.length >= 3){
+    if( builderfilters.text){
       //TODO need a better way of selecting locale
       let cardname = ''; 
 
@@ -48,7 +48,8 @@ function filterBuilderCards() {
         cardname = card.locale.NP.name;
       }
 
-      return cardname.toUpperCase().includes( builderfilters.text.toUpperCase());
+      return cardname.toUpperCase().includes( builderfilters.text.toUpperCase()) 
+      || card.sid.toUpperCase().includes( builderfilters.text.toUpperCase() )
     }
 
     return true;
