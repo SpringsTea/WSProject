@@ -12,6 +12,7 @@ module.exports = {
     descksearch: "./src/client/js/decksearchRouter.js",
     login: "./src/client/js/loginRouter.js",
     user: "./src/client/js/userRouter.js",
+    translations: "./src/client/js/translationsRouter.js",
     pagenotfound: "./src/client/js/pagenotfoundRouter.js",
   },  
   output: {
@@ -98,6 +99,12 @@ module.exports = {
       filename: path.resolve(__dirname, 'dist/user.mustache'),
       template: path.resolve(__dirname, "./public/user.mustache"),
       chunks: ['user', 'commons'],
+      favicon: "./public/favicon.ico"
+    }),
+    new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/translations.mustache'),
+      template: path.resolve(__dirname, "./public/translations.mustache"),
+      chunks: ['commons', 'translations'],
       favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({

@@ -26,4 +26,5 @@ module.exports = {
     RenderLogin: require('./pages/renderlogin'),
     RenderUser: require('./pages/renderuser'),
     RenderPageNotFound: require('./pages/renderpagenotfound'),
+    RenderTranslations: require('./pages/rendertranslations'),
 }
