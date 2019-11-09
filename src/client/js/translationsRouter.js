@@ -17,6 +17,7 @@ import Header from './components/Header/Header';
 import Translations from './components/Translations/Translations';
 // Styles
 import '../styles/styles.less';
+import '../styles/translations.less'
 
 // Export the globals we'll want elsewhere
 window.WS = Object.assign(window.WS || {}, {
