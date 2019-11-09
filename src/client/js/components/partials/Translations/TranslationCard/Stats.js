@@ -1,20 +1,11 @@
 import React from 'react';
 import { Icon, Input, Row, Col } from 'antd';
-import Img from 'react-image';
 
-import { generateCardImageLink, generateCardCode } from 'Utils/cardshorthands';
+import { generateCardCode } from 'Utils/cardshorthands';
 
 export default function Stats({card = {}, locale = {}}) {
 	return (
 		<div className="stats">
-			<div className="container-cardimage">
-				<Img
-				src={[
-				  generateCardImageLink(card),
-				]}
-					unloader={<Icon className="image-not-found" type="question-circle" />}
-				/>
-			</div>
 			<div className="grid">
 				<Row>
 					<Col className="title" span={6}>

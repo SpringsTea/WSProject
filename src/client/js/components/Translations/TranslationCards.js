@@ -7,7 +7,7 @@ class TranslationCards extends Component {
 
 	state={
 		page: 1,
-		pagesize: 8
+		pagesize: 4
 	}
 
 	handlePagination = (page) =>{
@@ -29,7 +29,7 @@ class TranslationCards extends Component {
 				</Row>
 				{
 					cards.length > 0 &&
-					<Pagination defaultCurrent={1} total={cards.length} onChange={handlePagination} />
+					<Pagination defaultCurrent={1} defaultPageSize={pagesize} total={cards.length} onChange={handlePagination} />
 				}				
 			</div>
 		)
