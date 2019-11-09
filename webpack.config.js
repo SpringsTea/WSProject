@@ -119,6 +119,7 @@ module.exports = {
       Actions: path.resolve(__dirname, 'src/client/js/actions'),
       Utils: path.resolve(__dirname, 'src/client/js/utils'),
       Constants: path.resolve(__dirname, 'src/client/js/constants'),
+      Components: path.resolve(__dirname, 'src/client/js/components'),
       Partials: path.resolve(__dirname, 'src/client/js/components/partials'),
     }
   }

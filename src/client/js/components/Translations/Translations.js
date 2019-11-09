@@ -1,8 +1,9 @@
 import { Component } from 'react';
-import { Row, Col, Select } from 'antd';
+import { Row, Col, Select, List } from 'antd';
 const { Option } = Select;
 
-import TranslationCards from './TranslationCards';
+import TranslationCard from './TranslationCard';
+import CardItemIcon from 'Partials/Builder/CardItem/CardItemIcon';
 
 import TranslationsStore from '../../stores/TranslationsStore';
 import { fetchSeries } from 'Utils/api';
@@ -20,6 +21,7 @@ class Translations extends Component {
 
 	state = {
 		...buildState(),
+		selectedcard: null
 	}
 
 	onChange = () => this.setState(buildState);
@@ -36,11 +38,12 @@ class Translations extends Component {
 	handleSeriesSelect = async(id) =>{
     	const seriescards = await fetchSeries(id);
     	receiveSeries(seriescards);
+    	this.setState({selectedcard: this.state.cards[0]})
   	}
 
 	render(){
 		const { handleSeriesSelect } = this;
-		const { serieses, cards } = this.state;
+		const { serieses, cards, selectedcard } = this.state;
 
 		return(
 		  <div className="container-translations">
@@ -65,7 +68,33 @@ class Translations extends Component {
 		  			</Select>
 		  		</Col>
 		  	</Row>
-		  	<TranslationCards cards={cards} />
+		  	<Row gutter={16}>
+			  	<Col span={18}>
+				  	{
+				  		selectedcard &&
+				  		<TranslationCard card={selectedcard} />
+				  	}	
+				</Col>
+				<Col span={6}>
+					<div className="card-list">
+						<List 
+							dataSource={cards}
+							renderItem={card => (
+						        <List.Item 
+									className={`card-item ${card.selected === true ? 'selected' : ''}`}>
+										<List.Item.Meta 
+											className="clickable"
+											//onClick={ () => selectCard({card}, true) }
+											avatar={<CardItemIcon card={card} />}
+											//title={`${locale.name} ${card.quantity ? `(${card.quantity})` : ''}`}
+										/>
+									</List.Item>
+						      )}
+						>
+						</List>
+					</div>
+				</Col>
+		  	</Row>	  	
 		  </div>
 		)
 	}

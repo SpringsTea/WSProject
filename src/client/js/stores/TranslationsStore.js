@@ -1,6 +1,7 @@
 import Store from './Store';
 import { TranslationsActions as AT, BuilderActions } from '../constants/Actions';
 import { register } from '../dispatcher';
+import { sortall } from 'Utils/cardsort';
 
 let serieses = [];
 let series = [];
@@ -19,11 +20,8 @@ const TranslationsStore = {
         });
         break;
       case BuilderActions.SERIES_RECEIVE:
-        series = props.data.sort( (a,b) =>{
-          if(a.sid < b.sid) { return -1; }
-          if(a.sid > b.sid) { return 1; }
-          return 0;
-        });
+        series = props.data.sort(sortall)
+        series[0].selected = true;
         break;    
       default: return;
     }
