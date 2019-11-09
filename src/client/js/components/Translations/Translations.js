@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { Row, Col, Select } from 'antd';
 const { Option } = Select;
 
+import TranslationCards from './TranslationCards';
+
 import TranslationsStore from '../../stores/TranslationsStore';
 import { fetchSeries } from 'Utils/api';
 
@@ -24,6 +26,7 @@ class Translations extends Component {
 
 	componentDidMount() {
 		TranslationsStore.addChangeListener(this.onChange);
+		this.handleSeriesSelect('5ccddc33f364535e091ac562')
 	}
 
 	componentWillUnmount() {
@@ -45,6 +48,7 @@ class Translations extends Component {
 		  		<Col span={24}>
 		  			<Select
 		  				showSearch
+		  				placeholder="Pick a series"
 		  				style={{width:'100%'}}
 		  				onChange={handleSeriesSelect}
 		  				filterOption={(input, option) =>
@@ -61,6 +65,7 @@ class Translations extends Component {
 		  			</Select>
 		  		</Col>
 		  	</Row>
+		  	<TranslationCards cards={cards} />
 		  </div>
 		)
 	}

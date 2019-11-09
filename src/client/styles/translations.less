@@ -1,3 +1,38 @@
+@import "variables.less";
+
 .container-translations{
 	margin: 12px;
+}
+
+.container-translationcards{
+	margin-top: 6px;
+}
+
+.container-translationcard{
+
+	.ant-card-body{
+		padding: 12px;
+	}
+
+	.card-constants{
+		.stats{
+			width: 100%;
+			display: flex;
+		}
+	}
+
+	.container-cardimage{
+		height: @card-height;
+		width: @card-height;
+		margin-right: 5px;
+	}
+
+	.grid{
+		width:100%;
+		box-shadow: 3px 1px;
+		border: 1px solid grey;
+		.row{
+			min-height: 2em;
+		}
+	}
 }

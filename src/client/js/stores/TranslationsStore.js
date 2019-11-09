@@ -12,10 +12,18 @@ const TranslationsStore = {
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case BuilderActions.SERIESES_RECEIVE:
-        serieses = props.data;
+        serieses = props.data.sort( (a,b) =>{
+          if(a.name < b.name) { return -1; }
+          if(a.name > b.name) { return 1; }
+          return 0;
+        });
         break;
       case BuilderActions.SERIES_RECEIVE:
-        series = props.data;
+        series = props.data.sort( (a,b) =>{
+          if(a.sid < b.sid) { return -1; }
+          if(a.sid > b.sid) { return 1; }
+          return 0;
+        });
         break;    
       default: return;
     }
