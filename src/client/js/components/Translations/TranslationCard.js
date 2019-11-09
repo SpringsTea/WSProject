@@ -11,7 +11,7 @@ class TranslationCard extends Component {
 
 	render(){
 		const { card } = this.props;
-		const locale = card.locale.NP ? card.locale.NP : {};
+		const locale = card.locale;
 		return(
 			<div className="container-translationcard">
 				<Card>

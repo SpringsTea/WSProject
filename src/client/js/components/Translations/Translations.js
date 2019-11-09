@@ -86,8 +86,9 @@ class Translations extends Component {
 											className="clickable"
 											//onClick={ () => selectCard({card}, true) }
 											avatar={<CardItemIcon card={card} />}
-											//title={`${locale.name} ${card.quantity ? `(${card.quantity})` : ''}`}
+											title={`${card.locale.name}`}
 										/>
+										{ console.log(card) }
 									</List.Item>
 						      )}
 						>

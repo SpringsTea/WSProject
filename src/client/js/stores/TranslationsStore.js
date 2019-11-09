@@ -4,12 +4,12 @@ import { register } from '../dispatcher';
 import { sortall } from 'Utils/cardsort';
 
 let serieses = [];
-let series = [];
+let cards = [];
 
 const TranslationsStore = {
   ...Store,
   getSerieses: () => serieses,
-  getSeries: () => series,
+  getSeries: () => cards,
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case BuilderActions.SERIESES_RECEIVE:
@@ -20,8 +20,16 @@ const TranslationsStore = {
         });
         break;
       case BuilderActions.SERIES_RECEIVE:
-        series = props.data.sort(sortall)
-        series[0].selected = true;
+        cards = props.data.sort(sortall)
+        cards[0].selected = true;
+
+        cards = cards.map( (card) =>  {
+          if( card.locale.NP ){
+            return {...card, locale: card.locale.NP}
+          }
+          return card;
+        })
+
         break;    
       default: return;
     }
