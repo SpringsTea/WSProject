@@ -104,7 +104,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, 'dist/translations.mustache'),
       template: path.resolve(__dirname, "./public/translations.mustache"),
-      chunks: ['commons', 'translations'],
+      chunks: ['translations', 'commons'],
       favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({

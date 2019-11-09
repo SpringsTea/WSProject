@@ -4,9 +4,17 @@ import EventEmitter from 'events';
 import { render } from 'react-dom';
 import queryString from 'query-string';
 
+import {
+  receiveSerieses
+} from './actions/BuilderActions';
+
+import {
+  fetchSerieses
+} from './utils/api'
+
 // React components
 import Header from './components/Header/Header';
-
+import Translations from './components/Translations/Translations';
 // Styles
 import '../styles/styles.less';
 
@@ -24,6 +32,17 @@ const domLoaded = new Promise(res =>
   }),
 );
 
+async function loadTranslationData(data={}) {
+
+  const [
+    serieses
+  ] = await Promise.all([
+    fetchSerieses('JP')
+  ]);
+  
+  receiveSerieses(serieses);  
+}
+
 
 // Route via events
 WS.event.on('page.header', async props => {
@@ -31,8 +50,8 @@ WS.event.on('page.header', async props => {
   render(<Header loggedin={props.loggedin} title={props.title}/>, document.querySelector(props.el));
 });
 
-WS.event.on('user.load', async props => {
-  await loadUserDecks(props.username);
+WS.event.on('translations.load', async props => {
+  await loadTranslationData();
   await domLoaded;
-  render( <User loggedin={props.loggedin} filters={qs} username={props.username} />, document.querySelector(props.el));
+  render( <Translations loggedin={props.loggedin}/>, document.querySelector(props.el));
 })
