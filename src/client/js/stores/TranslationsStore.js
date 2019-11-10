@@ -21,7 +21,6 @@ const TranslationsStore = {
         break;
       case BuilderActions.SERIES_RECEIVE:
         cards = props.data.sort(sortall)
-        cards[0].selected = true;
 
         cards = cards.map( (card) =>  {
           if( card.locale.NP ){

@@ -28,17 +28,36 @@ class Translations extends Component {
 
 	componentDidMount() {
 		TranslationsStore.addChangeListener(this.onChange);
+		document.addEventListener("keydown", this.handleKeyDown);
 		this.handleSeriesSelect('5ccddc33f364535e091ac562')
 	}
 
 	componentWillUnmount() {
 		TranslationsStore.removeChangeListener(this.onChange);
+		document.removeEventListener("keydown", this.handleKeyDown);
 	}
 
 	handleSeriesSelect = async(id) =>{
     	const seriescards = await fetchSeries(id);
     	receiveSeries(seriescards);
-    	this.setState({selectedcard: this.state.cards[0]})
+    	this.setState({selectedcard: this.state.cards[0], selectedindex: 0})
+  	}
+
+  	handleKeyDown = (e) =>{
+  		let { selectedindex, cards } = this.state;
+  		switch( e.keyCode ) {
+	        case 39:
+	        case 40:
+	        	selectedindex = selectedindex < cards.length ? selectedindex + 1 : selectedindex;
+	            break;
+	        case 37:
+	        case 38:
+	        	selectedindex = selectedindex > 0 ? selectedindex - 1 : selectedindex;
+	        	break;
+	        default: 
+	            break;
+	    }
+	    this.setState({ selectedcard: cards[selectedindex], selectedindex: selectedindex })
   	}
 
 	render(){
@@ -79,16 +98,15 @@ class Translations extends Component {
 					<div className="card-list">
 						<List 
 							dataSource={cards}
-							renderItem={card => (
+							renderItem={(card, i) => (
 						        <List.Item 
-									className={`card-item ${card.selected === true ? 'selected' : ''}`}>
+									className={`card-item ${selectedcard && card._id === selectedcard._id ? 'selected' : ''}`}>
 										<List.Item.Meta 
 											className="clickable"
-											//onClick={ () => selectCard({card}, true) }
+											onClick={ () => this.setState({selectedcard: card, selectedindex: i}) }
 											avatar={<CardItemIcon card={card} />}
 											title={`${card.locale.name}`}
 										/>
-										{ console.log(card) }
 									</List.Item>
 						      )}
 						>
