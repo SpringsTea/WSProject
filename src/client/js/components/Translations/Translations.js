@@ -3,6 +3,7 @@ import { Row, Col, Select, List } from 'antd';
 const { Option } = Select;
 
 import TranslationCard from './TranslationCard';
+import Keywords from './Keywords';
 import CardItemIcon from 'Partials/Builder/CardItem/CardItemIcon';
 
 import TranslationsStore from '../../stores/TranslationsStore';
@@ -55,6 +56,7 @@ class Translations extends Component {
 	        	selectedindex = selectedindex > 0 ? selectedindex - 1 : selectedindex;
 	        	break;
 	        default: 
+	        	return false;
 	            break;
 	    }
 	    this.setState({ selectedcard: cards[selectedindex], selectedindex: selectedindex })
@@ -93,6 +95,7 @@ class Translations extends Component {
 				  		selectedcard &&
 				  		<TranslationCard card={selectedcard} />
 				  	}	
+				  	<Keywords />
 				</Col>
 				<Col span={6}>
 					<div className="card-list">

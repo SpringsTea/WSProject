@@ -5,7 +5,6 @@ import { generateCardCode } from 'Utils/cardshorthands';
 
 export default function Stats({card = {}, locale = {}}) {
 	let cardcode = generateCardCode(card)
-	//`https://heartofthecards.com/code/cardlist.html?card=WS_${card.set}/${card.side}${card.release}-${card.sid}`
 	return (
 		<div className="stats">
 			<div className="grid">
