@@ -10,8 +10,10 @@ import Stats from 'Partials/Translations/TranslationCard/Stats';
 class TranslationCard extends Component {
 
 	render(){
-		const { card } = this.props;
-		const locale = card.locale;
+		const { card,
+		handleAbilityFocus } = this.props;
+		const { locale = {}, translation = {} } = card;
+		console.log(translation)
 		return(
 			<div className="container-translationcard">
 				<Card>
@@ -31,13 +33,12 @@ class TranslationCard extends Component {
 						<Row gutter={6}>
 							<Col span={12}>
 								<div>
-									
-									<Input disabled value={locale.name} style={{width:'100%'}}/>
+									<Input disabled value={locale.name} defaultValue="" style={{width:'100%'}}/>
 								</div>
 							</Col>
 							<Col span={12}>
 								<div>
-									<Input style={{width:'100%'}} placeholder="Enter Translated Name" />
+									<Input key={card._id} style={{width:'100%'}} defaultValue={translation.name} placeholder="Enter Translated Name" />
 								</div>
 							</Col>
 						</Row>
@@ -47,13 +48,15 @@ class TranslationCard extends Component {
 								<div style={{marginBottom:'3px', display:'flex'}} key={i}>
 									<Col span={12}>
 										<TextArea value={ability} 
-										rows="3"
-										/>
+										rows="3"										/>
 									</Col>
 									<Col span={12}>
 										<TextArea
+										key={card._id}
 										placeholder="Enter Translation for ability to the left of this textbox"
+										defaultValue={translation.ability ? translation.ability[i] : ''}
 										rows="3"
+										onFocus={() => handleAbilityFocus(i)}
 										/>
 									</Col>
 								</div>

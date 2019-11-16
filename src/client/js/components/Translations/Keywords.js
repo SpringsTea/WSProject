@@ -10,8 +10,8 @@ export default function Keywords() {
 			<div>
 				<Button.Group size="small">
 					{
-						Abilities.map( (e) => 
-							<Button value={e.text}>{e.label}</Button>
+						Abilities.map( (e, i) => 
+							<Button key={i} value={e.text}>{e.label}</Button>
 						)
 					}	
 				</Button.Group>	
@@ -19,8 +19,8 @@ export default function Keywords() {
 			<div>
 				<Button.Group size="small">
 					{
-						States.map( (e) => 
-							<Button value={e.text}>{e.label}</Button>
+						States.map( (e, i) => 
+							<Button key={i} value={e.text}>{e.label}</Button>
 						)
 					}	
 				</Button.Group>	

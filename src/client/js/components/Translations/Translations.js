@@ -22,7 +22,8 @@ class Translations extends Component {
 
 	state = {
 		...buildState(),
-		selectedcard: null
+		selectedcard: null,
+		focusedability: 0,
 	}
 
 	onChange = () => this.setState(buildState);
@@ -93,7 +94,7 @@ class Translations extends Component {
 			  	<Col span={18}>
 				  	{
 				  		selectedcard &&
-				  		<TranslationCard card={selectedcard} />
+				  		<TranslationCard card={selectedcard} handleAbilityFocus={(i) => this.setState({focusedability: i})} />
 				  	}	
 				  	<Keywords />
 				</Col>

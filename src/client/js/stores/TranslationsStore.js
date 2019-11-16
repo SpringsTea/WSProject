@@ -2,6 +2,7 @@ import Store from './Store';
 import { TranslationsActions as AT, BuilderActions } from '../constants/Actions';
 import { register } from '../dispatcher';
 import { sortall } from 'Utils/cardsort';
+import { translations } from 'Constants/stubs/Translations'
 
 let serieses = [];
 let cards = [];
@@ -24,7 +25,7 @@ const TranslationsStore = {
 
         cards = cards.map( (card) =>  {
           if( card.locale.NP ){
-            return {...card, locale: card.locale.NP}
+            return {...card, locale: card.locale.NP, translation: translations.find( (t) => t.cardid === card._id )}
           }
           return card;
         })
