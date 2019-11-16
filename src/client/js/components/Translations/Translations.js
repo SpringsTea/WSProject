@@ -15,6 +15,7 @@ import {
 const buildState = () => ({
   serieses: TranslationsStore.getSerieses(),
   cards: TranslationsStore.getSeries(),
+  translations: TranslationsStore.getTranslations()
 });
 
 class Translations extends Component {
@@ -22,6 +23,7 @@ class Translations extends Component {
 	state = {
 		...buildState(),
 		selectedcard: null,
+		selectedindex: 0,
 		focusedability: 0,
 	}
 
@@ -38,10 +40,18 @@ class Translations extends Component {
 		document.removeEventListener("keydown", this.handleKeyDown);
 	}
 
+	handleSelectCard = (selectedindex) => {
+		const { cards, translations } = this.state;
+		let selectedcard = cards[selectedindex];
+		selectedcard.translation = translations.find( (t) => t.cardid === selectedcard._id );
+
+		this.setState({ selectedcard, selectedindex })
+	}
+
 	handleSeriesSelect = async(id) =>{
     	const seriescards = await fetchSeries(id);
     	receiveSeries(seriescards);
-    	this.setState({selectedcard: this.state.cards[0], selectedindex: 0})
+    	this.handleSelectCard(0);
   	}
 
   	handleKeyDown = (e) =>{
@@ -59,7 +69,7 @@ class Translations extends Component {
 	        	return false;
 	            break;
 	    }
-	    this.setState({ selectedcard: cards[selectedindex], selectedindex: selectedindex })
+	    this.handleSelectCard(selectedindex)
   	}
 
 	render(){

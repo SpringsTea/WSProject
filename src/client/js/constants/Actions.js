@@ -20,5 +20,6 @@ export const DeckSearchActions = [
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});
 
 export const TranslationsActions = [
-
-]
+  'TRANSLATIONS_RECEIVE',
+  'TRANSLATION_RECEIVE'
+].reduce((p, v) => (p[v] = Symbol(v), p), {});

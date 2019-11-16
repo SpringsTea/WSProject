@@ -1,4 +1,4 @@
-export const translations = [
+const translations = [
 	{
 		cardid: "5ccde2059ba0730ce367d18f",
 		name: "Yumiel, Live-In Maid",
@@ -26,3 +26,5 @@ export const translations = [
 		]
 	},
 ];
+
+export default translations

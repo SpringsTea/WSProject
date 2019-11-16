@@ -2,15 +2,17 @@ import Store from './Store';
 import { TranslationsActions as AT, BuilderActions } from '../constants/Actions';
 import { register } from '../dispatcher';
 import { sortall } from 'Utils/cardsort';
-import { translations } from 'Constants/stubs/Translations'
+import tstub from 'Constants/stubs/Translations'
 
 let serieses = [];
 let cards = [];
+let translations = tstub;
 
 const TranslationsStore = {
   ...Store,
   getSerieses: () => serieses,
   getSeries: () => cards,
+  getTranslations: () => translations,
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case BuilderActions.SERIESES_RECEIVE:
@@ -25,12 +27,28 @@ const TranslationsStore = {
 
         cards = cards.map( (card) =>  {
           if( card.locale.NP ){
-            return {...card, locale: card.locale.NP, translation: translations.find( (t) => t.cardid === card._id )}
+            let cardtranslation = translations.find( (t) => t.cardid === card._id )
+            return {...card, locale: card.locale.NP, translation: cardtranslation || { cardid: card._id, name: "", ability: [] }}
           }
           return card;
         })
 
-        break;    
+        break;  
+      case AT.TRANSLATION_RECEIVE:
+
+        let index = translations.findIndex( (t) => t.cardid === props.data.cardid )
+
+        if(index >= 0){
+          translations[index] = props.data;
+        }
+        else{
+          translations.push(props.data)
+        }
+
+        index = cards.findIndex( (c) => c._id === props.data.cardid );
+        cards[index].translation = props.data;
+
+        break;
       default: return;
     }
     TranslationsStore.emitChange(type);
