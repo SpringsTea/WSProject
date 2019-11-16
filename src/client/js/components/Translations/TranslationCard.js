@@ -87,7 +87,7 @@ class TranslationCard extends Component {
 							</Col>
 							<Col span={12}>
 								<div>
-									<Input key={card._id} style={{width:'100%'}} value={translation.name} placeholder="Enter Translated Name" 
+									<Input style={{width:'100%'}} value={translation.name} placeholder="Enter Translated Name" 
 										onChange={(e) => handleChange('name', e.target.value)}
 									/>
 								</div>
@@ -103,7 +103,6 @@ class TranslationCard extends Component {
 									</Col>
 									<Col span={12}>
 										<TextArea
-										key={card._id}
 										ref={`ability${i}`}
 										placeholder="Enter Translation for ability to the left of this textbox"
 										value={translation.ability ? translation.ability[i] : ''}

@@ -93,7 +93,7 @@ class Translations extends Component {
 			  	<Col span={18}>
 				  	{
 				  		selectedcard &&
-				  		<TranslationCard card={selectedcard}/>
+				  		<TranslationCard key={selectedcard._id} card={selectedcard}/>
 				  	}	
 				</Col>
 				<Col span={6}>
