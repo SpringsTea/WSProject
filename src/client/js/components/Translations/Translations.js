@@ -3,7 +3,6 @@ import { Row, Col, Select, List } from 'antd';
 const { Option } = Select;
 
 import TranslationCard from './TranslationCard';
-import Keywords from './Keywords';
 import CardItemIcon from 'Partials/Builder/CardItem/CardItemIcon';
 
 import TranslationsStore from '../../stores/TranslationsStore';
@@ -94,9 +93,8 @@ class Translations extends Component {
 			  	<Col span={18}>
 				  	{
 				  		selectedcard &&
-				  		<TranslationCard card={selectedcard} handleAbilityFocus={(i) => this.setState({focusedability: i})} />
+				  		<TranslationCard card={selectedcard}/>
 				  	}	
-				  	<Keywords />
 				</Col>
 				<Col span={6}>
 					<div className="card-list">
