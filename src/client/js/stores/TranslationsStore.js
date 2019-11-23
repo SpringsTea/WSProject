@@ -47,6 +47,7 @@ const TranslationsStore = {
 
         index = cards.findIndex( (c) => c._id === props.data.cardid );
         cards[index].translation = props.data;
+        cards[index].edited = true;
 
         break;
       default: return;

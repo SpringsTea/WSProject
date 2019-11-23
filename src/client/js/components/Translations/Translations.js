@@ -112,7 +112,8 @@ class Translations extends Component {
 							dataSource={cards}
 							renderItem={(card, i) => (
 						        <List.Item 
-									className={`card-item ${selectedcard && card._id === selectedcard._id ? 'selected' : ''}`}>
+									className={`card-item ${selectedcard && card._id === selectedcard._id ? 'selected' : ''} ${ selectedcard && card.edited === true ? 'highlighted' : '' }
+									`}>
 										<List.Item.Meta 
 											className="clickable"
 											onClick={ () => this.setState({selectedcard: card, selectedindex: i}) }
