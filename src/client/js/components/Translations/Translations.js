@@ -44,7 +44,7 @@ class Translations extends Component {
 	handleSelectCard = (selectedindex) => {
 		const { cards, translations } = this.state;
 		let selectedcard = cards[selectedindex];
-		selectedcard.translation = translations.find( (t) => t.cardid === selectedcard._id );
+		selectedcard.translation = translations.find( (t) => t.cardid === selectedcard._id ) || {};
 
 		this.setState({ selectedcard, selectedindex })
 	}
@@ -119,7 +119,7 @@ class Translations extends Component {
 							dataSource={cards}
 							renderItem={(card, i) => (
 						        <List.Item 
-									className={`card-item ${selectedcard && card._id === selectedcard._id ? 'selected' : ''} ${ card.translation.edited === true ? 'highlighted' : '' }
+									className={`card-item ${selectedcard && card._id === selectedcard._id ? 'selected' : ''} ${ card.translation.edited === true ? 'highlight-alert' : '' }
 									`}>
 										<List.Item.Meta 
 											className="clickable"

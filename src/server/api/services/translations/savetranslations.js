@@ -35,13 +35,13 @@ module.exports = async (request, response, next) => {
 				existingtrans.translations.push({...t, moduser: user, moddate: Date.now()})
 			}
 		})
-		
+
 		existingtrans.moddate = Date.now();
 		existingtrans.moduser= user;
 		existingtrans.save();
-		response.status(200).send({ translations: existingtrans });
+		response.status(200).send({ success: true, translations: existingtrans });
 	}
-	//Other wise, create a new translation document
+	//Otherwise, create a new translation document
 	else{
 
 		let translationsobj = {
@@ -60,6 +60,6 @@ module.exports = async (request, response, next) => {
 		}
 
 		let createdTrans = await Translations.create(translationsobj); 
-        response.status(200).send({ translations: createdTrans });
+        response.status(200).send({ success: true, translations: createdTrans });
 	}
 }
