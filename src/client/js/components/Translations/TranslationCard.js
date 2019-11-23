@@ -67,12 +67,12 @@ class TranslationCard extends Component {
 
 	render(){
 		const { handleKeyword, handleChange } = this;
-		const { card, handleSave } = this.props;
+		const { card, saving, handleSave } = this.props;
 		const { locale = {}, translation = {} } = card;
 
 		return(
 			<div className="container-translationcard">
-				<Card>
+				<Card style={{marginBottom: '5px'}}>
 					<div className="container-cardimage">
 						<Img
 						src={[
@@ -124,11 +124,11 @@ class TranslationCard extends Component {
 					</div>
 				</Card>
 
-				<Card>
+				<Card style={{marginBottom:'5px'}}>
 					<Keywords handleKeywordClick={handleKeyword} />
 				</Card>
 
-				<Button type="danger" onClick={handleSave}>Save All</Button>
+				<Button type="danger" loading={saving} onClick={handleSave}>Save All</Button>
 			</div>
 		)
 	}

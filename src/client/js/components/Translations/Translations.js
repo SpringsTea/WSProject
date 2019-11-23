@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Row, Col, Select, List } from 'antd';
+import { Row, Col, Select, List, message } from 'antd';
 const { Option } = Select;
 
 import TranslationCard from './TranslationCard';
@@ -27,7 +27,7 @@ class Translations extends Component {
 
 	state = {
 		...buildState(),
-		selectedseries: null,
+		selectedseries: undefined,
 		selectedcard: null,
 		selectedindex: 0,
 		focusedability: 0,
@@ -55,15 +55,26 @@ class Translations extends Component {
 	}
 
 	handleSeriesSelect = async(id) =>{
+		const { selectedseries, translations } = this.state;
+
+		if( selectedseries ){
+			const pendingtrans = translations.findIndex((t) => t.edited === true)
+
+			if( pendingtrans >= 0 ){
+				message.warn("You have unsaved changes")
+				return false;
+			}
+		}
+
 		const [
 			seriescards,
-			translations
+			dbtranslations
 		] = await Promise.all([
 			fetchSeries(id),
 			fetchTranslations(id)
 		]);
 
-		receiveTranslations(translations);
+		receiveTranslations(dbtranslations);
     	receiveSeries(seriescards);
     	this.handleSelectCard(0);
     	this.setState({selectedseries: id})
@@ -76,6 +87,10 @@ class Translations extends Component {
   		const res = await saveTranslations(selectedseries, translations)
   		if( res.success ){
   			savedTranslations()
+  			message.info("Save complete")
+  		}
+  		else{
+  			message.error("Save Failed :(")
   		}
   		this.setState({saving: false})
   	}
@@ -100,17 +115,18 @@ class Translations extends Component {
 
 	render(){
 		const { handleSeriesSelect, handleSave } = this;
-		const { serieses, cards, selectedcard } = this.state;
+		const { serieses, cards, selectedcard, selectedseries, saving } = this.state;
 
 		return(
 		  <div className="container-translations">
-		  	<Row gutter={14}>
+		  	<Row gutter={14} style={{marginBottom:'5px'}}>
 		  		<Col span={24}>
 		  			<Select
 		  				showSearch
 		  				placeholder="Pick a series"
 		  				style={{width:'100%'}}
 		  				onChange={handleSeriesSelect}
+		  				value={selectedseries}
 		  				filterOption={(input, option) =>
 					      option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
 					    }
@@ -128,8 +144,14 @@ class Translations extends Component {
 		  	<Row gutter={16}>
 			  	<Col span={18}>
 				  	{
-				  		selectedcard &&
-				  		<TranslationCard key={selectedcard._id} card={selectedcard} handleSave={handleSave}/>
+				  		selectedcard ?
+				  		<TranslationCard key={selectedcard._id} card={selectedcard} handleSave={handleSave} saving={saving}/>
+				  		:
+				  		<div>
+				  			<h1 style={{textAlign: 'center'}}>
+				  				Select a Series Above
+				  			</h1>
+				  		</div>
 				  	}	
 				</Col>
 				<Col span={6}>
