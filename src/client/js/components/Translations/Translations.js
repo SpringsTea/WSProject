@@ -6,12 +6,16 @@ import TranslationCard from './TranslationCard';
 import CardItemIcon from 'Partials/Builder/CardItem/CardItemIcon';
 
 import TranslationsStore from '../../stores/TranslationsStore';
-import { fetchSeries, saveTranslations } from 'Utils/api';
+import { fetchSeries, fetchTranslations, saveTranslations } from 'Utils/api';
 import { savedTranslations } from 'Actions/TranslationActions'
 
 import {
   receiveSeries
 } from 'Actions/BuilderActions';
+
+import {
+	receiveTranslations
+} from 'Actions/TranslationActions';
 
 const buildState = () => ({
   serieses: TranslationsStore.getSerieses(),
@@ -35,7 +39,7 @@ class Translations extends Component {
 	componentDidMount() {
 		TranslationsStore.addChangeListener(this.onChange);
 		document.addEventListener("keydown", this.handleKeyDown);
-		this.handleSeriesSelect('5ccddc33f364535e091ac562')
+		//this.handleSeriesSelect('5ccddc33f364535e091ac562')
 	}
 
 	componentWillUnmount() {
@@ -46,13 +50,20 @@ class Translations extends Component {
 	handleSelectCard = (selectedindex) => {
 		const { cards, translations } = this.state;
 		let selectedcard = cards[selectedindex];
-		selectedcard.translation = translations.find( (t) => t.cardid === selectedcard._id ) || {};
 
 		this.setState({ selectedcard, selectedindex })
 	}
 
 	handleSeriesSelect = async(id) =>{
-    	const seriescards = await fetchSeries(id);
+		const [
+			seriescards,
+			translations
+		] = await Promise.all([
+			fetchSeries(id),
+			fetchTranslations(id)
+		]);
+
+		receiveTranslations(translations);
     	receiveSeries(seriescards);
     	this.handleSelectCard(0);
     	this.setState({selectedseries: id})

@@ -2,11 +2,10 @@ import Store from './Store';
 import { TranslationsActions as AT, BuilderActions } from '../constants/Actions';
 import { register } from '../dispatcher';
 import { sortall } from 'Utils/cardsort';
-import tstub from 'Constants/stubs/Translations'
 
 let serieses = [];
 let cards = [];
-let translations = tstub;
+let translations = [];
 
 const TranslationsStore = {
   ...Store,
@@ -28,12 +27,28 @@ const TranslationsStore = {
         cards = cards.map( (card) =>  {
           if( card.locale.NP ){
             let cardtranslation = translations.find( (t) => t.cardid === card._id )
-            return {...card, locale: card.locale.NP, translation: cardtranslation || { cardid: card._id, name: "", ability: [] }}
+
+            if(!cardtranslation){
+              cardtranslation = { cardid: card._id, name: "", ability: [] }
+            }
+
+            return {...card, locale: card.locale.NP, translation: cardtranslation}
           }
-          return card;
+          else{
+            return card;
+          }
+          
         })
 
-        break;  
+        break; 
+      case AT.TRANSLATIONS_RECEIVE:
+        if( props.data.data ){
+          translations = props.data.data.translations;
+        }
+        else{
+          translations = [];
+        }        
+        break; 
       case AT.TRANSLATION_RECEIVE:
 
         let index = translations.findIndex( (t) => t.cardid === props.data.cardid )
@@ -47,7 +62,6 @@ const TranslationsStore = {
 
         index = cards.findIndex( (c) => c._id === props.data.cardid );
         cards[index].translation = {...props.data, edited: true};
-
         break;
       case AT.TRANSLATIONS_SAVE:
         translations = translations.map( (t) => ({...t, edited: false}) )
