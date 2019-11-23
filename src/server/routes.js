@@ -12,6 +12,7 @@ router.get("/api/deck/:deckid", services.GetDeckById);
 router.delete("/api/deck/:deckid", services.DeleteDeck);
 //router.post("/api/deck/claim/:deckid", services.ClaimDeck);
 //router.get("/api/fixdecks", services.FixDecks);
+router.post("/api/translations/:seriesid", services.SaveTranslations);
 
 // auth endpoints
 router.get("/api/verify/:token", services.VerifyEmail);

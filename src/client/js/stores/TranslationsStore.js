@@ -39,15 +39,14 @@ const TranslationsStore = {
         let index = translations.findIndex( (t) => t.cardid === props.data.cardid )
 
         if(index >= 0){
-          translations[index] = props.data;
+          translations[index] = {...props.data, edited: true};
         }
         else{
-          translations.push(props.data)
+          translations.push({...props.data, edited: true})
         }
 
         index = cards.findIndex( (c) => c._id === props.data.cardid );
-        cards[index].translation = props.data;
-        cards[index].edited = true;
+        cards[index].translation = {...props.data, edited: true};
 
         break;
       default: return;

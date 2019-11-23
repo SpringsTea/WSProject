@@ -11,6 +11,8 @@ module.exports = {
     ClaimDeck: require('./claimdeck'),
     DeleteDeck: require('./deletedeck'),
     FavoriteDeck: require('./favoritedeck'),
+    ///////Translations////
+    SaveTranslations: require('./translations/savetranslations'),
     ///////Auth//////
     RegisterUser: require('./auth/registeruser'),
     PasswordReset : require('./auth/resetpassword'),

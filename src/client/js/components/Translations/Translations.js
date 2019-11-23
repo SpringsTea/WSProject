@@ -6,7 +6,7 @@ import TranslationCard from './TranslationCard';
 import CardItemIcon from 'Partials/Builder/CardItem/CardItemIcon';
 
 import TranslationsStore from '../../stores/TranslationsStore';
-import { fetchSeries } from 'Utils/api';
+import { fetchSeries, saveTranslations } from 'Utils/api';
 
 import {
   receiveSeries
@@ -22,6 +22,7 @@ class Translations extends Component {
 
 	state = {
 		...buildState(),
+		selectedseries: null,
 		selectedcard: null,
 		selectedindex: 0,
 		focusedability: 0,
@@ -52,6 +53,12 @@ class Translations extends Component {
     	const seriescards = await fetchSeries(id);
     	receiveSeries(seriescards);
     	this.handleSelectCard(0);
+    	this.setState({selectedseries: id})
+  	}
+
+  	handleSave = async() =>{
+  		const { selectedseries, translations } = this.state;
+  		saveTranslations(selectedseries, translations)
   	}
 
   	handleKeyDown = (e) =>{
@@ -73,7 +80,7 @@ class Translations extends Component {
   	}
 
 	render(){
-		const { handleSeriesSelect } = this;
+		const { handleSeriesSelect, handleSave } = this;
 		const { serieses, cards, selectedcard } = this.state;
 
 		return(
@@ -103,7 +110,7 @@ class Translations extends Component {
 			  	<Col span={18}>
 				  	{
 				  		selectedcard &&
-				  		<TranslationCard key={selectedcard._id} card={selectedcard}/>
+				  		<TranslationCard key={selectedcard._id} card={selectedcard} handleSave={handleSave}/>
 				  	}	
 				</Col>
 				<Col span={6}>
@@ -112,7 +119,7 @@ class Translations extends Component {
 							dataSource={cards}
 							renderItem={(card, i) => (
 						        <List.Item 
-									className={`card-item ${selectedcard && card._id === selectedcard._id ? 'selected' : ''} ${ selectedcard && card.edited === true ? 'highlighted' : '' }
+									className={`card-item ${selectedcard && card._id === selectedcard._id ? 'selected' : ''} ${ card.translation.edited === true ? 'highlighted' : '' }
 									`}>
 										<List.Item.Meta 
 											className="clickable"
