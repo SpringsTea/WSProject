@@ -7,6 +7,7 @@ import CardItemIcon from 'Partials/Builder/CardItem/CardItemIcon';
 
 import TranslationsStore from '../../stores/TranslationsStore';
 import { fetchSeries, saveTranslations } from 'Utils/api';
+import { savedTranslations } from 'Actions/TranslationActions'
 
 import {
   receiveSeries
@@ -26,6 +27,7 @@ class Translations extends Component {
 		selectedcard: null,
 		selectedindex: 0,
 		focusedability: 0,
+		saving: false
 	}
 
 	onChange = () => this.setState(buildState);
@@ -58,7 +60,13 @@ class Translations extends Component {
 
   	handleSave = async() =>{
   		const { selectedseries, translations } = this.state;
-  		saveTranslations(selectedseries, translations)
+
+  		this.setState({saving: true});
+  		const res = await saveTranslations(selectedseries, translations)
+  		if( res.success ){
+  			savedTranslations()
+  		}
+  		this.setState({saving: false})
   	}
 
   	handleKeyDown = (e) =>{

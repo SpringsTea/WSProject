@@ -49,6 +49,14 @@ const TranslationsStore = {
         cards[index].translation = {...props.data, edited: true};
 
         break;
+      case AT.TRANSLATIONS_SAVE:
+        translations = translations.map( (t) => ({...t, edited: false}) )
+        cards = cards.map( (c) => {
+          let card = c;
+          c.translation.edited = false;
+          return card;
+        })
+        break;
       default: return;
     }
     TranslationsStore.emitChange(type);
