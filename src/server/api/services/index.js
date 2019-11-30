@@ -14,6 +14,7 @@ module.exports = {
     ///////Translations////
     GetTranslations: require('./translations/gettranslations'),
     SaveTranslations: require('./translations/savetranslations'),
+    SaveTranslationAttributes: require('./translations/savetranslationattributes'),
     ///////Auth//////
     RegisterUser: require('./auth/registeruser'),
     PasswordReset : require('./auth/resetpassword'),

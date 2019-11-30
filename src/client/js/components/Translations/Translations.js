@@ -1,12 +1,13 @@
 import { Component } from 'react';
-import { Row, Col, Select, List, message } from 'antd';
+import { Row, Col, Select, Button, List, Modal, message } from 'antd';
 const { Option } = Select;
 
 import TranslationCard from './TranslationCard';
+import AttributeManager from './AttributeManager';
 import CardItemIcon from 'Partials/Builder/CardItem/CardItemIcon';
 
 import TranslationsStore from '../../stores/TranslationsStore';
-import { fetchSeries, fetchTranslations, saveTranslations } from 'Utils/api';
+import { fetchSeries, fetchTranslations, saveTranslations, saveTranslationAttributes } from 'Utils/api';
 import { savedTranslations } from 'Actions/TranslationActions'
 
 import {
@@ -20,7 +21,8 @@ import {
 const buildState = () => ({
   serieses: TranslationsStore.getSerieses(),
   cards: TranslationsStore.getSeries(),
-  translations: TranslationsStore.getTranslations()
+  translations: TranslationsStore.getTranslations(),
+  attributes: TranslationsStore.getAttributes(),
 });
 
 class Translations extends Component {
@@ -31,7 +33,8 @@ class Translations extends Component {
 		selectedcard: null,
 		selectedindex: 0,
 		focusedability: 0,
-		saving: false
+		saving: false,
+		manageropen: false
 	}
 
 	onChange = () => this.setState(buildState);
@@ -74,7 +77,7 @@ class Translations extends Component {
 			fetchTranslations(id)
 		]);
 
-		receiveTranslations(dbtranslations);
+		receiveTranslations(dbtranslations.data);
     	receiveSeries(seriescards);
     	this.handleSelectCard(0);
     	this.setState({selectedseries: id})
@@ -85,6 +88,21 @@ class Translations extends Component {
 
   		this.setState({saving: true});
   		const res = await saveTranslations(selectedseries, translations)
+  		if( res.success ){
+  			savedTranslations()
+  			message.info("Save complete")
+  		}
+  		else{
+  			message.error("Save Failed :(")
+  		}
+  		this.setState({saving: false})
+  	}
+
+  	handleSaveAttributes = async() =>{
+  		const { selectedseries, attributes } = this.state;
+
+  		this.setState({saving: true});
+  		const res = await saveTranslationAttributes(selectedseries, attributes)
   		if( res.success ){
   			savedTranslations()
   			message.info("Save complete")
@@ -114,8 +132,9 @@ class Translations extends Component {
   	}
 
 	render(){
-		const { handleSeriesSelect, handleSave } = this;
-		const { serieses, cards, selectedcard, selectedseries, saving } = this.state;
+		const { handleSeriesSelect, handleSave, handleSaveAttributes } = this;
+		const { serieses, cards, attributes,
+			selectedcard, selectedseries, saving, manageropen } = this.state;
 
 		return(
 		  <div className="container-translations">
@@ -142,16 +161,23 @@ class Translations extends Component {
 		  		</Col>
 		  	</Row>
 		  	<Row gutter={16}>
-			  	<Col span={18}>
+			  	<Col span={18}>	
 				  	{
 				  		selectedcard ?
-				  		<TranslationCard key={selectedcard._id} card={selectedcard} handleSave={handleSave} saving={saving}/>
+				  		<div>
+					  		<TranslationCard key={selectedcard._id} card={selectedcard}/>
+					  		<Button.Group>
+					  			<Button type="danger" loading={saving} onClick={handleSave}>Save All</Button>
+					  			<Button onClick={ () => this.setState({manageropen: true}) }>Trait Manager</Button>
+					  		</Button.Group>
+					  	</div>
 				  		:
 				  		<div>
 				  			<h1 style={{textAlign: 'center'}}>
 				  				Select a Series Above
 				  			</h1>
 				  		</div>
+				  		
 				  	}	
 				</Col>
 				<Col span={6}>
@@ -175,6 +201,18 @@ class Translations extends Component {
 					</div>
 				</Col>
 		  	</Row>	  	
+		  	<Modal
+		  		title="Attribute Manager"
+		  		visible={manageropen}
+		  		bodyStyle={{maxHeight: '600px', overflowY:'auto'}}
+		  		onCancel={() => this.setState({manageropen: false})}
+		  		onOk={handleSaveAttributes}
+		  		okText="Save"
+		  		confirmLoading={saving}
+		  		width="800px"
+		  	>
+		  		<AttributeManager attributes={attributes} />
+		  	</Modal>
 		  </div>
 		)
 	}

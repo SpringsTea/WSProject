@@ -18,6 +18,10 @@ export const Abilities = [
 	{
 		'label': "【COUNTER】",
 		'text' : "【COUNTER】"
+	},
+	{
+		'label': "【REPLAY】",
+		'text' : "【REPLAY】"
 	}
 ];
 

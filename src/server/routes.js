@@ -14,7 +14,7 @@ router.delete("/api/deck/:deckid", services.DeleteDeck);
 //router.get("/api/fixdecks", services.FixDecks);
 router.get("/api/translations/:seriesid", services.GetTranslations);
 router.post("/api/translations/:seriesid", services.SaveTranslations);
-
+router.post("/api/translations/attributes/:seriesid", services.SaveTranslationAttributes);
 // auth endpoints
 router.get("/api/verify/:token", services.VerifyEmail);
 router.post("/api/login", services.Login, (req, res) => {res.json({ success: true, message: 'sucessfully logged in'})});

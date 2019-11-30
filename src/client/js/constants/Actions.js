@@ -22,5 +22,6 @@ export const DeckSearchActions = [
 export const TranslationsActions = [
   'TRANSLATIONS_RECEIVE',
   'TRANSLATIONS_SAVE',
-  'TRANSLATION_RECEIVE'
+  'TRANSLATION_RECEIVE',
+  'ATTRIBUTE_CHANGE'
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});

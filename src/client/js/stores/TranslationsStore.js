@@ -6,12 +6,14 @@ import { sortall } from 'Utils/cardsort';
 let serieses = [];
 let cards = [];
 let translations = [];
+let attributes = {};
 
 const TranslationsStore = {
   ...Store,
   getSerieses: () => serieses,
   getSeries: () => cards,
   getTranslations: () => translations,
+  getAttributes: () => attributes,
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case BuilderActions.SERIESES_RECEIVE:
@@ -23,7 +25,6 @@ const TranslationsStore = {
         break;
       case BuilderActions.SERIES_RECEIVE:
         cards = props.data.sort(sortall)
-
         cards = cards.map( (card) =>  {
           if( card.locale.NP ){
             let cardtranslation = translations.find( (t) => t.cardid === card._id )
@@ -32,18 +33,24 @@ const TranslationsStore = {
               cardtranslation = { cardid: card._id, name: "", ability: [] }
             }
 
+            //Make a key for each unique attribute in the set
+            card.locale.NP.attributes.map((attr) => {
+              if( !attributes[attr] ){
+                attributes[attr] = attr;
+              }            
+            })
             return {...card, locale: card.locale.NP, translation: cardtranslation}
           }
           else{
             return card;
-          }
-          
+          }          
         })
 
         break; 
       case AT.TRANSLATIONS_RECEIVE:
-        if( props.data.data ){
-          translations = props.data.data.translations;
+        if( props.data ){
+          translations = props.data.translations;
+          attributes = props.data.attributes;
         }
         else{
           translations = [];
@@ -70,6 +77,9 @@ const TranslationsStore = {
           c.translation.edited = false;
           return card;
         })
+        break;
+      case AT.ATTRIBUTE_CHANGE:
+        attributes[props.key] = props.value
         break;
       default: return;
     }

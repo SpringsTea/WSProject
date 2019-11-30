@@ -71,6 +71,14 @@ export async function saveTranslations(seriesid, data){
 	}) ;
 }
 
+export async function saveTranslationAttributes(seriesid, data){
+	return axios.post(`/api/translations/attributes/${seriesid}`, {attributes: data}).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}
+
 export async function login(data){
 	return axios.post(`/api/login`, data).then((res) => {
 		return res.data

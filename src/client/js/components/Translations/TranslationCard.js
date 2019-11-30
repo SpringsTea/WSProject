@@ -67,7 +67,7 @@ class TranslationCard extends Component {
 
 	render(){
 		const { handleKeyword, handleChange } = this;
-		const { card, saving, handleSave } = this.props;
+		const { card } = this.props;
 		const { locale = {}, translation = {} } = card;
 
 		return(
@@ -127,8 +127,6 @@ class TranslationCard extends Component {
 				<Card style={{marginBottom:'5px'}}>
 					<Keywords handleKeywordClick={handleKeyword} />
 				</Card>
-
-				<Button type="danger" loading={saving} onClick={handleSave}>Save All</Button>
 			</div>
 		)
 	}
