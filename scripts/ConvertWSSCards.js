@@ -20,6 +20,9 @@ var WSS_SERIES = readdirSync(WSS_PATH).filter(f => statSync(join(WSS_PATH, f)).i
 if( process.env.SERIES ){
 	WSS_SERIES = WSS_SERIES.filter( ( set ) => set === process.env.SERIES )
 }
+else{
+	process.exit()
+}
 
 //SERIES IE. AOT LLS etc
 WSS_SERIES.forEach( (wss_series) => {
