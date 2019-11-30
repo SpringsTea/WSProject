@@ -19,9 +19,17 @@ var ObjectId = mongoose.Types.ObjectId;
 module.exports = async (request, response, next) => {
     const seriesid = request.params.seriesid;
     const user = request.user;
+
     try {
-        let translations = await Translations.findOne({seriesid: ObjectId(seriesid)}).select('attributes moddate translations').exec();
-        response.status(200).json({ success: true, data:translations});
+
+        if( user && user.roles.includes('translator') ){
+            let translations = await Translations.findOne({seriesid: ObjectId(seriesid)}).select('attributes moddate translations').exec();
+            response.status(200).json({ success: true, data:translations});
+        }
+        else{
+            response.redirect("/");
+        }
+        
     } catch (error) {
         console.log(error);
         response.status(500).json({

@@ -21,6 +21,11 @@ module.exports = async (request, response, next) => {
 	const trans = request.body;
 	const user = request.user;
 
+	if( !user || !user.roles.includes('translator') ){
+        response.redirect("/");
+        return false;
+    }
+
 	let existingtrans = await Translations.findOne({seriesid: seriesid, lang: 'EN'}).exec();
 	//If this series already has a translation document
 	if( existingtrans ){

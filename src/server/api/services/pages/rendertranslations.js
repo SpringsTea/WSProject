@@ -13,7 +13,13 @@
  */
 module.exports = async (request, response, next) => {
     try {
-        response.render("translations", {loggedin: request.user ? true : false});
+    	if( request.user && request.user.roles.includes('translator') ){
+			response.render("translations", {loggedin: request.user ? true : false});
+    	}
+    	else{
+    		response.redirect("/");
+    	}
+        
     } catch (error) {
         console.log(error);
         response.status(500).json({
