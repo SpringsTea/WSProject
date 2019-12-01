@@ -39,6 +39,7 @@ module.exports = {
     "PY/S38-105": -1,  // Blue Puyo
     "FXX/S57-014": -1, // Mass-Produced Franxx
     "TF/S32-084": -1,  // "Abominable Being" Terraformar
+    "TF/S32-T02": -1, //"King of Vermin" Terraformar
     "PD/S29-046": 8,   // Hatsune Miku "Conflict"
     "GL/S52-094": -1,  // Mugann
     "GZL/S54-T01": -1, // Godzilla birdy
