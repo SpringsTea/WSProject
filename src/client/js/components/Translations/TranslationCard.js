@@ -67,7 +67,7 @@ class TranslationCard extends Component {
 
 	render(){
 		const { handleKeyword, handleChange } = this;
-		const { card } = this.props;
+		const { card, attributes } = this.props;
 		const { locale = {}, translation = {} } = card;
 
 		return(
@@ -125,7 +125,7 @@ class TranslationCard extends Component {
 				</Card>
 
 				<Card style={{marginBottom:'5px'}}>
-					<Keywords handleKeywordClick={handleKeyword} />
+					<Keywords handleKeywordClick={handleKeyword} attributes={attributes} />
 				</Card>
 			</div>
 		)

@@ -4,7 +4,7 @@ import { Button } from 'antd';
 import { Abilities, States } from 'Constants/Keywords'
 
 
-export default function Keywords({handleKeywordClick}) {
+export default function Keywords({handleKeywordClick, attributes}) {
 	return (
 		<div className="container-keywords">
 			<div>
@@ -25,6 +25,16 @@ export default function Keywords({handleKeywordClick}) {
 					}	
 				</Button.Group>	
 			</div>	
+			<br/>
+			<div>
+				<Button.Group size="small">
+					{
+						Object.values(attributes).sort().map( (e, i) => 
+							<Button onClick={() => handleKeywordClick(`《${e}》`)} key={i} value={e}>{e}</Button>
+						)
+					}	
+				</Button.Group>	
+			</div>
 		</div>
 	)
 }

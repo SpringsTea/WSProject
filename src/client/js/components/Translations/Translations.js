@@ -15,7 +15,8 @@ import {
 } from 'Actions/BuilderActions';
 
 import {
-	receiveTranslations
+	receiveTranslations,
+	receiveAttributes
 } from 'Actions/TranslationActions';
 
 const buildState = () => ({
@@ -98,14 +99,14 @@ class Translations extends Component {
   		this.setState({saving: false})
   	}
 
-  	handleSaveAttributes = async() =>{
-  		const { selectedseries, attributes } = this.state;
+  	handleSaveAttributes = async(attributes) =>{
+  		const { selectedseries } = this.state;
 
   		this.setState({saving: true});
   		const res = await saveTranslationAttributes(selectedseries, attributes)
   		if( res.success ){
-  			savedTranslations()
   			message.info("Save complete")
+  			receiveAttributes(attributes)
   		}
   		else{
   			message.error("Save Failed :(")
@@ -165,7 +166,7 @@ class Translations extends Component {
 				  	{
 				  		selectedcard ?
 				  		<div>
-					  		<TranslationCard key={selectedcard._id} card={selectedcard}/>
+					  		<TranslationCard key={selectedcard._id} card={selectedcard} attributes={attributes}/>
 					  		<Button.Group>
 					  			<Button type="danger" loading={saving} onClick={handleSave}>Save All</Button>
 					  			<Button onClick={ () => this.setState({manageropen: true}) }>Trait Manager</Button>
@@ -201,18 +202,9 @@ class Translations extends Component {
 					</div>
 				</Col>
 		  	</Row>	  	
-		  	<Modal
-		  		title="Attribute Manager"
-		  		visible={manageropen}
-		  		bodyStyle={{maxHeight: '600px', overflowY:'auto'}}
-		  		onCancel={() => this.setState({manageropen: false})}
-		  		onOk={handleSaveAttributes}
-		  		okText="Save"
-		  		confirmLoading={saving}
-		  		width="800px"
-		  	>
-		  		<AttributeManager attributes={attributes} />
-		  	</Modal>
+	  		<AttributeManager key={selectedseries} manageropen={manageropen} saving={saving} attributes={attributes} 
+	  			handleSaveAttributes={handleSaveAttributes} handleCancel={ () => this.setState({manageropen: false}) }
+	  		/>
 		  </div>
 		)
 	}

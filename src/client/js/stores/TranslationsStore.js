@@ -78,8 +78,8 @@ const TranslationsStore = {
           return card;
         })
         break;
-      case AT.ATTRIBUTE_CHANGE:
-        attributes[props.key] = props.value
+      case AT.ATTRIBUTES_RECEIVE:
+        attributes = props.data;
         break;
       default: return;
     }
