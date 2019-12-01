@@ -12,6 +12,7 @@ module.exports = {
     descksearch: "./src/client/js/decksearchRouter.js",
     login: "./src/client/js/loginRouter.js",
     user: "./src/client/js/userRouter.js",
+    translations: "./src/client/js/translationsRouter.js",
     pagenotfound: "./src/client/js/pagenotfoundRouter.js",
   },  
   output: {
@@ -101,6 +102,12 @@ module.exports = {
       favicon: "./public/favicon.ico"
     }),
     new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/translations.mustache'),
+      template: path.resolve(__dirname, "./public/translations.mustache"),
+      chunks: ['translations', 'commons'],
+      favicon: "./public/favicon.ico"
+    }),
+    new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, 'dist/pagenotfound.mustache'),
       template: path.resolve(__dirname, "./public/pagenotfound.mustache"),
       chunks: ['pagenotfound', 'commons'],
@@ -112,6 +119,7 @@ module.exports = {
       Actions: path.resolve(__dirname, 'src/client/js/actions'),
       Utils: path.resolve(__dirname, 'src/client/js/utils'),
       Constants: path.resolve(__dirname, 'src/client/js/constants'),
+      Components: path.resolve(__dirname, 'src/client/js/components'),
       Partials: path.resolve(__dirname, 'src/client/js/components/partials'),
     }
   }

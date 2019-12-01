@@ -11,6 +11,10 @@ module.exports = {
     ClaimDeck: require('./claimdeck'),
     DeleteDeck: require('./deletedeck'),
     FavoriteDeck: require('./favoritedeck'),
+    ///////Translations////
+    GetTranslations: require('./translations/gettranslations'),
+    SaveTranslations: require('./translations/savetranslations'),
+    SaveTranslationAttributes: require('./translations/savetranslationattributes'),
     ///////Auth//////
     RegisterUser: require('./auth/registeruser'),
     PasswordReset : require('./auth/resetpassword'),
@@ -26,4 +30,5 @@ module.exports = {
     RenderLogin: require('./pages/renderlogin'),
     RenderUser: require('./pages/renderuser'),
     RenderPageNotFound: require('./pages/renderpagenotfound'),
+    RenderTranslations: require('./pages/rendertranslations'),
 }

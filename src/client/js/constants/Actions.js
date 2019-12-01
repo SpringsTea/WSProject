@@ -18,3 +18,10 @@ export const DeckSearchActions = [
 	'SERIESES_RECEIVE',
   'NEOSETS_RECEIVE',
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});
+
+export const TranslationsActions = [
+  'TRANSLATIONS_RECEIVE',
+  'TRANSLATIONS_SAVE',
+  'TRANSLATION_RECEIVE',
+  'ATTRIBUTES_RECEIVE',
+].reduce((p, v) => (p[v] = Symbol(v), p), {});

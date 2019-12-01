@@ -12,7 +12,9 @@ router.get("/api/deck/:deckid", services.GetDeckById);
 router.delete("/api/deck/:deckid", services.DeleteDeck);
 //router.post("/api/deck/claim/:deckid", services.ClaimDeck);
 //router.get("/api/fixdecks", services.FixDecks);
-
+router.get("/api/translations/:seriesid", services.GetTranslations);
+router.post("/api/translations/:seriesid", services.SaveTranslations);
+router.post("/api/translations/attributes/:seriesid", services.SaveTranslationAttributes);
 // auth endpoints
 router.get("/api/verify/:token", services.VerifyEmail);
 router.post("/api/login", services.Login, (req, res) => {res.json({ success: true, message: 'sucessfully logged in'})});
@@ -27,6 +29,7 @@ router.get("/deck/:deckid", services.RenderDeck);
 router.get("/builder/:mode?/:deckid?", services.RenderDeckBuilder);
 router.get("/login/:tab?/:token?", services.RenderLogin);
 router.get("/user/:username?", services.RenderUser);
+router.get("/translations", services.RenderTranslations);
 router.get("*", services.RenderPageNotFound);
 
 

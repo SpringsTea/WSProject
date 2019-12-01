@@ -59,6 +59,26 @@ export async function searchDeck(data){
 	})).data;
 }
 
+export async function fetchTranslations(seriesid){
+	return (await axios.get(`/api/translations/${seriesid}`)).data;
+}
+
+export async function saveTranslations(seriesid, data){
+	return axios.post(`/api/translations/${seriesid}`, data).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}
+
+export async function saveTranslationAttributes(seriesid, data){
+	return axios.post(`/api/translations/attributes/${seriesid}`, {attributes: data}).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}
+
 export async function login(data){
 	return axios.post(`/api/login`, data).then((res) => {
 		return res.data
