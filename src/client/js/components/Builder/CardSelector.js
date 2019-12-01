@@ -16,14 +16,13 @@ class CardSelector extends Component {
 	}
 
 	render(){
-		const { handleItemHover } = this;
-		const { cards } = this.props;
+		const { cards, controls } = this.props;
 		return(
 			<div className="container-card-selector">
 				<List
 					dataSource={cards}
 					locale={ { emptyText: 'No Cards' } }
-					renderItem={ card => <CardItem card={card} locale={getLocale(card)} /> }
+					renderItem={ card => <CardItem card={card} controls={controls} locale={getLocale(card)} /> }
 				/>
 			</div>
 		)

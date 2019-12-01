@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html class="nice-scroll">
+	<head>
+		<title>Translation Builder</title>
+	</head>
+	<body>
+		<div id="header">
+
+		</div>
+		<div id="translations">
+
+		</div>
+	</body>
+	<script>
+	  WS.event.emit('page.header', {el:'#header', loggedin: '{{loggedin}}'})
+	  WS.event.emit('translations.load', { el: '#translations', loggedin: '{{loggedin}}' })
+	</script>
+</html>

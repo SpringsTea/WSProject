@@ -1,0 +1,74 @@
+@import "variables.less";
+
+.container-translations{
+	margin: 12px;
+
+	.card-list{
+		overflow-y: auto;
+		max-height: 800px;
+
+		.card-item.selected{
+			.ant-list-item-meta {
+				background-color:#b4b4b4;
+			}				
+		}
+	}
+
+	.container-keywords{
+		margin-top: 15px;
+	}
+}
+
+.container-translationcards{
+	margin-top: 6px;
+}
+
+.container-translationcard{
+
+	.ant-card-body{
+		padding: 12px;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.card-constants{
+		flex-basis: 75%;
+		.stats{
+			display: flex;
+		}
+	}
+
+	.container-cardimage{
+		height: @card-height;
+		width: @card-height;
+		img{
+			max-height: @card-height;
+			max-width: @card-height;
+		}		
+		margin-right: 5px;
+		flex-basis: 20%
+	}
+
+	.grid{
+		width:100%;
+		box-shadow: 3px 1px;
+		border: 1px solid grey;
+		padding: 2px;
+		.row{
+			min-height: 2em;
+		}
+	}
+
+	.card-translations{
+		flex-basis: 100%;
+
+		input{
+			color:black;
+		}
+
+		input[disabled]{
+			background-color: white;
+			cursor: default;
+		}
+	}
+}
