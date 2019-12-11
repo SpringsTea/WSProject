@@ -40,3 +40,46 @@ export const States = [
 	}
 ];
 
+export const Triggers = [
+	{
+		'label': "【Soul】",
+		'text' : "【Soul】"
+	},
+	{
+		'label': "【Return】",
+		'text' : "【Return】"
+	},
+	{
+		'label': "【Pool】",
+		'text' : "【Pool】"
+	},
+	{
+		'label': "【Comeback】",
+		'text' : "【Comeback】"
+	},
+	{
+		'label': "【Draw】",
+		'text' : "【Draw】"
+	},
+	{
+		'label': "【Shot】",
+		'text' : "【Shot】"
+	},
+	{
+		'label': "【Treasure】",
+		'text' : "【Treasure】"
+	},
+	{
+		'label': "【Gate】",
+		'text' : "【Gate】"
+	},
+	{
+		'label': "【Standby】",
+		'text' : "【Standby】"
+	},
+	{
+		'label': "【Choice】",
+		'text' : "【Choice】"
+	}
+];
+

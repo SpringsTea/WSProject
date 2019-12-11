@@ -33,6 +33,8 @@ if( SET_FILE ){
   WSS_SERIES = WSS_SERIES.filter( (f) => f == SET_FILE )
 }
 
+console.log(`${WSS_SERIES.length} files being patched...`)
+
 WSS_SERIES.forEach( (FILE) => {
 
   let setContent = JSON.parse(readFileSync(`${SET_PATH}/${FILE}`, { encoding: 'utf8'}));
