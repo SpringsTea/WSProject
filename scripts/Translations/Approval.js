@@ -41,40 +41,40 @@ async function Go(){
     process.exit()
   })
 
-  let translation = await TranslationModel.findOne({seriesid: series._id})
+  let translation = await TranslationModel.findOne({seriesid: series._id, lang: 'EN'})
   //A translation for this set dosnt currently exists
   if( translation === null ){
-    translation = new TranslationModel({
-      seriesid: series._id
-    })
+    console.log('No translation data found')
+    return false;
   }
 
-  //Dont accedentilly blow away real translation data, or double up on data
-  if( translation.translations.length > 0 || Object.keys(translation.attributes).length > 0 ){
-    console.log('Translation data already exists');
-    return false
-  }
+  let response = translation.translations.map( (tran) => {
 
-  const cards = await CardModel.find({series: series._id})
-  let attributes = {};
-  
-  cards.map( (card) => {
-    //populate attributes
-    card.locale.NP.attributes.map((attr) => {
-      if( !attributes[attr] ){
-        attributes[attr] = attr;
-      }            
+    return CardModel.findOne({ _id: tran.cardid })
+    .then((card) => {
+
+      if( card === null ){
+        console.log(`No card found: ${card.sid}`)
+        return false;
+      }
+
+      card.locale.EN.name = tran.name;
+      card.locale.EN.ability = tran.ability;
+      card.locale.EN.attributes = card.locale.NP.attributes.map( (a) => translation.attributes[a] )
+
+      card.save();
+      console.log(`card ${card.sid} saved`)
     })
-    translation.translations.push({
-      cardid: card._id,
-      name: card.locale.EN.name,
-      ability: card.locale.EN.ability
-    })
+    .catch( (err) => console(err) )
 
   })
 
-  translation.attributes = attributes;
-  translation.save();
+  await Promise.all(response)
+  translation.approvedate = Date.now()
+  translation.save()
+  console.log(`Approval Complete`)
+
+  process.exit();
 }
 Go()
 
