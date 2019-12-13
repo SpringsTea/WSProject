@@ -55,6 +55,8 @@ module.exports = {
     "SW/S49-042": -1,  // Gamorrean
     "SW/S49-045": 13, //Max Rebo and the funky bunch
     "JJ/S66-014": 6, //Sex Pistols
+    "TSK/S70-019": -1, //Orc
+    "TSK/S70-022": -1, //Orc General
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
     "AOT/S50-E088": -1, // "Pursuit" Titan
