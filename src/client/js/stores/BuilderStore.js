@@ -13,7 +13,7 @@ let builderfilters = {
   text: null
 };
 let deckdata = {
-
+  cards: []
 };
 let deck = [];
 let selectedCard = {

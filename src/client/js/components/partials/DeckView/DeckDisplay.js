@@ -22,7 +22,8 @@ class DeckDisplay extends Component {
 				<div className="header">Level 0</div>
 				<Row gutter={8}>
 					{
-						cards.filter( (card) => card.level === 0 && card.cardtype !== 'CX' ).map( (card, i) => 
+						cards.filter( (card) => card.level === 0 && card.cardtype !== 'CX' ).sort((a,b) => a.sid.localeCompare(b.sid))
+						.map( (card, i) => 
 						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
 							<CardItem card={card} />
 						</Col> 
@@ -32,7 +33,8 @@ class DeckDisplay extends Component {
 				<div className="header">Level 1 </div>
 				<Row gutter={8}>
 					{
-						cards.filter( (card) => card.level === 1 ).map( (card, i) => 
+						cards.filter( (card) => card.level === 1 ).sort((a,b) => a.sid.localeCompare(b.sid))
+						.map( (card, i) => 
 						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
 							<CardItem card={card} />
 						</Col> 
@@ -42,7 +44,8 @@ class DeckDisplay extends Component {
 				<div className="header">Level 2</div>
 				<Row gutter={8}>
 					{
-						cards.filter( (card) => card.level === 2 ).map( (card, i) => 
+						cards.filter( (card) => card.level === 2 ).sort((a,b) => a.sid.localeCompare(b.sid))
+						.map( (card, i) => 
 						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
 							<CardItem card={card} />
 						</Col> 
@@ -52,7 +55,8 @@ class DeckDisplay extends Component {
 				<div className="header">Level 3</div>
 				<Row gutter={8}>
 					{
-						cards.filter( (card) => card.level === 3 ).map( (card, i) => 
+						cards.filter( (card) => card.level === 3 ).sort((a,b) => a.sid.localeCompare(b.sid))
+						.map( (card, i) => 
 						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
 							<CardItem card={card} />
 						</Col> 
@@ -62,7 +66,8 @@ class DeckDisplay extends Component {
 				<div className="header">Climaxes</div>
 				<Row gutter={8}>
 					{
-						cards.filter( (card) => card.cardtype === 'CX' ).map( (card, i) => 
+						cards.filter( (card) => card.cardtype === 'CX' ).sort((a,b) => a.sid.localeCompare(b.sid))
+						.map( (card, i) => 
 						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
 							<CardItem card={card} />
 						</Col> 

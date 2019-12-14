@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Input, InputNumber, Alert, Checkbox, Icon, Tooltip, Row, Col } from 'antd';
+import CoverImageModal from './CoverImageModal';
+import DeckImage from './DeckImage'
 
 const { TextArea } = Input;
 
@@ -7,7 +9,8 @@ class DeckSaveForm extends Component {
 
   state = {
     showrecord: this.props.deckdata.attributes ? 
-      this.props.deckdata.attributes.find( (a) => this.props.mode === 'edit' && a.name === "Tournament") : false
+      this.props.deckdata.attributes.find( (a) => this.props.mode === 'edit' && a.name === "Tournament") : false,
+    coverimagevisible: false
   }
 
   validateRecord = (rule, value, callback) => {
@@ -25,7 +28,7 @@ class DeckSaveForm extends Component {
   render(){
     const { validateRecord } = this;
     const { form, mode, deck, deckdata = {} } = this.props;
-    const { showrecord } = this.state;
+    const { showrecord, coverimagevisible } = this.state;
     const { getFieldDecorator } = form;
     const tournamentAttribute = showrecord || {};
     const attributes = deckdata.attributes || [];
@@ -39,8 +42,8 @@ class DeckSaveForm extends Component {
       alerts.push({ type: 'warning', message: 'Your deck does not have 50 cards', description: 'You can still save your deck and complete it later' });
     } 
 
-    return(
-      <Form layout="vertical">
+    return([
+      <Form layout="vertical" className="decksave-form" key="form">
         {
           alerts.map( (data, i) => 
             <span key={i}>
@@ -48,6 +51,13 @@ class DeckSaveForm extends Component {
               <hr />
             </span>
           )
+        }
+        {
+          deck.length > 0 &&
+          <span>
+            Cover Image <a onClick={() => this.setState({coverimagevisible: true})}>(change)</a>
+            <DeckImage card={deck[0]} />
+          </span>
         }
         <Form.Item label="Name">
           {getFieldDecorator('name', {
@@ -118,8 +128,11 @@ class DeckSaveForm extends Component {
             </Row>
           </span>
         }
-      </Form>
-    )
+      </Form>,
+      <CoverImageModal key="coverimage" deck={deck} deckdata={deckdata}
+        visible={coverimagevisible} handleVisible={(v) => this.setState({coverimagevisible: v === true})}
+      />
+    ])
   }
 }
 
