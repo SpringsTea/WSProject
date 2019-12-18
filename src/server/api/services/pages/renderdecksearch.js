@@ -13,7 +13,9 @@
  */
 module.exports = async (request, response, next) => {
     try {
-        response.render("decksearch", {loggedin: request.user ? true : false});
+    	const user = request.user ? request.user._doc : false;
+    	const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
+        response.render("decksearch", {loggedin: user ? true : false, ...user, roles});
     } catch (error) {
         console.log(error);
         response.status(500).json({

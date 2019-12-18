@@ -45,7 +45,7 @@ WS.event.on('page.app.load', async props => {
 
 WS.event.on('page.header', async props => {
   await domLoaded;
-  render(<Header loggedin={props.loggedin} />, document.querySelector(props.el));
+  render(<Header {...props} />, document.querySelector(props.el));
 })
 
 async function loadBuilderData(data={}) {

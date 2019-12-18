@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html class="nice-scroll">
   <head>
+    <title>{{username}}</title>
   </head>
   <body>
     <div id="header">
@@ -11,7 +12,7 @@
     </div>
   </body>
   <script>
-    WS.event.emit('page.header', {el:'#header', loggedin: '{{loggedin}}', title: '{{username}}'})
     WS.event.emit('user.load', { el: '#user', userid: '{{userid}}', username: '{{username}}', loggedin:'{{loggedin}}' })
   </script>
+  {{> header}}
 </html>

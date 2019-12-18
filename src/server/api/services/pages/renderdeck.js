@@ -19,6 +19,8 @@ module.exports = async (request, response, next) => {
     let deck = await GetDeckById(deckid, {
         populate: false
     });
+    const user = request.user ? request.user._doc : false;
+    const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
 
     try {
 
@@ -27,7 +29,9 @@ module.exports = async (request, response, next) => {
                 deckid: deckid, 
                 deckname: deck.name, 
                 userid: request.user ? request.user._id : null, 
-                loggedin: request.user ? true : false 
+                loggedin: user ? true : false,
+                ...user,
+                roles
             });
 
             if( !request.user || deck.userid != request.user._id ){

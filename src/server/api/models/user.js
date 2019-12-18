@@ -18,7 +18,8 @@ const userSchema = mongoose.Schema({
     tokenExpires: Date,
     verify: Boolean,
     verifyToken: String,
-    roles: { type: [String], default: [] }
+    roles: { type: [String], default: [] },
+    regdate: Date,
 });
 
 module.exports = mongoose.model('User', userSchema);

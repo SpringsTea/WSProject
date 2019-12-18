@@ -13,7 +13,9 @@
  */
 module.exports = async (request, response, next) => {
     try {
-        response.render("login", {loggedin: request.user ? true : false, tab: request.params.tab, token: request.params.token});
+    	const user = request.user ? request.user._doc : false;
+    	const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
+        response.render("login", {loggedin: user ? true : false, tab: request.params.tab, token: request.params.token});
     } catch (error) {
         console.log(error);
         response.status(500).json({

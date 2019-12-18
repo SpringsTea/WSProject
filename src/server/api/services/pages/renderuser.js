@@ -14,7 +14,8 @@ import User from '../../models/user'
  */
 module.exports = async (request, response, next) => {
     try {
-
+        const user = request.user ? request.user._doc : false;
+        const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
         let username = null;
 
         if( request.params.username ){
@@ -37,7 +38,7 @@ module.exports = async (request, response, next) => {
             return false;
     	}
 
-        response.render("user", {loggedin: request.user ? true : false, username: username});
+        response.render("user", {loggedin: user ? true : false, username: username, ...user, roles});
     } catch (error) {
         console.log(error);
         response.status(500).json({

@@ -13,8 +13,10 @@
  */
 module.exports = async (request, response, next) => {
     try {
-    	if( request.user && request.user.roles.includes('translator') ){
-			response.render("translations", {loggedin: request.user ? true : false});
+        const user = request.user ? request.user._doc : false;
+        const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
+    	if( roles.translator ){
+			response.render("translations", {loggedin: user ? true : false, ...user, roles});
     	}
     	else{
     		response.redirect("/");
