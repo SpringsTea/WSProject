@@ -49,7 +49,7 @@ async function loadTranslationData(data={}) {
 // Route via events
 WS.event.on('page.header', async props => {
   await domLoaded;
-  render(<Header loggedin={props.loggedin} title={props.title}/>, document.querySelector(props.el));
+  render(<Header {...props} />, document.querySelector(props.el));
 });
 
 WS.event.on('translations.load', async props => {

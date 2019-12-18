@@ -14,7 +14,9 @@ import GetDeckById from '../../helpers/get-deck-by-id';
  */
 module.exports = async (request, response, next) => {
     try {
-        let deckid = request.params.deckid;
+        const deckid = request.params.deckid;
+        const user = request.user ? request.user._doc : false;
+        const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
 
         if(deckid){
             let deck = await GetDeckById(deckid, {
@@ -24,9 +26,11 @@ module.exports = async (request, response, next) => {
         }    
 
         response.render("builder", { 
-        	loggedin: request.user ? true : false, 
+        	loggedin: user ? true : false, 
         	mode: request.params.mode, 
-        	deckid: request.params.deckid
+        	deckid: request.params.deckid,
+            ...user,
+            roles
         });
     } catch (error) {
         console.log(error);

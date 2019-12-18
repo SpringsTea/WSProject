@@ -12,7 +12,7 @@
 		</div>
 	</body>
 	<script>
-	  WS.event.emit('page.header', {el:'#header', title: '{{deckname}}', loggedin: '{{loggedin}}'})
 	  WS.event.emit('deckview.load', { el: '#deckview', deckid: '{{deckid}}', loggedin: '{{loggedin}}', userid: '{{userid}}' })
 	</script>
+	{{> header}}
 </html>

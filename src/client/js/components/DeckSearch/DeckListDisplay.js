@@ -33,7 +33,7 @@ class DeckListDisplay extends Component {
 		const { pages, loading, loggedin } = this.props; 
 		return(
 			<Spin spinning={loading}>
-				<div className="container-deckdisplay">
+				<div className="container-decksdisplay">
 					{
 						pages.decks.length > 0 ?
 							<Row gutter={18}>

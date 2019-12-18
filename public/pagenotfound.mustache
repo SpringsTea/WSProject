@@ -12,7 +12,7 @@
     </div>
   </body>
   <script>
-    WS.event.emit('page.header', {el:'#header', loggedin: '{{loggedin}}'})
     WS.event.emit('pagenotfound.load', { el: '#page' })
   </script>
+  {{> header}}
 </html>

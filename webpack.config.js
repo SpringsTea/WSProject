@@ -70,6 +70,10 @@ module.exports = {
     }),
     new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
+      filename: path.resolve(__dirname, 'dist/header.mustache'),
+      template: path.resolve(__dirname, "./public/header.mustache"),
+    }),
+    new HtmlWebpackPlugin({
       inject: 'body',
       filename: path.resolve(__dirname, 'dist/builder.mustache'),
       template: path.resolve(__dirname, "./public/builder.mustache"),
