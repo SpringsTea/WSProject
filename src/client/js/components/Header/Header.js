@@ -12,7 +12,7 @@ class Header extends Component {
 
 	render(){
 		const { handleLogout } = this;
-		const { title, loggedin } = this.props;
+		const { title, loggedin, roles } = this.props;
 		
 		return(
 			<div className="container-header">
@@ -23,7 +23,10 @@ class Header extends Component {
 				<a className="header-button logo clickable" href="/"> <img src="/images/assets/ClappyNoText_240.png" /> EncoreDecks</a>
 				<a className="header-button clickable" href="/builder">Builder</a>
 				<a className="header-button clickable" href="/">Decks</a>
-				
+				{
+					roles.translator &&
+					<a className="header-button clickable" href="/translations">Translations</a>
+				}				
 				{
 					loggedin == 'true' ?
 						<a className="header-button clickable right" onClick={handleLogout}><Icon type="logout" /></a>
