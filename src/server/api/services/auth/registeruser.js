@@ -47,7 +47,8 @@ module.exports = async (req, res) => {
                 name: username,
                 password: pwHash,
                 verify: false,
-                verifyToken: token
+                verifyToken: token,
+                regdate: Date.now()
             });
 
             user.save();
