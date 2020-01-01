@@ -12,16 +12,20 @@ export const Abilities = [
 		'text' : "【AUTO】"
 	},
 	{
+		'label': "【Clock】",
+		'text' : "【Clock】"
+	},
+	{
 		'label': "【CXCombo】",
 		'text' : "【CXCombo】"
 	},
 	{
-		'label': "【COUNTER】",
-		'text' : "【COUNTER】"
+		'label': "【Counter】",
+		'text' : "【Counter】"
 	},
 	{
-		'label': "【REPLAY】",
-		'text' : "【REPLAY】"
+		'label': "【Replay】",
+		'text' : "【Replay】"
 	}
 ];
 

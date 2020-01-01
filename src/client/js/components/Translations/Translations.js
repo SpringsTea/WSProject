@@ -162,7 +162,7 @@ class Translations extends Component {
 		  		</Col>
 		  	</Row>
 		  	<Row gutter={16}>
-			  	<Col span={18}>	
+			  	<Col lg={18}>	
 				  	{
 				  		selectedcard ?
 				  		<div>
@@ -181,7 +181,7 @@ class Translations extends Component {
 				  		
 				  	}	
 				</Col>
-				<Col span={6}>
+				<Col lg={6}>
 					<div className="card-list">
 						<List 
 							dataSource={cards}
