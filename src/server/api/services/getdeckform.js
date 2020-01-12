@@ -1,5 +1,5 @@
 'use strict';
-var fillPdf = require("fill-pdf");
+var pdfFillForm = require('pdf-fill-form');
 
 import GetDeckById from '../helpers/get-deck-by-id'
 import Forms from '../../config/forms';
@@ -74,12 +74,11 @@ module.exports = async (req, res, next) => {
     })
 
     try {
-        fillPdf.generatePdf(FillData, Form.path, function(err, output) {
-            if ( !err ) {
-              res.type("application/pdf");
-              res.send(output);
-            }
-        });
+        var pdf = pdfFillForm.writeSync(Form.path, 
+            FillData, { "save": "pdf" } );
+        res.type("application/pdf");
+        res.send(pdf);
+
     } catch (error) {
         console.log(error);
         res.status(500).json({
