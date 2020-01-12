@@ -47,29 +47,51 @@ module.exports = async (req, res, next) => {
     }
     let DeckName = Deck.name;
     let Cards = filterCardQuantity(Deck.cards).sort( (a,b) => {//sort by sid
-        if(a.sid < b.sid) { return -1; }
-        if(a.sid > b.sid) { return 1; }
+        if(a.level < b.level) { return -1; }
+        if(a.level > b.level) { return 1; }
         return 0;
     })
-    let CharCards = Cards.filter( (card) => card.cardtype === 'CH' )
-    let EventCards = Cards.filter( (card) => card.cardtype === 'EV' )
-    let CXCards = Cards.filter( (card) => card.cardtype === 'CX' )
 
     let FillData = {
         DeckName
     }
 
-    CharCards.map( (card, i) => {
+    let CharCards = Cards.filter( (card) => card.cardtype === 'CH' )
+    .map( (card, i) => {
 
         const locale = card.locale[Form.lang].name ? Form.lang : 'NP';
 
         FillData = {
             ...FillData,
-            [`CHCard${i}Q`]: card.quantity,
+            [`CHCard${i+1}Q`]: card.quantity,
             //TODO change this to static card code when available
-            [`CHCard${i}Code`]: card ? `${card.set}/${card.side}${card.release}${ card.side && card.release ? '-' : '' }${card.sid}` : '',
-            [`CHCard${i}Level`]: card.level,
-            [`CHCard${i}Name`]: card.locale[locale].name,
+            [`CHCard${i+1}Code`]: `${card.set}/${card.side}${card.release}${ card.side && card.release ? '-' : '' }${card.sid} ${card.rarity}`,
+            [`CHCard${i+1}Level`]: card.level,
+            [`CHCard${i+1}Name`]: card.locale[locale].name,
+        }
+    })
+    let EventCards = Cards.filter( (card) => card.cardtype === 'EV' )
+    .map( (card, i) => {
+        const locale = card.locale[Form.lang].name ? Form.lang : 'NP';
+
+        FillData = {
+            ...FillData,
+            [`EVCard${i+1}Q`]: card.quantity,
+            //TODO change this to static card code when available
+            [`EVCard${i+1}Code`]: `${card.set}/${card.side}${card.release}${ card.side && card.release ? '-' : '' }${card.sid} ${card.rarity}`,
+            [`EVCard${i+1}Level`]: card.level,
+            [`EVCard${i+1}Name`]: card.locale[locale].name,
+        }
+    })
+    let CXCards = Cards.filter( (card) => card.cardtype === 'CX' )
+    .map( (card, i) => {
+        const locale = card.locale[Form.lang].name ? Form.lang : 'NP';
+        FillData = {
+            ...FillData,
+            [`CXCard${i+1}Q`]: card.quantity,
+            //TODO change this to static card code when available
+            [`CXCard${i+1}Code`]: `${card.set}/${card.side}${card.release}${ card.side && card.release ? '-' : '' }${card.sid} ${card.rarity}`,
+            [`CXCard${i+1}Name`]: card.locale[locale].name,
         }
     })
 
