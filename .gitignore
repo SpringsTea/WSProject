@@ -10,10 +10,9 @@ npm-debug\.log
 
 package-lock\.json
 
-src/server/config/
+src/server/config/keys
 
 scripts/Cards/
-
 scripts/SetData/
 
 .env
