@@ -24,12 +24,6 @@ export default function Export({ deck }) {
 	          onCancel={() => setModal(false)}
 	        >
 	          <DecklistWarning />
-
-	          <p style={{color: 'red'}}>
-	          	Due to technical limitations, Japanese text will not appear anywhere in pdf exports.
-	          	Card names can be entered into the form after export using Adobe Acrobat Reader.
-	          	We apologize for the inconvenience.
-	          </p>
 	        </Modal>
 		]
 	)
