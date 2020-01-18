@@ -2,11 +2,12 @@
 
 import Deck from '../models/deck'
 
-module.exports = async (deckid, { populate = false, user }) => {
+module.exports = async (deckid, { populate = false, lean = false, user }) => {
     try {
         let deck = Deck.findOne(
             {deckid: deckid, deleted: false}, 
-            '-_id cards datemodified deckid description name userid valid sets neo_fail views attributes favoritecount favoriteusers myfavorite'
+            '-_id cards datemodified deckid description name userid valid sets neo_fail views attributes favoritecount favoriteusers myfavorite',
+            { lean: lean }
         )
 
         if( populate === true ){
