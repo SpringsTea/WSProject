@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'antd';
+import { DecklistWarning } from 'Constants/copy/FormDownload'
 
 export default function Export({ deck }) {
 
@@ -22,11 +23,7 @@ export default function Export({ deck }) {
 	          }}
 	          onCancel={() => setModal(false)}
 	        >
-	          <p>
-		          EncoreDecks.com does not guarantee the accuracy of card data provided, including the <strong>card name and code</strong>, 
-		          and is not liable for any repercussions that are due to an incorrect registration sheet.
-	          </p>
-	          <p><strong>Double check your deck list!</strong></p>
+	          <DecklistWarning />
 	        </Modal>
 		]
 	)
