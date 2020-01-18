@@ -63,8 +63,6 @@ module.exports = async (req, res, next) => {
             TypeCards = Cards.filter( (card) => card.cardtype === type)
         }
 
-        console.log(type, Forms)
-
         TypeCards.map( (card, i) => {
 
             const locale = card.locale[Form.lang].name ? Form.lang : 'NP';
