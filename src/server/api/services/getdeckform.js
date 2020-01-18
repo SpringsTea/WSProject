@@ -53,51 +53,43 @@ module.exports = async (req, res, next) => {
     })
 
     let FillData = {
-        DeckName
+        [Form.fields.DeckName]: DeckName
     }
 
-    let CharCards = Cards.filter( (card) => card.cardtype === 'CH' )
-    .map( (card, i) => {
+    Form.cardtypes.map( (type) => {
+        let TypeCards = Cards;
 
-        const locale = card.locale[Form.lang].name ? Form.lang : 'NP';
+        if( type ){
+            TypeCards = Cards.filter( (card) => card.cardtype === type)
+        }
 
-        FillData = {
-            ...FillData,
-            [`CHCard${i+1}Q`]: card.quantity,
-            //TODO change this to static card code when available
-            [`CHCard${i+1}Code`]: `${card.set}/${card.side}${card.release}${ card.side && card.release ? '-' : '' }${card.sid} ${card.rarity}`,
-            [`CHCard${i+1}Level`]: card.level,
-            [`CHCard${i+1}Name`]: card.locale[locale].name,
-        }
-    })
-    let EventCards = Cards.filter( (card) => card.cardtype === 'EV' )
-    .map( (card, i) => {
-        const locale = card.locale[Form.lang].name ? Form.lang : 'NP';
+        console.log(type, Forms)
 
-        FillData = {
-            ...FillData,
-            [`EVCard${i+1}Q`]: card.quantity,
-            //TODO change this to static card code when available
-            [`EVCard${i+1}Code`]: `${card.set}/${card.side}${card.release}${ card.side && card.release ? '-' : '' }${card.sid} ${card.rarity}`,
-            [`EVCard${i+1}Level`]: card.level,
-            [`EVCard${i+1}Name`]: card.locale[locale].name,
-        }
-    })
-    let CXCards = Cards.filter( (card) => card.cardtype === 'CX' )
-    .map( (card, i) => {
-        const locale = card.locale[Form.lang].name ? Form.lang : 'NP';
-        FillData = {
-            ...FillData,
-            [`CXCard${i+1}Q`]: card.quantity,
-            //TODO change this to static card code when available
-            [`CXCard${i+1}Code`]: `${card.set}/${card.side}${card.release}${ card.side && card.release ? '-' : '' }${card.sid} ${card.rarity}`,
-            [`CXCard${i+1}Name`]: card.locale[locale].name,
-        }
+        TypeCards.map( (card, i) => {
+
+            const locale = card.locale[Form.lang].name ? Form.lang : 'NP';
+            const quantity = type ? Form.fields[type].Quantity(i) : Form.fields.Quantity(i);
+            const code = type ? Form.fields[type].Code(i) : Form.fields.Code(i);
+            const level = type ? Form.fields[type].Level(i) : Form.fields.Level(i);
+            const name = type ? Form.fields[type].Name(i) : Form.fields.Name(i);
+
+            //console.log(quantity, code, level, name)
+
+            FillData = {
+                ...FillData,
+                [quantity]: card.quantity,
+                //TODO change this to static card code when available
+                [code]: `${card.set}/${card.side}${card.release}${ card.side && card.release ? '-' : '' }${card.sid} ${card.rarity}`,
+                [level]: card.level,
+                [name]: card.locale[locale].name,
+            }
+        })
     })
 
     try {
         var pdf = pdfFillForm.writeSync(Form.path, 
             FillData, { "save": "pdf" } );
+        res.setHeader('Content-Disposition', 'attachment; filename=' + `${Deck.name}.pdf`);
         res.type("application/pdf");
         res.send(pdf);
 
