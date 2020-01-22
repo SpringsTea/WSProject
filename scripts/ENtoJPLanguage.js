@@ -34,7 +34,7 @@ const execute = async(seriesid = null, isscript = false) => {
 	}
 
 	serieses = await SeriesModel.find(ENSearch);
-	
+	console.log(`Patching ${serieses.length} JP serieses`)
 	const actions = serieses.map( async( series ) => {
 		let ENCards = await CardModel.find({ series: series._id})
 
