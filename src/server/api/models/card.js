@@ -22,6 +22,7 @@ const cardSchema = mongoose.Schema({
 	power: Number,
 	soul: Number,
 	rarity: String,
+	equivilantcard: { type: ObjectId, ref: 'Card', default: null },
 	trigger: {
 		type: [String],
 		default: []
