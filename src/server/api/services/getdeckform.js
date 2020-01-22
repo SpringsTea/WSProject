@@ -49,6 +49,8 @@ module.exports = async (req, res, next) => {
     let Cards = filterCardQuantity(Deck.cards).sort( (a,b) => {//sort by sid
         if(a.level < b.level) { return -1; }
         if(a.level > b.level) { return 1; }
+        if(a.type < b.type) { return -1; }
+        if(a.type > b.type) { return 1; }
         return 0;
     })
 

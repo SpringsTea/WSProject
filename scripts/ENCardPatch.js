@@ -11,6 +11,7 @@ const SET_FILE = process.env.FILE || null;
 
 const CardModel = require(`${MODEL_PATH}/card`)
 const SeriesModel = require(`${MODEL_PATH}/series`)
+const LangPatch = require('./ENtoJPLanguage');
 
 var mongooseOptions = {
   useNewUrlParser: true
@@ -32,10 +33,10 @@ if( SET_FILE ){
   WSS_SERIES = WSS_SERIES.filter( (f) => f == SET_FILE )
 }
 
-WSS_SERIES.forEach( (FILE) => {
+WSS_SERIES.forEach( async(FILE) => {
   let setContent = JSON.parse(readFileSync(`${SET_PATH}/${FILE}`, { encoding: 'utf8'}));
 
-  setContent.forEach( async (sourcecard) => {
+  let promises = setContent.map( async (sourcecard) => {
     let series = await SeriesModel.findOne({lang: 'EN', side: sourcecard.side, release: sourcecard.release}); 
     let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, 'sid': sourcecard.sid, 'lang': 'EN'});
 
@@ -55,7 +56,7 @@ WSS_SERIES.forEach( (FILE) => {
         remotecard.series = series ? series._id : null;
       }  
 
-      remotecard.save();
+      await remotecard.save();
       console.log('Card Saved', remotecard._id);
     }
     else{
@@ -84,7 +85,7 @@ WSS_SERIES.forEach( (FILE) => {
       }
       newcard.series = series ? series._id : null;
 
-      CardModel.create(newcard, function(err, data){
+      await CardModel.create(newcard, function(err, data){
         if(err){
           console.log('Something went wrong', err);
         }
@@ -93,7 +94,14 @@ WSS_SERIES.forEach( (FILE) => {
         }
       })
     }  
-    series.hash = new ObjectId();//Generate new hash each time cards in a series have been updated
-    series.save();
+    return remotecard || newcard;
   })
+
+  const savedcards = await Promise.all(promises)
+  let seriescard = savedcards[0];
+  let series = await SeriesModel.findOne({lang: 'EN', side: seriescard.side, release: seriescard.release});
+  
+  series.hash = new ObjectId();//Generate new hash each time cards in a series have been updated
+  series.save();
+  LangPatch(series._id)
 })
