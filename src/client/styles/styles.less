@@ -1,4 +1,5 @@
 @import "colors.less";
+@import "variables.less";
 
 .container-header{
 	display: inline-block;
@@ -63,14 +64,19 @@
 		}
 
 		.cardimage{
-			min-height: 200px;
+			max-height: @card-height;
+
+			img{
+				max-height: @card-height;
+			}
 
 			.image-not-found{
-				font-size: 10em;
+				font-size: 7em;
 			}
 		}
 
 		.cardtext{
+			margin-top: 5px;
 			padding: 5px;
 			max-height: 150px;
 			overflow-y: auto;
