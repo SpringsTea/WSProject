@@ -1,4 +1,5 @@
 @import "colors.less";
+@import "variables.less";
 
 .container-deckdisplay{
 	padding: 10px;
@@ -51,8 +52,13 @@
 	min-height: 240px;
 
 	.cardimage{
-		min-height: 130px;
-		font-size: 5em;
+		height: @card-height;
+		font-size: 7em;
+
+		img{
+			max-height: @card-height;
+			max-width: @card-height;
+		}
 	}
 
 	.card-name{
