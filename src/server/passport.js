@@ -8,7 +8,8 @@ module.exports = (passport) => {
         new localStrategy(
             (email, password, done) => {
                 try{
-                    User.findOne({ email: new RegExp(email, "i") }).then(user => {
+                    let escapemail = email.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                    User.findOne({ email: new RegExp(escapemail, "i") }).then(user => {
                         if(!user) {
                             return done(null, false);
                         }
