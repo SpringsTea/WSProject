@@ -1,0 +1,95 @@
+@import "variables.less";
+
+.container-playtester{
+	margin: 5px;
+
+	.card-slot{
+		height: @card-height;
+		width: @card-width;
+		border: 2px dotted black;
+		padding: 1px;
+
+	    border: solid #666 1px;
+	    background-color: #ccc;
+	    padding: 0.25em;
+	  
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: center;
+	    align-items: center;
+
+		&.rested{
+			height: @card-width;
+			width: @card-height;
+		}
+	}
+
+	.cards-stacked{
+		.card-slot-wrapper{
+			overflow: hidden;
+		}
+
+		.card-slot-wrapper:last-child {
+		    overflow: visible;
+		}
+	}
+
+	.container-field{
+		display:flex;
+	}
+
+	.field{
+
+		width:80%;
+		.front-stage{
+			display: flex;
+			justify-content: space-between;
+			margin-bottom: 2em;
+		}
+
+		.back-stage{
+			display:flex;
+			justify-content: space-between;
+		}
+
+	}
+
+	.damage{
+		display:flex;
+		align-content: center;
+		margin-top: 1em;
+
+		.level{
+			height: @card-height;
+			display: flex;
+			flex-direction: column;
+		}
+
+		.clock{
+			margin-left: 5px;
+			margin-right: 5px;
+			width: 73%;
+
+			display:flex;
+		}
+	}
+
+	.zones{
+		.card-slot{
+			margin-bottom: 10px;
+		}
+	}
+
+	.hand{
+
+		display: flex;
+		width: 100%;
+		align-content: center;
+		margin-top: 1em;
+
+		.card-slot-wrapper:hover{
+			overflow: visible;
+		}
+	}
+
+}

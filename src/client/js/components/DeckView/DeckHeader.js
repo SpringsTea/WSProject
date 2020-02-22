@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, message } from 'antd';
+import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, Modal, message } from 'antd';
 import DeckStats from './DeckStats';
 import AttributesList from 'Partials/DeckSearch/AttributesList';
 import FavoriteIcon from 'Partials/DeckSearch/FavoriteIcon';
 import DeckExportMenu from './DeckExportMenu';
+import Playtester from './PlayTester';
 
 import { claimDeck, deleteDeck } from 'Utils/api';
 import { FormatDateString } from 'Utils/stringfunctions';
@@ -56,6 +57,12 @@ class DeckHeader extends Component {
 
 		return(
 			<Card className="deck-header">
+				<Modal
+					visible={true}
+					width="50%"
+				>
+					<Playtester />
+				</Modal>
 				<div>
 					<div className="flex-container">
 						<h2 className="deck-name">{deck.name}</h2>
