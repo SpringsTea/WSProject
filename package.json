@@ -48,6 +48,8 @@
     "react-stickynode": "^2.1.1",
     "recharts": "^1.5.0",
     "regenerator-runtime": "^0.13.5",
+    "sanctuary": "^3.0.0",
+    "sanctuary-descending": "^2.1.0",
     "shortid": "^2.2.14",
     "throttle-debounce": "^2.1.0"
   },
