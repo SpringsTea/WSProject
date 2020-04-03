@@ -40,7 +40,7 @@ class DeckExportText extends Component {
     })
 
     const element = document.createElement("a");
-    const file = new Blob([DeckData], {type: 'text/plain', endings:'native'});
+    const file = new Blob([DeckData], {type: 'text/plain', ending: 'native'});
     element.href = URL.createObjectURL(file);
     element.download = FileName
     document.body.appendChild(element); // Required for this to work in FireFox
