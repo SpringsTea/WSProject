@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-const seriesSchema = mongoose.Schema({
+const seriesSchema = new mongoose.Schema({
 	_id: mongoose.Schema.Types.ObjectId,
 	set: String,
 	side: String,
