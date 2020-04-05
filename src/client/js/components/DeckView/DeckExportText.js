@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Tooltip, Menu } from 'antd';
 import { getLocale } from 'Utils/cardlocale';
 import { filterCardQuantity } from 'Utils/cardfilter';
-import S from 'sanctuary';
-import Descending from 'sanctuary-descending';
 
 class DeckExportText extends Component {
 
@@ -19,9 +17,9 @@ class DeckExportText extends Component {
     
     //Characters
     DeckData += "Characters \n";
-    const sortByLevelDesc = S.sortBy(S.compose(Descending)(S.prop('level')))
-    const sortBycardIdAsc = S.sortBy(S.prop('sid'))
-    const sortCards = S.compose(sortByLevelDesc)(sortBycardIdAsc)
+    const sortByLevelDesc = (cards) => cards.sort((c1, c2) => c2.level - c1.level)
+    const sortBycardIdAsc = (cards) => cards.sort((c1, c2) => c1.sid.localeCompare(c2.sid, 'en', { numeric: true }))
+    const sortCards = (cards) => sortByLevelDesc(sortBycardIdAsc(cards))
     sortCards(cards.filter((card) => card.cardtype == 'CH' && card.sid)).map(function (card, i) {
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
