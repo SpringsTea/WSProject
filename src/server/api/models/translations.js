@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 var ObjectId = mongoose.Schema.Types.ObjectId;
 var Mixed = mongoose.Schema.Types.Mixed;
 
-const translation = mongoose.Schema({
+const translation = new mongoose.Schema({
 	cardid: { type: ObjectId },
 	name: { type: String },
 	ability: { type: Array, default: [] },
@@ -10,7 +10,7 @@ const translation = mongoose.Schema({
 	moduser: { type: ObjectId },
 }, { _id: false })
 
-const translationsSchema = mongoose.Schema({
+const translationsSchema = new mongoose.Schema({
 	seriesid: { type: ObjectId },
 	lang: { type: String, default: 'EN' },
 	translations: [translation],

@@ -8,7 +8,7 @@ const locale = {
 	'ability': [String]
 };
 
-const cardSchema = mongoose.Schema({
+const cardSchema = new mongoose.Schema({
 	sid: String,
 	set: String,
 	side: String,

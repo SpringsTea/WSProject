@@ -17,7 +17,10 @@ class DeckExportText extends Component {
     
     //Characters
     DeckData += "Characters \n";
-    cards.filter( (card) => card.cardtype == 'CH' && card.sid).map(function (card, i){
+    const sortByLevelDesc = (cards) => cards.sort((c1, c2) => c2.level - c1.level)
+    const sortBycardIdAsc = (cards) => cards.sort((c1, c2) => c1.sid.localeCompare(c2.sid, 'en', { numeric: true }))
+    const sortCards = (cards) => sortByLevelDesc(sortBycardIdAsc(cards))
+    sortCards(cards.filter((card) => card.cardtype == 'CH' && card.sid)).map(function (card, i) {
       var locale = getLocale(card);
       var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
       DeckData +=  cardcode + "\t" + card.quantity + "\t" + locale.name + "\n";
@@ -40,7 +43,7 @@ class DeckExportText extends Component {
     })
 
     const element = document.createElement("a");
-    const file = new Blob([DeckData], {type: 'text/plain', endings:'native'});
+    const file = new Blob([DeckData], {type: 'text/plain', ending: 'native'});
     element.href = URL.createObjectURL(file);
     element.download = FileName
     document.body.appendChild(element); // Required for this to work in FireFox
