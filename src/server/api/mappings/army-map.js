@@ -82,4 +82,5 @@ module.exports = {
     "MM/W35-E091": -1,  // Kyubey Going "Kyu"
     "RZ/S55-E015": -1,  // Fingertips
     "RZ/S55-E008": -1,  // Invisible hand
+    "JJ/S66-E014": 6,
 }
