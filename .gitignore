@@ -9,6 +9,7 @@ nodemon\.json
 npm-debug\.log
 
 package-lock\.json
+pnpm-lock.yaml
 
 src/server/config/keys
 

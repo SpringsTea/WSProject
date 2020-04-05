@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-const neosetSchema = mongoose.Schema({
+const neosetSchema = new mongoose.Schema({
 	name: { type: String },
 	setcodes: [{ type: String }],
 	enabled: { type: Boolean, default: true },

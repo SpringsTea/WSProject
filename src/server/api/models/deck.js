@@ -4,7 +4,7 @@ const mongoosePaginate = require('mongoose-paginate-v2');
 
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
-const deckSchema = mongoose.Schema({
+const deckSchema = new mongoose.Schema({
 	name: { type: String, maxlength: 100 },
 	userid: { type: ObjectId, ref: 'User' },
 	deckid: { type: String, default: shortid.generate },
