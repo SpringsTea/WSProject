@@ -47,9 +47,6 @@
     "react-router": "^4.3.1",
     "react-stickynode": "^2.1.1",
     "recharts": "^1.5.0",
-    "regenerator-runtime": "^0.13.5",
-    "sanctuary": "^3.0.0",
-    "sanctuary-descending": "^2.1.0",
     "shortid": "^2.2.14",
     "throttle-debounce": "^2.1.0"
   },
@@ -76,6 +73,7 @@
     "less-loader": "^4.1.0",
     "nodemon": "^1.18.9",
     "optimize-css-assets-webpack-plugin": "^4.0.0",
+    "regenerator-runtime": "^0.13.5",
     "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.12.0",
