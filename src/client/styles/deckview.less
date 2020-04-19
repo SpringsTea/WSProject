@@ -53,12 +53,18 @@
 
 	.cardimage{
 		height: @card-height;
+		width: @card-width;
 		font-size: 7em;
 
+		&.CX{
+			height: @card-width;
+			width: @card-height;
+		}	
+
 		img{
-			max-height: @card-height;
-			max-width: @card-height;
-		}
+			height:100%;
+			width:100%;
+		}	
 	}
 
 	.card-name{

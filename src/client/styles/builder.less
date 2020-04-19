@@ -140,12 +140,17 @@
 
 	.cardimage{
 		height: @card-height;
+		width: @card-width;
+
+		&.CX{
+			height: @card-width;
+			width: @card-height;
+		}	
 
 		img{
-			max-height: @card-height;
-			max-width: @card-height;
-		}
-		
+			height:100%;
+			width:100%;
+		}	
 	}
 
 	.image-not-found{
