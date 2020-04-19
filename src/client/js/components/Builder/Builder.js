@@ -67,7 +67,7 @@ class Builder extends Component {
 						<SeriesSelect serieses={serieses} />
             			<Filters />
 						<CardSelector cards={buildercards} />
-						<Card card={selectedCard.card} locale={getLocale(selectedCard.card)} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
+						<Card card={selectedCard.card} locale={getLocale(selectedCard.card)} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} allowDeckControls />
 					</Col>
 					<Col xxl={16} xl={16} lg={12} md={24}> 
 						<Deck cards={deck} />

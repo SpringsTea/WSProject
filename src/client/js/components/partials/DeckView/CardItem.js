@@ -14,7 +14,7 @@ class CardItem extends Component {
 		return(
 			<div className="container-carditem clickable">
 				<Badge count={card.quantity} style={{ backgroundColor: '#000000' }}>
-				<div className='cardimage' onMouseEnter={ () => selectCard({card})} onClick={ () => selectCard({card}, true) }>
+				<div className={`cardimage ${card.cardtype}`} onMouseEnter={ () => selectCard({card})} onClick={ () => selectCard({card}, true) }>
 					<Img
 				    src={[
 				      generateCardImageLink(card),

@@ -1,3 +1,4 @@
+@import '~antd/dist/antd.less';
 @import "variables.less";
 
 .container-builder{
@@ -126,6 +127,12 @@
 			background-color: @ws-purple-bright;
 		}
 	}
+
+	@media (max-width: @screen-lg) and (min-width: @screen-sm) { 
+		button{
+			width:60px!important;
+		}
+	}
 }
 
 .visual-card-item{
@@ -133,12 +140,17 @@
 
 	.cardimage{
 		height: @card-height;
+		width: @card-width;
+
+		&.CX{
+			height: @card-width;
+			width: @card-height;
+		}	
 
 		img{
-			max-height: @card-height;
-			max-width: @card-height;
-		}
-		
+			height:100%;
+			width:100%;
+		}	
 	}
 
 	.image-not-found{
@@ -162,3 +174,5 @@
 	}
 	
 }
+
+

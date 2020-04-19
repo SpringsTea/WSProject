@@ -21,7 +21,7 @@ class CardItem extends Component {
 				<div className="name">{locale.name}</div>
 				<Badge className="card-quantity" count={card.quantity} offset={[-5, 10]} 
 					style={{ backgroundColor: 'black', color: 'white' }}>
-					<div className='cardimage clickable' onClick={() => selectCard({card}, true)}>
+					<div className={`cardimage clickable ${card.cardtype}`} onClick={() => selectCard({card}, true)}>
 						<Img
 					    src={[
 					      generateCardImageLink(card),
