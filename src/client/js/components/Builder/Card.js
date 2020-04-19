@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { Row, Col, Icon } from 'antd';
+import { Row, Col, Icon, Button } from 'antd';
 import Img from 'react-image';
 
 import Property from '../partials/Builder/Card/Property';
 
 import { generateCardImageLink, generateCardCode } from 'Utils/cardshorthands';
+import { addDeckCard, removeDeckCard } from 'Actions/BuilderActions';
 
 class Card extends Component {
 	render(){
-		const { card, locale, locked, onCardSelect = () => {} } = this.props;
+		const { card, locale, locked, allowDeckControls = false, onCardSelect = () => {} } = this.props;
 		return(
 			<div className={`container-card ${locked ? 'locked' : ''}`}>
 				{
@@ -32,6 +33,13 @@ class Card extends Component {
 					    unloader={<Icon className="image-not-found" type="question-circle" />}
 					  />
 					</div>
+					{
+						!!allowDeckControls &&
+						<Button.Group className="deck-controls">
+							<Button icon="minus" className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
+							<Button icon="plus" className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
+						</Button.Group>
+					}
 					{	
 						locale.ability && locale.ability.length > 0 &&
 						<div className="cardtext">
