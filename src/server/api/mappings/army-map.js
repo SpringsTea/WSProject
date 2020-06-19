@@ -27,6 +27,7 @@ module.exports = {
     "GG/S23-087": -1,  // Whalesquid
     "GGO/S59-088": -1, // ZEMAL, Machineguns are fun
     "SG/W19-038": -1,  // Noise (Episode 4)
+    "SG/W52-041": -1,  // Noise (but a different one)
     "KS/W55-089": -1,  // "Walking on the Street" Axis Cultist
     "KI/S44-015": -1,  // Goromin
     "KR/SE30-47": -1,  // Damashigami
@@ -58,6 +59,7 @@ module.exports = {
     "JJ/S66-014": 6, //Sex Pistols
     "TSK/S70-019": -1, //Orc
     "TSK/S70-022": -1, //Orc General
+    "CC/S48-039": -1, //Black Soldier
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
     "AOT/S50-E088": -1, // "Pursuit" Titan
