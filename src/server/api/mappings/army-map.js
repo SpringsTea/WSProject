@@ -50,6 +50,8 @@ module.exports = {
     "GZL/SE33-07": -1,  // "Listen Closely" Old man
     "RZ/S55-015": -1,  // Fingertips
     "RZ/S55-008": -1,  // Invisible hand
+    "RZ/SE35-45": 7, //"Arbitrator" Melakuera
+    "RZ/SE35-46": -1, //Black Water
     "KS/W49-057": -1,  // Cabbage
     "RW/W48-090": -1,  // "Made by Kotori-san" Monster
     "BD/W47-T11": 5,   // My Favorite item

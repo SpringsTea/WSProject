@@ -57,7 +57,9 @@ WSS_SERIES.forEach( (FILE) => {
       remotecard.locale[LOCALE == 'JP' ? 'EN' : LOCALE] = {
         name: sourcecard.name,
         ability: sourcecard.ability,
-        attributes: sourcecard.attributes
+        attributes: sourcecard.attributes,
+        level: sourcecard.level,
+        colour: sourcecard.colour,
       }
 
       //Only update series if there is none set
