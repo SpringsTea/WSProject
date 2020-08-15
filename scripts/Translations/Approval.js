@@ -73,8 +73,6 @@ async function Go(){
   translation.approvedate = Date.now()
   translation.save()
   console.log(`Approval Complete`)
-
-  process.exit();
 }
 Go()
 
