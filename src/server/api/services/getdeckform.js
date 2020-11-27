@@ -1,5 +1,6 @@
 'use strict';
 var pdfFillForm = require('pdf-fill-form');
+const contentDisposition = require('content-disposition');
 
 import GetDeckById from '../helpers/get-deck-by-id'
 import Forms from '../../config/forms';
@@ -90,6 +91,7 @@ module.exports = async (req, res, next) => {
         var pdf = pdfFillForm.writeSync(Form.path, 
             FillData, { "save": "pdf" } );
         res.setHeader('Content-Disposition', 'attachment; filename=' + `${Deck.name}.pdf`);
+        res.setHeader('Content-Disposition', 'attachment; filename=' + `${contentDisposition(DeckName)}.pdf`);
         res.type("application/pdf");
         res.send(pdf);
 
