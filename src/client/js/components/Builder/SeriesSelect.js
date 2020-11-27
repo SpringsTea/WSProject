@@ -57,7 +57,11 @@ class SeriesSelect extends Component {
 						autoClearSearchValue={false}
 					>
 						{
-							serieses.map( (series) => <Option key={series._id} value={series._id}>{series.name}</Option> )
+							serieses.map( (series) => 
+								<Option key={series._id} value={series._id}>
+									{`${series.name} (${series.side}${series.release})`}
+								</Option> 
+							)
 						}
 					</Select>
 				</Spin>

@@ -73,7 +73,7 @@ class DeckSaveForm extends Component {
         <Form.Item label="Description">
           {getFieldDecorator('description', {
             initialValue: deckdata.description || '',
-            rules: [{ max: 2000, message: 'Keep descriptions to 2000 characters long' }]
+            rules: [{ max: 5000, message: 'Keep descriptions to 5000 characters long' }]
           })(
             <TextArea autosize={{minRows: 4, maxRows: 4}} />
           )}
