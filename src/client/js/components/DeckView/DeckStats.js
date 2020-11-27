@@ -15,6 +15,15 @@ class DeckStats extends Component {
     return cards.filter((card) => card.level === level && card.cardtype !== 'CX').length;
   }
 
+  countSoulTriggers(cards = [], type = 'SOUL', invert=false){
+    if(invert){
+      return cards.filter((card) => !card.trigger.includes(type)).length;
+    }
+    else{
+      return cards.filter((card) => card.trigger.includes(type)).length;
+    }    
+  }
+
   renderLevelLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, name, short }) => {
     const { cards } = this.props;
     const RADIAN = Math.PI / 180; 
@@ -32,7 +41,7 @@ class DeckStats extends Component {
   };
 
   render() {
-    const { renderLevelLabel, sumCardQuantity, countCardLevel, sumCardColour } = this;
+    const { renderLevelLabel, sumCardQuantity, countCardLevel, sumCardColour, countSoulTriggers } = this;
     const { cards, deck } = this.props;
 
     const quantitydata = [
@@ -55,10 +64,15 @@ class DeckStats extends Component {
       { "name": 'Yellow', "value": sumCardColour(cards, 'YELLOW'), "color": "#D5BE3D" }
     ];
 
+    const triggerdata = [
+      { "name": 'Soul Triggers', "value": countSoulTriggers(cards), "color": "#226FA5" },
+      { "name": 'Non Triggers', "value": countSoulTriggers(cards, 'SOUL', true), "color": "#808080" }
+    ]
+
     return (
       <Row gutter={8}>
         <h2>Deck Statistics</h2>
-        <Col lg={8}>
+        <Col lg={4}>
           <div>
             <h4>Breakdown by Card Level and Type</h4>
             <PieChart width={250} height={250}>
@@ -84,7 +98,7 @@ class DeckStats extends Component {
             </PieChart>
           </div>
         </Col>
-        <Col lg={8}>
+        <Col lg={4}>
           <div>
             <h4>Breakdown by Card Color</h4>
             <PieChart width={250} height={250}>
@@ -99,6 +113,27 @@ class DeckStats extends Component {
               >
                 {
                   colourdata.map((entry, index) => <Cell key={`cell-${index}`} fill={colourdata[index].color} />)
+                }
+              </Pie>
+              <Tooltip />
+            </PieChart>
+          </div>
+        </Col>
+        <Col lg={4}>
+          <div>
+            <h4>Soul Triggers</h4>
+            <PieChart width={250} height={250}>
+              <Pie
+                isAnimationActive={false}
+                data={triggerdata}
+                dataKey="value"
+                labelLine={false}
+                fill="#8884d8"
+                outerRadius='80%'
+                labelLine={false}
+              >
+                {
+                  triggerdata.map((entry, index) => <Cell key={`cell-${index}`} fill={triggerdata[index].color} />)
                 }
               </Pie>
               <Tooltip />
