@@ -90,8 +90,7 @@ module.exports = async (req, res, next) => {
     try {
         var pdf = pdfFillForm.writeSync(Form.path, 
             FillData, { "save": "pdf" } );
-        res.setHeader('Content-Disposition', 'attachment; filename=' + `${Deck.name}.pdf`);
-        res.setHeader('Content-Disposition', 'attachment; filename=' + `${contentDisposition(DeckName)}.pdf`);
+        res.setHeader('Content-Disposition', contentDisposition(`${DeckName}.pdf`));
         res.type("application/pdf");
         res.send(pdf);
 
