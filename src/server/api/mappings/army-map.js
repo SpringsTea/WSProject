@@ -90,4 +90,5 @@ module.exports = {
     "JJ/S66-E014": 6, //Sex pistols
     "TSK/S70-019": -1, //Orc
     "TSK/S70-022": -1, //Orc General
+    "MOB/SX02-043": -1, //LOL Cult member
 }
