@@ -33,7 +33,7 @@ module.exports = async ({query:params, user}, response, next) => {
             populate: [
                 {
                     path: 'cards',
-                    limit: 5
+                    limit: 20
                 },
                 {
                     path: 'userid',
