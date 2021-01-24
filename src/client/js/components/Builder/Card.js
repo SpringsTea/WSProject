@@ -59,6 +59,7 @@ class Card extends Component {
 									<Property key={attribute} name='Trait' value={attribute} />)
 							}
 							<Property name='Card No' value={generateCardCode(card)} />
+							<Property name='Rarity' value={card.rarity} />
 						</Row>
 					</div>
 				</div>

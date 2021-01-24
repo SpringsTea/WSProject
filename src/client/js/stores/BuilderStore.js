@@ -2,14 +2,17 @@ import Store from './Store';
 import { BuilderActions as AT } from '../constants/Actions';
 import { sortall } from '../utils/cardsort';
 import { register } from '../dispatcher';
+import { getLocale } from 'Utils/cardlocale';
 
 let serieslist = [];//Top level list of available series
 let buildercards = [];
 let fbuildercards = [];//Buildercards after filters
+let attributes = new Set([]);
 let builderfilters = {
   cardtype: [],
   colour: [],
   level: [],
+  attributes: [],
   text: null
 };
 let deckdata = {
@@ -35,18 +38,14 @@ function filterBuilderCards() {
     if( builderfilters.colour.length > 0 && !builderfilters.colour.includes( card.colour ) ){
       return false;
     }
+    if( builderfilters.attributes.length > 0 && //Check cards for any 1 attribute matching builderfilters.attributes
+      !builderfilters.attributes.filter(val => getLocale(card).attributes.includes(val)).length > 0 ){
+      return false;
+    }
 
     //Match search text
     if( builderfilters.text){
-      //TODO need a better way of selecting locale
-      let cardname = ''; 
-
-      if(card.locale.EN.name){
-        cardname = card.locale.EN.name;
-      }
-      else if(card.locale.NP.name){
-        cardname = card.locale.NP.name;
-      }
+      let cardname = getLocale(card).name; 
 
       return cardname.toUpperCase().includes( builderfilters.text.toUpperCase()) 
       || card.sid.toUpperCase().includes( builderfilters.text.toUpperCase() )
@@ -64,6 +63,7 @@ const BuilderStore = {
   getDeckCards: () => Object.assign([],deck),//assigning this instead of mutating lets me compare in Deck.shouldComponentUpdate,
   getDeckData: () => deckdata,
   getSelectedCard: () => selectedCard,
+  getCardAttributes: () => Array.from(attributes),
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case AT.SERIESES_RECEIVE:
@@ -81,6 +81,11 @@ const BuilderStore = {
           })
 
         }
+        attributes = new Set([]);//recalculate all unique card attributes
+        buildercards.map((card) => {
+          let locale = getLocale(card);
+          locale.attributes.map((attr) => (!!attr && attr.length > 1) ? attributes.add(attr) : '' )
+        })
 
         buildercards = buildercards.sort(sortall);
         filterBuilderCards()

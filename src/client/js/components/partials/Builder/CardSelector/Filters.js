@@ -17,6 +17,7 @@ class Filters extends Component {
   render(){
 
     const { handleTextSearch } = this;
+    const { attributes } = this.props;
 
     return(
       <div className="container-filters">
@@ -60,6 +61,18 @@ class Filters extends Component {
                     <span key={colour}>
                       {Capitalize(colour)} <Switch className={colour} size="small" 
                       onChange={ (val) => filterBuilder({ type:'colour', filter: colour, value: val }) } />
+                    </span> 
+                  )
+                }
+              </div>
+            </TabPane>
+            <TabPane tab="Traits" key="5">
+              <div className="toggles">
+                {
+                  attributes.map( (attr) => 
+                    <span key={attr}>
+                      {Capitalize(attr)} <Switch size="small" 
+                      onChange={ (val) => filterBuilder({ type:'attributes', filter: attr, value: val }) } />
                     </span> 
                   )
                 }
