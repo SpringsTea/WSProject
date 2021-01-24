@@ -17,9 +17,9 @@ class Card extends Component {
 				<div className="card">
 					<a target="_blank" href={
 						card.lang === 'JP' ?
-						`https://heartofthecards.com/code/cardlist.html?card=WS_${card.set}/${card.side}${card.release}-${card.sid}`
+						`https://heartofthecards.com/code/cardlist.html?card=WS_${card.cardcode}`
 						:
-						`https://en.ws-tcg.com/cardlist/list/?cardno=${card.set}/${card.side}${card.release}-${card.sid}`
+						`https://en.ws-tcg.com/cardlist/list/?cardno=${card.cardcode}`
 					}
 
 					>		
