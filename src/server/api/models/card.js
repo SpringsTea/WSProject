@@ -9,6 +9,7 @@ const locale = {
 };
 
 const cardSchema = new mongoose.Schema({
+	cardcode: String,
 	sid: String,
 	set: String,
 	side: String,
@@ -30,6 +31,7 @@ const cardSchema = new mongoose.Schema({
 	locale: {
 		'EN' : locale,
 		'NP' : locale
-	}
+	},
+	imagepath: String,
 }, {collection: 'card'});
 module.exports = mongoose.model('Card', cardSchema);
