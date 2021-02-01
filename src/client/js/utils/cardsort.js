@@ -71,3 +71,12 @@ export let sortlevel = (a,b) => {
 
   return 0
 }
+
+export let sortcardcode = (a,b) => {
+  if( a.cardcode < b.cardcode ){
+    return -1
+  }
+  if( a.cardcode > b.cardcode ){
+    return 1
+  }
+}

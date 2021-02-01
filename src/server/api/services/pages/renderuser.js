@@ -32,6 +32,8 @@ module.exports = async (request, response, next) => {
         }
         else if(  request.user ){
             username = request.user.name
+            response.redirect(`/user/${username}`);
+            return false;
         }
     	else{
     		response.redirect('/login');

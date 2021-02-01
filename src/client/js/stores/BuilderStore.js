@@ -1,6 +1,6 @@
 import Store from './Store';
 import { BuilderActions as AT } from '../constants/Actions';
-import { sortall } from '../utils/cardsort';
+import { sortall, sortcardcode } from '../utils/cardsort';
 import { register } from '../dispatcher';
 import { getLocale } from 'Utils/cardlocale';
 
@@ -13,7 +13,8 @@ let builderfilters = {
   colour: [],
   level: [],
   attributes: [],
-  text: null
+  text: null,
+  sorttype: 'standard'
 };
 let deckdata = {
   cards: []
@@ -55,6 +56,22 @@ function filterBuilderCards() {
   })
 }
 
+function sortBuilderCards(){
+  let sortfunc = sortall;
+  switch(builderfilters.sorttype){
+    case 'standard':
+      sortfunc = sortall;
+      break;
+    case 'cardcode':
+      sortfunc = sortcardcode;
+      break;
+    default:
+      sortfunc = sortall;
+      break;
+  }
+  buildercards = buildercards.sort(sortfunc);
+}
+
 const BuilderStore = {
   ...Store,
   getSeriesesData: () => serieslist,
@@ -86,8 +103,7 @@ const BuilderStore = {
           let locale = getLocale(card);
           locale.attributes.map((attr) => (!!attr && attr.length > 1) ? attributes.add(attr) : '' )
         })
-
-        buildercards = buildercards.sort(sortall);
+        sortBuilderCards();
         filterBuilderCards()
         break;
       case AT.CARDS_CLEAR:
@@ -125,15 +141,18 @@ const BuilderStore = {
         deck.splice(indextoremove, indextoremove >= 0 ? 1 : 0);
         break;
       case AT.FILTER_BUILDER:
-
-        if( props.data.type === 'text' ){
-          builderfilters.text = props.data.value;
+        if( props.data.type === 'text' || props.data.type === 'sorttype' ){
+          builderfilters[props.data.type] = props.data.value;
         }
         else if( props.data.value === true ){//Add value onto type array
             builderfilters[props.data.type].push(props.data.filter);
         }
         else{//Remove value from type array
           builderfilters[props.data.type].splice( builderfilters[props.data.type].indexOf(props.data.filter), 1 )
+        }
+
+        if(props.data.type === 'sorttype'){
+            sortBuilderCards();
         }
         
         filterBuilderCards()

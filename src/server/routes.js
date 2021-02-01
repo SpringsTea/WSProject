@@ -29,7 +29,7 @@ router.get("/", services.RenderDeckSearch);
 router.get("/deck/:deckid", services.RenderDeck);
 router.get("/builder/:mode?/:deckid?", services.RenderDeckBuilder);
 router.get("/login/:tab?/:token?", services.RenderLogin);
-router.get("/user/:username?", services.RenderUser);
+router.get("/user/:username?/:tab?", services.RenderUser);
 router.get("/translations", services.RenderTranslations);
 router.get("*", services.RenderPageNotFound);
 

@@ -19,6 +19,7 @@ const userSchema = new mongoose.Schema({
     verify: Boolean,
     verifyToken: String,
     roles: { type: [String], default: [] },
+    config: { type: Object, default: {} },
     regdate: Date,
 });
 

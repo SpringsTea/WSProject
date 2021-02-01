@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Icon, Tabs, Input } from 'antd';
+import { Switch, Icon, Tabs, Input, Radio } from 'antd';
 import { throttle } from 'throttle-debounce';
 
 import { filterBuilder } from 'Actions/BuilderActions';
@@ -76,6 +76,14 @@ class Filters extends Component {
                     </span> 
                   )
                 }
+              </div>
+            </TabPane>
+            <TabPane tab="Sort" key="6">
+              <div>
+                <Radio.Group onChange={(e) => filterBuilder({type:'sorttype', value:e.target.value })} defaultValue="standard">
+                  <Radio.Button value="standard">Standard</Radio.Button>
+                  <Radio.Button value="cardcode">Cardcode</Radio.Button>
+                </Radio.Group>
               </div>
             </TabPane>
           </Tabs>
