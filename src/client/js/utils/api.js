@@ -109,3 +109,11 @@ export async function passwordReset(data){
 		return err.response.data
 	}) ;
 }
+
+export async function fetchUserData(userid){
+	return axios.get(`/api/users/${userid}`).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}

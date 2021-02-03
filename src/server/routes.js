@@ -11,6 +11,7 @@ router.get("/api/search/deck", services.SearchDecks);
 router.get("/api/deck/:deckid", services.GetDeckById);
 router.delete("/api/deck/:deckid", services.DeleteDeck);
 router.get("/api/deck/:deckid/form/:formtype?", services.GetDeckForm);
+router.get("/api/users/:userid", services.GetUserData);
 //router.post("/api/deck/claim/:deckid", services.ClaimDeck);
 //router.get("/api/fixdecks", services.FixDecks);
 router.get("/api/translations/:seriesid", services.GetTranslations);

@@ -11,9 +11,14 @@ import {
 } from './actions/DeckSearchActions';
 
 import {
+  receiveUser
+} from './actions/UserActions';
+
+import {
   fetchSerieses,
   fetchNeoSets,
   searchDeck,
+  fetchUserData,
 } from './utils/api'
 
 // React components
@@ -57,6 +62,11 @@ async function loadUserDecks(username = true) {
   receiveNeoSets(neosets);
 }
 
+async function loadUserData(userid){
+  const user = await fetchUserData(userid);
+  receiveUser(user);
+}
+
 // Route via events
 WS.event.on('page.header', async props => {
   await domLoaded;
@@ -64,7 +74,11 @@ WS.event.on('page.header', async props => {
 });
 
 WS.event.on('user.load', async props => {
-  await loadUserDecks(props.username);
+
+  await Promise.all([
+    loadUserDecks(props.username),
+    loadUserData(props.userid)
+  ])
   await domLoaded;
   render( <User loggedin={props.loggedin} filters={qs} username={props.username} />, document.querySelector(props.el));
 })

@@ -12,6 +12,7 @@ module.exports = {
     DeleteDeck: require('./deletedeck'),
     FavoriteDeck: require('./favoritedeck'),
     GetDeckForm: require('./getdeckform'),
+    GetUserData: require('./users/getUserData'),
     ///////Translations////
     GetTranslations: require('./translations/gettranslations'),
     SaveTranslations: require('./translations/savetranslations'),

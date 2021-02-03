@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+var Mixed = mongoose.Schema.Types.Mixed;
 
 const userSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -19,7 +20,7 @@ const userSchema = new mongoose.Schema({
     verify: Boolean,
     verifyToken: String,
     roles: { type: [String], default: [] },
-    config: { type: Object, default: {} },
+    config: { type: Mixed, default: { user:true } },
     regdate: Date,
 });
 
