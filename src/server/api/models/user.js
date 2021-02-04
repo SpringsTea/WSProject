@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
     verifyToken: String,
     roles: { type: [String], default: [] },
     config: { type: Mixed, default: { user:true } },
-    regdate: Date,
+    regdate: { type: Date, default: new Date( 2019,1,1 )},
 });
 
 module.exports = mongoose.model('User', userSchema);

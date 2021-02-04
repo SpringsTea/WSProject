@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import UserStore from 'Stores/UserStore';
 
 import RouterMenu from './RouterMenu';
-import UserProfile from './Routes/UserProfile';
+import UserProfile from './Routes/Profile/UserProfile';
 import DeckSearch from '../DeckSearch/DeckSearch';
 
 const { Content } = Layout;
@@ -32,6 +32,7 @@ class User extends Component {
 
 	render(){
 		const {username, filters, loggedin} = this.props;
+		const { user } = this.state;
 		
 		return(
 			<div className="container-user">
@@ -51,7 +52,7 @@ class User extends Component {
 			              		render={({ match }) => (
 			              			<Fragment>
 			              				<Route exact path={`${match.path}`}>
-						                  <UserProfile username={username} />
+						                  <UserProfile user={user} />
 						                </Route>					              	
 			              				<Route path={`${match.path}/decks`} render={() => 
 						                  <DeckSearch loggedin={loggedin} filters={{username: username, invalid: true, ...filters}} />
