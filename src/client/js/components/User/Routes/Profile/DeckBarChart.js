@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts';
 
 export default function DeckBarChart ({decks}){
@@ -20,20 +20,22 @@ export default function DeckBarChart ({decks}){
   }, {})
 
   return (
-      <BarChart
-        width={500}
+      <ResponsiveContainer
+        width={400}
         height={300}
-        data={Object.values(data).sort((x,y) => y.Count - x.Count).slice(0,5)}//Convert to array and sort / top 5 results
-        margin={{
-          top: 5, right: 30, left: 20, bottom: 5,
-        }}
       >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
-        <Tooltip />
-        <Legend />
-        <Bar dataKey="Count" fill="#D4D884" />
-      </BarChart>
+        <BarChart
+          data={Object.values(data).sort((x,y) => y.Count - x.Count).slice(0,5)}//Convert to array and sort / top 5 results
+          margin={{
+            top: 5, right: 30, left: 20, bottom: 5,
+          }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Bar dataKey="Count" fill="#D4D884" />
+        </BarChart>
+      </ResponsiveContainer>
     );
 }

@@ -34,15 +34,18 @@ module.exports = async (request, response, next) => {
         .populate('neo_sets', 'name')
         .exec();
 
-        const coverdeck = await GetDeckById(decks[0].deckid, {
-            populate: true,
-            view: false,
-        });
+        let coverdeck = null;
 
-        if(request.user && coverdeck.favoriteusers.includes(request.user._id)){
-            coverdeck.myfavorite = true;
+        if(decks.length > 0){
+            coverdeck = await GetDeckById(decks[0].deckid, {
+                populate: true,
+                view: false,
+            });   
+            if(request.user && coverdeck.favoriteusers.includes(request.user._id)){
+                coverdeck.myfavorite = true;
+            }
+            coverdeck.favoriteusers = undefined;//Dont ever want to give this to the user
         }
-        coverdeck.favoriteusers = undefined;//Dont ever want to give this to the user
 
         const iscurrentuser = request.user._id.equals(user._id);
         let payload = {
