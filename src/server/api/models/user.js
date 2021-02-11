@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     verify: Boolean,
     verifyToken: String,
     roles: { type: [String], default: [] },
-    config: { type: Mixed, default: { user:true } },
+    config: { type: Mixed, default: { bio: null } },
     regdate: { type: Date, default: new Date( 2019,1,1 )},
 });
 

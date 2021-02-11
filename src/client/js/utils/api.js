@@ -117,3 +117,11 @@ export async function fetchUserData(userid){
 		return err.response.data
 	}) ;
 }
+
+export async function setUserConfig(data){
+	return axios.post(`/api/users/config`, data).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}

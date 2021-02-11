@@ -2,15 +2,31 @@ import { Component } from 'react';
 import { Card, Typography, Row, Col } from 'antd';
 
 import DeckBarChart from './DeckBarChart';
+import Bio from './Bio';
 import SocialMedia from './SocialMedia/index.js';
 import DeckCard from 'Partials/DeckSearch/DeckCard';
+
+import { receiveUser } from 'Actions/UserActions';
 
 const { Text } = Typography;
 
 export default function UserProfile ({user}){
 	const regdate = new Date(user.regdate);
+
+	const updateUserConfig = (data) => {
+		receiveUser({
+			...user,
+			config: data
+		})
+	}
+
 	return(
 		<div className="container-userprofile">
+			<Card
+			size="small"
+			>
+				<Bio user={user} onFinish={updateUserConfig} />
+			</Card>
 			<Card 
 				title={<span>{user.username} - 
 					<Text type="secondary"> User Since { `${regdate.getFullYear()}-${regdate.getMonth() + 1}-${regdate.getDate()}` }</Text>
@@ -41,9 +57,9 @@ export default function UserProfile ({user}){
 				}	
 				<Card
 				title="Social"
-				small="small"
+				small='small'
 				>
-					<SocialMedia user={user} />
+					<SocialMedia user={user} onFinish={updateUserConfig} />
 				</Card>	  
 			</Card>
 		</div>

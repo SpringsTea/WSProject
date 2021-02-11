@@ -2,33 +2,58 @@ import { Component } from 'react';
 import { Icon } from 'antd'
 import SocialInput from './socialinput';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDiscord } from '@fortawesome/free-brands-svg-icons'
+import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 
-export default function SocialMedia ({user}){
+import { setUserConfig } from 'Utils/api';
 
-  return(
-    <div className="container-userprofile-socialmedia">
-    	<div style={{width:'200px'}}>
+export default function SocialMedia ({user, onFinish}){
+
+    const onSave = async (value, name) => {
+        return await setUserConfig({[name]: value}).then((res) => {
+            if(res.success === true){
+                onFinish(res.config)
+            }
+            else{
+                message.error(res.message || 'Something went wrong')
+            }
+        })
+    }
+
+    return(
+    <div className="container-userprofile-socialmedia" style={{display:'flex'}}>
+    	<span style={{width:'300px', marginRight:'1em'}}>
     		<SocialInput 
+            name='Twitter'
+            value={user.config.Twitter}
     		icon={<Icon type="twitter" />}
     		addon="@"
     		placeholder="Handle"
+            currentuser={user.currentuser}
+            onSave={onSave}
     		/>
-    	</div>
-    	<div style={{width:'200px'}}>
+    	</span>
+    	<span style={{width:'300px', marginRight:'1em'}}>
     		<SocialInput 
+            name="Youtube"
+            value={user.config.Youtube}
     		icon={<Icon type="youtube" />}
-    		addon="user/" 
+    		addon="c/" 
     		placeholder="Username"
+            currentuser={user.currentuser}
+            onSave={onSave}
     		/>
-    	</div>
-    	<div style={{width:'200px'}}>
+    	</span>
+    	<span style={{width:'300px', marginRight:'1em'}}>
     		<SocialInput 
+            name="Discord"
+            value={user.config.Discord}
     		icon={<FontAwesomeIcon icon={faDiscord} />} 
     		addon="#"
     		placeholder="Discord"
+            currentuser={user.currentuser}
+            onSave={onSave}
     		/>
-    	</div>
+    	</span>
     </div>
-  )
+    )
 }
