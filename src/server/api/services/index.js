@@ -15,6 +15,7 @@ module.exports = {
     ///////User
     GetUserData: require('./users/getUserData'),
     SetUserConfig: require('./users/setUserConfig'),
+    SetUserEmail: require('./users/setUserEmail'),
     ///////Translations////
     GetTranslations: require('./translations/gettranslations'),
     SaveTranslations: require('./translations/savetranslations'),

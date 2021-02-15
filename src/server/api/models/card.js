@@ -5,7 +5,8 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 const locale = {
 	'name': String,
 	'attributes': [String],
-	'ability': [String]
+	'ability': [String],
+	'source': { type: String, defualt: 'bushi' }
 };
 
 const cardSchema = new mongoose.Schema({

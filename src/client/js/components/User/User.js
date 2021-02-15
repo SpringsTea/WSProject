@@ -7,6 +7,7 @@ import UserStore from 'Stores/UserStore';
 import RouterMenu from './RouterMenu';
 import UserProfile from './Routes/Profile/UserProfile';
 import DeckSearch from '../DeckSearch/DeckSearch';
+import Settings from './Routes/Settings';
 
 const { Content } = Layout;
 
@@ -42,7 +43,7 @@ class User extends Component {
 			          	<Route
 			          		path="/user/:username/:tab?"
 			          		render={({ match: { url } }) => (
-			            		<RouterMenu route={url} />
+			            		<RouterMenu route={url} user={user} />
 			            	)}
 			            />
 			            <Content className="user-content">
@@ -57,6 +58,12 @@ class User extends Component {
 			              				<Route path={`${match.path}/decks`} render={() => 
 						                  <DeckSearch loggedin={loggedin} filters={{username: username, invalid: true, ...filters}} />
 						              	}/>
+						              	{
+						              		user.currentuser === true &&
+							              	<Route exact path={`${match.path}/settings`}>
+							                  <Settings user={user} />
+							                </Route>
+						            	}
 			              			</Fragment>
 			              		)}
 			         		/>

@@ -47,7 +47,7 @@ module.exports = async (request, response, next) => {
             coverdeck.favoriteusers = undefined;//Dont ever want to give this to the user
         }
 
-        const iscurrentuser = request.user._id.equals(user._id);
+        const iscurrentuser = request.user && request.user._id.equals(user._id);
         let payload = {
             id: user._id,
             username: user.name,
