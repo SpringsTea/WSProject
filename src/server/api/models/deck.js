@@ -25,7 +25,7 @@ const deckSchema = new mongoose.Schema({
 	myfavorite: {type: Boolean, default: false},//placeholder value to be assigned on search, should never be set
 }, { collection: 'deck' });
 
-deckSchema.index({ name: 'text', description: 'text' });
+deckSchema.index({ deckid: 1 });
 deckSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Deck', deckSchema);
