@@ -3,7 +3,7 @@ import { Input, Button, message } from 'antd';
 import { ValidateEmail } from 'Utils/regex';
 import { setUserEmail } from 'Utils/api';
 
-export default function EmailChange ({email}){
+export default function EmailChange ({email, onChange}){
   const [value, setValue] = useState(email);
   const [loading, setLoading] = useState(false);
 
@@ -17,6 +17,7 @@ export default function EmailChange ({email}){
     const res =  await setUserEmail({email:value});
     if(!!res.success){
       message.success('Email updated')
+      onChange({email: value})
     }
     else{
       message.error(res.message || 'Something went wrong')
@@ -27,7 +28,7 @@ export default function EmailChange ({email}){
   return(
     <span style={{display:'flex'}}>
       <Input value={value} onChange={(e) => setValue(e.target.value)} />
-      <Button type="primary" style={{marginLeft:'1em'}} onClick={onSave}>
+      <Button loading={loading} type="primary" style={{marginLeft:'1em'}} onClick={onSave}>
         Save
       </Button>
     </span>
