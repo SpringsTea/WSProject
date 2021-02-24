@@ -28,7 +28,7 @@ export default function LanguageSelect ({config = {}, onChange}){
     <span>
       <Radio.Group defaultValue={config.preferredlocale || 'EN'} onChange={(e) => onSave('preferredlocale', e.target.value)}>
         <Radio value="EN">English</Radio>
-        <Radio value="JP">Japanese</Radio>        
+        <Radio value="NP">Japanese</Radio>        
       </Radio.Group>     
       <Tooltip placement='top' title="Display unofficial community translations"> 
         <Checkbox 

@@ -8,7 +8,7 @@ const { join, extname } = require('path')
 const DB_PATH = process.env.DB_PATH || `./TranslationData/`;
 var DB_DATA = readdirSync(DB_PATH);
 const MODEL_PATH = '../src/server/api/models';
-const LOCALE_OVERWRITE = process.env.LOCALE_OVERWRITE || false;//false prevents exsting EN locales from being modified
+const LOCALE_OVERWRITE = !!process.env.LOCALE_OVERWRITE || false;//false prevents exsting EN locales from being modified
 
 const CardModel = require(`${MODEL_PATH}/card`);
 var mongooseOptions = {
@@ -30,8 +30,9 @@ if( process.env.FILE ){
 	DB_DATA = DB_DATA.filter( ( set ) => set === process.env.FILE )
 }
 else{
-	//process.exit();
-	//TODO reenable this to prevent accedentally reproccessing everything
+	if(!proccess.env.DOIT){//Only do one file at a time unless your really sure
+		process.exit();
+	}
 }
 
 DB_DATA.forEach( async(seriesfile) => {

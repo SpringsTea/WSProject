@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Icon, Button } from 'antd';
+import { Row, Col, Icon, Button, Tooltip } from 'antd';
 import Img from 'react-image';
 
 import Property from '../partials/Builder/Card/Property';
@@ -23,7 +23,31 @@ class Card extends Component {
 					}
 
 					>		
-						<h2 className="card-name">{locale.name || 'NaN'} <Icon type="link" /></h2>
+						<h2 className="card-name">
+							{locale.name || 'NaN'} <Icon type="link" />
+							{
+								locale.source === "community" &&
+								<Tooltip title="Translaitons for this card are provided by the community, and are subject to change">
+									<Icon 
+										style={{marginLeft:'4px'}} 
+										theme="filled" 
+										className="locale-alert clickable" 
+										type="question-circle" 
+									/>
+								</Tooltip>
+							}
+							{
+								locale.source === "akiba" &&
+								<Tooltip title="Translaitons for this card are provided by little akiba, and are subject to change">
+									<Icon 
+										style={{marginLeft:'4px'}} 
+										theme="filled" 
+										className="locale-alert clickable akiba" 
+										type="question-circle" 
+									/>
+								</Tooltip>
+							}
+						</h2>
 					</a>
 					<div className='cardimage clickable' onClick={() => onCardSelect(card)}>
 						<Img
