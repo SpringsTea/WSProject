@@ -3,7 +3,7 @@ import { Input, Icon, Button } from 'antd';
 
 import { links } from 'Constants/sociallinks';
 
-export default function SocialInput ({onSave, value, name, icon, addon, size, placeholder, currentuser = false}){
+export default function SocialInput ({onSave, value, name, icon, addon = '', size, placeholder, currentuser = false}){
 
   const [editable, setEditable] = useState(!value)
   const [inputvalue, setValue] = useState(value);

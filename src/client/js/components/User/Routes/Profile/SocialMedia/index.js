@@ -48,7 +48,6 @@ export default function SocialMedia ({user, onFinish}){
             name="Discord"
             value={user.config.Discord}
     		icon={<FontAwesomeIcon icon={faDiscord} />} 
-    		addon="#"
     		placeholder="Discord"
             currentuser={user.currentuser}
             onSave={onSave}

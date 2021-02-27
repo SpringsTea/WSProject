@@ -13,9 +13,8 @@ module.exports = (cards, { preferredlocale = 'EN', unofficialen = true }) => {
 				: {'EN' : c.locale['EN']}
 			}
 		}
-		else{//Return any available locale
-			let fallback = Object.entries(c.locale).find(([key, l]) => !!l.name)//[NP, LOCALE]
-			locale = { [fallback[0]] : fallback[1] }
+		else{
+			locale = c.locale
 		}
 
 		return {
