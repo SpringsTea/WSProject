@@ -1,9 +1,26 @@
 'use strict';
 //Given an array of card documents and the users config settings, locales are removed to meet locale requirments
 
-module.exports = (cards, { preferredlocale = 'EN' }) => {	
-    return cards.map((c) => ({
-        ...c.toObject(),
-        locale: !!c.locale[preferredlocale].name ? {[preferredlocale] : c.locale[preferredlocale]} : c.locale
-    }))
+module.exports = (cards, { preferredlocale = 'EN', unofficialen = true }) => {	
+	return cards.map((c) => {
+		let locale = {};
+
+		if(!!c.locale[preferredlocale].name){//if the prefered locale exists
+			locale =  {[preferredlocale] : c.locale[preferredlocale]};
+			if(unofficialen === false && c.locale[preferredlocale].source === "community"){
+				locale = c.locale['NP'].name ? 
+				{'NP' : c.locale['NP']}
+				: {'EN' : c.locale['EN']}
+			}
+		}
+		else{//Return any available locale
+			let fallback = Object.entries(c.locale).find(([key, l]) => !!l.name)//[NP, LOCALE]
+			locale = { [fallback[0]] : fallback[1] }
+		}
+
+		return {
+			...c.toObject(),
+			locale: locale
+		}
+	});
 }
