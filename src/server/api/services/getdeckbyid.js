@@ -5,6 +5,7 @@
  */
 
 import GetDeckById from '../helpers/get-deck-by-id'
+import LocaleSelect from '../helpers/user-preferedlocale';
 
 /**
  * Get Deck By ID
@@ -25,6 +26,10 @@ module.exports =  async (request, response, next) => {
     });
 
     let deck = d._doc;
+
+    if(request.user){
+        deck.cards = LocaleSelect(deck.cards, request.user.config);
+    }
 
     if(request.user && deck.favoriteusers.includes(request.user._id)){
         deck.myfavorite = true;

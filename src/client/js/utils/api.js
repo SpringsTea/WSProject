@@ -109,3 +109,27 @@ export async function passwordReset(data){
 		return err.response.data
 	}) ;
 }
+
+export async function fetchUserData(userid){
+	return axios.get(`/api/users/${userid}`).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}
+
+export async function setUserConfig(data){
+	return axios.post(`/api/users/config`, data).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}
+
+export async function setUserEmail(data){
+	return axios.post(`/api/users/email`, data).then((res) => {
+		return res.data
+	}).catch(err => {
+		return err.response.data
+	}) ;
+}

@@ -125,6 +125,8 @@ module.exports = {
       Constants: path.resolve(__dirname, 'src/client/js/constants'),
       Components: path.resolve(__dirname, 'src/client/js/components'),
       Partials: path.resolve(__dirname, 'src/client/js/components/partials'),
+      Stores: path.resolve(__dirname, 'src/client/js/stores'),
+      Public: path.resolve(__dirname, 'public'),
     }
   }
 }

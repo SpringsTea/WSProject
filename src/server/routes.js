@@ -11,6 +11,10 @@ router.get("/api/search/deck", services.SearchDecks);
 router.get("/api/deck/:deckid", services.GetDeckById);
 router.delete("/api/deck/:deckid", services.DeleteDeck);
 router.get("/api/deck/:deckid/form/:formtype?", services.GetDeckForm);
+//user stuff
+router.get("/api/users/:userid", services.GetUserData);
+router.post("/api/users/config", services.SetUserConfig),
+router.post("/api/users/email", services.SetUserEmail),
 //router.post("/api/deck/claim/:deckid", services.ClaimDeck);
 //router.get("/api/fixdecks", services.FixDecks);
 router.get("/api/translations/:seriesid", services.GetTranslations);
@@ -29,7 +33,7 @@ router.get("/", services.RenderDeckSearch);
 router.get("/deck/:deckid", services.RenderDeck);
 router.get("/builder/:mode?/:deckid?", services.RenderDeckBuilder);
 router.get("/login/:tab?/:token?", services.RenderLogin);
-router.get("/user/:username?", services.RenderUser);
+router.get("/user/:username?/:tab?", services.RenderUser);
 router.get("/translations", services.RenderTranslations);
 router.get("*", services.RenderPageNotFound);
 

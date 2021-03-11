@@ -45,7 +45,8 @@ const execute = async(seriesid = null, isscript = false) => {
 			return await CardModel.findOne({ side: ENCard.side, release: ENCard.release, sid: JPSid})
 			.then( (JPCard) => {
 				if( JPCard ){//A JP Equivilant was found
-					if( !JPCard.locale.EN.name ){//It does not have english locale data already
+					//It does not have english locale data already, or is an unofficial translation
+					if( !JPCard.locale.EN.name || !!JPCard.locale.EN.source ){
 						JPCard.locale.EN = ENCard.locale.EN;
 						JPCard.equivilantcard = ENCard._id;
 						return JPCard.save().then( (res) =>{

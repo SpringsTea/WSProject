@@ -6,6 +6,7 @@
 
 import Series from '../models/series'
 import Card from '../models/card'
+import LocaleSelect from '../helpers/user-preferedlocale';
 
 /**
  * Get Series Cards
@@ -22,6 +23,9 @@ module.exports = async (request, response, next) => {
             let cards = await Card.find({ 
                 series: series._id
             }).limit(300).exec();
+            if(request.user){//Prefered locale check
+                cards = LocaleSelect(cards, request.user.config);
+            }
             response.status(200).json(cards)
         } else {
             throw new Error("Set was not found");

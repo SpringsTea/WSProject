@@ -6,15 +6,15 @@ import CardItem from '../partials/Builder/CardItem/CardItem';
 
 class CardSelector extends Component {
 
-	shouldComponentUpdate(nextProps){
-		//TODO I should not have to do this, why does this component render on card select
-		if( nextProps.cards.length === this.props.cards.length && this.props.quantity !== true ){
-			return false;
-		}
+	//I didn't actually fix this, the list still renders very often. But I'm trying it out, it dosnt seem to be too bad
+	// shouldComponentUpdate(nextProps){
+	// 	//TODO I should not have to do this, why does this component render on card select
+	// 	if( (nextProps.cards.length === this.props.cards.length && this.props.quantity !== true) ){
+	// 		return true;
+	// 	}
 
-		return true;
-	}
-
+	// 	return true;
+	// }
 	render(){
 		const { cards, controls } = this.props;
 		return(

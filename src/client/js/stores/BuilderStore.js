@@ -1,16 +1,20 @@
 import Store from './Store';
 import { BuilderActions as AT } from '../constants/Actions';
-import { sortall } from '../utils/cardsort';
+import { sortall, sortcardcode } from '../utils/cardsort';
 import { register } from '../dispatcher';
+import { getLocale } from 'Utils/cardlocale';
 
 let serieslist = [];//Top level list of available series
 let buildercards = [];
 let fbuildercards = [];//Buildercards after filters
+let attributes = new Set([]);
 let builderfilters = {
   cardtype: [],
   colour: [],
   level: [],
-  text: null
+  attributes: [],
+  text: null,
+  sorttype: 'standard'
 };
 let deckdata = {
   cards: []
@@ -35,18 +39,14 @@ function filterBuilderCards() {
     if( builderfilters.colour.length > 0 && !builderfilters.colour.includes( card.colour ) ){
       return false;
     }
+    if( builderfilters.attributes.length > 0 && //Check cards for any 1 attribute matching builderfilters.attributes
+      !builderfilters.attributes.filter(val => getLocale(card).attributes.includes(val)).length > 0 ){
+      return false;
+    }
 
     //Match search text
     if( builderfilters.text){
-      //TODO need a better way of selecting locale
-      let cardname = ''; 
-
-      if(card.locale.EN.name){
-        cardname = card.locale.EN.name;
-      }
-      else if(card.locale.NP.name){
-        cardname = card.locale.NP.name;
-      }
+      let cardname = getLocale(card).name; 
 
       return cardname.toUpperCase().includes( builderfilters.text.toUpperCase()) 
       || card.sid.toUpperCase().includes( builderfilters.text.toUpperCase() )
@@ -54,6 +54,22 @@ function filterBuilderCards() {
 
     return true;
   })
+}
+
+function sortBuilderCards(){
+  let sortfunc = sortall;
+  switch(builderfilters.sorttype){
+    case 'standard':
+      sortfunc = sortall;
+      break;
+    case 'cardcode':
+      sortfunc = sortcardcode;
+      break;
+    default:
+      sortfunc = sortall;
+      break;
+  }
+  buildercards = buildercards.sort(sortfunc);
 }
 
 const BuilderStore = {
@@ -64,6 +80,7 @@ const BuilderStore = {
   getDeckCards: () => Object.assign([],deck),//assigning this instead of mutating lets me compare in Deck.shouldComponentUpdate,
   getDeckData: () => deckdata,
   getSelectedCard: () => selectedCard,
+  getCardAttributes: () => Array.from(attributes),
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case AT.SERIESES_RECEIVE:
@@ -81,8 +98,12 @@ const BuilderStore = {
           })
 
         }
-
-        buildercards = buildercards.sort(sortall);
+        attributes = new Set([]);//recalculate all unique card attributes
+        buildercards.map((card) => {
+          let locale = getLocale(card);
+          locale.attributes.map((attr) => (!!attr && attr.length > 1) ? attributes.add(attr) : '' )
+        })
+        sortBuilderCards();
         filterBuilderCards()
         break;
       case AT.CARDS_CLEAR:
@@ -120,15 +141,18 @@ const BuilderStore = {
         deck.splice(indextoremove, indextoremove >= 0 ? 1 : 0);
         break;
       case AT.FILTER_BUILDER:
-
-        if( props.data.type === 'text' ){
-          builderfilters.text = props.data.value;
+        if( props.data.type === 'text' || props.data.type === 'sorttype' ){
+          builderfilters[props.data.type] = props.data.value;
         }
         else if( props.data.value === true ){//Add value onto type array
             builderfilters[props.data.type].push(props.data.filter);
         }
         else{//Remove value from type array
           builderfilters[props.data.type].splice( builderfilters[props.data.type].indexOf(props.data.filter), 1 )
+        }
+
+        if(props.data.type === 'sorttype'){
+            sortBuilderCards();
         }
         
         filterBuilderCards()

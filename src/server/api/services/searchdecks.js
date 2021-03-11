@@ -6,6 +6,7 @@
 
 import Deck from '../models/deck'
 import User from '../models/user'
+import {decode} from 'html-entities';
 
 const mongoose = require('mongoose')
 
@@ -77,7 +78,7 @@ module.exports = async ({query:params, user}, response, next) => {
                 query.userid = user._id;
             }
             else{
-                let finduser = await User.findOne({name: params.username});
+                let finduser = await User.findOne({name: decode(params.username)});
                 if( finduser ){
                     query.userid = finduser._id;
                 }
