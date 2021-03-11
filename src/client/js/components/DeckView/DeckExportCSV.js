@@ -18,7 +18,7 @@ class DeckExportCSV extends Component {
     //Characters
     cards.filter( (card) => card.cardtype == 'CH' && card.sid).map(function (card, i){
       var locale = getLocale(card);
-      var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
+      var cardcode = card.cardcode;
       var cardname = locale.name.replace('\n',' ');
       DeckData +=  cardcode + "," + card.quantity + "," + cardname.replace(',',' ') + "\n";
     })
@@ -26,7 +26,7 @@ class DeckExportCSV extends Component {
     //Events
     cards.filter( (card) => card.cardtype == 'EV' && card.sid).map(function (card, i){
       var locale = getLocale(card);
-      var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
+      var cardcode = card.cardcode;
       var cardname = locale.name.replace('\n',' ');
       DeckData +=  cardcode + "," + card.quantity + "," + cardname.replace(',',' ') + "\n";
     })
@@ -34,7 +34,7 @@ class DeckExportCSV extends Component {
     //Climaxes
     cards.filter( (card) => card.cardtype == 'CX' && card.sid).map(function (card, i){
       var locale = getLocale(card);
-      var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
+      var cardcode = card.cardcode;
       var cardname = locale.name.replace('\n',' ');
       DeckData +=  cardcode + "," + card.quantity + "," + cardname.replace(',',' ') + "\n";
     })

@@ -22,7 +22,7 @@ class DeckExportText extends Component {
     const sortCards = (cards) => sortByLevelDesc(sortBycardIdAsc(cards))
     sortCards(cards.filter((card) => card.cardtype == 'CH' && card.sid)).map(function (card, i) {
       var locale = getLocale(card);
-      var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
+      var cardcode = card.cardcode;
       DeckData +=  cardcode + "\t" + card.quantity + "\t" + locale.name + "\n";
     })
 
@@ -30,7 +30,7 @@ class DeckExportText extends Component {
     DeckData += "Events \n";
     cards.filter( (card) => card.cardtype == 'EV' && card.sid).map(function (card, i){
       var locale = getLocale(card);
-      var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
+      var cardcode = card.cardcode;
       DeckData +=  cardcode + "\t" + card.quantity + "\t" + locale.name + "\n";
     })
 
@@ -38,7 +38,7 @@ class DeckExportText extends Component {
     DeckData += "Climaxes \n";
     cards.filter( (card) => card.cardtype == 'CX' && card.sid).map(function (card, i){
       var locale = getLocale(card);
-      var cardcode = card.set+"/"+card.side+card.release+"-"+card.sid;
+      var cardcode = card.cardcode;
       DeckData +=  cardcode + "\t" + card.quantity + "\t" + locale.name + "\n";
     })
 

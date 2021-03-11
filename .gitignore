@@ -15,6 +15,7 @@ src/server/config/keys
 
 scripts/Cards/
 scripts/SetData/
+scripts/TranslationData/
 
 .env
 mongo.js

@@ -25,3 +25,7 @@ export const TranslationsActions = [
   'TRANSLATION_RECEIVE',
   'ATTRIBUTES_RECEIVE',
 ].reduce((p, v) => (p[v] = Symbol(v), p), {});
+
+export const UserActions = [
+  'USER_RECEIVE',
+].reduce((p, v) => (p[v] = Symbol(v), p), {});

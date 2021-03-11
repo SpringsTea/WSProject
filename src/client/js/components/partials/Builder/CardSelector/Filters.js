@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Icon, Tabs, Input } from 'antd';
-import { throttle } from 'throttle-debounce';
+import { Switch, Icon, Tabs, Input, Radio } from 'antd';
 
 import { filterBuilder } from 'Actions/BuilderActions';
 import { colours } from 'Constants/sortorder';
@@ -17,6 +16,7 @@ class Filters extends Component {
   render(){
 
     const { handleTextSearch } = this;
+    const { attributes } = this.props;
 
     return(
       <div className="container-filters">
@@ -63,6 +63,26 @@ class Filters extends Component {
                     </span> 
                   )
                 }
+              </div>
+            </TabPane>
+            <TabPane tab="Traits" key="5">
+              <div className="toggles">
+                {
+                  attributes.map( (attr) => 
+                    <span key={attr}>
+                      {Capitalize(attr)} <Switch size="small" 
+                      onChange={ (val) => filterBuilder({ type:'attributes', filter: attr, value: val }) } />
+                    </span> 
+                  )
+                }
+              </div>
+            </TabPane>
+            <TabPane tab="Sort" key="6">
+              <div>
+                <Radio.Group onChange={(e) => filterBuilder({type:'sorttype', value:e.target.value })} defaultValue="standard">
+                  <Radio.Button value="standard">Standard</Radio.Button>
+                  <Radio.Button value="cardcode">Cardcode</Radio.Button>
+                </Radio.Group>
               </div>
             </TabPane>
           </Tabs>

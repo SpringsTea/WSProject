@@ -15,7 +15,7 @@ const deckSchema = new mongoose.Schema({
 	valid: { type: Boolean, default: false },
 	cards: [{ type: String, ref: 'Card' }],
 	sets: [{type: String, ref: 'Series'}],
-	neo_sets: { type: Array, default: [] },
+	neo_sets: [{type: ObjectId, ref: 'neoSet'}],
 	neo_fail: { type: String, default: '' },
 	deleted: { type: Boolean, default: false },
 	views: { type: Number, default: 0 },
@@ -25,7 +25,7 @@ const deckSchema = new mongoose.Schema({
 	myfavorite: {type: Boolean, default: false},//placeholder value to be assigned on search, should never be set
 }, { collection: 'deck' });
 
-deckSchema.index({ name: 'text', description: 'text' });
+deckSchema.index({ deckid: 1 });
 deckSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Deck', deckSchema);

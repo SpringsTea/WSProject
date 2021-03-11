@@ -79,7 +79,9 @@ WSS_SERIES.forEach( (FILE) => {
           [LOCALE == 'JP' ? 'EN' : LOCALE]: { name:sourcecard.name, ability:sourcecard.ability, attributes: sourcecard.attributes }
         }, 
         series: series._id,
-        lang:'JP'
+        lang:'JP',
+        cardcode: sourcecard.cardcode || `${sourcecard.set}/${sourcecard.side}${sourcecard.release}-${sourcecard.sid}`,
+        imagepath: `${sourcecard.lang}/${sourcecard.side}${sourcecard.release}/${sourcecard.sid}.gif`
       }, function(err, data){
         if(err){
           console.log('Something went wrong', err);
