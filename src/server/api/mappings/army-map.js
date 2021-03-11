@@ -87,6 +87,8 @@ module.exports = {
     "MM/W35-E091": -1,  // Kyubey Going "Kyu"
     "RZ/S55-E015": -1,  // Fingertips
     "RZ/S55-E008": -1,  // Invisible hand
+    "RZ/SE35-E45": 7, //"Mediator" Melakuera
+    "RZ/SE35-E46": -1, //Black Water
     "JJ/S66-E014": 6, //Sex pistols
     "TSK/S70-019": -1, //Orc
     "TSK/S70-022": -1, //Orc General
