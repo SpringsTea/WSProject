@@ -30,7 +30,7 @@ if( process.env.FILE ){
 	DB_DATA = DB_DATA.filter( ( set ) => set === process.env.FILE )
 }
 else{
-	if(!proccess.env.DOIT){//Only do one file at a time unless your really sure
+	if(!process.env.DOIT){//Only do one file at a time unless your really sure
 		process.exit();
 	}
 }
