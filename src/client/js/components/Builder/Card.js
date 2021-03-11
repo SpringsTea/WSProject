@@ -27,7 +27,7 @@ class Card extends Component {
 							{locale.name || 'NaN'} <Icon type="link" />
 							{
 								locale.source === "community" &&
-								<Tooltip title="Translaitons for this card are provided by the community, and are subject to change">
+								<Tooltip title="Translations for this card are provided by the community, and are subject to change">
 									<Icon 
 										style={{marginLeft:'4px'}} 
 										theme="filled" 
@@ -38,7 +38,7 @@ class Card extends Component {
 							}
 							{
 								locale.source === "akiba" &&
-								<Tooltip title="Translaitons for this card are provided by little akiba, and are subject to change">
+								<Tooltip title="Translations for this card are provided by little akiba, and are subject to change">
 									<Icon 
 										style={{marginLeft:'4px'}} 
 										theme="filled" 
