@@ -94,4 +94,5 @@ module.exports = {
     "TSK/S70-019": -1, //Orc
     "TSK/S70-022": -1, //Orc General
     "MOB/SX02-043": -1, //LOL Cult member
+    "MR/W80-E068": -1,//Black Feather
 }
