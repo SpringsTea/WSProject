@@ -37,7 +37,7 @@ export default function SocialMedia ({user, onFinish}){
             name="Youtube"
             value={user.config.Youtube}
     		icon={<Icon type="youtube" />}
-    		addon="c/" 
+    		addon="channel/" 
     		placeholder="Username"
             currentuser={user.currentuser}
             onSave={onSave}
