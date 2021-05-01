@@ -18,7 +18,7 @@ export default function SocialMedia ({user, onFinish}){
             }
         })
     }
-
+    console.log(user)
     return(
     <div className="container-userprofile-socialmedia" style={{display:'flex'}}>
     	<span style={{width:'300px', marginRight:'1em'}}>

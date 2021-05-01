@@ -30,6 +30,7 @@ module.exports = async (request, response, next) => {
         	mode: request.params.mode, 
         	deckid: request.params.deckid,
             ...user,
+            username: user.name,
             roles
         });
     } catch (error) {

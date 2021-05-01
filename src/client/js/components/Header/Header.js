@@ -12,8 +12,8 @@ class Header extends Component {
 
 	render(){
 		const { handleLogout } = this;
-		const { title, loggedin, roles } = this.props;
-		
+		const { title, loggedin, roles, username } = this.props;
+
 		return(
 			<div className="container-header">
 				{
@@ -36,6 +36,10 @@ class Header extends Component {
 				{
 					loggedin == 'true' &&
 					<a className="header-button clickable right" href="/user"><Icon type="user" /></a>
+				}
+				{
+					loggedin == 'true' &&
+					<a className="header-button clickable right" href={`/user/${username}/decks`}><Icon type="book" /></a>
 				}
 				<Tooltip title="Get development updates!" placement="bottom">
 					<a target="_blank" className="header-button clickable right" href="https://discord.gg/cFsZJCq"> <img src="/images/assets/discord.png" /></a>
