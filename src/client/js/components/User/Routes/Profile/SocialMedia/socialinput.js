@@ -10,7 +10,7 @@ export default function SocialInput ({onSave, value, name, icon, addon = '', siz
   return(
 	<div>
 		{
-		editable ?
+		(currentuser && editable) ?
   		<Input 
   			size={size} 
   			suffix={icon} 
@@ -25,13 +25,16 @@ export default function SocialInput ({onSave, value, name, icon, addon = '', siz
   		:
   		<span style={{fontWeight: 'bold'}}>
   			<div>{name}:</div>
-  			<a href={ links[name] ? `${links[name]}${value}` : null} target="_blank">
-  				<Icon type="link" />
-  					{icon}
-  				{
-  					`${name === 'Youtube' ? 'Youtube' : `${addon}${value}`}`
-  				}
-  			</a>
+        {
+        !!value &&
+    			<a href={ links[name] ? `${links[name]}${value}` : null} target="_blank">
+    				<Icon type="link" />
+    					{icon}
+    				{
+    					`${name === 'Youtube' ? 'Youtube' : `${addon}${value}`}`
+    				}
+    			</a>
+        }
   		</span>
   		}
   		{
