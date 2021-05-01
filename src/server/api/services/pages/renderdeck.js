@@ -31,6 +31,7 @@ module.exports = async (request, response, next) => {
                 userid: request.user ? request.user._id : null, 
                 loggedin: user ? true : false,
                 ...user,
+                username: user.name,
                 roles
             });
 

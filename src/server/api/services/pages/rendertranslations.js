@@ -16,7 +16,7 @@ module.exports = async (request, response, next) => {
         const user = request.user ? request.user._doc : false;
         const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
     	if( roles.translator ){
-			response.render("translations", {loggedin: user ? true : false, ...user, roles});
+			response.render("translations", {loggedin: user ? true : false, ...user, username: user.name, roles});
     	}
     	else{
     		response.redirect("/");

@@ -1,3 +1,5 @@
 <script>
-  WS.event.emit('page.header', {el:'#header', loggedin: '{{loggedin}}', roles: { translator:'{{roles.translator}}' }})
+  WS.event.emit('page.header', 
+  	{el:'#header', loggedin: '{{loggedin}}', username: '{{username}}', roles: { translator:'{{roles.translator}}' }}
+  )
 </script>
