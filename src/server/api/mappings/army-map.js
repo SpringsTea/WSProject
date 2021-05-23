@@ -61,6 +61,7 @@ module.exports = {
     "JJ/S66-014": 6, //Sex Pistols
     "TSK/S70-019": -1, //Orc
     "TSK/S70-022": -1, //Orc General
+    "BFR/S78-046": -1,//Shadowclone sally
     "CC/S48-039": -1, //Black Soldier
     "DC/W81-006": -1,
     "MR/W80-068": -1,//Black Feather
@@ -95,4 +96,5 @@ module.exports = {
     "TSK/S70-022": -1, //Orc General
     "MOB/SX02-043": -1, //LOL Cult member
     "MR/W80-E068": -1,//Black Feather
+    "BFR/S78-E046": -1,//Shadowclone sally
 }
