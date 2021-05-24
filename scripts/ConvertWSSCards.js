@@ -12,6 +12,26 @@ const { join, extname } = require('path')
 var LOCALE = process.env.LOCALE || 'EN';
 var WSS_PATH = process.env.WSS_PATH || `./Cards/${LOCALE}/`;
 var SETDATA_PATH = `./SetData/${LOCALE == 'EN' ? 'JP' : LOCALE}/`;
+var ALLOWED_RARITY = [
+	"C",
+	"CC",
+	"CR",
+	"FR",
+	"MR",
+	"PR",
+	"PS",
+	"R",
+	"RE",
+	"RR",
+	"RR+",
+	"TD",
+	"U",
+	"AR",
+	"BDR",
+];
+if(process.env.RARITY_EXCEPT){
+	ALLOWED_RARITY.push(process.env.RARITY_EXCEPT);
+}
 
 var WSS_SERIES = readdirSync(WSS_PATH).filter(f => statSync(join(WSS_PATH, f)).isDirectory())
 
@@ -37,6 +57,11 @@ WSS_SERIES.forEach( (wss_series) => {
 
 			let wss_content = readFileSync(`${WSS_PATH}${wss_series}/${wss_release}/${wss_file}`, { encoding: 'utf8'});
 			let wss_card = JSON.parse(wss_content);
+			
+			if(!ALLOWED_RARITY.includes(wss_card.rarity.toUpperCase())){
+				return false;//Do not import card
+			}
+
 			let wss_cardname = LOCALE === 'EN' ? wss_card.name : wss_card.jpName;
 
 			let card = {
