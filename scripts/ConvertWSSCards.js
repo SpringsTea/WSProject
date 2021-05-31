@@ -57,12 +57,13 @@ WSS_SERIES.forEach( (wss_series) => {
 
 			let wss_content = readFileSync(`${WSS_PATH}${wss_series}/${wss_release}/${wss_file}`, { encoding: 'utf8'});
 			let wss_card = JSON.parse(wss_content);
-			
-			if(!ALLOWED_RARITY.includes(wss_card.rarity.toUpperCase())){
-				return false;//Do not import card
-			}
 
 			let wss_cardname = LOCALE === 'EN' ? wss_card.name : wss_card.jpName;
+
+			if(!ALLOWED_RARITY.includes(wss_card.rarity.toUpperCase())){
+				console.log(`Card Skipped (${wss_card.id})`)
+				return false;//Do not import card
+			}
 
 			let card = {
 				sid: wss_card.id,
