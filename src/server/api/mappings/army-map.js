@@ -97,4 +97,5 @@ module.exports = {
     "MOB/SX02-043": -1, //LOL Cult member
     "MR/W80-E068": -1,//Black Feather
     "BFR/S78-E046": -1,//Shadowclone sally
+    "SDS/SX03-022": 7,//Wanted poster
 }
