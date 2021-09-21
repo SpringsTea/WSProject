@@ -50,7 +50,7 @@ WSS_SERIES.forEach( (FILE) => {
       series.save();
     } 
 
-    let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, sid: sourcecard.sid, lang: 'JP'});
+    let remotecard = await CardModel.findOne({set: sourcecard.set, side:sourcecard.side, release: sourcecard.release, sid: sourcecard.sid, lang: 'JP'});
 
     if( remotecard ){
       //Update existing card
