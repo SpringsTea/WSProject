@@ -66,6 +66,7 @@ module.exports = {
     "DC/W81-006": -1,
     "MR/W80-068": -1,//Black Feather
     "WTR/S85-039": -1, //Idra, Trion Soldier Fighting in Tandom
+    "ZLS/W93-068": 7, //Revenge on Fate
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
     "AOT/S50-E088": -1, // "Pursuit" Titan
