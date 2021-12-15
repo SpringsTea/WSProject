@@ -9,7 +9,8 @@ var config = require('./config/mongo.js');
 const mongoose = require('mongoose');
 
 var mongooseOptions = {
-	useNewUrlParser: true
+	useNewUrlParser: true,
+	useUnifiedTopology: true,
 }
 
 mongoose.set('useCreateIndex', true);
