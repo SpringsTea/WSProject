@@ -28,6 +28,7 @@ var ALLOWED_RARITY = [
 	"U",
 	"AR",
 	"BDR",
+	"N"
 ];
 if(process.env.RARITY_EXCEPT){
 	ALLOWED_RARITY.push(process.env.RARITY_EXCEPT);
@@ -61,7 +62,7 @@ WSS_SERIES.forEach( (wss_series) => {
 			let wss_cardname = LOCALE === 'EN' ? wss_card.name : wss_card.jpName;
 
 			if(!ALLOWED_RARITY.includes(wss_card.rarity.toUpperCase())){
-				console.log(`Card Skipped (${wss_card.id})`)
+				console.log(`Card Skipped (${wss_card.side}${wss_card.release}/${wss_card.id})`)
 				return false;//Do not import card
 			}
 
