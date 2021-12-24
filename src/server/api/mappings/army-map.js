@@ -68,6 +68,7 @@ module.exports = {
     "WTR/S85-039": -1, //Idra, Trion Soldier Fighting in Tandom
     "ZLS/W93-068": 7, //Revenge on Fate
     "SAO/S80-066": -1, //Swarm of red copper
+    "MAR/S89-070": 8, //Thanos Cx
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
     "AOT/S50-E088": -1, // "Pursuit" Titan
