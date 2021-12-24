@@ -61,9 +61,13 @@ module.exports = {
     "JJ/S66-014": 6, //Sex Pistols
     "TSK/S70-019": -1, //Orc
     "TSK/S70-022": -1, //Orc General
+    "BFR/S78-046": -1,//Shadowclone sally
     "CC/S48-039": -1, //Black Soldier
     "DC/W81-006": -1,
     "MR/W80-068": -1,//Black Feather
+    "WTR/S85-039": -1, //Idra, Trion Soldier Fighting in Tandom
+    "ZLS/W93-068": 7, //Revenge on Fate
+    "SAO/S80-066": -1, //Swarm of red copper
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
     "AOT/S50-E088": -1, // "Pursuit" Titan
@@ -95,4 +99,7 @@ module.exports = {
     "TSK/S70-022": -1, //Orc General
     "MOB/SX02-043": -1, //LOL Cult member
     "MR/W80-E068": -1,//Black Feather
+    "BFR/S78-E046": -1,//Shadowclone sally
+    "SDS/SX03-022": 7,//Wanted poster
+    "SAO/S80-E066": -1,//Swarm of red copper
 }

@@ -4,6 +4,7 @@
 const armyMap = require('../mappings/army-map');
 
 const checkNeoStandard = require('./get-neo-standard-sets');
+const universalsets = ['WS', 'SI', 'VG', 'DJ'];
 
 module.exports = async(deck, carddata) => {
     // deck legality object
@@ -37,8 +38,11 @@ module.exports = async(deck, carddata) => {
 
         // build card number (remove variant indicators)
         let cardNumber = `${card.set}/${card.side}${card.release}-${card.sid.replace(/[a-z]$/g, '')}`;
-        // add card set to Set 
-        setCodes.add(card.set);
+
+        if(!universalsets.includes(card.set)){//Do not check universal sets
+          // add card set to Set 
+          setCodes.add(card.set);  
+        }        
         // check if card count has exceeded standard of 4
         if (cardCount[cardNumber] === undefined || cardCount[cardNumber] < 4) {
             cardCount[cardNumber] = cardCount[cardNumber] ? cardCount[cardNumber] + 1 : 1;

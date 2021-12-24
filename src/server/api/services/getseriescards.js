@@ -22,7 +22,7 @@ module.exports = async (request, response, next) => {
         if (series) {
             let cards = await Card.find({ 
                 series: series._id
-            }).limit(300).exec();
+            }).limit(1000).exec();
             if(request.user){//Prefered locale check
                 cards = LocaleSelect(cards, request.user.config);
             }
