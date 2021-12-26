@@ -2,40 +2,41 @@
 @import "variables.less";
 
 .container-header{
-	display: inline-block;
-	height: 44px;
-	font-size: 17px;
-	color: #f1f1f1;
-	background-color: #5f5f5f;
-	width: 100%;
-	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+	// display: inline-block;
+	// height: 46px;
+	// color: #f1f1f1;
+	// background-color: #5f5f5f;
+	// width: 100%;
+	// box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
+
+	.ant-menu{
+		li{
+			font-size: 17px;
+		}
+	}
+
+	img{
+		vertical-align:middle;
+		height:25px;
+	}	
+
+	.right{
+		float: right;
+	}
 
 	.header-button{
-		padding: 10px 15px 9px 15px;
-		float: left;
-		height: inherit;
-		width: auto;
-		display: block;
-		text-align: center;
-		color: inherit;
-		vertical-align: middle;
+		//padding-right: 15px;
+		//float: left;
+		//height: inherit;
+		//width: auto;
+		//display: flex;
+		//text-align: center;
+		//color: inherit;
+		//vertical-align: middle;
 
-		&.right{
-			float: right;
-		}
-
-		&:hover{
-			background-color: #000000;
-		}
-
-		img{
-			max-height: 100%;
-			max-width: 100%;
-		}
-
-		i{
-			font-size: 26px;
-		}
+		// &:hover{
+		// 	background-color: #000000;
+		// }
 	}
 }
 
@@ -353,3 +354,5 @@ footer{
 		color: gray;
 	}	
 }
+
+@import 'mobile.less';

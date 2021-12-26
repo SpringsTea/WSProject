@@ -4,6 +4,13 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 const outputDirectory = "dist";
+const theme = {
+  'layout-header-height': '44px',
+  'layout-header-background': '#5f5f5f',
+  'layout-header-color': '#f1f1f1',
+  'layout-trigger-height': '44px',
+  'layout-header-padding': '0'
+}
 
 module.exports = {
   entry: {
@@ -58,8 +65,11 @@ module.exports = {
         }, {
           loader: 'less-loader', // compiles Less to CSS
           options: {
-            javascriptEnabled: true
-          }
+            lessOptions: {
+              modifyVars: theme,
+              javascriptEnabled: true,
+            },
+          },
         }]
       }
     ]
