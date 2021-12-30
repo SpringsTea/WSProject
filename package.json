@@ -45,6 +45,7 @@
     "pdf-fill-form": "^5.0.0",
     "query-string": "^6.8.2",
     "react": "^16.5.2",
+    "react-device-detect": "^2.1.2",
     "react-dom": "^16.5.2",
     "react-image": "^2.0.0",
     "react-router": "^4.3.1",
