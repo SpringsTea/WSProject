@@ -54,7 +54,6 @@ class Builder extends Component {
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
     const { loggedin, mode } = this.props;
 		const { selectedCard, serieses, buildercards, builderfilters, attributes, deck, deckdata, savemodalopen } = this.state;
-
 		return(
 			<div className="container-builder">
         {
@@ -76,6 +75,9 @@ class Builder extends Component {
                 card={selectedCard.card} 
                 locale={getLocale(selectedCard.card)} 
                 locked={selectedCard.lock} 
+                count={deck.length > 0 && deck.reduce((acc, val) => {//number of instances of selected card currently in deck
+                  return acc + (val._id === selectedCard.card._id);
+                }, 0)}
                 onCardSelect={handleToggleCardLock} 
                 onClose={handleToggleCardLock}
                 allowDeckControls 

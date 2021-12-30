@@ -3,7 +3,7 @@ import { Modal, Button } from 'antd';
 
 import Card from './Card';
 
-export default function CardMobile({ card, locked, onClose, ...args }) {
+export default function CardMobile({ card, locked, count, onClose, ...args }) {
 	return (
 		<Modal
 	  		title=""
@@ -16,7 +16,7 @@ export default function CardMobile({ card, locked, onClose, ...args }) {
 	  		onCancel={() => onClose(card)}
 	  	>
 			<div className="container-cardmobile" style={{marginTop: '20px'}}>
-				<Card card={card} locked={false} {...args} />
+				<Card card={card} locked={false} count={count} {...args} />
 			</div>
 		</Modal>
 	)
