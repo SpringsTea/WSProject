@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Row, Col, Alert } from 'antd';
 import Sticky from 'react-stickynode';
+import { isMobile } from 'react-device-detect';
 
 import DeckHeader from './DeckHeader';
 import Card from '../Builder/Card';
+import CardMobile from '../Builder/CardMobile';
 import DeckDisplay from '../partials/DeckView/DeckDisplay';
 
 import { getLocale } from 'Utils/cardlocale.js';
@@ -53,9 +55,23 @@ class DeckView extends Component {
 						<DeckDisplay deck={deck} />
 					</Col>
 					<Col xxl={6} xl={8} lg={10} md={24}>
+					{
+						!!isMobile ?
+						<CardMobile 
+			                card={selectedCard.card} 
+			                locale={getLocale(selectedCard.card)} 
+			                locked={selectedCard.lock} 
+			                count={deck.length > 0 && !!selectedCard.card && deck.reduce((acc, val) => {//number of instances of selected card currently in deck
+			                  return acc + (val._id === selectedCard.card._id);
+			                }, 0)}
+			                onCardSelect={handleToggleCardLock} 
+			                onClose={handleToggleCardLock}
+			              />
+						:						
 						<Sticky enabled={true} top={50} >
 						    <Card card={selectedCard.card} locale={getLocale(selectedCard.card)} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} />
 						</Sticky>	
+					}
 					</Col>
 				</Row>
 			</div>

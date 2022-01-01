@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Icon, Tooltip, Layout, Menu } from 'antd';
+import { isMobile } from 'react-device-detect';
 
 const { Header: LayoutHeader } = Layout;
 
@@ -26,8 +27,10 @@ class Header extends Component {
 				<Menu mode="horizontal" theme="dark" style={{lineHeight: '44px'}}>
 					<Menu.Item > 
 						<a href="/">
-							<img src="/images/assets/ClappyNoText_240.png" style={{paddingRight: '3px'}} /> 
-							EncoreDecks
+							<img src="/images/assets/ClappyNoText_240.png" style={{paddingRight: '3px'}} />
+							{
+								!isMobile && `EncoreDecks`
+							} 							
 						</a>
 					</Menu.Item>
 					<Menu.Item><a href="/builder">Builder</a></Menu.Item>

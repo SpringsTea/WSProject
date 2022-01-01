@@ -75,7 +75,7 @@ class Builder extends Component {
                 card={selectedCard.card} 
                 locale={getLocale(selectedCard.card)} 
                 locked={selectedCard.lock} 
-                count={deck.length > 0 && deck.reduce((acc, val) => {//number of instances of selected card currently in deck
+                count={deck.length > 0 && !!selectedCard.card && deck.reduce((acc, val) => {//number of instances of selected card currently in deck
                   return acc + (val._id === selectedCard.card._id);
                 }, 0)}
                 onCardSelect={handleToggleCardLock} 

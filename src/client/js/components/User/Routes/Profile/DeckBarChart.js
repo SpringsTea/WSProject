@@ -21,7 +21,6 @@ export default function DeckBarChart ({decks}){
 
   return (
       <ResponsiveContainer
-        width={600}
         height={300}
       >
         <BarChart
