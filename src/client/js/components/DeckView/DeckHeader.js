@@ -57,7 +57,7 @@ class DeckHeader extends Component {
 		return(
 			<Card className="deck-header">
 				<div>
-					<div className="flex-container">
+					<div className="flex-container" style={{flexWrap: 'wrap'}}>
 						<h2 className="deck-name">{deck.name}</h2>
 						<AttributesList attributes={deck.attributes} />
 						{

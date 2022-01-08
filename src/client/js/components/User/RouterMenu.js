@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout, Menu } from 'antd';
 import { withRouter } from "react-router";
 import { Link, useRouteMatch } from "react-router-dom";
+import { isMobile } from 'react-device-detect';
 
 const { Sider } = Layout;
 

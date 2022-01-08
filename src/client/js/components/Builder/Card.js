@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, Icon, Button, Tooltip } from 'antd';
+import { Row, Col, Icon, Button, Badge, Tooltip } from 'antd';
 import Img from 'react-image';
 
 import Property from '../partials/Builder/Card/Property';
@@ -9,7 +9,7 @@ import { addDeckCard, removeDeckCard } from 'Actions/BuilderActions';
 
 class Card extends Component {
 	render(){
-		const { card, locale, locked, allowDeckControls = false, onCardSelect = () => {} } = this.props;
+		const { card, locale, locked, allowDeckControls = false, count = 0, onCardSelect = () => {} } = this.props;
 		return(
 			<div className={`container-card ${locked ? 'locked' : ''}`}>
 				{
@@ -50,12 +50,16 @@ class Card extends Component {
 						</h2>
 					</a>
 					<div className='cardimage clickable' onClick={() => onCardSelect(card)}>
-						<Img
-					    src={[
-					      generateCardImageLink(card),
-					    ]}
-					    unloader={<Icon className="image-not-found" type="question-circle" />}
-					  />
+						<Badge className={`card-quantity ${count < 1 ? 'hidden' : ''}`} count={count} offset={[-5, 10]}
+							style={{ backgroundColor: 'black', color: 'white' }}
+						>
+							<Img
+							    src={[
+							      generateCardImageLink(card),
+							    ]}
+						    	unloader={<Icon className="image-not-found" type="question-circle" />}
+						  	/>
+					  	</Badge>
 					</div>
 					{
 						!!allowDeckControls &&

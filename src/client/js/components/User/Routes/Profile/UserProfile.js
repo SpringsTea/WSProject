@@ -44,12 +44,12 @@ export default function UserProfile ({user}){
 					>	
 						<Row>
 							{ !!user.coverdeck &&
-								<Col lg={4}>
+								<Col lg={6}>
 									<div style={{fontWeight:'bold', width:'100%', textAlign: 'center'}}>*Newest Deck*</div>
 									<DeckCard deck={user.coverdeck} loggedin={true} />
 								</Col>
 							}
-							<Col lg={6}>
+							<Col lg={12}>
 								<DeckBarChart decks={user.decks} />
 							</Col>
 						</Row>

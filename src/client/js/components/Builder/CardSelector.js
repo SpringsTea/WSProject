@@ -16,9 +16,9 @@ class CardSelector extends Component {
 	// 	return true;
 	// }
 	render(){
-		const { cards, controls } = this.props;
+		const { cards, controls, isMobile } = this.props;
 		return(
-			<div className="container-card-selector">
+			<div className={`container-card-selector ${ isMobile ? 'tall' : '' }`}>
 				<List
 					dataSource={cards}
 					locale={ { emptyText: 'No Cards' } }
