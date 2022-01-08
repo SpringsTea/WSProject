@@ -1,7 +1,9 @@
 import { Component } from 'react';
-import { Input, Row, Col, Button, Alert } from 'antd'
+import { Input, Row, Col, Button, Alert } from 'antd';
+import { isMobile } from 'react-device-detect';
 
 import Card from './Card';
+import CardMobile from './CardMobile';
 import SeriesSelect from './SeriesSelect';
 import CardSelector from './CardSelector';
 import Filters from '../partials/Builder/CardSelector/Filters';
@@ -52,7 +54,6 @@ class Builder extends Component {
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
     const { loggedin, mode } = this.props;
 		const { selectedCard, serieses, buildercards, builderfilters, attributes, deck, deckdata, savemodalopen } = this.state;
-
 		return(
 			<div className="container-builder">
         {
@@ -66,10 +67,25 @@ class Builder extends Component {
 					<Col xxl={8} xl={8} lg={12} md={24}
           			className='container-series-selector nice-scroll'>
 						<SeriesSelect serieses={serieses} />
-            			<Filters attributes={attributes} />
-						<CardSelector cards={buildercards} filters={builderfilters} />
-						<Card card={selectedCard.card} locale={getLocale(selectedCard.card)} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} allowDeckControls />
-					</Col>
+            <Filters attributes={attributes} />
+						<CardSelector isMobile={isMobile} cards={buildercards} filters={builderfilters} />
+            {
+              isMobile ?
+              <CardMobile 
+                card={selectedCard.card} 
+                locale={getLocale(selectedCard.card)} 
+                locked={selectedCard.lock} 
+                count={deck.length > 0 && !!selectedCard.card && deck.reduce((acc, val) => {//number of instances of selected card currently in deck
+                  return acc + (val._id === selectedCard.card._id);
+                }, 0)}
+                onCardSelect={handleToggleCardLock} 
+                onClose={handleToggleCardLock}
+                allowDeckControls 
+              />
+              :
+						  <Card card={selectedCard.card} locale={getLocale(selectedCard.card)} locked={selectedCard.lock} onCardSelect={handleToggleCardLock} allowDeckControls /> 
+            }
+          </Col>
 					<Col xxl={16} xl={16} lg={12} md={24}> 
 						<Deck cards={deck} />
 						<Button className="btn-deck-save" type="primary" icon="save" size='large' onClick={()=> handleToggleSaveModal(true)}>Save Deck</Button>

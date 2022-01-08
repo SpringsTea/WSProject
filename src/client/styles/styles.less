@@ -2,40 +2,19 @@
 @import "variables.less";
 
 .container-header{
-	display: inline-block;
-	height: 44px;
-	font-size: 17px;
-	color: #f1f1f1;
-	background-color: #5f5f5f;
-	width: 100%;
-	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
-
-	.header-button{
-		padding: 10px 15px 9px 15px;
-		float: left;
-		height: inherit;
-		width: auto;
-		display: block;
-		text-align: center;
-		color: inherit;
-		vertical-align: middle;
-
-		&.right{
-			float: right;
+	.ant-menu{
+		li{
+			font-size: 17px;
 		}
+	}
 
-		&:hover{
-			background-color: #000000;
-		}
+	img{
+		vertical-align:middle;
+		height:25px;
+	}	
 
-		img{
-			max-height: 100%;
-			max-width: 100%;
-		}
-
-		i{
-			font-size: 26px;
-		}
+	.right{
+		float: right;
 	}
 }
 
@@ -54,6 +33,14 @@
 	&.locked{
 		border-width: 3px;
 		border-color: red;
+	}
+
+	.card-quantity{
+		&.hidden{
+			sup{
+				display:none;
+			}
+		}		
 	}
 
 	.card{
