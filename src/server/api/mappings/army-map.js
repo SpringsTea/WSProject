@@ -16,6 +16,7 @@
 
 module.exports = {
     "AOT/S35-094": -1, //"Predation" Titan
+    "AOT/S35-095": -1, //Invasion Titan
     "AOT/S50-088": -1, // "Pursuit" Titan
     "AOT/S50-095": -1, // "Invasion" Titan
     "SY/WE09-19": 8,  // Endless Eight
@@ -69,8 +70,10 @@ module.exports = {
     "ZLS/W93-068": 7, //Revenge on Fate
     "SAO/S80-066": -1, //Swarm of red copper
     "MAR/S89-070": 8, //Thanos Cx
+    "SG/W89-049" : -1, //Attack from the Sky
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
+    "AOT/S35-E095": -1, //Invasion Titan
     "AOT/S50-E088": -1, // "Pursuit" Titan
     "AOT/S50-E095": -1, // "Invasion" Titan
     "BNJ/SX01-078": -1, // Bat Clan
