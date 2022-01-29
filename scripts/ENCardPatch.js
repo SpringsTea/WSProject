@@ -42,12 +42,13 @@ WSS_SERIES.forEach( async(FILE) => {
 
     if( remotecard ){
      //Update existing card
+      remotecard.power = isNaN(remotecard.power) ? '0' : remotecard.power;
+      remotecard.level = isNaN(remotecard.level) ? '0' : remotecard.level;
+      remotecard.cost = isNaN(remotecard.cost) ? '0' : remotecard.cost;
       remotecard.locale['EN'] = {
         name: sourcecard.name,
         ability: sourcecard.ability,
-        attributes: sourcecard.attributes,
-        cost: sourcecard.cost,
-        level: sourcecard.level
+        attributes: sourcecard.attributes
       }
       
       //Only update series if there is none set
@@ -58,10 +59,10 @@ WSS_SERIES.forEach( async(FILE) => {
 
       await remotecard.save();
       console.log('Card Saved', remotecard._id);
+      return remotecard;
     }
     else{
-
-      let newcard = sourcecard;
+      let newcard = Object.assign({},sourcecard);
 
       newcard.lang = 'EN';
       newcard.cardcode = sourcecard.code || `${sourcecard.set}/${sourcecard.side}${sourcecard.release}-${sourcecard.sid}`;
@@ -95,8 +96,8 @@ WSS_SERIES.forEach( async(FILE) => {
           console.log('Card added:', sourcecard.sid);
         }
       })
+      return newcard;
     }  
-    return remotecard || newcard;
   })
 
   const savedcards = await Promise.all(promises)
