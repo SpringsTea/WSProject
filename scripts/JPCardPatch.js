@@ -45,7 +45,7 @@ WSS_SERIES.forEach( (FILE) => {
 
     //If series hasnt been fetched yet, or the card does not match the series of the previous cards
     if( series == null || series.side != sourcecard.side || series.release != sourcecard.release ){
-      series = await SeriesModel.findOne({lang: 'JP', side: sourcecard.side, release: sourcecard.release});
+      series = await SeriesModel.findOne({lang: 'JP', set: sourcecard.set, side: sourcecard.side, release: sourcecard.release});
       series.hash = new ObjectId(); //Generate new hash each time cards in a series have been updated
       series.save();
     } 
