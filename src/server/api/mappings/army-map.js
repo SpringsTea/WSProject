@@ -71,7 +71,7 @@ module.exports = {
     "SAO/S80-066": -1, //Swarm of red copper
     "MAR/S89-070": 8, //Thanos Cx
     "SG/W89-049" : -1, //Attack from the Sky
-    "KMD/W96-097": 8, //Looking for a present
+    "KMD/W96-097": 8, //Infinite Appetite
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
     "AOT/S35-E095": -1, //Invasion Titan
