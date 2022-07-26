@@ -14,41 +14,50 @@ class Card extends Component {
 			<div className={`container-card ${locked ? 'locked' : ''}`}>
 				{
 				card ?
-				<div className="card">
-					<a target="_blank" href={
-						card.lang === 'JP' ?
-						`https://heartofthecards.com/code/cardlist.html?card=WS_${card.cardcode}`
-						:
-						`https://en.ws-tcg.com/cardlist/list/?cardno=${card.cardcode}`
-					}
-
-					>		
-						<h2 className="card-name">
+				<div className="card">		
+					<h2 className="card-name">
+						<a target="_blank" href={
+							card.lang === 'JP' ?
+							`https://heartofthecards.com/code/cardlist.html?card=WS_${card.cardcode}`
+							:
+							`https://en.ws-tcg.com/cardlist/list/?cardno=${card.cardcode}`
+						}
+						>
 							{locale.name || 'NaN'} <Icon type="link" />
-							{
-								locale.source === "community" &&
-								<Tooltip title="Translations for this card are provided by the community, and are subject to change">
-									<Icon 
-										style={{marginLeft:'4px'}} 
-										theme="filled" 
-										className="locale-alert clickable" 
-										type="question-circle" 
-									/>
-								</Tooltip>
-							}
-							{
-								locale.source === "akiba" &&
-								<Tooltip title="Translations for this card are provided by little akiba, and are subject to change">
-									<Icon 
-										style={{marginLeft:'4px'}} 
-										theme="filled" 
-										className="locale-alert clickable akiba" 
-										type="question-circle" 
-									/>
-								</Tooltip>
-							}
-						</h2>
-					</a>
+						</a>
+						<Tooltip title="Search for decks that include this card">
+							<a target="_blank" href={`/?cards=${card._id}`}>
+								<Icon
+									style={{marginLeft: '4px', color: '#d6b600'}}
+									className="clickable"
+									type="file-search"
+								/>
+							</a>
+						</Tooltip>
+						{
+							locale.source === "community" &&
+							<Tooltip title="Translations for this card are provided by the community, and are subject to change">
+								<Icon 
+									style={{marginLeft:'4px'}} 
+									theme="filled" 
+									className="locale-alert clickable" 
+									type="question-circle" 
+								/>
+							</Tooltip>
+						}
+						{
+							locale.source === "akiba" &&
+							<Tooltip title="Translations for this card are provided by little akiba, and are subject to change">
+								<Icon 
+									style={{marginLeft:'4px'}} 
+									theme="filled" 
+									className="locale-alert clickable akiba" 
+									type="question-circle" 
+								/>
+							</Tooltip>
+						}
+					</h2>
+						
 					<div className='cardimage clickable' onClick={() => onCardSelect(card)}>
 						<Badge className={`card-quantity ${count < 1 ? 'hidden' : ''}`} count={count} offset={[-5, 10]}
 							style={{ backgroundColor: 'black', color: 'white' }}
