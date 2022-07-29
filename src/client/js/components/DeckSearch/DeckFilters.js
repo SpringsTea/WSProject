@@ -2,6 +2,8 @@ import { Component } from 'react';
 import { Select, Input, Checkbox, Row, Col } from 'antd';
 import { attributeIcons } from 'Constants/attributes';
 
+import { searchCards } from 'Utils/api';
+
 const Option = Select.Option;
 
 class DeckFilters extends Component {
@@ -90,6 +92,19 @@ class DeckFilters extends Component {
 						<div className="filter">	
 							<span>Search:</span>
 							<Input defaultValue={filters.text} placeholder="Search deckname" onChange={(e) => handleTextFilter(e.target.value)} />
+						</div>
+					</Col>
+					<Col xxl={4} xl={6} lg={8} md={12}>
+						<div className="filter">
+							<span>Contains Cards</span>
+							<Select
+								mode="multiple"
+								placeholder="Search one or more cards"
+								style={{width: '100%'}}
+								onSearch={(val) => searchCards(val)}
+							>
+
+							</Select>
 						</div>
 					</Col>
 					<Col xxl={8} xl={6} lg={8} md={12}>

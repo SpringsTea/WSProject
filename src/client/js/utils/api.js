@@ -59,6 +59,10 @@ export async function searchDeck(data){
 	})).data;
 }
 
+export async function searchCards(query){
+	return (await axios.get(`/api/card/${query}`)).data;
+}
+
 export async function fetchTranslations(seriesid){
 	return (await axios.get(`/api/translations/${seriesid}`)).data;
 }
