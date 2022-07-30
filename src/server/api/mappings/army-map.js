@@ -72,6 +72,7 @@ module.exports = {
     "MAR/S89-070": 8, //Thanos Cx
     "SG/W89-049" : -1, //Attack from the Sky
     "KMD/W96-097": 8, //Infinite Appetite
+    "KMD/W96-046": -1,
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
     "AOT/S35-E095": -1, //Invasion Titan
