@@ -55,10 +55,14 @@ module.exports = async (req, res) => {
             const transporter = nodemailer.createTransport({
                 service: process.env.SERVICE,
                 auth: {
+                    type: 'OAuth2',
                     user: process.env.MAILER,
-                    pass: process.env.MAIL_PW
+                    clientId: process.env.MAIL_CLIENTID,
+                    clientSecret: process.env.MAIL_OAUTHSECRET,
+                    refreshToken: process.env.MAIL_REFRESHTOKEN,
                 }
-            })   
+            })  
+            
             const verifyTemplate = {
                 to: user.email,
                 from: process.env.MAILER,
