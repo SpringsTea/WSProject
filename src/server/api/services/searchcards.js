@@ -20,12 +20,15 @@ const cardcolours = [ "YELLOW", "GREEN", "RED", "BLUE", "PURPLE" ];
  * @param {object} response HTTP response
  * @param {function} next function callback
  */
-module.exports = async ({params, user = {}}, response, next) => {
+module.exports = async (request, response, next) => {
     try {
         const limit = 10;
+        const user = request.user || {};
         const lang = user.preferedlocale || 'EN'; 
 
-        let searchtext = params.query;
+        let searchtext = request.params.text;
+        let filters = request.query;
+
         let searchextras = {
             power: undefined,
             side: undefined,
@@ -36,7 +39,7 @@ module.exports = async ({params, user = {}}, response, next) => {
             cardtype: undefined,
         }
 
-        const hasquote = quoteexperession.exec(params.query)
+        const hasquote = quoteexperession.exec(searchtext)
 
         if(!!hasquote){
             let extras = searchtext.replace(hasquote[0], "").trim().split(' ')//retreave all text not inside the first matched quotes eg. ['blue', 'CX']
@@ -66,7 +69,51 @@ module.exports = async ({params, user = {}}, response, next) => {
         //Delete undefined values to mongoose dosn't try to find them
         Object.keys(searchextras).forEach(key => searchextras[key] === undefined ? delete searchextras[key] : {});
 
-        console.log(searchextras)
+        if(filters.set){
+           searchextras.series = filters.set; 
+        }
+
+        if(filters.lang){
+            searchextras.lang = filters.lang;
+        }
+
+        if(filters.neoset){
+            //searchextras.neoset = filters.neoset;
+            //I tried to get neosets to work but could not. 
+            //Theres some complicated combination of aggrigate, lookup and pipeline that should get me there but I couldent find it
+            /*
+            let cards = await Card.aggregate([ 
+            { $lookup: {
+                from: 'neosets',
+                as: 'neoobj',
+                let: { set: '$set' },
+                pipeline: [
+                  {
+                    $match: {
+                      $expr: {
+                        $and: [
+                          { $eq: ['$setcodes', '$$set'] },
+                        ]
+                      }
+                    }
+                  },
+                  { $project: { setcodes: 1 } }
+                ],
+            }},
+            { $match: {
+                ...searchextras,
+                $or: [
+                    { [`locale.${lang}.name`]: { "$regex": searchtext, "$options": "i" } },
+                    { [`locale.${lang}.ability`]: { "$regex": searchtext, "$options": "i" } },
+                ]
+            }}, 
+            { $project: { 
+                [`locale.${lang}.name`]: 1, imagepath: 1, cardcode: 1
+            } 
+            }])
+            .limit(limit).exec();     
+            */
+        }
 
         let query = {
             ...searchextras,
@@ -76,7 +123,7 @@ module.exports = async ({params, user = {}}, response, next) => {
             ]            
         }
 
-        let cards = await Card.find(query).select(`_id locale.${lang}.name imagepath`).limit(limit).exec();             
+        let cards = await Card.find(query).select(`_id locale.${lang}.name imagepath cardcode`).limit(limit).exec();             
 
         response.status(200).json(cards)
     } catch (error) {
