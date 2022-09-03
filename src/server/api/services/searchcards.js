@@ -26,8 +26,10 @@ module.exports = async (request, response, next) => {
         const user = request.user || {};
         const lang = user.preferedlocale || 'EN'; 
 
-        let searchtext = request.params.text;
+        let searchtext = request.query.text;
         let filters = request.query;
+
+        delete filters.text;
 
         let searchextras = {
             power: undefined,
@@ -120,12 +122,13 @@ module.exports = async (request, response, next) => {
             $or: [
                 { [`locale.${lang}.name`]: { "$regex": searchtext, "$options": "i" } },
                 { [`locale.${lang}.ability`]: { "$regex": searchtext, "$options": "i" } },
+                { [`cardcode`]: { "$regex": searchtext, "$options": "i" } },
             ]            
         }
 
         let cards = await Card.find(query).select(`_id locale.${lang}.name imagepath cardcode`).limit(limit).exec();             
 
-        response.status(200).json(cards)
+        response.status(200).json(cards || [])
     } catch (error) {
         console.log(error);
         response.status(500).json({
