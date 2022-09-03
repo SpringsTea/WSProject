@@ -8,7 +8,7 @@ const deckSchema = new mongoose.Schema({
 	name: { type: String, maxlength: 100 },
 	userid: { type: ObjectId, ref: 'User' },
 	deckid: { type: String, default: shortid.generate },
-	description: { type: String, maxlength: 2000, default: '' }, 
+	description: { type: String, maxlength: 5000, default: '' }, 
 	datecreated: { type: Date, default: Date.now },
 	datemodified: { type: Date, default: Date.now },
 	lang: { type: String, default: 'JP' },
