@@ -2,14 +2,23 @@ import { Component } from 'react';
 import { Select, Input, Checkbox, Row, Col } from 'antd';
 import { attributeIcons } from 'Constants/attributes';
 
+import ContainsCardSearch from './ContainsCardsSearch';
+
 const Option = Select.Option;
 
 class DeckFilters extends Component {
 
 	state = {
+		
+	}
+
+	handleContainsCards = (cards) => {
+		const { handleFilter } = this.props;
+		handleFilter(cards, 'cards')
 	}
 
 	render(){
+		const { handleContainsCards } = this;
 		const { serieses, neosets, filters, loggedin, handleFilter, handleTextFilter } = this.props;
 		return(
 			<div className="container-deckfilters">
@@ -90,6 +99,16 @@ class DeckFilters extends Component {
 						<div className="filter">	
 							<span>Search:</span>
 							<Input defaultValue={filters.text} placeholder="Search deckname" onChange={(e) => handleTextFilter(e.target.value)} />
+						</div>
+					</Col>
+					<Col xxl={4} xl={6} lg={8} md={12}>
+						<div className="filter">
+							<span>Contains Cards</span>
+							<ContainsCardSearch onSelect={handleContainsCards} filters={{
+								set: filters.set,
+								neoset: filters.neoset,
+								lang: filters.lang
+							}} />
 						</div>
 					</Col>
 					<Col xxl={8} xl={6} lg={8} md={12}>
