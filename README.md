@@ -12,6 +12,7 @@ Join our <a href="https://discord.gg/cFsZJCq"> Discord <img width="50" src="http
 
 ### Getting Started
 
+* Have Node >=16
 * `npm i`
 
 ### Setting Up Mongo
