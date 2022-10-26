@@ -8,6 +8,38 @@
 Join our <a href="https://discord.gg/cFsZJCq"> Discord <img width="50" src="https://discordapp.com/assets/2c21aeda16de354ba5334551a883b481.png" alt="Encore logo"> </a> to contribute to site development, card translations, or to get updates.
 @ me @SpeedOfRound#9530
 
+## Development
+
+### Getting Started
+
+* `npm i`
+
+### Setting Up Mongo
+
+Create `src/server/config/mongo.js` with the following:
+
+```js
+export default {
+  AUTH: true|false,
+  APP_USERNAME: 'yourdbusername',
+  APP_PASSWORD: 'yourdbpassword'
+}
+```
+
+### Running The App
+
+* `npm run dev`
+
+### Getting Card Data
+
+TODO. But you need to do this to actually use the app locally.
+
+### Notes
+
+You can't download PDFs if you're on windows [due to lacking support from this library](https://github.com/tpisto/pdf-fill-form). The app will otherwise work.
+
+If this isn't working for you on a supported platform, you might need to `npm i pdf-fill-form`.
+
 ## Roadmap
 
 There is a [Trello](https://trello.com/b/eQnnH19k/encoredecks) that is kept up to date with what things are planned and need to be worked on.

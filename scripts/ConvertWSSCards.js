@@ -3,7 +3,7 @@
  SERIES=AOT LOCALE=NP node ConvertWSSCards.js
 
 LOCALE = NP for raw untranslated data, which is inserted into the NP locale
-LOCALE = JP for translated JP cards, which is instered into the EN locale
+LOCALE = JP for translated JP cards, which is inserted into the EN locale
 */
 
 
