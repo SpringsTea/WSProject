@@ -30,6 +30,7 @@ export default {
 ### Running The App
 
 * `npm run dev`
+* Open your browser to `localhost:8080`
 
 ### Getting Card Data
 
