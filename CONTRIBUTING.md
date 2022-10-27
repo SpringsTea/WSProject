@@ -7,5 +7,4 @@ Since encoredecks is open source, that means any one can help, just open a pull 
 
 Non programmers can help with the following:
 
- - Card translations (@BoatsDon'tSink for details)
  - Site design or ideas
