@@ -3,13 +3,16 @@
   "version": "0.5.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "build": "webpack --mode production",
     "start": "npm run build && forever start src/server/index.js",
-    "client": "webpack --watch --mode development",
-    "server": "nodemon src/server/index.js",
     "db": "sudo service mongodb start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:client": "webpack --watch --mode development",
+    "dev:server": "nodemon src/server/index.js"
   },
   "keywords": [],
   "author": "",
@@ -42,7 +45,6 @@
     "nodemailer": "^6.4.16",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "pdf-fill-form": "^5.0.0",
     "query-string": "^6.8.2",
     "react": "^16.5.2",
     "react-device-detect": "^2.1.2",
@@ -54,6 +56,9 @@
     "recharts": "^1.5.0",
     "shortid": "^2.2.14",
     "throttle-debounce": "^2.1.0"
+  },
+  "optionalDependencies": {
+    "pdf-fill-form": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

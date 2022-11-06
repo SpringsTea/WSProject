@@ -1,5 +1,12 @@
 'use strict';
-var pdfFillForm = require('pdf-fill-form');
+var pdfFillForm;
+
+try {
+    pdfFillForm = require('pdf-fill-form');
+} catch {
+    console.error('Cannot load pdf-fill-form. You are probably on windows.')
+}
+
 const contentDisposition = require('content-disposition');
 
 import GetDeckById from '../helpers/get-deck-by-id'
@@ -24,6 +31,14 @@ const filterCardQuantity = (cards) =>{
 }
 
 module.exports = async (req, res, next) => {
+    if(!pdfFillForm) {
+        res.status(500).json({
+            success: false,
+            message: 'Cannot download PDFs on this OS'
+        });
+        return false;
+    }
+
     const Form = req.params.formtype ? Forms[req.params.formtype] : Forms.BSNA;
     if(!Form){
         res.status(500).json({
