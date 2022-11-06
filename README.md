@@ -34,7 +34,16 @@ export default {
 
 ### Getting Card Data
 
-TODO. But you need to do this to actually use the app locally.
+Scripts are located in the `./scripts` directory. This is where you should run the following commands from.
+
+English cards can be added by putting files from [WeissSchwarz-ENG-DB](https://github.com/CCondeluci/WeissSchwarz-ENG-DB) into `./scripts/SetData/EN` and running the command `FILE={filename.json} ENCardPatch` 
+
+JP cards can be added by taking files from [wsoffdata](https://github.com/Akenaide/wsoffdata) and putting them into `./scritps/Cards/NP`. Then run the following commnads in order: 
+
+- `SERIES={AOT} LOCALE=NP node ConvertWSSCards` (this one converts all cards from a series into single files)
+- `FILE={filename.json} LOCALE=NP node JPCardPatch` (filename being the single file that the previous command created into `./scripts/SetData/NP`)
+
+All JP files use NP as their locale as a byproduct of a time where the JP locale was actually english translated JP cards. NP = Nippon
 
 ### Notes
 

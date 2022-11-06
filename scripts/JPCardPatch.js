@@ -6,7 +6,7 @@ const { readdirSync, readFileSync, statSync } = require('fs')
 const { join } = require('path')
 
 const MODEL_PATH = '../src/server/api/models';
-const LOCALE = process.env.LOCALE || 'JP';
+const LOCALE = process.env.LOCALE || 'NP';
 const SET_PATH = `./SetData/${LOCALE}`;
 const SET_FILE = process.env.FILE || null;
 
