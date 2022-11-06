@@ -73,6 +73,10 @@ module.exports = {
     "SG/W89-049" : -1, //Attack from the Sky
     "KMD/W96-097": 8, //Infinite Appetite
     "KMD/W96-046": -1,
+    "MTI/S83-067": -1,//Beast Race Maids of the Boreas Family
+    "OVL/S99-090": -1, //Goblin 0
+    "OVL/S99-093": -1, //Goblin 1
+    "OVL/S99-086": 13, //Goblin 3
     ////////////////EN CARDS/////////////////////
     "AOT/S35-E094": -1, //"Predation" Titan
     "AOT/S35-E095": -1, //Invasion Titan
@@ -108,4 +112,5 @@ module.exports = {
     "BFR/S78-E046": -1,//Shadowclone sally
     "SDS/SX03-022": 7,//Wanted poster
     "SAO/S80-E066": -1,//Swarm of red copper
+    "MTI/S83-E067": -1,//Beast Race Maids of the Boreas Family
 }
