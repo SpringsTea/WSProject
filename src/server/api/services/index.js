@@ -13,6 +13,7 @@ module.exports = {
     FavoriteDeck: require('./favoritedeck'),
     GetDeckForm: require('./getdeckform'),
     SearchCards: require('./searchcards'),
+    GetCard: require('./getcard'),
     ///////User
     GetUserData: require('./users/getUserData'),
     SetUserConfig: require('./users/setUserConfig'),

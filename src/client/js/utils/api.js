@@ -60,7 +60,7 @@ export async function searchDeck(data){
 }
 
 export async function searchCards(params){
-	return (await axios.get(`/api/card`, { params })).data;
+	return (await axios.get(`/api/cardsearch`, { params })).data;
 }
 
 export async function fetchTranslations(seriesid){
