@@ -3,13 +3,13 @@
  SERIES=AOT LOCALE=NP node ConvertWSSCards.js
 
 LOCALE = NP for raw untranslated data, which is inserted into the NP locale
-LOCALE = JP for translated JP cards, which is instered into the EN locale
+LOCALE = JP for translated JP cards, which is inserted into the EN locale
 */
 
 
 const { readdirSync, readFileSync, writeFile, statSync } = require('fs')
 const { join, extname } = require('path')
-var LOCALE = process.env.LOCALE || 'EN';
+var LOCALE = process.env.LOCALE || 'NP';
 var WSS_PATH = process.env.WSS_PATH || `./Cards/${LOCALE}/`;
 var SETDATA_PATH = `./SetData/${LOCALE == 'EN' ? 'JP' : LOCALE}/`;
 var ALLOWED_RARITY = [

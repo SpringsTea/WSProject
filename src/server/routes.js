@@ -10,7 +10,8 @@ router.post("/api/deck/favorite/:deckid", services.FavoriteDeck);
 router.get("/api/search/deck", services.SearchDecks);
 router.get("/api/deck/:deckid", services.GetDeckById);
 router.delete("/api/deck/:deckid", services.DeleteDeck);
-router.get("/api/card/", services.SearchCards);
+router.get("/api/card", services.GetCard);
+router.get("/api/cardsearch", services.SearchCards);
 router.get("/api/deck/:deckid/form/:formtype?", services.GetDeckForm);
 //user stuff
 router.get("/api/users/:userid", services.GetUserData);

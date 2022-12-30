@@ -8,6 +8,49 @@
 Join our <a href="https://discord.gg/cFsZJCq"> Discord <img width="50" src="https://discordapp.com/assets/2c21aeda16de354ba5334551a883b481.png" alt="Encore logo"> </a> to contribute to site development, card translations, or to get updates.
 @ me @SpeedOfRound#9530
 
+## Development
+
+### Getting Started
+
+* Have Node >=16
+* `npm i`
+
+### Setting Up Mongo
+
+Create `src/server/config/mongo.js` with the following:
+
+```js
+export default {
+  AUTH: true|false,
+  APP_USERNAME: 'yourdbusername',
+  APP_PASSWORD: 'yourdbpassword'
+}
+```
+
+### Running The App
+
+* `npm run dev`
+* Open your browser to `localhost:8080`
+
+### Getting Card Data
+
+Scripts are located in the `./scripts` directory. This is where you should run the following commands from.
+
+English cards can be added by putting files from [WeissSchwarz-ENG-DB](https://github.com/CCondeluci/WeissSchwarz-ENG-DB) into `./scripts/SetData/EN` and running the command `FILE={filename.json} ENCardPatch` 
+
+JP cards can be added by taking files from [wsoffdata](https://github.com/Akenaide/wsoffdata) and putting them into `./scritps/Cards/NP`. Then run the following commnads in order: 
+
+- `SERIES={AOT} LOCALE=NP node ConvertWSSCards` (this one converts all cards from a series into single files)
+- `FILE={filename.json} LOCALE=NP node JPCardPatch` (filename being the single file that the previous command created into `./scripts/SetData/NP`)
+
+All JP files use NP as their locale as a byproduct of a time where the JP locale was actually english translated JP cards. NP = Nippon
+
+### Notes
+
+You can't download PDFs if you're on windows [due to lacking support from this library](https://github.com/tpisto/pdf-fill-form). The app will otherwise work.
+
+If this isn't working for you on a supported platform, you might need to `npm i pdf-fill-form`.
+
 ## Roadmap
 
 There is a [Trello](https://trello.com/b/eQnnH19k/encoredecks) that is kept up to date with what things are planned and need to be worked on.
