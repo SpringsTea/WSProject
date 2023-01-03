@@ -1,8 +1,8 @@
 const { readdirSync, readFileSync, writeFileSync, statSync } = require('fs')
 const { join, extname } = require('path')
 var LOCALE = process.env.LOCALE || 'NP';
-var WSS_PATH = process.env.WSS_PATH || `../Cards/wsoffdata/`;
-var SETDATA_PATH = `../SetData/${LOCALE}/`;
+var WSS_PATH = process.env.WSS_PATH || __dirname + `/../Cards/wsoffdata/`;
+var SETDATA_PATH = __dirname + `/../SetData/${LOCALE}/`;
 var ALLOWED_RARITY = [
 	"C",
 	"CC",
@@ -42,7 +42,7 @@ const convert = (SERIES) => {
 	}
 	else{
 		console.log('SERIES not provided')
-		return false;
+		return [];
 	}
 
 	let releases = [];

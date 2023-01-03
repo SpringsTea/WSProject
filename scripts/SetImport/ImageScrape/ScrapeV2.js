@@ -2,8 +2,8 @@ const { readFileSync, createWriteStream, existsSync, mkdirSync, unlink } = requi
 var axios = require('axios');
 var sharp = require('sharp');
 
-var SET_DATA_PATH = '../SetData/NP'
-var IMAGE_DESTINATION = '../../public/images/JP'
+var SET_DATA_PATH = __dirname +'/../../SetData/NP'
+var IMAGE_DESTINATION = __dirname +'/../../../public/images/JP'
 
 var EXTENSION = process.env.IMAGE_EXTENSION || 'png';
 var APPEND_TRIAL = false;//set to false for old sets that dont need -td appended
