@@ -5,7 +5,7 @@ var ObjectId = mongoose.Types.ObjectId;
 const { readdirSync, readFileSync, statSync } = require('fs')
 const { join } = require('path')
 
-const SET_PATH = './SetData/EN';
+const SET_PATH = './Cards/WeissSchwarz-ENG-DB/DB';
 const MODEL_PATH = '../src/server/api/models';
 const SET_FILE = process.env.FILE || null;
 
