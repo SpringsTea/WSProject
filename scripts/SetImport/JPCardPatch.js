@@ -13,7 +13,8 @@ const CardModel = require(`${MODEL_PATH}/card`)
 const SeriesModel = require(`${MODEL_PATH}/series`)
 
 var mongooseOptions = {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 }
 
 if( config.AUTH === true ){
@@ -25,26 +26,36 @@ console.log('connecting to mongoose...')
 mongoose.connect(`mongodb://127.0.0.1:27017/wsdata?authSource=admin`, mongooseOptions);
 console.log('connected');
 
-const patch = (WSS_SERIES) => {
+const patch = async(WSS_SERIES) => {
 
   console.log(`${WSS_SERIES.length} files being patched...`)
 
-  WSS_SERIES.forEach( (FILE) => {
-
+  for (let FILE of WSS_SERIES) {
     let setContent = JSON.parse(readFileSync(`${SET_PATH}/${FILE}.json`, { encoding: 'utf8'}));
-    //Holds the series cards belong to so we dont have to fetch the series each time
-    let series = null;
 
-    setContent.forEach( async (sourcecard) => {
-
+    for (let sourcecard of setContent) {
       let armylimit = 4;
 
-      //If series hasnt been fetched yet, or the card does not match the series of the previous cards
-      if( series == null || series.side != sourcecard.side || series.release != sourcecard.release ){
-        series = await SeriesModel.findOne({lang: 'JP', set: sourcecard.set, side: sourcecard.side, release: sourcecard.release});
+      let series = await SeriesModel.findOne({lang: 'JP', side: sourcecard.side, release: sourcecard.release});
+
+      if(!series){
+        series = new SeriesModel({
+          _id: new ObjectId(),
+          enabled: false,
+          set: sourcecard.set,
+          side: sourcecard.side,
+          release: sourcecard.release,
+          name: `${sourcecard.side}${sourcecard.release}`,
+          lang: 'JP',
+          hash: new ObjectId()
+        })
+        await series.save()
+        console.log('Seires created', series)
+      }
+      else{
         series.hash = new ObjectId(); //Generate new hash each time cards in a series have been updated
         series.save();
-      } 
+      }
 
       //Check if card breaks the rule of 4 cards per deck AKA army cards
       if(sourcecard.ability.length > 0){
@@ -64,11 +75,12 @@ const patch = (WSS_SERIES) => {
         })
       }
 
+      //Check if this card exists in the db already
       let remotecard = await CardModel.findOne({set: sourcecard.set, side:sourcecard.side, release: sourcecard.release, sid: sourcecard.sid, lang: 'JP'});
 
+      //Update existing card
       if( remotecard ){
-        //Update existing card
-        remotecard.locale[LOCALE == 'JP' ? 'EN' : LOCALE] = {
+        remotecard.locale[LOCALE] = {
           name: sourcecard.name,
           ability: sourcecard.ability,
           attributes: sourcecard.attributes,
@@ -85,13 +97,13 @@ const patch = (WSS_SERIES) => {
 
         remotecard.cardtype = sourcecard.cardtype;      
 
-        remotecard.save();
+        await remotecard.save();
         console.log('Card Saved', FILE, remotecard._id);
       }
       else{
-        CardModel.create({...sourcecard, 
+        await CardModel.create({...sourcecard, 
           locale: {
-            [LOCALE == 'JP' ? 'EN' : LOCALE]: { name:sourcecard.name, ability:sourcecard.ability, attributes: sourcecard.attributes }
+            [LOCALE]: { name:sourcecard.name, ability:sourcecard.ability, attributes: sourcecard.attributes }
           }, 
           series: series._id,
           lang:'JP',
@@ -106,11 +118,12 @@ const patch = (WSS_SERIES) => {
             console.log('Card added:', sourcecard.sid);
           }
         })
-      }  
-      
-    })
+      } 
 
-  })
+    }
+
+  }
+
   console.log('Patch Complete')
   return true;
 }

@@ -15,5 +15,3 @@ if(!SKIP_IMAGES){
 if(!SKIP_PATCH){
 	const patch = JPCardPatch(releases)
 }
-
-
