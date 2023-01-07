@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const ConvertCards = require('./ConvertCards.js')
 const Scrape = require('./ImageScrape/ScrapeV2.js');
 const JPCardPatch = require('./JPCardPatch.js')

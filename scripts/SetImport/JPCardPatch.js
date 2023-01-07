@@ -1,4 +1,5 @@
 const config = require('../../src/server/config/mongo.js')
+const logger = require('../../src/server/logger.js')
 const mongoose = require('mongoose')
 var ObjectId = mongoose.Types.ObjectId;
 
@@ -50,7 +51,7 @@ const patch = async(WSS_SERIES) => {
           hash: new ObjectId()
         })
         await series.save()
-        console.log('Seires created', series)
+        logger( `Series created: ${JSON.stringify(series)}` )
       }
       else{
         series.hash = new ObjectId(); //Generate new hash each time cards in a series have been updated

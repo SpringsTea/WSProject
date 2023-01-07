@@ -45,6 +45,20 @@ JP cards can be added by taking files from [wsoffdata](https://github.com/Akenai
 
 All JP files use NP as their locale as a byproduct of a time where the JP locale was actually english translated JP cards. NP = Nippon
 
+### Email
+
+Encore uses gmail for sending registration, password reset and logging emails
+To setup with your own gmail account, keys must be set in a `.env` file in the root directory
+
+```
+SERVICE=gmail
+MAILER=encoredecks@gmail.com
+MAIL_PW=...
+MAIL_CLIENTID=...
+MAIL_OAUTHSECRET=...
+MAIL_REFRESHTOKEN=...
+```
+
 ### Notes
 
 You can't download PDFs if you're on windows [due to lacking support from this library](https://github.com/tpisto/pdf-fill-form). The app will otherwise work.
