@@ -19,13 +19,12 @@ var ALLOWED_RARITY = [
 	"U",
 	"AR",
 	"BDR",
-	"N"
+	"N",
+	"NR",
 ];
 if(process.env.RARITY_EXCEPT){
 	ALLOWED_RARITY.push(process.env.RARITY_EXCEPT);
 }
-
-var WSS_SERIES = readdirSync(WSS_PATH).filter(f => statSync(join(WSS_PATH, f)).isDirectory())
 
 function cleanText(text){
 	let cleantext = text;
@@ -37,6 +36,8 @@ function cleanText(text){
 
 
 const convert = (SERIES) => {
+	var WSS_SERIES = readdirSync(WSS_PATH).filter(f => statSync(join(WSS_PATH, f)).isDirectory())
+	
 	if( SERIES ){
 		WSS_SERIES = WSS_SERIES.filter( ( set ) => set === SERIES )
 	}
