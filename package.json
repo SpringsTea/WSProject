@@ -12,7 +12,8 @@
     "db": "sudo service mongodb start",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "webpack --watch --mode development",
-    "dev:server": "nodemon src/server/index.js"
+    "dev:server": "nodemon src/server/index.js",
+    "import:series": "node scripts/SetImport/ImportSeries.js"
   },
   "keywords": [],
   "author": "",
@@ -55,6 +56,7 @@
     "react-stickynode": "^2.1.1",
     "recharts": "^1.5.0",
     "shortid": "^2.2.14",
+    "simple-git": "^3.15.1",
     "throttle-debounce": "^2.1.0"
   },
   "optionalDependencies": {

@@ -1,8 +1,5 @@
 'use strict';
 
-// mappings
-const armyMap = require('../mappings/army-map');
-
 const checkNeoStandard = require('./get-neo-standard-sets');
 const universalsets = ['WS', 'SI', 'VG', 'DJ'];
 
@@ -51,16 +48,16 @@ module.exports = async(deck, carddata) => {
                 cxCount++;
             }
         } else {
-            // if the card number is in the army map, evaluate
-            if (armyMap[cardNumber] !== undefined) {
+            // if the card has an army count set, evaluate
+            if (card['armycount'] !== undefined) {
                 // check unlimited flag
-                if (armyMap[cardNumber] === -1) {
+                if (card['armycount'] === -1) {
                     cardCount[cardNumber] = cardCount[cardNumber] ? cardCount[cardNumber] + 1 : 1;
                 } 
                 // else, there is a defined limit
                 else {
                     // If card is not over specified limit, count
-                    if (cardCount[cardNumber] < armyMap[cardNumber]) {
+                    if (cardCount[cardNumber] < card['armycount']) {
                         cardCount[cardNumber] = cardCount[cardNumber] ? cardCount[cardNumber] + 1 : 1;
                     } 
                     // else, deck is not legal

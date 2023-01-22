@@ -10,8 +10,8 @@ LOCALE = JP for translated JP cards, which is inserted into the EN locale
 const { readdirSync, readFileSync, writeFile, statSync } = require('fs')
 const { join, extname } = require('path')
 var LOCALE = process.env.LOCALE || 'NP';
-var WSS_PATH = process.env.WSS_PATH || `./Cards/${LOCALE}/`;
-var SETDATA_PATH = `./SetData/${LOCALE == 'EN' ? 'JP' : LOCALE}/`;
+var WSS_PATH = process.env.WSS_PATH || `./Cards/wsoffdata/`;
+var SETDATA_PATH = `./SetData/${LOCALE}/`;
 var ALLOWED_RARITY = [
 	"C",
 	"CC",

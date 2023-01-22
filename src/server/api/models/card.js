@@ -34,5 +34,9 @@ const cardSchema = new mongoose.Schema({
 		'NP' : locale
 	},
 	imagepath: String,
+	armycount: {
+		type: Number,
+		default: 4
+	}
 }, {collection: 'card'});
 module.exports = mongoose.model('Card', cardSchema);

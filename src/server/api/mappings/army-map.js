@@ -1,9 +1,8 @@
 'use-strict';
 
+//This file is no longer in use or kept up to date, army cards are now tracked via their card entry in the database
+
 /**
- * NOTE: This mapping is an incomplete example meant to represent how the 
- * mapping will function when enabled.
- * 
  * This file maps specific cards as "army" cards, or cards that are valid in 
  * Neo-Standard decks at a quantity greater than the standard of 4.
  * 
