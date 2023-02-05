@@ -80,7 +80,7 @@ const BuilderStore = {
   getDeckCards: () => Object.assign([],deck),//assigning this instead of mutating lets me compare in Deck.shouldComponentUpdate,
   getDeckData: () => deckdata,
   getSelectedCard: () => selectedCard,
-  getCardAttributes: () => Array.from(attributes),
+  getCardAttributes: () => Array.from(attributes).sort(),
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case AT.SERIESES_RECEIVE:
@@ -101,7 +101,7 @@ const BuilderStore = {
         attributes = new Set([]);//recalculate all unique card attributes
         buildercards.map((card) => {
           let locale = getLocale(card);
-          locale.attributes.map((attr) => (!!attr && attr.length > 1) ? attributes.add(attr) : '' )
+          locale.attributes.map((attr) => (!!attr && attr.length > 1) ? attributes.add(attr.replace(/\《.*?\》/g, "").trim() ) : '' )
         })
         sortBuilderCards();
         filterBuilderCards()

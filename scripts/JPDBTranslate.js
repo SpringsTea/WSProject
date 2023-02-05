@@ -46,7 +46,7 @@ DB_DATA.forEach( async(seriesfile) => {
 					name: data.name,
 					ability: data.ability.map((a) => cleanText(a)),
 					attributes: data.attributes,
-					source: data.community === true ? 'community' : 'akiba'
+					source: data.community === true ? 'community' : 'nova'
 				}
 				console.log(`${remotecard.cardcode}`)
 				return remotecard.save();

@@ -1,4 +1,5 @@
 //Transfer over army data from the map file to the database
+//This was only used to transition between using the flat file to storing the army requirments in the db
 
 const armymap = require('../src/server/api/mappings/army-map')
 

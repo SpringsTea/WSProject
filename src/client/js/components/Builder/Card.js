@@ -35,23 +35,12 @@ class Card extends Component {
 							</a>
 						</Tooltip>
 						{
-							locale.source === "community" &&
-							<Tooltip title="Translations for this card are provided by the community, and are subject to change">
+							!!locale.source &&
+							<Tooltip title="Translations for this card are unofficially provided by the community, and are subject to change">
 								<Icon 
 									style={{marginLeft:'4px'}} 
 									theme="filled" 
 									className="locale-alert clickable" 
-									type="question-circle" 
-								/>
-							</Tooltip>
-						}
-						{
-							locale.source === "akiba" &&
-							<Tooltip title="Translations for this card are provided by little akiba, and are subject to change">
-								<Icon 
-									style={{marginLeft:'4px'}} 
-									theme="filled" 
-									className="locale-alert clickable akiba" 
 									type="question-circle" 
 								/>
 							</Tooltip>
