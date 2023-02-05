@@ -16,7 +16,7 @@ class Filters extends Component {
   render(){
 
     const { handleTextSearch } = this;
-    const { attributes } = this.props;
+    const { attributes, rarities } = this.props;
 
     return(
       <div className="container-filters">
@@ -77,7 +77,20 @@ class Filters extends Component {
                 }
               </div>
             </TabPane>
-            <TabPane tab="Sort" key="6">
+            <TabPane tab="Rarity" key="6">
+              <div className="toggles">
+                {
+                  rarities.map( (rarity) => 
+                    <span key={rarity}>
+                      {rarity} <Switch size="small" 
+                      onChange={ (val) => filterBuilder({ type:'rarity', filter: rarity, value: val }) } 
+                      />
+                    </span> 
+                  )
+                }
+              </div>
+            </TabPane>
+            <TabPane tab="Sort" key="7">
               <div>
                 <Radio.Group onChange={(e) => filterBuilder({type:'sorttype', value:e.target.value })} defaultValue="standard">
                   <Radio.Button value="standard">Standard</Radio.Button>

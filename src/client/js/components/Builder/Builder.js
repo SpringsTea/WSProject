@@ -23,6 +23,7 @@ const buildState = () => ({
   deckdata: BuilderStore.getDeckData(),
   builderfilters: BuilderStore.getBuilderFilters(),
   attributes: BuilderStore.getCardAttributes(),
+  rarities: BuilderStore.getCardRarities(),
 });
 
 class Builder extends Component {
@@ -53,7 +54,7 @@ class Builder extends Component {
 	render(){
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
     const { loggedin, mode } = this.props;
-		const { selectedCard, serieses, buildercards, builderfilters, attributes, deck, deckdata, savemodalopen } = this.state;
+		const { selectedCard, serieses, buildercards, builderfilters, attributes, rarities, deck, deckdata, savemodalopen } = this.state;
 		return(
 			<div className="container-builder">
         {
@@ -67,7 +68,7 @@ class Builder extends Component {
 					<Col xxl={8} xl={8} lg={12} md={24}
           			className='container-series-selector nice-scroll'>
 						<SeriesSelect serieses={serieses} />
-            <Filters attributes={attributes} />
+            <Filters attributes={attributes} rarities={rarities} />
 						<CardSelector isMobile={isMobile} cards={buildercards} filters={builderfilters} />
             {
               isMobile ?
