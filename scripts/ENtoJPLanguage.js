@@ -42,7 +42,7 @@ const execute = async(seriesid = null, isscript = false) => {
 
 		let cardtranslations = ENCards.map( async(ENCard) => {
 			const JPSid = ENCard.sid.replace('E', '');//Remove the E from the english card. We assume this will map to the japanese card
-			return await CardModel.findOne({ side: ENCard.side, release: ENCard.release, sid: JPSid})
+			return await CardModel.findOne({ side: ENCard.side, release: ENCard.release, sid: JPSid, set: ENCard.set})
 			.then( (JPCard) => {
 				if( JPCard ){//A JP Equivilant was found
 					//It does not have english locale data already, or is an unofficial translation
