@@ -1,7 +1,7 @@
 'use strict';
 
 const checkNeoStandard = require('./get-neo-standard-sets');
-const universalsets = ['WS', 'SI', 'VG', 'DJ'];
+const universalsets = ['WS', 'SI', 'VG'];
 
 module.exports = async(deck, carddata) => {
     // deck legality object
