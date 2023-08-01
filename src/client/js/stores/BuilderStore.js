@@ -8,9 +8,11 @@ let serieslist = [];//Top level list of available series
 let buildercards = [];
 let fbuildercards = [];//Buildercards after filters
 let attributes = new Set([]);
+let rarities = new Set([]);
 let builderfilters = {
   cardtype: [],
   colour: [],
+  rarity: [],
   level: [],
   attributes: [],
   text: null,
@@ -39,6 +41,11 @@ function filterBuilderCards() {
     if( builderfilters.colour.length > 0 && !builderfilters.colour.includes( card.colour ) ){
       return false;
     }
+
+    if(builderfilters.rarity.length > 0 && !builderfilters.rarity.includes( card.rarity )){
+      return false;
+    }
+
     if( builderfilters.attributes.length > 0 && //Check cards for any 1 attribute matching builderfilters.attributes
       !builderfilters.attributes.filter(val => getLocale(card).attributes.includes(val)).length > 0 ){
       return false;
@@ -80,7 +87,8 @@ const BuilderStore = {
   getDeckCards: () => Object.assign([],deck),//assigning this instead of mutating lets me compare in Deck.shouldComponentUpdate,
   getDeckData: () => deckdata,
   getSelectedCard: () => selectedCard,
-  getCardAttributes: () => Array.from(attributes),
+  getCardAttributes: () => Array.from(attributes).sort(),
+  getCardRarities: () => Array.from(rarities).sort(),
   reducer: register(async ({ type, ...props }) => {
     switch(type) {
       case AT.SERIESES_RECEIVE:
@@ -99,9 +107,11 @@ const BuilderStore = {
 
         }
         attributes = new Set([]);//recalculate all unique card attributes
+        rarities = new Set([]);
         buildercards.map((card) => {
           let locale = getLocale(card);
-          locale.attributes.map((attr) => (!!attr && attr.length > 1) ? attributes.add(attr) : '' )
+          locale.attributes.map((attr) => (!!attr && attr.length > 1) ? attributes.add(attr.replace(/\《.*?\》/g, "").trim() ) : '' )
+          rarities.add(card.rarity)
         })
         sortBuilderCards();
         filterBuilderCards()
