@@ -21,6 +21,7 @@ module.exports = async (request, response, next) => {
     let query = {
         
     };
+
     if(request.params.userid){
         query._id = request.params.userid;
     }
@@ -29,7 +30,16 @@ module.exports = async (request, response, next) => {
         let user = await User.findOne(query)
         .exec();
 
-        let decks = await Deck.find({ userid: user._id, deleted: false }, '_id neo_sets deckid')
+
+        const iscurrentuser = request.user && request.user._id.equals(user._id);
+        let deckquery = { userid: user._id, deleted: false, private: false };
+
+        //Allow private decks for logged in user
+        if(iscurrentuser){
+            delete deckquery.private;
+        }
+
+        let decks = await Deck.find(deckquery, '_id neo_sets deckid')
         .sort('-datecreated')
         .populate('neo_sets', 'name')
         .exec();
@@ -47,7 +57,6 @@ module.exports = async (request, response, next) => {
             coverdeck.favoriteusers = undefined;//Dont ever want to give this to the user
         }
 
-        const iscurrentuser = request.user && request.user._id.equals(user._id);
         let payload = {
             id: user._id,
             username: user.name,

@@ -24,6 +24,7 @@ module.exports = async ({query:params, user}, response, next) => {
         const limit = 24;
         let query = {
             deleted: 0,
+            private: 0
         }
 
         const options = {
@@ -82,6 +83,11 @@ module.exports = async ({query:params, user}, response, next) => {
                 if( finduser ){
                     query.userid = finduser._id;
                 }
+            }
+
+            //if the logged in user is querying their own decks, return private decks
+            if(user._id.equals( ObjectId(query.userid) )){
+                delete query.private
             }
         }
 
