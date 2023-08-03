@@ -49,6 +49,10 @@ class DeckView extends Component {
 					deck.valid !== true &&
 					<Alert message="This deck is not valid, and will not appear in searches" banner />
 				}
+				{
+					deck.private === true &&
+					<Alert message="This deck is private, and will not appear in searches" banner />
+				}
 				<DeckHeader cards={deck.cards} deck={deck} loggedin={loggedin} currentuser={userid || null} />
 				<Row gutter={8}>
 					<Col xxl={16} xl={14} lg={12} md={24}>
