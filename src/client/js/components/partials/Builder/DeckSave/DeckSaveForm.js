@@ -80,25 +80,32 @@ class DeckSaveForm extends Component {
         </Form.Item>
 
         <Form.Item>
+          {getFieldDecorator('private', {
+            valuePropName: 'checked',
+            initialValue: deckdata.private || false
+          })(
+            <Checkbox>
+              Private
+            </Checkbox>
+          )}
+        </Form.Item>
+
+        <Form.Item>
           {getFieldDecorator('attribute-group', {
             initialValue: attributes.map( (a) => mode === 'edit' && a.name ),
           })(
           <Checkbox.Group style={{width: '100%'}}>
             <Row>
-              <Col span={12}>
-                <Tooltip title="Decks that have proved themselves effective in tournament play (locals included)">
-                  <Checkbox value="Tournament" onChange={(e) => this.setState({showrecord: e.target.checked})}>
-                    Tournament <Icon type="trophy" className="ws-tournament" />
-                  </Checkbox>
-                </Tooltip>
-              </Col>
-              <Col span={12}>
-                <Tooltip title="Decks that were made from love (Husbandos welcome)">
-                  <Checkbox defaultChecked={false} value="Waifu">
-                    Waifu <Icon type="heart" className="ws-heart" />
-                  </Checkbox>
-                </Tooltip>
-              </Col>
+              <Tooltip title="Decks that have proved themselves effective in tournament play (locals included)">
+                <Checkbox value="Tournament" onChange={(e) => this.setState({showrecord: e.target.checked})}>
+                  Tournament <Icon type="trophy" className="ws-tournament" />
+                </Checkbox>
+              </Tooltip>
+              <Tooltip title="Decks that were made from love (Husbandos welcome)">
+                <Checkbox defaultChecked={false} value="Waifu">
+                  Waifu <Icon type="heart" className="ws-heart" />
+                </Checkbox>
+              </Tooltip>
             </Row>
           </Checkbox.Group>
           )}

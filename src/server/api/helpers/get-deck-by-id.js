@@ -6,7 +6,7 @@ module.exports = async (deckid, { populate = false, lean = false, user }) => {
     try {
         let deck = Deck.findOne(
             {deckid: deckid, deleted: false}, 
-            '-_id cards datemodified deckid description name userid valid sets neo_fail views attributes favoritecount favoriteusers myfavorite',
+            '-_id cards datemodified deckid description name userid valid sets neo_fail views attributes favoritecount favoriteusers myfavorite private',
             { lean: lean }
         )
 

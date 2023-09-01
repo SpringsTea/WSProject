@@ -80,11 +80,11 @@ class DeckHeader extends Component {
 									Edit
 								</Button>
 							}
-								<DeckExportMenu cards={cards} deck={deck} />
+								<DeckExportMenu cards={cards} deck={deck} style={{top: '-1px'}} />
 							{
 								deckuser && deckuser._id === currentuser &&
 								<Popconfirm placement="bottomLeft" title={"Are you sure?"} onConfirm={deletedDeck} okText="Yes" cancelText="No">
-									<Button className="danger" type="primary">
+									<Button className="danger" type="primary" style={{top: '-1px'}}>
 										Delete
 									</Button>
 								</Popconfirm>

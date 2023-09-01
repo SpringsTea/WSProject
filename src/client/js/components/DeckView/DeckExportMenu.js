@@ -21,7 +21,7 @@ class DeckExportMenu extends Component {
 		return(
             <Dropdown overlay={menu}>
               <Tooltip title="Export deck to various file types" >
-                <Button type="primary">
+                <Button type="primary" style={{top: '-1px'}}>
                     <Icon type="export" /> Export <Icon type="down" />
                 </Button>
               </Tooltip>

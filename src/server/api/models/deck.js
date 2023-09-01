@@ -18,6 +18,7 @@ const deckSchema = new mongoose.Schema({
 	neo_sets: [{type: ObjectId, ref: 'neoSet'}],
 	neo_fail: { type: String, default: '' },
 	deleted: { type: Boolean, default: false },
+	private: { type: Boolean, default: false },
 	views: { type: Number, default: 0 },
 	attributes: { type: Array, default: [] },
 	favoriteusers: [{ type: ObjectId, ref: 'User'}],

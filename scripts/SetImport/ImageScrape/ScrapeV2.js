@@ -37,8 +37,7 @@ const Scrape = (SET_FILE) => {
 
       var cardset = `${card.set.toLowerCase()}_${card.side.toLowerCase()}${card.release.toLowerCase()}`
       var cardname = `${cardset}_${card.sid.toLowerCase()}.${EXTENSION}`
-
-      var remotepath = `https://ws-tcg.com/wordpress/wp-content/images/cardlist/${card.set.toLowerCase().charAt(0)}/${card.set.toLowerCase()}_${card.side.toLowerCase()}${card.release.toLowerCase()}/${cardname}`;
+      var remotepath = `https://ws-tcg.com${card.imageURL}`;
       console.log(remotepath)
 
       !existsSync(`${IMAGE_DESTINATION}/${card.side}${card.release}`) && mkdirSync(`${IMAGE_DESTINATION}/${card.side}${card.release}`);
