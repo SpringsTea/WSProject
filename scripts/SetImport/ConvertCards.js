@@ -86,7 +86,8 @@ const convert = (SERIES) => {
 					rarity: wss_card.rarity,
 					attributes: wss_card.specialAttrib || [],
 					trigger: wss_card.trigger || [],
-					ability: []
+					ability: [],
+					imageURL: wss_card.imageURL
 				}
 
 				wss_card.ability && wss_card.ability.forEach( (text, i) => { 
