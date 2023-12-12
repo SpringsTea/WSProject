@@ -42,8 +42,7 @@ module.exports = {
                 minSize: 0
             }
         }
-    },
-    occurrenceOrder: true
+    }
   },
   module: {
     rules: [
@@ -82,7 +81,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       'React': 'react',
     }),
-    new CleanWebpackPlugin([outputDirectory]),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, 'dist/header.mustache'),
       template: path.resolve(__dirname, "./public/header.mustache"),
