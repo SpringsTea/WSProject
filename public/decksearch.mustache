@@ -12,7 +12,8 @@
 		</div>
 	</body>
 	<script>
-	  WS.event.emit('decksearch.load', { el: '#decksearch', loggedin: '{{loggedin}}' })
+		document.addEventListener("DOMContentLoaded", function(event) { 
+		  WS.event.emit('decksearch.load', { el: '#decksearch', loggedin: '{{loggedin}}' })
+		});
 	</script>
-	{{> header}}
 </html>
