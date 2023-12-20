@@ -46,7 +46,7 @@ class PasswordRecoveryForm extends Component {
     return(
       <div className="container-password-recovery">
           <div className="mail-icon"><Icon type="mail" /></div>
-          <Form onSubmit={handleSubmit} className="password-recovery-form">
+          <Form onSubmit={handleSubmit} name="passwordrecovery" className="password-recovery-form">
             <Form.Item
             label='Recovery Email'
           >
@@ -72,4 +72,4 @@ class PasswordRecoveryForm extends Component {
   }
 }
 
-export default Form.create({ name: 'passwordrecovery' })(PasswordRecoveryForm);
+export default PasswordRecoveryForm;

@@ -6,6 +6,48 @@ import {
 
 import { login } from 'Utils/api';
 
+const LoginForm = () => (
+  <Form onFinish={handleSubmit} className="login-form">
+        {
+          error &&
+          <Alert message={error} type="warning" />
+        }
+        {
+          logindata.message &&
+          <Alert message={`${logindata.message}`} type="info" />
+        }
+        <Form.Item>
+          {getFieldDecorator('username', {
+            rules: [{ required: true, message: 'Please input your email!' }],
+            initialValue: logindata.email
+          })(
+            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
+          )}
+        </Form.Item>
+        <Form.Item>
+          {getFieldDecorator('password', {
+            rules: [{ required: true, message: 'Please input your Password!' }],
+            initialValue: logindata.password
+          })(
+            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
+          )}
+          <a className="login-form-forgot" onClick={() => handleFormChange('forgot')}>Forgot password</a>
+        </Form.Item>
+        <Form.Item>
+          <div>
+            <Button type="primary" htmlType="submit" className="login-form-button" loading={loading}>
+              Log in
+            </Button>
+          </div>
+          Or <a onClick={() => handleFormChange('register')}>register now!</a>
+        </Form.Item>
+      </Form>
+)
+
+export default LoginForm;
+
+
+/*
 class LoginForm extends Component {
 
   state = {
@@ -86,3 +128,4 @@ class LoginForm extends Component {
 }
 
 export default Form.create({ name: 'login' })(LoginForm);
+*/

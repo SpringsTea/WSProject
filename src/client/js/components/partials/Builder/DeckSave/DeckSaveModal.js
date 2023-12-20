@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import {
   Button, Modal, Form, Input, Radio, message
 } from 'antd';
@@ -7,6 +7,26 @@ import DeckSaveForm from './DeckSaveForm';
 
 import { saveDeck } from 'Utils/api'; 
 
+const DeckSaveModal = () => {
+
+  const [ form ] =  Form.useForm();
+
+  return (
+    <Modal
+      visible={visible}
+      title="Save Deck"
+      okText="Save"
+      confirmLoading={loading}
+      onCancel={() => togglevisible(false)}
+      onOk={handleSubmitForm}
+      okButtonProps={ deck.length === 0 ? { disabled: true } : {} }
+    >
+     <DeckSaveForm form={form} deck={deck} mode={mode} deckdata={deckdata} />
+    </Modal>
+  )
+}
+
+/*
 const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
   // eslint-disable-next-line
   class extends React.Component {
@@ -78,5 +98,6 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
     }
   }
 );
+*/
 
 export default DeckSaveModal

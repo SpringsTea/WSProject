@@ -79,7 +79,7 @@ class RegisterForm extends Component {
     const { handleFormChange } = this.props;
     const { error, loading } = this.state;
     return(
-       <Form onSubmit={this.handleSubmit}>
+       <Form onSubmit={this.handleSubmit} name="register">
         {
           error &&
           <Alert message={error} type="warning" />
@@ -156,4 +156,4 @@ class RegisterForm extends Component {
   }
 }
 
-export default Form.create({ name: 'register' })(RegisterForm);
+export default RegisterForm;
