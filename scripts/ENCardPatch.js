@@ -42,9 +42,9 @@ WSS_SERIES.forEach( async(FILE) => {
 
     if( remotecard ){
      //Update existing card
-      remotecard.power = isNaN(remotecard.power) ? '0' : remotecard.power;
-      remotecard.level = isNaN(remotecard.level) ? '0' : remotecard.level;
-      remotecard.cost = isNaN(remotecard.cost) ? '0' : remotecard.cost;
+      remotecard.power = isNaN(sourcecard.power) ? '0' : sourcecard.power;
+      remotecard.level = isNaN(sourcecard.level) ? '0' : sourcecard.level;
+      remotecard.cost = isNaN(sourcecard.cost) ? '0' : sourcecard.cost;
       remotecard.locale['EN'] = {
         name: sourcecard.name,
         ability: sourcecard.ability,
