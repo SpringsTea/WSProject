@@ -32,7 +32,7 @@ class DeckFilters extends Component {
 								defaultValue={filters.lang}
 								onChange={(val) => handleFilter(val, 'lang')}
 							>
-								<Option value={null}>
+								<Option value={''}>
 									All
 								</Option>
 								<Option value={'JP'}>
@@ -55,7 +55,7 @@ class DeckFilters extends Component {
 								onChange={(val) => handleFilter(val, 'neoset')}
 								allowClear
 								showSearch
-								dropdownMatchSelectWidth={false}
+								popupMatchSelectWidth={false}
 							>
 								{
 									neosets.sort((a,b) => (a.name > b.name) ? 1 : -1)
@@ -80,7 +80,7 @@ class DeckFilters extends Component {
 								onChange={(val) => handleFilter(val, 'set')}
 								allowClear
 								showSearch
-								dropdownMatchSelectWidth={false}
+								popupMatchSelectWidth={false}
 							>
 								{
 									serieses.sort((a,b) => (a.name > b.name) ? 1 : -1)

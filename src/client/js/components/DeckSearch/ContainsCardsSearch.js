@@ -36,7 +36,7 @@ export default function ContainsCardSearch({ filters = {}, onSelect }) {
 				placeholder="Search one or more cards"
 				style={{width: '100%'}}
 				filterOption={false}
-				dropdownMatchSelectWidth={false}
+				popupMatchSelectWidth={false}
 				onSearch={debouncedCardSearch}
 				onChange={(selectedcards) => onSelect(selectedcards)}
 				getPopupContainer={node => node.parentElement}
