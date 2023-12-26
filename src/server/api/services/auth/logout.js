@@ -11,7 +11,8 @@
  */
 module.exports = async (req, res, next) => {
     if (req.user){
-        req.logout((err) => {
+        //Should be req.logout() but it's not working
+        req.session.destroy((err) => {
             if(err){
                 res.status(500).json({
                     message:'Something went wrong',
