@@ -1,73 +1,24 @@
-import { Component } from 'react';
+import { Component, useState } from 'react';
 import {
-  Form, Icon, Input, Button, Alert
+  Form, Input, Button, Alert
 } from 'antd';
 
+import { 
+  UserOutlined,
+  LockOutlined,
+} from '@ant-design/icons';
 
 import { login } from 'Utils/api';
 
-const LoginForm = () => (
-  <Form onFinish={handleSubmit} className="login-form">
-        {
-          error &&
-          <Alert message={error} type="warning" />
-        }
-        {
-          logindata.message &&
-          <Alert message={`${logindata.message}`} type="info" />
-        }
-        <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your email!' }],
-            initialValue: logindata.email
-          })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
-          )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
-            initialValue: logindata.password
-          })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-          )}
-          <a className="login-form-forgot" onClick={() => handleFormChange('forgot')}>Forgot password</a>
-        </Form.Item>
-        <Form.Item>
-          <div>
-            <Button type="primary" htmlType="submit" className="login-form-button" loading={loading}>
-              Log in
-            </Button>
-          </div>
-          Or <a onClick={() => handleFormChange('register')}>register now!</a>
-        </Form.Item>
-      </Form>
-)
+const LoginForm = ({handleFormChange, logindata}) => {
 
-export default LoginForm;
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState(null);
 
+  const HandleLogin = async(formdata) => {
 
-/*
-class LoginForm extends Component {
-
-  state = {
-    loading:false,
-    error: null,
-  }
-
-  handleSubmit = (e) => {
-    const { login } = this;
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        login(values)
-      }
-    });
-  }
-
-  login = async(formdata) => {
-
-    this.setState({loading: true, error: null});
+    setLoading(true)
+    setError(null)
 
     let res = await login(formdata)
 
@@ -75,57 +26,56 @@ class LoginForm extends Component {
       window.location = "/";
     }
     else{
-      this.setState({error: 'Login was incorrect'})
-      this.setState({loading: false});
+      setError('Login was incorrect')
+      setLoading(false)
     }  
     
-    
   }
 
-  render(){
-    const { getFieldDecorator } = this.props.form;
-    const { handleSubmit } = this;
-    const { handleFormChange, logindata = {} } = this.props;
-    const { loading, error } = this.state;
-    return(
-       <Form onSubmit={handleSubmit} className="login-form">
-        {
-          error &&
-          <Alert message={error} type="warning" />
-        }
-        {
-          logindata.message &&
-          <Alert message={`${logindata.message}`} type="info" />
-        }
-        <Form.Item>
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your email!' }],
-            initialValue: logindata.email
-          })(
-            <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
-          )}
-        </Form.Item>
-        <Form.Item>
-          {getFieldDecorator('password', {
-            rules: [{ required: true, message: 'Please input your Password!' }],
-            initialValue: logindata.password
-          })(
-            <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="Password" />
-          )}
-          <a className="login-form-forgot" onClick={() => handleFormChange('forgot')}>Forgot password</a>
-        </Form.Item>
-        <Form.Item>
-          <div>
-            <Button type="primary" htmlType="submit" className="login-form-button" loading={loading}>
-              Log in
-            </Button>
-          </div>
-          Or <a onClick={() => handleFormChange('register')}>register now!</a>
-        </Form.Item>
-      </Form>
-    )
-  }
-}
 
-export default Form.create({ name: 'login' })(LoginForm);
-*/
+return(
+
+  <Form 
+    onFinish={HandleLogin} 
+    className="login-form"
+    initialValues={{
+      username: logindata.email,
+      password: logindata.password
+    }}
+  >
+    {
+      error &&
+      <Alert message={error} type="warning" />
+    }
+    {
+      logindata.message &&
+      <Alert message={`${logindata.message}`} type="info" />
+    }
+    <Form.Item 
+      name="username"
+      rules={[{ required: true, message: 'Please input your email!' }]}
+    >
+      <Input prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Email" />
+    </Form.Item>
+    <Form.Item
+      name="password"
+      rules={[{ required: true, message: 'Please input your Password!' }]}
+    >
+      <Input.Password 
+        prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
+        placeholder="Password"
+      />
+    </Form.Item>
+    <Form.Item>
+      <div>
+        <Button type="primary" htmlType="submit" className="login-form-button" loading={loading}>
+          Log in
+        </Button>
+      </div>
+      Or <a onClick={() => handleFormChange('register')}>register now!</a>
+    </Form.Item>
+    <a className="login-form-forgot" onClick={() => handleFormChange('forgot')}>Forgot password</a>
+  </Form>
+)}
+
+export default LoginForm;

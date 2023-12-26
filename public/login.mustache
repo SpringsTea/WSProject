@@ -13,7 +13,9 @@
 		</div>
 	</body>
 	<script>
+	document.addEventListener("DOMContentLoaded", function(event) { 
 	  WS.event.emit('login.load', { el: '#login', tab: '{{tab}}', token: '{{token}}' })
+	})
 	</script>
 	{{> header}}
 </html>
