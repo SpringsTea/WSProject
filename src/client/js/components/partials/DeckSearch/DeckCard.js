@@ -10,6 +10,19 @@ import { generateCardImageLink } from 'Utils/cardshorthands';
 
 const { Meta } = Card;
 
+const DeckTitle = ({ name, userid: user, deckid }) => 
+<div className="title">
+	<div className="deckname"><a href={`/deck/${deckid}`} title={name}>{ name || 'Deck' }</a></div>
+	<div> 
+		{
+			user ?
+				<a className="user" href={`/user/${user.name}`}>{ user.name }</a>
+			:
+				<div>Anonymous</div>
+		}
+	</div>
+</div>;
+
 export default function DeckCard({ deck, loggedin }) {
 
 	return (
@@ -29,6 +42,7 @@ export default function DeckCard({ deck, loggedin }) {
 				}
 			>
 				<Meta 
+					title={DeckTitle(deck)} 
 					description={deck.description || 'No Description'}
 				/>
 				<AttributesList attributes={deck.attributes} />

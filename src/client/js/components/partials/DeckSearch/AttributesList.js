@@ -22,12 +22,9 @@ class AttributesList extends Component {
 						if(idata.icon === 'trophy'){
 							return <TrophyOutlined title={attr.name} key={i} className={idata.class}/>
 						}
-						else if(  idata.icon === 'heart' ){
+						if(  idata.icon === 'heart' ){
 							return <HeartOutlined title={attr.name} key={i} className={idata.class}/>
-						}
-						else{
-							return <QuestionCircleOutlined title={attr.name} key={i} className={idata.class}/>
-						}						
+						}					
 					})
 				}
 			</div>

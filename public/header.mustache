@@ -1,6 +1,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script>
-  WS.event.emit('page.header', 
-  	{el:'#header', loggedin: '{{loggedin}}', username: '{{username}}', roles: { translator:'{{roles.translator}}' }}
-  )
+	document.addEventListener("DOMContentLoaded", function(event) { 
+	  WS.event.emit('page.header', 
+	  	{el:'#header', loggedin: '{{loggedin}}', username: '{{username}}', roles: { translator:'{{roles.translator}}' }}
+	  )
+	})
 </script>

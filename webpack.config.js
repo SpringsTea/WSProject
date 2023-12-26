@@ -82,8 +82,10 @@ module.exports = {
       'React': 'react',
     }),
     new HtmlWebpackPlugin({
+      inject: 'body',
       filename: path.resolve(__dirname, 'dist/header.mustache'),
       template: path.resolve(__dirname, "./public/header.mustache"),
+      chunks: ['commons']
     }),
     new HtmlWebpackPlugin({
       inject: 'body',
