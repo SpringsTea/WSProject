@@ -45,7 +45,10 @@ return(
   >
     {
       error &&
-      <Alert message={error} type="warning" />
+      <>
+        <Alert message={error} type="warning" />
+        <br />
+      </>
     }
     {
       logindata.message &&

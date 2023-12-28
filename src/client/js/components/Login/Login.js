@@ -23,6 +23,7 @@ class Login extends Component {
 	render(){
 		const { handleTabChange } = this;
 		const { tab, token, logindata } = this.state;
+
 		return(
 		  <div className="container-login">
 		  	<div className="header">
@@ -35,10 +36,10 @@ class Login extends Component {
 		    			<LoginForm handleFormChange={handleTabChange} logindata={logindata} />
 		    		</TabPane>
 		    		<TabPane key="register" tab="Register">
-		    			<RegisterForm handleFormChange={handleTabChange} />
+		    			<RegisterForm handleFormChange={handleTabChange} logindata={logindata} />
 		    		</TabPane>
 		    		<TabPane key="forgot" tab="Password Forgot">
-		    			<PasswordRecoveryForm handleFormChange={handleTabChange} />
+		    			<PasswordRecoveryForm handleFormChange={handleTabChange} logindata={logindata} />
 		    		</TabPane>
 		    		<TabPane key="reset" tab="Password Reset" >
 		    			<PasswordChangeForm handleFormChange={handleTabChange} token={token} />
