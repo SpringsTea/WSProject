@@ -19,7 +19,9 @@
 		</div>
 	</footer>
 	<script>
+	document.addEventListener("DOMContentLoaded", function(event) { 
 	  WS.event.emit('page.app.load', {el:'#app', mode: '{{mode}}', deckid: '{{deckid}}', loggedin: '{{loggedin}}'});
+	 })
 	</script>
 	{{> header}}
 </html>

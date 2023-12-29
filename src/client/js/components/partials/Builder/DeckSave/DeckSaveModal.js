@@ -1,15 +1,51 @@
-import React, { Component, useState } from 'react';
+import { useState } from 'react';
 import {
-  Button, Modal, Form, Input, Radio, message
+  Button, Modal, Input, Radio, Form, message
 } from 'antd';
 
 import DeckSaveForm from './DeckSaveForm';
 
 import { saveDeck } from 'Utils/api'; 
 
-const DeckSaveModal = () => {
+const DeckSaveModal = ({visible, deck, deckdata, mode, togglevisible}) => {
 
+  const [ loading, setLoading ] = useState(false);
   const [ form ] =  Form.useForm();
+
+  const handleSaveDeck = async(values) => {
+
+    setLoading(true)
+
+    let submitdata = {
+      ...values,
+      cards: deck.map( (c) => c._id )
+    }
+
+    if ( deckdata && mode !== 'fork' ){
+      submitdata.deckid = deckdata.deckid;
+    }
+
+    const [
+      res
+    ] = await Promise.all([
+        saveDeck(submitdata)
+    ]);
+    if( res.status === 200 && res.data ){
+      window.location.href = `/deck/${res.data.deck.deckid}`;
+    }
+    else{
+      setLoading(false)
+      message.error(res.response.data.message)
+    }
+  }
+
+  const handleSubmitForm = () => {
+    form.validateFields()
+    .then((values) => {
+      console.log(values)
+      handleSaveDeck(values)
+    })
+  }
 
   return (
     <Modal
@@ -21,7 +57,7 @@ const DeckSaveModal = () => {
       onOk={handleSubmitForm}
       okButtonProps={ deck.length === 0 ? { disabled: true } : {} }
     >
-     <DeckSaveForm form={form} deck={deck} mode={mode} deckdata={deckdata} />
+      <DeckSaveForm form={form} deck={deck} mode={mode} deckdata={deckdata} />
     </Modal>
   )
 }

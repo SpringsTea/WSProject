@@ -10,7 +10,9 @@ export default function CoverImageModal({deck, deckdata, visible, handleVisible}
 		<Modal
 	  		title="Choose a cover image"
 	  		visible={visible}
-	  		bodyStyle={{maxHeight: '600px', overflowY:'auto'}}
+	  		styles={
+	  			{ body: {maxHeight: '600px', overflowY:'auto'}
+	  		}}
 	  		onCancel={handleVisible}
 	  		width="600px"
 	  		footer={null}
