@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Icon } from 'antd';
+import { List } from 'antd';
 
 import { getLocale } from 'Utils/cardlocale';
 import CardItem from '../partials/Builder/CardItem/CardItem';

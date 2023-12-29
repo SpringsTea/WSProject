@@ -1,5 +1,5 @@
 import React from 'react';
-import { Icon, Input, Row, Col } from 'antd';
+import { Input, Row, Col } from 'antd';
 
 import { generateCardCode } from 'Utils/cardshorthands';
 

@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { Button, Badge, Icon, Avatar } from 'antd';
+import { Button, Badge, Avatar } from 'antd';
+import { 
+  QuestionCircleOutlined,
+  PlusOutlined,
+  MinusOutlined,
+} from '@ant-design/icons';
+
 import Img from 'react-image';
 
 const ButtonGroup = Button.Group;
@@ -26,14 +32,14 @@ class CardItem extends Component {
 					    src={[
 					      generateCardImageLink(card),
 					    ]}
-					    unloader={<Icon className="image-not-found" type="question-circle" />}
+					    unloader={<QuestionCircleOutlined className="image-not-found" />}
 					  />
 					</div>
 				</Badge>
 				<div className="controls">
 					<ButtonGroup>
-						<Button icon="minus" className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
-						<Button icon="plus" className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
+						<Button icon={<MinusOutlined />} className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
+						<Button icon={<PlusOutlined />} className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
 					</ButtonGroup>
 				</div>
 			</div>

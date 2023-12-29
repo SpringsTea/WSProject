@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Input, Button, Icon, Form, message } from 'antd';
+import { Input, Button, Form, message } from 'antd';
 import { 
   MailOutlined
 } from '@ant-design/icons';

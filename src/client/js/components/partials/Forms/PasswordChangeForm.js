@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Input, Button, Icon, Form, message } from 'antd';
+import { Input, Button, Form, message } from 'antd';
 
 import { passwordReset } from 'Utils/api';
 

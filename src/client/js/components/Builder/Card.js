@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { Row, Col, Icon, Button, Badge, Tooltip } from 'antd';
+import { Row, Col, Button, Badge, Tooltip } from 'antd';
+import { 
+  FileSearchOutlined,
+  QuestionCircleOutlined,
+  LinkOutlined,
+  PlusOutlined,
+  MinusOutlined,
+} from '@ant-design/icons';
 import Img from 'react-image';
 
 import Property from '../partials/Builder/Card/Property';
@@ -23,25 +30,23 @@ class Card extends Component {
 							`https://en.ws-tcg.com/cardlist/list/?cardno=${card.cardcode}`
 						}
 						>
-							{locale.name || 'NaN'} <Icon type="link" />
+							{locale.name || 'NaN'} <LinkOutlined />
 						</a>
 						<Tooltip title="Search for decks that include this card">
 							<a target="_blank" href={`/?cards=${card._id}`}>
-								<Icon
+								<FileSearchOutlined
 									style={{marginLeft: '4px', color: '#d6b600'}}
 									className="clickable"
-									type="file-search"
 								/>
 							</a>
 						</Tooltip>
 						{
 							!!locale.source &&
 							<Tooltip title="Translations for this card are unofficially provided by the community, and are subject to change">
-								<Icon 
+								<QuestionCircleOutlined 
 									style={{marginLeft:'4px'}} 
-									theme="filled" 
+									//theme="filled" 
 									className="locale-alert clickable" 
-									type="question-circle" 
 								/>
 							</Tooltip>
 						}
@@ -55,15 +60,15 @@ class Card extends Component {
 							    src={[
 							      generateCardImageLink(card),
 							    ]}
-						    	unloader={<Icon className="image-not-found" type="question-circle" />}
+						    	unloader={<QuestionCircleOutlined className="image-not-found" />}
 						  	/>
 					  	</Badge>
 					</div>
 					{
 						!!allowDeckControls &&
 						<Button.Group className="deck-controls">
-							<Button icon="minus" className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
-							<Button icon="plus" className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
+							<Button icon={<MinusOutlined />} className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
+							<Button icon={<PlusOutlined />} className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
 						</Button.Group>
 					}
 					{	

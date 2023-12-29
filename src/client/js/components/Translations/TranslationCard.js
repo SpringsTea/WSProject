@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Icon, Input, Row, Col, Card, Button } from 'antd';
+import { Input, Row, Col, Card, Button } from 'antd';
+import { 
+  QuestionCircleOutlined
+} from '@ant-design/icons';
 import Img from 'react-image';
 
 const { TextArea } = Input;
@@ -78,7 +81,7 @@ class TranslationCard extends Component {
 						src={[
 						  generateCardImageLink(card),
 						]}
-							unloader={<Icon className="image-not-found" type="question-circle" />}
+							unloader={<QuestionCircleOutlined className="image-not-found" />}
 						/>
 					</div>
 					<div className="card-constants">

@@ -1,5 +1,9 @@
 import { Component, useState } from 'react';
-import { Input, Icon, Button } from 'antd';
+import { Input, Button } from 'antd';
+import { 
+  SaveOutlined,
+  LinkOutlined,
+} from '@ant-design/icons';
 
 import { links } from 'Constants/sociallinks';
 
@@ -7,6 +11,7 @@ export default function SocialInput ({onSave, value, name, icon, addon = '', siz
 
   const [editable, setEditable] = useState(!value)
   const [inputvalue, setValue] = useState(value);
+
   return(
 	<div>
 		{
@@ -15,7 +20,7 @@ export default function SocialInput ({onSave, value, name, icon, addon = '', siz
   			size={size} 
   			suffix={icon} 
   			addonBefore={addon} 
-  			addonAfter={<Icon className="clickable" type="save" 
+  			addonAfter={<SaveOutlined className="clickable"
   				onClick={() => onSave(inputvalue, name).then((r) => setEditable(false))} />
   			}
   			placeholder={placeholder} 
@@ -28,7 +33,7 @@ export default function SocialInput ({onSave, value, name, icon, addon = '', siz
         {
         !!value &&
     			<a href={ links[name] ? `${links[name]}${value}` : null} target="_blank">
-    				<Icon type="link" />
+    				<LinkOutlined />
     					{icon}
     				{
     					`${name === 'Youtube' ? 'Youtube' : `${addon}${value}`}`

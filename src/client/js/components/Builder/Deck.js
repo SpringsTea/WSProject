@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { List, Radio, Icon } from 'antd';
+import { List, Radio } from 'antd';
+import { 
+  AppstoreOutlined,
+  MenuOutlined,
+} from '@ant-design/icons';
 
 import CardSelector from './CardSelector';
 import CardSelectorV from './CardSelectorV';
@@ -38,10 +42,10 @@ class Deck extends Component {
 				<Radio.Group className="selector-control" size='small' defaultValue={selector} 
 				onChange={ (e) => switchSelectorType(e.target.value) }>
 					<Radio.Button value="visual">
-						<Icon type="appstore" />
+						<AppstoreOutlined />
 					</Radio.Button>
 					<Radio.Button value="list">
-						<Icon type="menu" />
+						<MenuOutlined />
 					</Radio.Button>
 				</Radio.Group>
 				<div className="deck-body">
