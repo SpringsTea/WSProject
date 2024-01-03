@@ -12,7 +12,9 @@
     </div>
   </body>
   <script>
-    WS.event.emit('user.load', { el: '#user', userid: '{{userid}}', username: '{{username}}', loggedin:'{{loggedin}}' })
+    document.addEventListener("DOMContentLoaded", function(event) { 
+      WS.event.emit('user.load', { el: '#user', userid: '{{userid}}', username: '{{username}}', loggedin:'{{loggedin}}' })
+    })
   </script>
   {{> header}}
 </html>
