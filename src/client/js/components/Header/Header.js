@@ -55,8 +55,8 @@ class EncoreHeader extends Component {
 								<Menu.Item><a href="/builder">Builder</a></Menu.Item>
 								<Menu.Item><a href="/">Decks</a></Menu.Item>
 								{
-									roles.translator &&
-									<Menu.Item><a href="/translations">Translations</a></Menu.Item>
+									//roles.translator &&
+									//<Menu.Item><a href="/translations">Translations</a></Menu.Item>
 								}				
 								{
 									loggedin == 'true' ?
