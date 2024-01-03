@@ -8,7 +8,9 @@ class PageNotFound extends Component {
       <div className="container-pagenotfound">
         <Row>
           <Col span={24}>
-            OH NO
+            <h1 style={{marginTop: '2em'}}>
+              Page could not be found
+            </h1>
           </Col>
         </Row>
       </div>

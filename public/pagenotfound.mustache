@@ -12,7 +12,9 @@
     </div>
   </body>
   <script>
-    WS.event.emit('pagenotfound.load', { el: '#page' })
+    document.addEventListener("DOMContentLoaded", function(event) { 
+      WS.event.emit('pagenotfound.load', { el: '#page' })
+    })
   </script>
   {{> header}}
 </html>
