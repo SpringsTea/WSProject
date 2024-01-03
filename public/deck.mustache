@@ -12,7 +12,9 @@
 		</div>
 	</body>
 	<script>
-	  WS.event.emit('deckview.load', { el: '#deckview', deckid: '{{deckid}}', loggedin: '{{loggedin}}', userid: '{{userid}}' })
+		document.addEventListener("DOMContentLoaded", function(event) { 
+			WS.event.emit('deckview.load', { el: '#deckview', deckid: '{{deckid}}', loggedin: '{{loggedin}}', userid: '{{userid}}' })
+		})
 	</script>
 	{{> header}}
 </html>

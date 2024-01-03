@@ -17,7 +17,9 @@ class CardItem extends Component {
 		return(
 			<List.Item 
 			onMouseEnter={ () => selectCard({card})}
-			className="card-item">
+			className="card-item"
+			style={{padding: '0px'}}
+			>
 				<List.Item.Meta 
 					className="clickable"
 					onClick={ () => selectCard({card}, true) }
@@ -26,7 +28,7 @@ class CardItem extends Component {
 				/>
 				{
 					controls &&
-					<Button.Group>
+					<Button.Group style={{marginRight: '4px'}}>
 						<Button icon={<MinusOutlined />} className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
 						<Button icon={<PlusOutlined />} className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
 					</Button.Group>

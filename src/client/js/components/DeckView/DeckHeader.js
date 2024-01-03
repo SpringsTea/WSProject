@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import { Card, Row, Col, Tag, Button, Tooltip, Popconfirm, message } from 'antd';
+import {
+	ForkOutlined,
+	EditOutlined
+} from '@ant-design/icons';
+
 import DeckStats from './DeckStats';
 import AttributesList from 'Partials/DeckSearch/AttributesList';
 import FavoriteIcon from 'Partials/DeckSearch/FavoriteIcon';
@@ -58,7 +63,12 @@ class DeckHeader extends Component {
 			<Card className="deck-header">
 				<div>
 					<div className="flex-container" style={{flexWrap: 'wrap'}}>
-						<h2 className="deck-name">{deck.name}</h2>
+						<h2 
+							className="deck-name"
+							style={{margin: '0px'}}
+						>
+							{deck.name}
+						</h2>
 						<AttributesList attributes={deck.attributes} />
 						{
 							tournament &&
@@ -68,23 +78,23 @@ class DeckHeader extends Component {
 						<div className="controls">
 							<Button.Group>
 								<Tooltip placement="top" title="Copy this deck and save it as your own">
-									<Button type="primary" icon="fork"
+									<Button type="primary" icon={<ForkOutlined />}
 									href={`/builder/fork/${deck.deckid}`}>
 										Fork
 									</Button>
 								</Tooltip>
 							{
 								deckuser && deckuser._id === currentuser &&
-								<Button type="primary" icon="edit"
+								<Button type="primary" icon={<EditOutlined />}
 								href={`/builder/edit/${deck.deckid}`}>
 									Edit
 								</Button>
 							}
-								<DeckExportMenu cards={cards} deck={deck} style={{top: '-1px'}} />
+								<DeckExportMenu cards={cards} deck={deck} />
 							{
 								deckuser && deckuser._id === currentuser &&
 								<Popconfirm placement="bottomLeft" title={"Are you sure?"} onConfirm={deletedDeck} okText="Yes" cancelText="No">
-									<Button className="danger" type="primary" style={{top: '-1px'}}>
+									<Button className="danger" type="primary">
 										Delete
 									</Button>
 								</Popconfirm>
