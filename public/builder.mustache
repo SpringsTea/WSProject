@@ -11,8 +11,7 @@
 			
 		</div>
 	</body>
-	<footer>
-		<hr />
+	<footer class="{{theme}}">
 		<div class="disclaimer">
 		The card images used on this site have been obtained and re-posted from Bushiroad websites in accordance to the guidelines stated there. Re-use of these images (re-post, distribution) is strictly prohibited.
 ©Bushiroad All Rights Reserved.
@@ -20,7 +19,7 @@
 	</footer>
 	<script>
 		document.addEventListener("DOMContentLoaded", function(event) { 
-		  WS.event.emit('page.app.load', {el:'#app', mode: '{{mode}}', deckid: '{{deckid}}', loggedin: '{{loggedin}}'});
+		  WS.event.emit('page.app.load', {el:'#app', mode: '{{mode}}', deckid: '{{deckid}}', loggedin: '{{loggedin}}', theme: '{{theme}}'});
 		 })
 	</script>
 	{{> header}}

@@ -3,6 +3,7 @@
 import EventEmitter from 'events';
 import React from 'react';
 import { render } from 'react-dom';
+import { ConfigProvider, theme } from 'antd';
 
 import {
   receiveSerieses,
@@ -40,7 +41,16 @@ const domLoaded = new Promise(res =>
 WS.event.on('page.app.load', async props => {
   loadBuilderData(props)
   await domLoaded;
-  render(<Builder {...props} />, document.querySelector(props.el));
+  render(
+    <ConfigProvider
+      theme={{
+        algorithm: props.theme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
+      }}
+    >
+      <Builder {...props} />
+    </ConfigProvider>
+
+    , document.querySelector(props.el));
 });
 
 WS.event.on('page.header', async props => {

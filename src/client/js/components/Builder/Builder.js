@@ -57,10 +57,10 @@ class Builder extends Component {
 
 	render(){
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
-    const { loggedin, mode } = this.props;
+    const { loggedin, mode, theme } = this.props;
 		const { selectedCard, serieses, buildercards, builderfilters, attributes, rarities, deck, deckdata, savemodalopen } = this.state;
 		return(
-			<div className="container-builder">
+			<div className={`container-builder ${theme}`}>
         {
           loggedin !== "true" &&
           <Alert type="info" className="login-alert" message={ <div>

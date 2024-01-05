@@ -31,6 +31,7 @@ module.exports = async (request, response, next) => {
         	deckid: request.params.deckid,
             ...user,
             username: user.name,
+            theme: user.config.theme,
             roles
         });
     } catch (error) {
