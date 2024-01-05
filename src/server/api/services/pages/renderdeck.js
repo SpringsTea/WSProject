@@ -32,6 +32,7 @@ module.exports = async (request, response, next) => {
                 loggedin: user ? true : false,
                 ...user,
                 username: user.name,
+                theme: user.config.theme,
                 roles
             });
 

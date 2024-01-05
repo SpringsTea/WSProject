@@ -13,7 +13,7 @@
 	</body>
 	<script>
 		document.addEventListener("DOMContentLoaded", function(event) { 
-		  WS.event.emit('decksearch.load', { el: '#decksearch', loggedin: '{{loggedin}}' })
+			WS.event.emit('decksearch.load', { el: '#decksearch', loggedin: '{{loggedin}}', theme: '{{theme}}' })
 		});
 	</script>
 	{{> header}}

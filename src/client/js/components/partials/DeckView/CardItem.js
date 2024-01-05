@@ -16,7 +16,7 @@ class CardItem extends Component {
 		const locale = getLocale(card);
 		return(
 			<div className="container-carditem clickable">
-				<Badge count={card.quantity} style={{ backgroundColor: '#000000' }}>
+				<Badge count={card.quantity} >
 				<div className={`cardimage ${card.cardtype}`} onMouseEnter={ () => selectCard({card})} onClick={ () => selectCard({card}, true) }>
 					<Img
 				    src={[

@@ -40,11 +40,13 @@ class DeckView extends Component {
 
 	render(){
 		const { handleToggleCardLock } = this;
-		const { loggedin, userid } = this.props;
+		const { loggedin, userid, theme } = this.props;
 		const { deck, selectedCard } = this.state;
 
 		return(
-			<div className="container-deckview">
+			<div 
+				className={`container-deckview ${theme}`}
+			>
 				{
 					deck.valid !== true &&
 					<Alert message="This deck is not valid, and will not appear in searches" banner />

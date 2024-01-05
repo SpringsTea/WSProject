@@ -74,11 +74,11 @@ class DeckSearch extends Component {
 
 	render(){
     const { handleLoading, handleFilter, handleTextFilter } = this;
-    const { loggedin } = this.props;
+    const { loggedin, theme } = this.props;
     const { pages, serieses, neosets, loading, filters } = this.state;
 
 		return(
-			<div className="container-decksearch">
+			<div className={`container-decksearch ${theme}`}>
         <DeckFilters 
           handleFilter={handleFilter} handleTextFilter={handleTextFilter} setLoading={handleLoading} 
           serieses={serieses} neosets={neosets} filters={filters} loggedin={loggedin}
