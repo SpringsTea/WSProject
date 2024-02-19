@@ -16,7 +16,8 @@ module.exports = async (request, response, next) => {
     try {
         const requser = request.user ? request.user._doc : false;
         const roles = requser ? requser.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
-        const theme = user ? user.config.theme : 'light'
+        const theme = requser ? requser.config.theme : 'light'
+        
         let user = null;
 
         if( request.params.username ){
