@@ -23,7 +23,7 @@ export default function ThemeSelect ({config = {}, onChange}){
   return(
     <span>
       Site Theme: <Space/>
-      <Radio.Group onChange={onSave} defaultValue={config.theme}>
+      <Radio.Group onChange={onSave} defaultValue={config.theme || 'light'}>
         <Radio value='light'> Light </Radio>
         <Radio value='dark'> Dark </Radio>
       </Radio.Group>
