@@ -25,8 +25,7 @@ class CardItem extends Component {
 			onMouseEnter={ () => selectCard({card})}
 			className="card-item visual-card-item">
 				<div className="name">{locale.name}</div>
-				<Badge className="card-quantity" count={card.quantity} offset={[-5, 10]} 
-					style={{ backgroundColor: 'black', color: 'white' }}>
+				<Badge className="card-quantity" count={card.quantity} offset={[-5, 10]}>
 					<div className={`cardimage clickable ${card.cardtype}`} onClick={() => selectCard({card}, true)}>
 						<Img
 					    src={[
