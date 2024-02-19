@@ -16,19 +16,21 @@ class EncoreHeader extends Component {
 
 	render(){
 		const { handleLogout } = this;
-		const { title, loggedin, roles, username } = this.props;
+		const { title, loggedin, roles, username, theme } = this.props;
+
+		const headerBG = theme === 'dark' ? '#333333' : '#5f5f5f'
 
 		return(
 			<ConfigProvider
 			  theme={{
 			    components: {
 			      Layout: {
-			      	headerBg: '#5f5f5f',
+			      	headerBg: headerBG,
 			        headerPadding: '0 10px',
 			        headerHeight: '44px'
 			      },
 			      Menu: {
-			      	darkItemBg: '#5f5f5f'
+			      	darkItemBg: headerBG
 			      }
 			    },
 			  }}
