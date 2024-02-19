@@ -16,6 +16,7 @@ module.exports = async (request, response, next) => {
     try {
         const requser = request.user ? request.user._doc : false;
         const roles = requser ? requser.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
+        const theme = user ? user.config.theme : 'light'
         let user = null;
 
         if( request.params.username ){
@@ -35,7 +36,7 @@ module.exports = async (request, response, next) => {
     		response.redirect('/login');
             return false;
     	}
-        response.render("user", {loggedin: requser ? true : false, username: user.name, userid: user._id, theme: user.config.theme, roles});
+        response.render("user", {loggedin: requser ? true : false, username: user.name, userid: user._id, theme: theme, roles});
     } catch (error) {
         console.log(error);
         response.status(500).json({

@@ -21,6 +21,7 @@ module.exports = async (request, response, next) => {
     });
     const user = request.user ? request.user._doc : false;
     const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
+    const theme = user ? user.config.theme : 'light'
 
     try {
 
@@ -32,7 +33,7 @@ module.exports = async (request, response, next) => {
                 loggedin: user ? true : false,
                 ...user,
                 username: user.name,
-                theme: user.config.theme,
+                theme: theme,
                 roles
             });
 

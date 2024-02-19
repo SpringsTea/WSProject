@@ -17,6 +17,7 @@ module.exports = async (request, response, next) => {
         const deckid = request.params.deckid;
         const user = request.user ? request.user._doc : false;
         const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
+        const theme = user ? user.config.theme : 'light'
 
         if(deckid){
             let deck = await GetDeckById(deckid, {
@@ -31,7 +32,7 @@ module.exports = async (request, response, next) => {
         	deckid: request.params.deckid,
             ...user,
             username: user.name,
-            theme: user.config.theme,
+            theme: theme,
             roles
         });
     } catch (error) {
