@@ -37,6 +37,8 @@ class DeckSaveForm extends Component {
     const tournamentAttribute = showrecord || {};
     const attributes = deckdata.attributes || [];
 
+    console.log(deckdata)
+
     let alerts = [];
 
     if( deck.length === 0 ){
@@ -51,6 +53,7 @@ class DeckSaveForm extends Component {
         layout="vertical" 
         className="decksave-form" 
         initialValues={{
+          name: deckdata.name || '',
           description: deckdata.description || '',
           private: deckdata.private || false,
           'attribute-group': attributes.map( (a) => mode === 'edit' && a.name ),
