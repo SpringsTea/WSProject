@@ -1,149 +1,114 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import {
-  Form, Icon, Input, Button, Checkbox, Tooltip, Alert
+  Form, Input, Button, Checkbox, Tooltip, Alert
 } from 'antd';
+
+import { 
+  QuestionCircleOutlined,
+  LockOutlined,
+} from '@ant-design/icons';
 
 import { register } from 'Utils/api';
 
-class RegisterForm extends Component {
+const RegisterForm = ({handleFormChange}) => {
 
-  state = {
-    confirmDirty: false,
-    loading: false,
-  }
+  const [ loading, setLoading ] = useState(false)
+  const [ error, setError ] = useState(null)
 
-  handleSubmit = (e) => {
-    const { register } = this;
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        register(values)
-      }
-    });
-  }
-
-  register = async(formdata) => {
-    const { handleFormChange  } = this.props;
-    this.setState({loading: true});
-
-    let res = await register(formdata)
-
-    //Register successful
-    if(res.success){
-      this.setState({error: null})
-      handleFormChange('login', { logindata: {...formdata, message:'Registration successful' }})
-    }
-    else{
-      this.setState({error: res.response.data.message})
-    }
+  const Register = (formdata) => {
     
-    this.setState({loading: false});
+    setLoading(true)
+    setError(null)
+
+    register(formdata)
+    .then((res) => {
+      console.log(res)
+      //Register successful
+      if(res.success){
+        handleFormChange('login', { logindata: {...formdata, message:'Registration successful' }})
+      }
+      else{
+        setError(res.response.data.message || 'Something went wrong with registration')
+      }
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+
   }
 
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
+  return(
 
-  checkCharicters = (rule, value, callback) => {
-    let invalidchars = /^[^\\\/& #%{}\?\[\]]*$/
-
-    if( value.match(invalidchars) ){
-      callback();
-    }
-    else{
-      callback("Username can not contain slashes, spaces, or other special characters")
-    }
-  }
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords do not match');
-    } else {
-      callback();
-    }
-  }
-
-  validateToNextPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
-    }
-    callback();
-  }
-
-  render(){
-    const { checkCharicters } = this;
-    const { getFieldDecorator } = this.props.form;
-    const { handleFormChange } = this.props;
-    const { error, loading } = this.state;
-    return(
-       <Form onSubmit={this.handleSubmit}>
+    <Form 
+      onFinish={Register} 
+      className="register-form"
+    >
         {
           error &&
           <Alert message={error} type="warning" />
         }
         <Form.Item
+          name='email'
           label={(
             <span>
               Email&nbsp;
               <Tooltip title="Your email will never be displayed to others">
-                <Icon type="question-circle-o" />
+                <QuestionCircleOutlined/>
               </Tooltip>
             </span>
           )}
+          rules={
+            [
+              { type: 'email', message: 'The input is not valid E-mail!' }, 
+              { required: true, message: 'Please input your E-mail!' }
+            ]
+          }
         >
-          {getFieldDecorator('email', {
-            rules: [{
-              type: 'email', message: 'The input is not valid E-mail!',
-            }, {
-              required: true, message: 'Please input your E-mail!',
-            }],
-          })(
-            <Input />
-          )}
+          <Input />
         </Form.Item>
         <Form.Item
           label="Password"
+          name='password'
+          rules={
+            [
+              { required: true, message: 'Please input your password!' },
+              { min: 6, message: 'Password must be atleast 6 characters' }
+            ]
+          }
         >
-          {getFieldDecorator('password', {
-            rules: [{
-              required: true, message: 'Please input your password!',
-            },
-            {
-              min: 6, message: 'Password must be atleast 6 characters'
-            }
-            , {
-              validator: this.validateToNextPassword,
-            }],
-          })(
-            <Input type="password" />
-          )}
+          <Input type="password" />
         </Form.Item>
         <Form.Item
           label="Confirm Password"
+          name='confirm'
+          dependencies={['password']}
+          rules={
+            [
+              { required: true, message: 'Please confirm your password!' },
+              ({ getFieldValue }) => ({
+                validator(_, value) {
+                  if (!value || getFieldValue('password') === value) {
+                    return Promise.resolve();
+                  }
+                  return Promise.reject(new Error('Passwords do not match'));
+                },
+              }),
+            ]
+          }
         >
-          {getFieldDecorator('confirm', {
-            rules: [{
-              required: true, message: 'Please confirm your password!',
-            }, {
-              validator: this.compareToFirstPassword,
-            }],
-          })(
-            <Input type="password" onBlur={this.handleConfirmBlur} />
-          )}
+            <Input type="password" />
         </Form.Item>
         <Form.Item
           label="User Name"
+          name="username"
+          rules={
+            [
+              { required: true, message: 'Please input your username!', whitespace: true },
+              //{ validator: checkCharicters }
+            ]
+          }
         >
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!', whitespace: true },
-                    { validator: checkCharicters }
-            ],
-          })(
-            <Input />
-          )}
+          <Input />
         </Form.Item>
         <Form.Item>
           <Button type="primary" htmlType="submit" loading={loading}>Register</Button>
@@ -152,8 +117,6 @@ class RegisterForm extends Component {
           </div>
         </Form.Item>
       </Form>
-    )
-  }
-}
+  )}
 
-export default Form.create({ name: 'register' })(RegisterForm);
+export default RegisterForm;

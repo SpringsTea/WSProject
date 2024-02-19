@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Input, Button, Icon, Form, message } from 'antd';
+import { Input, Button, Form, message } from 'antd';
 
 import { passwordReset } from 'Utils/api';
 
@@ -64,7 +64,7 @@ class PasswordChangeForm extends Component {
 
     return(
       <div className="container-password-change">
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} name="passwordchange">
           <Form.Item
           label="Password"
           >
@@ -104,4 +104,4 @@ class PasswordChangeForm extends Component {
   }
 }
 
-export default Form.create({ name: 'passwordchange' })(PasswordChangeForm);
+export default PasswordChangeForm;

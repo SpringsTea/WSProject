@@ -1,6 +1,8 @@
 import React from 'react';
 import Img from 'react-image';
-import { Icon } from 'antd'
+import { 
+  QuestionCircleOutlined
+} from '@ant-design/icons';
 import { generateCardImageLink } from 'Utils/cardshorthands';
 
 export default function DeckImage({card}) {
@@ -12,7 +14,7 @@ export default function DeckImage({card}) {
           src={[
             generateCardImageLink(card),
           ]}
-          unloader={<Icon className="image-not-found" type="question-circle" />}
+          unloader={<QuestionCircleOutlined className="image-not-found" />}
           />
         </div>
     </div>

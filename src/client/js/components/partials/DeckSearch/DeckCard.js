@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Card, Avatar, Icon } from 'antd';
+import { Card, Avatar } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 import Img from 'react-image';
 
 import AttributesList from 'Partials/DeckSearch/AttributesList';
@@ -22,38 +23,32 @@ const DeckTitle = ({ name, userid: user, deckid }) =>
 	</div>
 </div>;
 
-class DeckCard extends Component {
+export default function DeckCard({ deck, loggedin }) {
 
-	render(){
-		const { handleFavorite } = this;
-		const { deck, loggedin } = this.props;
+	return (
+		<div className="container-deckcard">
+			<Card
+				cover={
+					<div className="deck-image">
+						<a href={`/deck/${deck.deckid}`}>
+							<Img
+							src={[
+							  generateCardImageLink(deck.cards[0]),
+							]}
+							unloader={<QuestionCircleOutlined className="image-not-found"/>}
+							/>
+						</a>
+					</div>
+				}
+			>
+				<Meta 
+					title={DeckTitle(deck)} 
+					description={deck.description || 'No Description'}
+				/>
+				<AttributesList attributes={deck.attributes} />
+				<FavoriteIcon deck={deck} loggedin={loggedin} />
+			</Card>
+		</div>
 
-		return(
-			<div className="container-deckcard">
-				<Card
-					cover={
-						<div className="deck-image">
-							<a href={`/deck/${deck.deckid}`}>
-								<Img
-								src={[
-								  generateCardImageLink(deck.cards[0]),
-								]}
-								unloader={<Icon className="image-not-found" type="question-circle" />}
-								/>
-							</a>
-						</div>
-					}
-				>
-					<Meta 
-						title={DeckTitle(deck)} 
-						description={deck.description || 'No Description'}
-					/>
-					<AttributesList attributes={deck.attributes} />
-					<FavoriteIcon deck={deck} loggedin={loggedin} />
-				</Card>
-			</div>
-		)
-	}
+	)
 }
-
-export default DeckCard;

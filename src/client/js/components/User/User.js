@@ -32,11 +32,11 @@ class User extends Component {
   }
 
 	render(){
-		const {username, filters, loggedin} = this.props;
+		const {username, filters, loggedin, theme} = this.props;
 		const { user } = this.state;
 		
 		return(
-			<div className="container-user">
+			<div className={`container-user ${theme}`}>
 				<Row>
 					<Layout>
 			          <BrowserRouter>

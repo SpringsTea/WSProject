@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html class="nice-scroll">
+<html class="nice-scroll {{theme}}">
 	<head>
 		<title>Deck Builder</title>
+		<style>
+			.dark {
+				background-color: #141414
+			}
+		</style>
 	</head>
 	<body>
 		<div id="header">
@@ -11,15 +16,16 @@
 			
 		</div>
 	</body>
-	<footer>
-		<hr />
+	<footer class="{{theme}}">
 		<div class="disclaimer">
 		The card images used on this site have been obtained and re-posted from Bushiroad websites in accordance to the guidelines stated there. Re-use of these images (re-post, distribution) is strictly prohibited.
 ©Bushiroad All Rights Reserved.
 		</div>
 	</footer>
 	<script>
-	  WS.event.emit('page.app.load', {el:'#app', mode: '{{mode}}', deckid: '{{deckid}}', loggedin: '{{loggedin}}'});
+		document.addEventListener("DOMContentLoaded", function(event) { 
+		  WS.event.emit('page.app.load', {el:'#app', mode: '{{mode}}', deckid: '{{deckid}}', loggedin: '{{loggedin}}', theme: '{{theme}}'});
+		 })
 	</script>
 	{{> header}}
 </html>

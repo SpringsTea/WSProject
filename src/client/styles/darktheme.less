@@ -1,0 +1,34 @@
+@import "colors.less";
+
+.dark{
+	background-color: @darktheme-backgroundblack;
+	color: rgba(255, 255, 255, 0.85);
+
+	.container-carditem, .card-item{
+		.ant-badge-count{
+			background: @darktheme-textwhite
+		}
+	}
+
+	.container-card{
+		&.locked{
+			border-color: #8b0000;
+		}		
+
+		.cardtext{
+			background: #2d2d2d;
+		}
+	}
+
+	.container-filters{
+		border-color: #878787 !important;
+	}
+
+	.container-deckfilters{
+		border-color: #878787;
+	}
+
+	.container-decksdisplay{
+		border-color: #878787;
+	}
+}

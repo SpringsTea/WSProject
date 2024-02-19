@@ -3,6 +3,7 @@
 import EventEmitter from 'events';
 import React from 'react';
 import { render } from 'react-dom';
+import { ConfigProvider, theme } from 'antd';
 
 import {
   receiveDeck,
@@ -42,7 +43,16 @@ WS.event.on('page.header', async props => {
 
 WS.event.on('deckview.load', async props => {
   await Promise.all([ loadDeckViewData({deckid: props.deckid}), domLoaded ]);
-  render( <DeckView loggedin={props.loggedin} userid={props.userid} />, document.querySelector(props.el));
+  render( 
+    <ConfigProvider
+      theme={{
+        algorithm: props.theme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
+      }}
+    >
+      <DeckView loggedin={props.loggedin} userid={props.userid} theme={props.theme} />
+    </ConfigProvider>
+      , document.querySelector(props.el)
+  );
 })
 
 async function loadDeckViewData(data){

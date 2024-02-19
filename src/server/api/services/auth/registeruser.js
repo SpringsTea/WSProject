@@ -74,7 +74,7 @@ module.exports = async (req, res) => {
     
             transporter.sendMail(verifyTemplate);
     
-            res.status(201).json({
+            res.status(200).json({
                 success: true,
                 message: 'Success: Your account has been registered, please check you email.'
             }) 

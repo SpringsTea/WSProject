@@ -1,8 +1,10 @@
 import { Component, useState } from 'react';
-import { Card, Input } from 'antd';
+import { Card, Input, Radio, Space } from 'antd';
 
 import EmailChange from './EmailChange';
 import LanguageSelect from './LanguageSelect';
+import ThemeSelect from './ThemeSelect';
+
 import {
   receiveUser
 } from 'Actions/UserActions';
@@ -14,6 +16,7 @@ export default function UserSettings ({user}){
       ...user,
       ...values
     };
+
     receiveUser(newuser)
   } 
 
@@ -25,6 +28,10 @@ export default function UserSettings ({user}){
                     My Email:
                 </div>
                 <EmailChange onChange={UpdateUser} email={user.email} />
+            </div>
+            <br />
+            <div>
+              <ThemeSelect onChange={UpdateUser} config={user.config} />
             </div>
        </Card>
        <Card title="Card Language" size="small">

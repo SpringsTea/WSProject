@@ -1,8 +1,12 @@
 import { Component } from 'react';
-import { Icon } from 'antd'
-import SocialInput from './socialinput';
+import { 
+  TwitterOutlined,
+  YoutubeOutlined,
+} from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+
+import SocialInput from './socialinput';
 
 import { setUserConfig } from 'Utils/api';
 
@@ -18,14 +22,14 @@ export default function SocialMedia ({user, onFinish}){
             }
         })
     }
-    console.log(user)
+
     return(
     <div className="container-userprofile-socialmedia" style={{display:'flex'}}>
     	<span style={{width:'300px', marginRight:'1em'}}>
     		<SocialInput 
             name='Twitter'
             value={user.config.Twitter}
-    		icon={<Icon type="twitter" />}
+    		icon={<TwitterOutlined />}
     		addon="@"
     		placeholder="Handle"
             currentuser={user.currentuser}
@@ -36,7 +40,7 @@ export default function SocialMedia ({user, onFinish}){
     		<SocialInput 
             name="Youtube"
             value={user.config.Youtube}
-    		icon={<Icon type="youtube" />}
+    		icon={<YoutubeOutlined />}
     		addon="channel/" 
     		placeholder="Username"
             currentuser={user.currentuser}

@@ -15,7 +15,9 @@ module.exports = async (request, response, next) => {
     try {
     	const user = request.user ? request.user._doc : false;
     	const roles = user ? user.roles.reduce((a,b)=> (a[b]=true,a),{}) : {};//reduce roles to array keys
-        response.render("pagenotfound", {loggedin: user ? true : false, ...user, username: user.name, roles});
+        const theme = user ? user.config.theme : 'light'
+
+        response.render("pagenotfound", {loggedin: user ? true : false, ...user, username: user.name, theme: theme, roles});
     } catch (error) {
         console.log(error);
         response.status(500).json({

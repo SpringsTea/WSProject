@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Icon } from 'antd';
+
+import {
+  TrophyOutlined,
+  HeartOutlined,
+  QuestionCircleOutlined
+} from '@ant-design/icons';
 
 import { attributeIcons } from 'Constants/attributes';
 
@@ -14,8 +19,12 @@ class AttributesList extends Component {
 
 						let idata = attributeIcons[attr.name] || {};
 
-						return <Icon title={attr.name} key={i}
-						type={idata.icon} className={idata.class} />
+						if(idata.icon === 'trophy'){
+							return <TrophyOutlined title={attr.name} key={i} className={idata.class}/>
+						}
+						if(  idata.icon === 'heart' ){
+							return <HeartOutlined title={attr.name} key={i} className={idata.class}/>
+						}					
 					})
 				}
 			</div>

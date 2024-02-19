@@ -1,6 +1,14 @@
 @import "colors.less";
 @import "variables.less";
 
+body{
+	margin: 0px;
+}
+
+h1, h2, h3{
+	margin: 0px;
+}
+
 .container-header{
 	.ant-menu{
 		li{
@@ -239,27 +247,50 @@
 	&:after{
 		top:6px;
 	}
+
+	&.checked{
+		.ant-switch-inner-checked{
+			margin-right: 5px;
+		}
+	}
+
+	&:not(.checked){
+		.ant-switch-inner-unchecked{
+			margin-left: 5px;
+		}
+	}
+
+	.ant-switch-handle{
+		margin-top: 5px;
+	}
+
+	.ant-switch-inner{
+		margin-top: 5px;
+
+
+		
+	}
 }
 
 .ant-switch-checked{
 	&.RED{
-		background-color: @ws-red-bright;
+		background-color: @ws-red-bright !important;
 	}
 
 	&.YELLOW{
-		background-color: @ws-yellow-bright;
+		background-color: @ws-yellow-bright !important;
 	}
 
 	&.BLUE{
-		background-color: @ws-blue-bright;
+		background-color: @ws-blue-bright !important;
 	}
 
 	&.GREEN{
-		background-color: @ws-green-bright;
+		background-color: @ws-green-bright !important;
 	}
 
 	&.PURPLE{
-		background-color: @ws-purple-bright;
+		background-color: @ws-purple-bright !important;
 	}
 }
 
@@ -340,3 +371,5 @@ footer{
 		color: gray;
 	}	
 }
+
+@import "darktheme.less";

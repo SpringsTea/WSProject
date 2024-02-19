@@ -4,6 +4,7 @@ import EventEmitter from 'events';
 import React from 'react';
 import { render } from 'react-dom';
 import queryString from 'query-string';
+import { ConfigProvider, theme } from 'antd';
 
 import {
   receiveDecks,
@@ -50,7 +51,16 @@ WS.event.on('page.header', async props => {
 WS.event.on('decksearch.load', async props => {
   await loadDeckSearchData();
   await domLoaded;
-  render( <DeckSearch loggedin={props.loggedin} filters={qs} />, document.querySelector(props.el));
+
+  render( 
+    <ConfigProvider
+      theme={{
+        algorithm: props.theme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
+      }}
+    >
+      <DeckSearch loggedin={props.loggedin} filters={qs} theme={props.theme} />
+    </ConfigProvider>
+    , document.querySelector(props.el));
 })
 
 async function loadDeckSearchData() {

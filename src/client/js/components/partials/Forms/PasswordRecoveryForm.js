@@ -1,75 +1,69 @@
-import { Component } from 'react';
-import { Input, Button, Icon, Form, message } from 'antd';
+import { useState } from 'react';
+import { Input, Button, Form, message } from 'antd';
+import { 
+  MailOutlined
+} from '@ant-design/icons';
 
 import { passwordReset } from 'Utils/api';
 
-class PasswordRecoveryForm extends Component {
+const PasswordRecoveryForm = ({handleFormChange, logindata = {}}) => {
 
-  state = {
-    loading: false,
-    error: false,
-  }
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState(null);
 
-  handleSubmit = (e) => {
-    const { reset } = this;
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        reset(values)
+  const ResetPassword = async(formdata) => {
+
+    setLoading(true)
+    setError(null)
+
+    passwordReset(formdata).then((res) => {
+      console.log(res)
+      if( res.success === true ){
+        message.success(res.message);
       }
-    });
-  }
-
-  reset = async(formdata) => {
-
-    this.setState({loading: true, error: null});
-
-    let res = await passwordReset(formdata)
-
-    if( res.success === true ){
-      message.success(res.message);
-    }
-    else{
-      message.error(res.message);
-    }
-
-    this.setState({loading: false});    
+      else{
+        message.error(res.message || 'Something went wrong');
+      }
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+        
     
   }
 
-  render(){
-    const { handleSubmit } = this;
-    const { handleFormChange } = this.props;
-    const { getFieldDecorator } = this.props.form;
-    const { loading } = this.state;
 
-    return(
-      <div className="container-password-recovery">
-          <div className="mail-icon"><Icon type="mail" /></div>
-          <Form onSubmit={handleSubmit} className="password-recovery-form">
-            <Form.Item
+  return(
+
+    <div className="container-password-recovery">
+      <div className="mail-icon"><MailOutlined/></div>
+        <Form 
+          onFinish={ResetPassword} 
+          className="password-recovery-form"
+          initialValues={{
+            username: logindata.email,
+            password: logindata.password
+          }}
+        >
+          <Form.Item
+            name='email'
             label='Recovery Email'
+            rules={[
+              { type: 'email', message: 'The input is not valid E-mail!'}, 
+              { required: true, message: 'Please input your E-mail!'}
+            ]}
           >
-            {getFieldDecorator('email', {
-              rules: [{
-                type: 'email', message: 'The input is not valid E-mail!',
-              }, {
-                required: true, message: 'Please input your E-mail!',
-              }],
-            })(
-              <Input />
-            )}
+            <Input />
           </Form.Item>
+
           <Form.Item>
             <Button type="primary" htmlType="submit" loading={loading}>Recover Password</Button>
-            <div>
-              or <a onClick={() => handleFormChange('login')}>Login</a>
-            </div>
           </Form.Item>
-        </Form>
-      </div>
-    )
-  }
-}
+          <div>
+            or <a onClick={() => handleFormChange('login')}>Login</a>
+          </div>
+      </Form>
+    </div>
+  )}
 
-export default Form.create({ name: 'passwordrecovery' })(PasswordRecoveryForm);
+export default PasswordRecoveryForm;

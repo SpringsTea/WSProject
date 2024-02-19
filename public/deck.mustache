@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html class="nice-scroll">
+<html class="nice-scroll {{theme}}">
 	<head>
 		<title>{{deckname}}</title>
+		<style>
+			.dark {
+				background-color: #141414
+			}
+		</style>
 	</head>
 	<body>
 		<div id="header">
@@ -12,7 +17,9 @@
 		</div>
 	</body>
 	<script>
-	  WS.event.emit('deckview.load', { el: '#deckview', deckid: '{{deckid}}', loggedin: '{{loggedin}}', userid: '{{userid}}' })
+		document.addEventListener("DOMContentLoaded", function(event) { 
+			WS.event.emit('deckview.load', { el: '#deckview', deckid: '{{deckid}}', loggedin: '{{loggedin}}', userid: '{{userid}}', theme: '{{theme}}' })
+		})
 	</script>
 	{{> header}}
 </html>

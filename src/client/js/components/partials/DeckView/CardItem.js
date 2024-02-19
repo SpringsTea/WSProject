@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Icon, Badge } from 'antd';
+import { Badge } from 'antd';
+import { 
+  QuestionCircleOutlined
+} from '@ant-design/icons';
 import Img from 'react-image';
 
 import { generateCardImageLink } from 'Utils/cardshorthands';
@@ -13,13 +16,13 @@ class CardItem extends Component {
 		const locale = getLocale(card);
 		return(
 			<div className="container-carditem clickable">
-				<Badge count={card.quantity} style={{ backgroundColor: '#000000' }}>
+				<Badge count={card.quantity} >
 				<div className={`cardimage ${card.cardtype}`} onMouseEnter={ () => selectCard({card})} onClick={ () => selectCard({card}, true) }>
 					<Img
 				    src={[
 				      generateCardImageLink(card),
 				    ]}
-				    unloader={<Icon className="image-not-found" type="question-circle" />}
+				    unloader={<QuestionCircleOutlined className="image-not-found" />}
 				  />
 				</div>
 				</Badge>

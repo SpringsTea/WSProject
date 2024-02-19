@@ -1,5 +1,9 @@
 import React, { useState, useCallback } from 'react';
-import { Select, Popover, Icon } from 'antd';
+import { Select, Popover } from 'antd';
+import { 
+  QuestionCircleOutlined,
+} from '@ant-design/icons';
+
 import Img from 'react-image';
 import { throttle } from 'throttle-debounce';
 
@@ -36,7 +40,7 @@ export default function ContainsCardSearch({ filters = {}, onSelect }) {
 				placeholder="Search one or more cards"
 				style={{width: '100%'}}
 				filterOption={false}
-				dropdownMatchSelectWidth={false}
+				popupMatchSelectWidth={false}
 				onSearch={debouncedCardSearch}
 				onChange={(selectedcards) => onSelect(selectedcards)}
 				getPopupContainer={node => node.parentElement}
@@ -51,7 +55,7 @@ export default function ContainsCardSearch({ filters = {}, onSelect }) {
 									src={[
 									  generateCardImageLink(card),
 									]}
-									unloader={<Icon className="image-not-found" type="question-circle" />}
+									unloader={<QuestionCircleOutlined className="image-not-found" />}
 								/> 
 								}
 								trigger="hover"

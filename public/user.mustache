@@ -1,7 +1,12 @@
 <!DOCTYPE html>
-<html class="nice-scroll">
+<html class="nice-scroll {{theme}}">
   <head>
     <title>{{username}}</title>
+    <style>
+      .dark {
+        background-color: #141414
+      }
+    </style>
   </head>
   <body>
     <div id="header">
@@ -12,7 +17,9 @@
     </div>
   </body>
   <script>
-    WS.event.emit('user.load', { el: '#user', userid: '{{userid}}', username: '{{username}}', loggedin:'{{loggedin}}' })
+    document.addEventListener("DOMContentLoaded", function(event) { 
+      WS.event.emit('user.load', { el: '#user', userid: '{{userid}}', username: '{{username}}', loggedin:'{{loggedin}}', theme: '{{theme}}' })
+    })
   </script>
   {{> header}}
 </html>

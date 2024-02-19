@@ -1,12 +1,68 @@
-import React, { Component } from 'react';
+import { useState } from 'react';
 import {
-  Button, Modal, Form, Input, Radio, message
+  Button, Modal, Input, Radio, Form, message
 } from 'antd';
 
 import DeckSaveForm from './DeckSaveForm';
 
 import { saveDeck } from 'Utils/api'; 
 
+const DeckSaveModal = ({visible, deck, deckdata, mode, togglevisible}) => {
+
+  const [ loading, setLoading ] = useState(false);
+  const [ form ] =  Form.useForm();
+
+  const handleSaveDeck = async(values) => {
+
+    setLoading(true)
+
+    let submitdata = {
+      ...values,
+      cards: deck.map( (c) => c._id )
+    }
+
+    if ( deckdata && mode !== 'fork' ){
+      submitdata.deckid = deckdata.deckid;
+    }
+
+    const [
+      res
+    ] = await Promise.all([
+        saveDeck(submitdata)
+    ]);
+    if( res.status === 200 && res.data ){
+      window.location.href = `/deck/${res.data.deck.deckid}`;
+    }
+    else{
+      setLoading(false)
+      message.error(res.response.data.message)
+    }
+  }
+
+  const handleSubmitForm = () => {
+    form.validateFields()
+    .then((values) => {
+      console.log(values)
+      handleSaveDeck(values)
+    })
+  }
+
+  return (
+    <Modal
+      visible={visible}
+      title="Save Deck"
+      okText="Save"
+      confirmLoading={loading}
+      onCancel={() => togglevisible(false)}
+      onOk={handleSubmitForm}
+      okButtonProps={ deck.length === 0 ? { disabled: true } : {} }
+    >
+      <DeckSaveForm form={form} deck={deck} mode={mode} deckdata={deckdata} />
+    </Modal>
+  )
+}
+
+/*
 const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
   // eslint-disable-next-line
   class extends React.Component {
@@ -78,5 +134,6 @@ const DeckSaveModal = Form.create({ name: 'deck_save_modal' })(
     }
   }
 );
+*/
 
 export default DeckSaveModal

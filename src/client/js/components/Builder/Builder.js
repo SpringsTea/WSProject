@@ -1,5 +1,9 @@
 import { Component } from 'react';
 import { Input, Row, Col, Button, Alert } from 'antd';
+import { 
+  SaveOutlined
+} from '@ant-design/icons';
+
 import { isMobile } from 'react-device-detect';
 
 import Card from './Card';
@@ -53,10 +57,10 @@ class Builder extends Component {
 
 	render(){
 		const { handleToggleSaveModal, handleToggleCardLock } = this;
-    const { loggedin, mode } = this.props;
+    const { loggedin, mode, theme } = this.props;
 		const { selectedCard, serieses, buildercards, builderfilters, attributes, rarities, deck, deckdata, savemodalopen } = this.state;
 		return(
-			<div className="container-builder">
+			<div className={`container-builder ${theme}`}>
         {
           loggedin !== "true" &&
           <Alert type="info" className="login-alert" message={ <div>
@@ -89,7 +93,7 @@ class Builder extends Component {
           </Col>
 					<Col xxl={16} xl={16} lg={12} md={24}> 
 						<Deck cards={deck} />
-						<Button className="btn-deck-save" type="primary" icon="save" size='large' onClick={()=> handleToggleSaveModal(true)}>Save Deck</Button>
+						<Button className="btn-deck-save" type="primary" icon={<SaveOutlined />} size='large' onClick={()=> handleToggleSaveModal(true)}>Save Deck</Button>
 					</Col>
 				</Row>
 			</div>

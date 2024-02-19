@@ -86,7 +86,7 @@ module.exports = async ({query:params, user}, response, next) => {
             }
 
             //if the logged in user is querying their own decks, return private decks
-            if(user._id.equals( ObjectId(query.userid) )){
+            if(user && user._id.equals( ObjectId(query.userid) )){
                 delete query.private
             }
         }

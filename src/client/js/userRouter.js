@@ -3,6 +3,7 @@
 import EventEmitter from 'events';
 import { render } from 'react-dom';
 import queryString from 'query-string';
+import { ConfigProvider, theme } from 'antd';
 
 import {
   receiveDecks,
@@ -80,5 +81,14 @@ WS.event.on('user.load', async props => {
     loadUserData(props.userid)
   ])
   await domLoaded;
-  render( <User loggedin={props.loggedin} filters={qs} username={props.username} />, document.querySelector(props.el));
+  render( 
+    <ConfigProvider
+      theme={{
+        algorithm: props.theme === 'dark' ? theme.darkAlgorithm : theme.defaultAlgorithm
+      }}
+    >
+      <User loggedin={props.loggedin} filters={qs} username={props.username} theme={props.theme} />
+    </ConfigProvider>
+
+    , document.querySelector(props.el));
 })

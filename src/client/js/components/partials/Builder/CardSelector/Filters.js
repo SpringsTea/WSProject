@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Switch, Icon, Tabs, Input, Radio } from 'antd';
+import { Switch, Tabs, Input, Radio } from 'antd';
 
 import { filterBuilder } from 'Actions/BuilderActions';
 import { colours } from 'Constants/sortorder';

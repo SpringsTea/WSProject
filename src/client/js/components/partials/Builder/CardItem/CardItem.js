@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
-import { List, Button, Icon, Avatar } from 'antd';
+import { List, Button, Avatar } from 'antd';
+import { 
+  PlusOutlined,
+  MinusOutlined,
+} from '@ant-design/icons';
 
 import CardItemIcon from './CardItemIcon';
 
@@ -13,7 +17,9 @@ class CardItem extends Component {
 		return(
 			<List.Item 
 			onMouseEnter={ () => selectCard({card})}
-			className="card-item">
+			className="card-item"
+			style={{padding: '0px'}}
+			>
 				<List.Item.Meta 
 					className="clickable"
 					onClick={ () => selectCard({card}, true) }
@@ -22,9 +28,9 @@ class CardItem extends Component {
 				/>
 				{
 					controls &&
-					<Button.Group>
-						<Button icon="minus" className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
-						<Button icon="plus" className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
+					<Button.Group style={{marginRight: '4px'}}>
+						<Button icon={<MinusOutlined />} className="danger" size="small" onClick={ () => removeDeckCard(card) }></Button>
+						<Button icon={<PlusOutlined />} className="success" size="small" onClick={ () => addDeckCard(card) }></Button>
 					</Button.Group>
 				}
 			</List.Item>
