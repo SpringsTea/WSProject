@@ -51,8 +51,14 @@ class DeckListDisplay extends Component {
 						</div>
 					}
 				</div>
-				<Pagination className="pagination" current={pages.page} total={pages.totalDecks} 
-					defaultPageSize={pages.pagelimit} onChange={handlePaginate} />
+				<Pagination 
+					className="pagination" 
+					current={pages.page} 
+					total={pages.totalDecks}
+					showSizeChanger={false}
+					defaultPageSize={pages.pagelimit} 
+					onChange={handlePaginate} 
+				/>
 			</Spin>
 		)
 	}
