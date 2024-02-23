@@ -23,7 +23,7 @@ class DeckFilters extends Component {
 		return(
 			<div className="container-deckfilters">
 				<Row gutter={10}>
-					<Col xxl={4} xl={6} lg={8} md={12}>
+					<Col xxl={4} xl={6} lg={8} md={12} sm={24} xs={24}>
 						<div className="filter">
 							<span>Language:</span>
 							<Select
@@ -44,7 +44,7 @@ class DeckFilters extends Component {
 							</Select>
 						</div>
 					</Col>
-					<Col xxl={4} xl={6} lg={8} md={12}>
+					<Col xxl={4} xl={6} lg={8} md={12} sm={24} xs={24}>
 						<div className="filter">
 							<span>Neo Standard:</span>
 							<Select
@@ -69,7 +69,7 @@ class DeckFilters extends Component {
 							</Select>
 						</div>
 					</Col>
-					<Col xxl={4} xl={6} lg={8} md={12}>
+					<Col xxl={4} xl={6} lg={8} md={12} sm={24} xs={24}>
 						<div className="filter">
 							<span>Series:</span>
 							<Select
@@ -95,13 +95,13 @@ class DeckFilters extends Component {
 							</Select>
 						</div>
 					</Col>
-					<Col xxl={4} xl={6} lg={8} md={12}>
+					<Col xxl={4} xl={6} lg={8} md={12} sm={24} xs={24}>
 						<div className="filter">	
 							<span>Search:</span>
 							<Input defaultValue={filters.text} placeholder="Search deckname" onChange={(e) => handleTextFilter(e.target.value)} />
 						</div>
 					</Col>
-					<Col xxl={4} xl={6} lg={8} md={12}>
+					<Col xxl={4} xl={6} lg={8} md={12} sm={24} xs={24}>
 						<div className="filter">
 							<span>Contains Cards</span>
 							<ContainsCardSearch onSelect={handleContainsCards} filters={{
@@ -111,7 +111,7 @@ class DeckFilters extends Component {
 							}} />
 						</div>
 					</Col>
-					<Col xxl={8} xl={6} lg={8} md={12}>
+					<Col xxl={8} xl={6} lg={8} md={12} sm={24} xs={24}>
 						<span>&nbsp;</span>
 						<div className="filter">	
 							<Checkbox.Group style={{marginTop: '5px'}} 
