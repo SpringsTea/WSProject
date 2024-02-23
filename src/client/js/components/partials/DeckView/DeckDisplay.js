@@ -14,6 +14,7 @@ class DeckDisplay extends Component {
 		const lg = 8;
 		const md = 8;
 		const sm = 12;
+		const xs = 24;
 
 		let cards = filterCardQuantity(deck.cards)
 
@@ -24,7 +25,7 @@ class DeckDisplay extends Component {
 					{
 						cards.filter( (card) => card.level === 0 && card.cardtype !== 'CX' ).sort((a,b) => a.sid.localeCompare(b.sid))
 						.map( (card, i) => 
-						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
+						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} xs={xs} key={i}>
 							<CardItem card={card} />
 						</Col> 
 						)
@@ -35,7 +36,7 @@ class DeckDisplay extends Component {
 					{
 						cards.filter( (card) => card.level === 1 ).sort((a,b) => a.sid.localeCompare(b.sid))
 						.map( (card, i) => 
-						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
+						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} xs={xs} key={i}>
 							<CardItem card={card} />
 						</Col> 
 						)
@@ -46,7 +47,7 @@ class DeckDisplay extends Component {
 					{
 						cards.filter( (card) => card.level === 2 ).sort((a,b) => a.sid.localeCompare(b.sid))
 						.map( (card, i) => 
-						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
+						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} xs={xs} key={i}>
 							<CardItem card={card} />
 						</Col> 
 						)
@@ -57,7 +58,7 @@ class DeckDisplay extends Component {
 					{
 						cards.filter( (card) => card.level === 3 ).sort((a,b) => a.sid.localeCompare(b.sid))
 						.map( (card, i) => 
-						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
+						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} xs={xs} key={i}>
 							<CardItem card={card} />
 						</Col> 
 						)
@@ -68,7 +69,7 @@ class DeckDisplay extends Component {
 					{
 						cards.filter( (card) => card.cardtype === 'CX' ).sort((a,b) => a.sid.localeCompare(b.sid))
 						.map( (card, i) => 
-						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} key={i}>
+						<Col xxl={xxl} xl={xl} lg={lg} md={md} sm={sm} xs={xs} key={i}>
 							<CardItem card={card} />
 						</Col> 
 						)
