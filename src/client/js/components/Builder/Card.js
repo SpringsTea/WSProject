@@ -53,7 +53,9 @@ class Card extends Component {
 					</h2>
 						
 					<div className='cardimage clickable' onClick={() => onCardSelect(card)}>
-						<Badge className={`card-quantity ${count < 1 ? 'hidden' : ''}`} count={count} offset={[-5, 10]}	>
+						<Badge className={`card-quantity ${count < 1 ? 'hidden' : ''}`} count={count} offset={[-5, 10]}	
+							color='black'
+						>
 							<Img
 							    src={[
 							      generateCardImageLink(card),
