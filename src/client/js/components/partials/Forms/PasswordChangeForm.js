@@ -1,18 +1,18 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { Input, Button, Form, message } from 'antd';
 
 import { passwordReset } from 'Utils/api';
 
-class PasswordChangeForm extends Component {
+const PasswordChangeForm = ({token}) => {
 
-  state = {
-    loading: false,
-    error: false,
-  }
+  const [ loading, setLoading ] = useState(false);
+  const [ error, setError ] = useState(null);
+  const [ confirmDirty, setConfirmDirty ] = useState(null);
 
-  passwordChange = async(password) =>{
-    const { token } = this.props;
-    this.setState({loading: true});
+   const [form] = Form.useForm();
+
+  const passwordChange = async(password) =>{
+    setLoading(true)
 
     let res = await passwordReset({token:token, password: password})
     if( res.success === true){
@@ -21,87 +21,53 @@ class PasswordChangeForm extends Component {
     else{
       message.error(res.message);
     }
-    this.setState({loading: false})
+    tsetLoading(false)
   }
 
-  handleSubmit = (e) => {
-    const { passwordChange } = this;
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        passwordChange(values.password)
-      }
-    });
+  const handleSubmit = (values) => {
+    passwordChange(values.password)
   }
 
-  handleConfirmBlur = (e) => {
-    const value = e.target.value;
-    this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords do not match');
-    } else {
-      callback();
-    }
-  }
-
-  validateToNextPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && this.state.confirmDirty) {
-      form.validateFields(['confirm'], { force: true });
-    }
-    callback();
-  }
-
-  render(){
-    const { handleSubmit } = this;
-    const { handleFormChange } = this.props;
-    const { getFieldDecorator } = this.props.form;
-    const { loading } = this.state;
-
-    return(
-      <div className="container-password-change">
-        <Form onSubmit={handleSubmit} name="passwordchange">
-          <Form.Item
-          label="Password"
-          >
-          {getFieldDecorator('password', {
-            rules: [{
-              required: true, message: 'Please input your password!',
-            },
-            {
-              min: 6, message: 'Password must be atleast 6 characters'
-            }
-            , {
-              validator: this.validateToNextPassword,
-            }],
-          })(
-            <Input type="password" />
-          )}
-        </Form.Item>
+  return(
+    <div className="container-password-change">
+      <Form onFinish={handleSubmit} name="passwordchange">
         <Form.Item
-          label="Confirm Password"
+        name='password'
+        label="Password"
+        rules={[{
+            required: true, message: 'Please input your password!',
+          },
+          {
+            min: 6, message: 'Password must be atleast 6 characters'
+          }
+        ]}
         >
-          {getFieldDecorator('confirm', {
-            rules: [{
-              required: true, message: 'Please confirm your password!',
-            }, {
-              validator: this.compareToFirstPassword,
-            }],
-          })(
-            <Input type="password" onBlur={this.handleConfirmBlur} />
-          )}
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={loading}>Change my password</Button>
-        </Form.Item>
-        </Form>
-      </div>
-    )
-  }
+          <Input type="password" />
+      </Form.Item>
+      <Form.Item
+        name='confirm'
+        label="Confirm Password"
+        rules={[{
+            required: true, message: 'Please confirm your password!',
+          },
+          ({ getFieldValue }) => ({
+            validator(_, value) {
+              if (!value || getFieldValue('password') === value) {
+                return Promise.resolve();
+              }
+              return Promise.reject(new Error('The two passwords do not match!'));
+            },
+          }),
+        ]}
+      >
+        <Input type="password" />
+      </Form.Item>
+      <Form.Item>
+        <Button type="primary" htmlType="submit" loading={loading}>Change my password</Button>
+      </Form.Item>
+      </Form>
+    </div>
+  )
 }
 
 export default PasswordChangeForm;
