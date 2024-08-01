@@ -14,6 +14,7 @@ module.exports = {
     GetDeckForm: require('./getdeckform'),
     SearchCards: require('./searchcards'),
     GetCard: require('./getcard'),
+    ImportDecklog: require('./importdecklog'),
     ///////User
     GetUserData: require('./users/getUserData'),
     SetUserConfig: require('./users/setUserConfig'),
