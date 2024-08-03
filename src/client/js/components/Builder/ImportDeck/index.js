@@ -31,6 +31,11 @@ const ImportDeck = () => {
 
   	importDecklog(ID.toUpperCase(), lang)
   	.then((res) => {
+
+  		//Clear what's already in the deck before updating
+  		//This is a workaround to how the deck object only renders when the card quantity changes
+  		receiveDeck({ cards: [] })
+
   		receiveDeck({ 
   			cards: res.cards, name: res.name,
   			description: `Imported from ${res.source}/${ID}`
