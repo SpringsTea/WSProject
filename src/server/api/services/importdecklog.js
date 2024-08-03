@@ -37,7 +37,7 @@ module.exports = async (request, response, next) => {
             let cardpromises = deckdata.list.map((card) => {
 
                 //remove extra rarities from the card code
-                const cardcode = card?.card_number.replace(/-(\d+)([A-Z]*)$/, '-$1');
+                const cardcode = card.card_number.replace(/([0-9]+)[A-Z]*$/, '$1');
 
                 return Card.findOne({cardcode}).select('-ability -attributes -name -__v').exec()
                 .then((res) => {
