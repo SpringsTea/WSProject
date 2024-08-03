@@ -1,9 +1,11 @@
 'use strict';
 
 import axios from 'axios';
-import { DECKLOG } from '../../config/Bushiroad';
+import { DECKLOG_EN, DECKLOG_JP } from '../../config/Bushiroad';
 
-module.exports = async(decklogid) => {
+module.exports = async(decklogid, lang = 'EN') => {
+
+    const DECKLOG = lang === 'EN' ? DECKLOG_EN : DECKLOG_JP;
 
     const decklogdataurl = `${DECKLOG}/system/app/api/view/${decklogid}`;
     const decklogreferer = `${DECKLOG}/view/${decklogid}`;

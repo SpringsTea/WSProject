@@ -2,6 +2,7 @@
 
 import Card from '../models/card'
 
+import { DECKLOG_EN, DECKLOG_JP } from '../../config/Bushiroad';
 import GetDecklog from '../helpers/get-decklog';
 
 /**
@@ -15,10 +16,11 @@ module.exports = async (request, response, next) => {
 
     try {
         let DecklogID = request.params.decklogid;
+        let lang = request.query.lang || 'EN';
 
         if( DecklogID ){
 
-            const deckdata = await GetDecklog(DecklogID);
+            const deckdata = await GetDecklog(DecklogID, lang);
 
             if( !deckdata.id ){
                 response.status(500).json({
@@ -51,11 +53,12 @@ module.exports = async (request, response, next) => {
 
             let cardlist = await Promise.all(cardpromises)
             //remove false entries from the list (cards that wern't found)
-            cardlist = cardlist.filter((c) => c !== false);
+            cardlist = cardlist.filter((c) => c !== false).flat();
 
             response.status(200).json({
                 name: decktitle,
                 cards: cardlist,
+                source: lang === 'EN' ? DECKLOG_EN : DECKLOG_JP,
                 carderrors,
             });
         }
