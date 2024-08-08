@@ -13,6 +13,7 @@ router.delete("/api/deck/:deckid", services.DeleteDeck);
 router.get("/api/card", services.GetCard);
 router.get("/api/cardsearch", services.SearchCards);
 router.get("/api/deck/:deckid/form/:formtype?", services.GetDeckForm);
+router.get("/api/decklog/:decklogid", services.ImportDecklog);
 //user stuff
 router.get("/api/users/:userid", services.GetUserData);
 router.post("/api/users/config", services.SetUserConfig),

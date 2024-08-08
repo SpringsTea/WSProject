@@ -37,8 +37,6 @@ class DeckSaveForm extends Component {
     const tournamentAttribute = showrecord || {};
     const attributes = deckdata.attributes || [];
 
-    console.log(deckdata)
-
     let alerts = [];
 
     if( deck.length === 0 ){

@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Input, Row, Col, Button, Alert } from 'antd';
+import { Input, Row, Col, Button, Alert, Flex, Space } from 'antd';
 import { 
   SaveOutlined
 } from '@ant-design/icons';
@@ -13,6 +13,7 @@ import CardSelector from './CardSelector';
 import Filters from '../partials/Builder/CardSelector/Filters';
 import DeckSaveModal from '../partials/Builder/DeckSave/DeckSaveModal';
 import Deck from './Deck';
+import ImportDeck from './ImportDeck';
 
 import { getLocale } from 'Utils/cardlocale';
 
@@ -93,7 +94,8 @@ class Builder extends Component {
           </Col>
 					<Col xxl={16} xl={16} lg={12} md={24}> 
 						<Deck cards={deck} />
-						<Button className="btn-deck-save" type="primary" icon={<SaveOutlined />} size='large' onClick={()=> handleToggleSaveModal(true)}>Save Deck</Button>
+            <ImportDeck />
+            <Button className="btn-deck-save" type="primary" icon={<SaveOutlined />} size='large' onClick={()=> handleToggleSaveModal(true)}>Save Deck</Button>
 					</Col>
 				</Row>
 			</div>

@@ -28,6 +28,12 @@ export async function saveDeck(data) {
 	}) 
 }
 
+export async function importDecklog(decklogid, lang = 'EN') {
+	return (await axios.get(`/api/decklog/${decklogid}`, { 
+		params: { lang } 
+	})).data;
+}
+
 export async function deleteDeck(deckid) {
 	return axios.delete(`/api/deck/${deckid}`).then((res) => {
 		return res
