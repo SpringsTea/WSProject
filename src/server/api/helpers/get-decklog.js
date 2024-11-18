@@ -7,7 +7,7 @@ module.exports = async(decklogid, lang = 'EN') => {
 
     const DECKLOG = lang === 'EN' ? DECKLOG_EN : DECKLOG_JP;
 
-    const decklogdataurl = `${DECKLOG}/system/app/api/view/${decklogid}`;
+    const decklogdataurl = `${DECKLOG}/system/app-ja/api/view/${decklogid}`;
     const decklogreferer = `${DECKLOG}/view/${decklogid}`;
 
     const headers = {
