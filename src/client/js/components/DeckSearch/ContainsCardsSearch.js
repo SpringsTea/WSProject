@@ -64,7 +64,7 @@ export default function ContainsCardSearch({ filters = {}, onSelect }) {
 								getPopupContainer={node => document.getElementById("cardcontainsselect")}
 								overlayStyle={{ zIndex: 1200 }}
 							>
-								{ `${card.locale.EN.name} (${card.cardcode})` }
+								{ `${card?.locale?.name || 'N/A'} (${card.cardcode})` }
 							</Popover>
 						</Option>
 						
