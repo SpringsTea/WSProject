@@ -51,7 +51,7 @@ try{
 
 		deck.triggers = [...decktriggers];
 		await deck.save();
-		console.log(`${deck.deckid}` saved, decktriggers)
+		console.log(`${deck.deckid} saved`, decktriggers)
 	}
 } catch(err){
 	console.error('Error:', err)
