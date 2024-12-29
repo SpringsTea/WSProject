@@ -21,6 +21,7 @@ const deckSchema = new mongoose.Schema({
 	private: { type: Boolean, default: false },
 	views: { type: Number, default: 0 },
 	attributes: { type: Array, default: [] },
+	triggers: { type: Array, default: [] },
 	favoriteusers: [{ type: ObjectId, ref: 'User'}],
 	favoritecount: { type: Number, default: 0 },
 	myfavorite: {type: Boolean, default: false},//placeholder value to be assigned on search, should never be set
