@@ -4,24 +4,31 @@ import {
   QuestionCircleOutlined
 } from '@ant-design/icons';
 
-export default function DeckTriggers({ triggers = [], imageStyle = {} }) {
+export default function DeckTriggers({ triggers = [], imageStyle = {}, limit = 9 }) {
 
 	return (
 		<span>
 			{
-				triggers.map((trigger) => 
-					<div className="trigger-icon">
+				triggers.slice(0, limit).map((trigger) => 
+					<span style={{display: 'inline-block'}} className="trigger-icon">
 						<Img
 							style={{
 								width: '32px',
 								...imageStyle
 							}}
-						    src={`/images/triggers/${trigger}.png`}
+						    src={`/images/assets/triggers/${trigger}.png`}
 					    	unloader={<QuestionCircleOutlined className="image-not-found" />}
 					    />
-					</div>
+					</span>
 				)
 			}
+			<span style={{position: 'relative', bottom: '10px'}}>
+				<strong>
+					{
+						triggers.length > limit ? `+${triggers.length - limit}` : ''
+					}
+				</strong>
+			</span>
 		</span>
 	)
 }

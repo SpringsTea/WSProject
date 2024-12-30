@@ -47,7 +47,7 @@ export default function DeckCard({ deck, loggedin }) {
 					description={deck.description || 'No Description'}
 				/>
 				<div style={{display:'flex', bottom: '15px', position: 'absolute', width: '100%'}}>
-					<DeckTriggers triggers={deck.triggers} imageStyle={{width: '25px'}} />
+					<DeckTriggers triggers={deck.triggers} imageStyle={{width: '25px'}} limit={3} />
 					<AttributesList attributes={deck.attributes} />
 					<FavoriteIcon deck={deck} loggedin={loggedin} />
 				</div>
