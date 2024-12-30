@@ -24,27 +24,40 @@ await mongoose.connect(`mongodb://127.0.0.1:27017/wsdata?authSource=admin`, mong
 console.log('connected');
 
 try{
-	let decks = DeckModel.find({ triggers: { $exists: false }, deleted: false, valid: true }).batchSize(100).cursor();
+	//triggers: { $exists: false }
+	let decks = DeckModel.find({ deleted: false, deckid:'4lDPaXFH_', valid: true }).batchSize(100).cursor();
+	console.log('Decks retreaved');
 
 	for await( const deck of decks ){
 
 		await deck.populate({ path: 'cards', match: { cardtype: 'CX' }, select: 'trigger' }).execPopulate();
-		let decktriggers = new Set([]);
 
+		let uniquecxs = [];
+		let decktriggers = [];
+
+		//deck.cards is only CX cards because of how the above populate works
 		deck.cards.map((card) => {
+
 			if(!card?.trigger || card?.trigger.length === 0){
 				return false;
 			}
 
+			if( uniquecxs.includes(card._id) ){
+				return false;
+			}
+			else{
+				uniquecxs.push(card._id)
+			}
+
 			//Special case for identifying double soul trigger
 			if( card?.trigger.length === 2 && card?.trigger?.[0] === 'SOUL' && card?.trigger?.[1] === 'SOUL'  ){
-				decktriggers.add('DSOUL')
+				decktriggers.push('SOUL')
 				return true;
 			}
 
 			card?.trigger.map((trig) => {
 				if(trig !== 'SOUL'){
-					decktriggers.add(trig)
+					decktriggers.push(trig)
 				}			
 			})
 		})
