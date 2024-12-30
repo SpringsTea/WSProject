@@ -6,6 +6,7 @@ import {
 } from '@ant-design/icons';
 
 import DeckStats from './DeckStats';
+import DeckTriggers from './DeckTriggers';
 import AttributesList from 'Partials/DeckSearch/AttributesList';
 import FavoriteIcon from 'Partials/DeckSearch/FavoriteIcon';
 import DeckExportMenu from './DeckExportMenu';
@@ -102,6 +103,7 @@ class DeckHeader extends Component {
 							</Button.Group>
 						</div>						
 					</div>
+					<DeckTriggers triggers={deck.triggers}/>
 					<h3>
 						{
 							deckuser ?

@@ -13,7 +13,7 @@ class AttributesList extends Component {
 	render(){
 		const { attributes } = this.props;
 		return(
-			<div className="container-attributes">
+			<span className="container-attributes">
 				{
 					attributes.map( (attr = {}, i) => {
 
@@ -27,7 +27,7 @@ class AttributesList extends Component {
 						}					
 					})
 				}
-			</div>
+			</span>
 		)
 	}
 }
