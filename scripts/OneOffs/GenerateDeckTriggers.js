@@ -9,6 +9,8 @@ const CardModel = require(`${MODEL_PATH}/card`)
 
 const DeckTriggers = require('../../src/server/api/helpers/deck-triggers')
 
+var OverwriteTriggers =  !!process.env.OWT || false;
+
 var mongooseOptions = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -26,13 +28,18 @@ await mongoose.connect(`mongodb://127.0.0.1:27017/wsdata?authSource=admin`, mong
 console.log('connected');
 
 try{
-	//triggers: { $exists: false }
-	let decks = DeckModel.find({ deleted: false, triggers: { $exists: false }, valid: true }).batchSize(100).cursor();
+	let query = { deleted: false, triggers: { $exists: false } };
+
+	if( OverwriteTriggers ){
+		delete query.triggers;
+	}
+
+	let decks = DeckModel.find(query).batchSize(100).cursor();
 	console.log('Decks retrieved');
 
 	for await( const deck of decks ){
 
-		await deck.populate({ path: 'cards', match: { cardtype: 'CX' }, select: 'trigger' }).execPopulate();
+		await deck.populate({ path: 'cards', match: { cardtype: 'CX' }, select: 'trigger lang locale' }).execPopulate();
 
 		let decktriggers = DeckTriggers.calcuateTriggers(deck);
 
