@@ -46,7 +46,9 @@ class EncoreHeader extends Component {
 							<Menu mode="horizontal" theme="dark" 
 								style={{display:'inline-block', width: '100%'}}
 							>
-								<Menu.Item > 
+								<Menu.Item
+									key="logo"
+								> 
 									<a href="/">
 										<img src="/images/assets/ClappyNoText_240.png" style={{paddingRight: '3px'}} />
 										{
@@ -54,28 +56,28 @@ class EncoreHeader extends Component {
 										} 							
 									</a>
 								</Menu.Item>
-								<Menu.Item><a href="/builder">Builder</a></Menu.Item>
-								<Menu.Item><a href="/">Decks</a></Menu.Item>
+								<Menu.Item key="builder-link"><a href="/builder">Builder</a></Menu.Item>
+								<Menu.Item key="decks-link"><a href="/">Decks</a></Menu.Item>
 								{
 									//roles.translator &&
 									//<Menu.Item><a href="/translations">Translations</a></Menu.Item>
 								}				
 								{
 									loggedin == 'true' ?
-										<Menu.Item className="right" onClick={handleLogout}><LogoutOutlined /></Menu.Item>
+										<Menu.Item key="logout" className="right" onClick={handleLogout}><LogoutOutlined /></Menu.Item>
 									:
-										<Menu.Item className="right"><a href="/login"><LoginOutlined /></a></Menu.Item>
+										<Menu.Item key="login" className="right"><a href="/login"><LoginOutlined /></a></Menu.Item>
 								}
 								{
 									loggedin == 'true' &&
-									<Menu.Item className="right"><a href="/user"><UserOutlined /></a></Menu.Item>
+									<Menu.Item key="user" className="right"><a href="/user"><UserOutlined /></a></Menu.Item>
 								}
 								{
 									loggedin == 'true' &&
-									<Menu.Item className="right"><a href={`/user/${username}/decks`}><BookOutlined /></a></Menu.Item>
+									<Menu.Item key="mydecks" className="right"><a href={`/user/${username}/decks`}><BookOutlined /></a></Menu.Item>
 								}
 								
-								<Menu.Item className="right"> 
+								<Menu.Item key="discord" className="right"> 
 									<Tooltip title="Get development updates!" placement="bottom">
 										<a target="_blank" href="https://discord.gg/cFsZJCq">
 											<img style={{height:'25px'}} src="/images/assets/discord.png" />
