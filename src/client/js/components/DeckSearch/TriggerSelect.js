@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Select, Tag } from 'antd';
 import Img from 'react-image';
 
@@ -6,16 +6,13 @@ import {
   QuestionCircleOutlined
 } from '@ant-design/icons';
 
+import triggers from 'Constants/triggers';
+
 const { Option } = Select;
 
-export default function TriggerSelect({ onSelect }) {
 
-	const triggers = [
-		'SOUL',
-		'GATE',
-		'DRAW',
-		'CHOICE'
-	];
+//This component has some weird functionality to make it possible to select the same trigger twice
+export default function TriggerSelect({ onSelect }) {
 
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [selectedItems, setSelectedItems] = useState([]);
@@ -34,6 +31,14 @@ export default function TriggerSelect({ onSelect }) {
 	    const updatedItems = selectedItems.filter((val) => val !== label);
 	    setSelectedItems(updatedItems);
 	};
+
+	useEffect(() => {
+		if(dropdownOpen === false){
+			//cut off the leading key for submission
+			const selectedTriggers = selectedItems.map((item) => item.substring(1))
+			onSelect(selectedTriggers)//send triggers to parent
+		}		
+	}, [dropdownOpen, selectedItems])
 
 	const tagRender = (props) => {
 	  const { label, value, closable, onClose } = props;
@@ -80,6 +85,8 @@ export default function TriggerSelect({ onSelect }) {
 		      			{
 		      				triggers.map((trigger) => (
 		      					<Img
+		      						key={trigger}
+		      						title={trigger}
 		      						className="clickable"
 		      						onClick={() => handleSelect(`${selectedItems.length}${trigger}`)}
 									style={{

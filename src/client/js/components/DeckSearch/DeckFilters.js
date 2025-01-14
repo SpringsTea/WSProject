@@ -99,7 +99,7 @@ class DeckFilters extends Component {
 					<Col xxl={4} xl={6} lg={8} md={12} sm={24} xs={24}>
 						<div className="filter">	
 							<span>Triggers:</span>
-							<TriggerSelect />
+							<TriggerSelect onSelect={(val) => handleFilter(val, 'triggers')} />
 						</div>
 					</Col>
 					<Col xxl={4} xl={6} lg={8} md={12} sm={24} xs={24}>
