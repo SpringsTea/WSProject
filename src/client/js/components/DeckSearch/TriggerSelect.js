@@ -16,6 +16,7 @@ export default function TriggerSelect({ onSelect }) {
 
 	const [dropdownOpen, setDropdownOpen] = useState(false);
 	const [selectedItems, setSelectedItems] = useState([]);
+	const [checkRender, setCheckRender] = useState(false);
 
 	const handleSelect = (value) => {
 	  if( selectedItems.length === 0 || selectedItems.length >= 2 ){
@@ -33,11 +34,16 @@ export default function TriggerSelect({ onSelect }) {
 	};
 
 	useEffect(() => {
-		if(dropdownOpen === false){
+		if(dropdownOpen === false && checkRender === true){
 			//cut off the leading key for submission
 			const selectedTriggers = selectedItems.map((item) => item.substring(1))
 			onSelect(selectedTriggers)//send triggers to parent
 		}		
+
+		if( checkRender === false ){
+			setCheckRender(true)
+		}
+
 	}, [dropdownOpen, selectedItems])
 
 	const tagRender = (props) => {

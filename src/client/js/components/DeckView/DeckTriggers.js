@@ -9,8 +9,8 @@ export default function DeckTriggers({ triggers = [], imageStyle = {}, limit = 9
 	return (
 		<span>
 			{
-				triggers.slice(0, limit).map((trigger) => 
-					<span style={{display: 'inline-block'}} className="trigger-icon">
+				triggers.slice(0, limit).map((trigger, i) => 
+					<span key={i} style={{display: 'inline-block'}} className="trigger-icon">
 						<Img
 							style={{
 								width: '32px',
