@@ -1,10 +1,10 @@
 const triggers = [
-	"BOUNCE",
 	"CHOICE",
 	"COMEBACK",
 	"DRAW",
 	"GATE",
 	"POOL",
+	"RETURN",
 	"SHOT",
 	"SOUL",
 	"STANDBY",
