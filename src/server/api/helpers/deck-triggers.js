@@ -5,15 +5,21 @@ module.exports = {
 
 		deck.cards.map((card) => {
 
+			const cardlocale = card?.lang === 'EN' ? card?.locale?.EN : card?.locale?.NP
+
+			if(!cardlocale?.name){
+				return false;
+			}
+
 			if(!card?.trigger || card?.trigger.length === 0){
 				return false;
 			}
 
-			if( uniquecxs.includes(card._id) ){
+			if( uniquecxs.includes(cardlocale.name) ){
 				return false;
 			}
 			else{
-				uniquecxs.push(card._id)
+				uniquecxs.push(cardlocale.name)
 			}
 
 			//Special case for identifying double soul trigger
