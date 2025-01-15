@@ -126,7 +126,14 @@ module.exports = async (request, response, next) => {
             ]            
         }
 
-        let cards = await Card.find(query).select(`_id locale.${lang}.name imagepath cardcode`).limit(limit).exec();             
+        let cards = await Card.find(query).select(`_id locale imagepath cardcode`).limit(limit).exec();     
+
+        cards = cards.map((card) => ({
+            _id: card._id,
+            locale: card?.locale?.[lang]?.name ? card.locale[lang] : card?.locale?.NP,
+            imagepath: card.imagepath,
+            cardcode: card.cardcode
+        }))        
 
         response.status(200).json(cards || [])
     } catch (error) {

@@ -1,13 +1,13 @@
 //Transfer over army data from the map file to the database
 //This was only used to transition between using the flat file to storing the army requirments in the db
 
-const armymap = require('../src/server/api/mappings/army-map')
+const armymap = require('../../src/server/api/mappings/army-map')
 
-const config = require('../src/server/config/mongo.js')
+const config = require('../../src/server/config/mongo.js')
 const mongoose = require('mongoose')
 var ObjectId = mongoose.Types.ObjectId;
 
-const MODEL_PATH = '../src/server/api/models';
+const MODEL_PATH = '../../src/server/api/models';
 const CardModel = require(`${MODEL_PATH}/card`)
 
 var mongooseOptions = {

@@ -7,6 +7,7 @@
 import Deck from '../models/deck'
 import Card from '../models/card'
 import DeckValidator from '../helpers/deck-validator'
+import { calcuateTriggers } from '../helpers/deck-triggers';
 import DeckSets from '../helpers/deck-sets';
 import DeckLanguage from '../helpers/deck-language';
 
@@ -48,6 +49,7 @@ module.exports = async (request, response, next) => {
             }
             deckdata.attributes.push(attribute);
         })
+        deckdata.triggers = calcuateTriggers({cards: cardData})
 
         //Edit existing deck
         if(deckdata.deckid){

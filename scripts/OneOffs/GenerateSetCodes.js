@@ -2,11 +2,11 @@
 Generate setcodes for cards that only have side-release-sid data
 */
 
-const config = require('../src/server/config/mongo.js')
+const config = require('../../src/server/config/mongo.js')
 const mongoose = require('mongoose')
 var ObjectId = mongoose.Types.ObjectId;
 
-const MODEL_PATH = '../src/server/api/models';
+const MODEL_PATH = '../../src/server/api/models';
 
 const CardModel = require(`${MODEL_PATH}/card`)
 const SeriesModel = require(`${MODEL_PATH}/series`)

@@ -3,6 +3,7 @@ import { Select, Input, Checkbox, Row, Col } from 'antd';
 import { attributeIcons } from 'Constants/attributes';
 
 import ContainsCardSearch from './ContainsCardsSearch';
+import TriggerSelect from './TriggerSelect';
 
 const Option = Select.Option;
 
@@ -93,6 +94,12 @@ class DeckFilters extends Component {
 										</Option> )
 								}
 							</Select>
+						</div>
+					</Col>
+					<Col xxl={4} xl={6} lg={8} md={12} sm={24} xs={24}>
+						<div className="filter">	
+							<span>Triggers:</span>
+							<TriggerSelect onSelect={(val) => handleFilter(val, 'triggers')} />
 						</div>
 					</Col>
 					<Col xxl={4} xl={6} lg={8} md={12} sm={24} xs={24}>

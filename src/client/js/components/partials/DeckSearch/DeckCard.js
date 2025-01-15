@@ -3,6 +3,7 @@ import { Card, Avatar } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import Img from 'react-image';
 
+import DeckTriggers from 'Components/DeckView/DeckTriggers';
 import AttributesList from 'Partials/DeckSearch/AttributesList';
 import FavoriteIcon from 'Partials/DeckSearch/FavoriteIcon';
 
@@ -45,8 +46,11 @@ export default function DeckCard({ deck, loggedin }) {
 					title={DeckTitle(deck)} 
 					description={deck.description || 'No Description'}
 				/>
-				<AttributesList attributes={deck.attributes} />
-				<FavoriteIcon deck={deck} loggedin={loggedin} />
+				<div style={{display:'flex', bottom: '15px', position: 'absolute', width: '100%'}}>
+					<DeckTriggers triggers={deck.triggers} imageStyle={{width: '25px'}} limit={3} />
+					<AttributesList attributes={deck.attributes} />
+					<FavoriteIcon deck={deck} loggedin={loggedin} />
+				</div>
 			</Card>
 		</div>
 
