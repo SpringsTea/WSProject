@@ -39,6 +39,8 @@ module.exports = async (req, res) => {
                 //https://dev.to/chandrapantachhetri/sending-emails-securely-using-node-js-nodemailer-smtp-gmail-and-oauth2-g3a
                 const transporter = nodemailer.createTransport({
                     service: process.env.SERVICE,
+                    port: 465,
+                    secure: true,
                     auth: {
                         type: 'OAuth2',
                         user: process.env.MAILER,
