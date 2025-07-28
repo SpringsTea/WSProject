@@ -10,7 +10,7 @@ const CardPatch = require('./NewJPCardPatch.js');
 
 let SitePath = 'https://ws-rose.com';
 let CardsPath = __dirname + '/../Cards/wsrosedata';
-let ExcludedRarities = ['SR'];
+let ExcludedRarities = ['SR', 'RRR'];
 let IMPORT_SERIES =  process.env.SERIES || null; //OS02
 let IMPORT_SET = process.env.SET || null; //R02
 let SKIP_IMAGES = process.env.SKIP_IMAGES || false;

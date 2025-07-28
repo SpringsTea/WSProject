@@ -9,7 +9,15 @@ const IMAGE_DOWNLOAD_RATELIMIT = 200;//Requesting to many images quickly will ge
 var download = (url, filename) => {
 
   return new Promise(resolve => {
-    axios({method: "get", url, responseType: 'stream'})
+    axios({
+      method: "get", 
+      url, 
+      responseType: 'stream',
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)", // Pretend to be a browser
+        "Accept": "image/avif,image/webp,image/apng,image/*,*/*;q=0.8"
+      }
+    })
     .then((res) => {
       setTimeout(() => {
         res.data.pipe(createWriteStream(filename)).on('close', resolve);

@@ -13,7 +13,7 @@
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "webpack --watch --mode development",
     "dev:server": "nodemon src/server/index.js",
-    "import:series": "node scripts/SetImport/ImportSeries.js"
+    "import:rose": "node scripts/SetImport/ImportSeriesRose.js"
   },
   "keywords": [],
   "author": "",
