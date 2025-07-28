@@ -60,6 +60,10 @@ class SeriesSelect extends Component {
 							serieses.map( (series) => 
 								<Option key={series._id} value={series._id}>
 									{`${series.name} (${series.side}${series.release})`}
+									{
+										series.game === 'ROSE' &&
+										<img src="/images/assets/RoseR.png" style={{maxHeight: '1em'}} />
+									}									
 								</Option> 
 							)
 						}
