@@ -87,7 +87,7 @@ const patch = async(Cards, { game = 'WS' }) => {
     //Update existing card
     if( remotecard ){
       remotecard.locale[LOCALE] = {
-        name: CardContent.name,
+        name: CardContent.name || CardContent.jpName,
         ability: CardContent.ability || [],
         attributes: CardContent.specialAttrib || [],
       }
@@ -95,6 +95,7 @@ const patch = async(Cards, { game = 'WS' }) => {
       remotecard.level = CardContent.level
       remotecard.colour = CardContent.colour
       remotecard.cardtype = CardContent.cardType 
+      remotecard.imagepath = `JP/${CardContent.set}/${CardContent.side}${CardContent.release}/${CardContent.id}.png`
       remotecard.armycount = armylimit;
 
       //Only update series if there is none set
@@ -109,7 +110,7 @@ const patch = async(Cards, { game = 'WS' }) => {
     else{
       await CardModel.create({...CardContent, 
         locale: {
-          [LOCALE]: { name:CardContent.name, ability:CardContent.ability || [], attributes: CardContent.attributes || [] }
+          [LOCALE]: { name:CardContent.name || CardContent.jpName, ability:CardContent.ability || [], attributes: CardContent.attributes || [] }
         }, 
         series: series._id,
         sid: CardContent.id,
@@ -118,6 +119,7 @@ const patch = async(Cards, { game = 'WS' }) => {
         cardtype: CardContent.cardType,
         cardcode: CardContent.cardcode || `${CardContent.set}/${CardContent.side}${CardContent.release}-${CardContent.id}`,
         imagepath: `JP/${CardContent.set}/${CardContent.side}${CardContent.release}/${CardContent.id}.png`,
+        game,
         armycount: armylimit
       }, function(err, data){
         if(err){

@@ -14,6 +14,19 @@ import Property from '../partials/Builder/Card/Property';
 import { generateCardImageLink, generateCardCode } from 'Utils/cardshorthands';
 import { addDeckCard, removeDeckCard } from 'Actions/BuilderActions';
 
+
+const getCardUrl = (card) => {
+	if( card.game === 'ROSE' ){
+		return `https://ws-rose.com/cardlist/?cardno=${card.cardcode}`
+	}
+	if( card.lang === 'JP' ){
+		return `https://heartofthecards.com/code/cardlist.html?card=WS_${card.cardcode}`
+	}
+	else{
+		return `https://en.ws-tcg.com/cardlist/list/?cardno=${card.cardcode}`
+	}
+}
+
 class Card extends Component {
 	render(){
 		const { card, locale, locked, allowDeckControls = false, count = 0, onCardSelect = () => {} } = this.props;
@@ -23,12 +36,7 @@ class Card extends Component {
 				card ?
 				<div className="card">		
 					<h2 className="card-name">
-						<a target="_blank" href={
-							card.lang === 'JP' ?
-							`https://heartofthecards.com/code/cardlist.html?card=WS_${card.cardcode}`
-							:
-							`https://en.ws-tcg.com/cardlist/list/?cardno=${card.cardcode}`
-						}
+						<a target="_blank" href={getCardUrl(card)}
 						>
 							{locale.name || 'NaN'} <LinkOutlined />
 						</a>
