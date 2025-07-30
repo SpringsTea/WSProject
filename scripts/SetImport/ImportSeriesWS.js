@@ -10,7 +10,7 @@ const CardPatch = require('./NewJPCardPatch.js');
 
 let SitePath = 'https://ws-tcg.com';
 let CardsPath = __dirname + '/../Cards/wsoffdata';
-let ExcludedRarities = ['SR', 'RRR'];
+let ExcludedRarities = ['RRR'];
 let IMPORT_SERIES =  process.env.SERIES || null;
 let IMPORT_SET = process.env.SET || null;
 let SKIP_IMAGES = process.env.SKIP_IMAGES || false;
