@@ -102,7 +102,10 @@ class Card extends Component {
 						</Row>
 					</div>
 				</div>
-				: <span>No card found</span>
+				: 
+				<div className="card">
+					<span>No card found</span>
+				</div>
 				}
 			</div>
 		)

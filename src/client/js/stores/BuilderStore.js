@@ -15,7 +15,8 @@ let builderfilters = {
   rarity: {
     'RRR': false,
     'SR': false,
-    'SP': false
+    'SP': false,
+    'SSP': false
   },
   level: [],
   attributes: [],
