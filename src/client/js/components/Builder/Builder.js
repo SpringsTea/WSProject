@@ -73,7 +73,7 @@ class Builder extends Component {
 					<Col xxl={8} xl={8} lg={12} md={24}
           			className='container-series-selector nice-scroll'>
 						<SeriesSelect serieses={serieses} />
-            <Filters attributes={attributes} rarities={rarities} />
+            <Filters attributes={attributes} rarities={rarities} filters={builderfilters} />
 						<CardSelector isMobile={isMobile} cards={buildercards} filters={builderfilters} />
             {
               isMobile ?

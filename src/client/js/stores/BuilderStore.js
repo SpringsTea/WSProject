@@ -12,7 +12,11 @@ let rarities = new Set([]);
 let builderfilters = {
   cardtype: [],
   colour: [],
-  rarity: [],
+  rarity: {
+    'RRR': false,
+    'SR': false,
+    'SP': false
+  },
   level: [],
   attributes: [],
   text: null,
@@ -42,8 +46,9 @@ function filterBuilderCards() {
       return false;
     }
 
-    if(builderfilters.rarity.length > 0 && !builderfilters.rarity.includes( card.rarity )){
-      return false;
+    if( builderfilters?.rarity.hasOwnProperty( card.rarity ) ){
+
+      return builderfilters.rarity[card.rarity]
     }
 
     if( builderfilters.attributes.length > 0 && //Check cards for any 1 attribute matching builderfilters.attributes
@@ -153,6 +158,9 @@ const BuilderStore = {
       case AT.FILTER_BUILDER:
         if( props.data.type === 'text' || props.data.type === 'sorttype' ){
           builderfilters[props.data.type] = props.data.value;
+        }
+        else if( props.data.type === 'rarity' ){
+          builderfilters.rarity[props.data.filter] = props.data.value
         }
         else if( props.data.value === true ){//Add value onto type array
             builderfilters[props.data.type].push(props.data.filter);
