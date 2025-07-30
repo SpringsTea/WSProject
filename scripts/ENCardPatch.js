@@ -38,7 +38,7 @@ WSS_SERIES.forEach( async(FILE) => {
 
   let promises = setContent.map( async (sourcecard) => {
     let series = await SeriesModel.findOne({lang: 'EN', side: sourcecard.side, release: sourcecard.release}); 
-    let remotecard = await CardModel.findOne({side:sourcecard.side, release: sourcecard.release, 'sid': sourcecard.sid, 'lang': 'EN'});
+    let remotecard = await CardModel.findOne({cardcode: sourcecard.code, 'lang': 'EN'});
 
     if( remotecard ){
      //Update existing card
