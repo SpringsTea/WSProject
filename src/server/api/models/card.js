@@ -11,6 +11,10 @@ const locale = {
 
 const cardSchema = new mongoose.Schema({
 	cardcode: String,
+	game: {
+		type: String,
+		default: 'WS'
+	},
 	sid: String,
 	set: String,
 	side: String,

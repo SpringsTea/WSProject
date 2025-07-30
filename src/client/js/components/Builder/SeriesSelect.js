@@ -50,7 +50,10 @@ class SeriesSelect extends Component {
 						mode="multiple"
 						style={{width:'100%'}}
 						placeholder="Select one or more series"
-						filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+						filterOption={(input, option) => {
+							console.log(option)
+							return option.props?.['data-label'].toLowerCase().indexOf(input.toLowerCase()) >= 0
+						}}
 						onSelect={(val) => onSelect(val, false)}
 						onDeselect={(val) => onSelect(val, true)}
 						onChange={(val) => this.setState({selectvals: val})}
@@ -58,8 +61,16 @@ class SeriesSelect extends Component {
 					>
 						{
 							serieses.map( (series) => 
-								<Option key={series._id} value={series._id}>
+								<Option 
+									key={series._id} 
+									value={series._id} 
+									data-label={`${series.name} (${series.side}${series.release})`}
+								>
 									{`${series.name} (${series.side}${series.release})`}
+									{
+										series.game === 'ROSE' &&
+										<img src="/images/assets/RoseR.png" style={{maxHeight: '1em'}} />
+									}									
 								</Option> 
 							)
 						}

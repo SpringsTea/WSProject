@@ -16,7 +16,7 @@ class Filters extends Component {
   render(){
 
     const { handleTextSearch } = this;
-    const { attributes, rarities } = this.props;
+    const { attributes, rarities, filters } = this.props;
 
     return(
       <div className="container-filters">
@@ -83,7 +83,8 @@ class Filters extends Component {
                   rarities.map( (rarity) => 
                     <span key={rarity}>
                       {rarity} <Switch size="small" 
-                      onChange={ (val) => filterBuilder({ type:'rarity', filter: rarity, value: val }) } 
+                        onChange={ (val) => filterBuilder({ type:'rarity', filter: rarity, value: val }) } 
+                        value={ filters?.rarity.hasOwnProperty(rarity) ? filters?.rarity[rarity] : true}
                       />
                     </span> 
                   )
