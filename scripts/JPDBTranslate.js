@@ -38,24 +38,32 @@ else{
 DB_DATA.forEach( async(seriesfile) => {
 	var SERIES_DATA = JSON.parse(readFileSync(DB_PATH+seriesfile, { encoding: 'utf8'}));
 	let PROMISES = SERIES_DATA.map(async(data) => {
-		let remotecard = await CardModel.findOne({cardcode: data.code, lang: 'JP'});
-		if(!!remotecard){
-			if( LOCALE_OVERWRITE === true || !remotecard.locale.EN.name ){
-				remotecard.locale.EN = {
-					...remotecard.locale.EN,
-					name: data.name,
-					ability: data.ability.map((a) => cleanText(a)),
-					attributes: data.attributes,
-					source: data.community === true ? 'community' : 'nova'
-				}
-				console.log(`${remotecard.cardcode}`)
-				return remotecard.save();
-			}
-		}
-		else{
-			console.log(data.code, 'Card not found. Skipping')
-			return Promise.resolve()
-		}
+
+		let remoteCards = await CardModel.find({
+			cardcode: { $regex: `^${data.code}`, $options: 'i' },
+			lang: 'JP'
+		});
+
+		if (!remoteCards.length) {
+      console.log(data.code, 'Card not found. Skipping');
+      return;
+    }
+
+		const updatePromises = remoteCards.map(async (remotecard) => {
+      if (LOCALE_OVERWRITE === true || !remotecard.locale?.EN?.name) {
+        remotecard.locale.EN = {
+          ...remotecard.locale.EN,
+          name: data.name,
+          ability: data.ability.map((a) => cleanText(a)),
+          attributes: data.attributes,
+          source: data.community === true ? 'community' : 'nova',
+        };
+        console.log(`Updated: ${remotecard.cardcode}`);
+        return remotecard.save();
+      }
+    });
+
+    return Promise.all(updatePromises);
 	})
 
 	await Promise.all(PROMISES)

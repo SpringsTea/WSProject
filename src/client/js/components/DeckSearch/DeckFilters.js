@@ -63,8 +63,13 @@ class DeckFilters extends Component {
 									.map( (set, i) => 
 										<Option 
 											key={i} 
-											value={set._id}>
+											value={set._id}
+										>
 											{`${set.name}`}
+											{
+												set.game === 'ROSE' &&
+												<img src="/images/assets/RoseR.png" style={{maxHeight: '1em'}} />
+											}												
 										</Option> )
 								}
 							</Select>
@@ -89,8 +94,13 @@ class DeckFilters extends Component {
 									.map( (series, i) => 
 										<Option 
 											key={i} 
-											value={series._id}>
+											value={series._id}
+										>
 											{`${series.name} (${series.lang})`}
+											{
+												series.game === 'ROSE' &&
+												<img src="/images/assets/RoseR.png" style={{maxHeight: '1em'}} />
+											}	
 										</Option> )
 								}
 							</Select>

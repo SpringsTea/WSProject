@@ -153,7 +153,16 @@ class DeckHeader extends Component {
 						</div>
 					</Col>
 					<Col xl={6} className="display set-tags">
-						Sets: { deck.sets.map( (set) => <Tag key={set._id}>{`${set.name}(${set.set}/${set.side}${set.release})`}</Tag> ) }
+						Sets: { 
+							deck.sets.map( (set) => 
+							<Tag key={set._id}>
+								{`${set.name}(${set.set}/${set.side}${set.release})`}
+								{
+									set.game === 'ROSE' &&
+									<img src="/images/assets/RoseR.png" style={{maxHeight: '1em'}} />
+								}	
+							</Tag> 
+						)}
 					</Col>
 				</Row>
 				{
