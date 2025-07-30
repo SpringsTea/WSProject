@@ -46,9 +46,9 @@ function filterBuilderCards() {
       return false;
     }
 
-    if( builderfilters?.rarity.hasOwnProperty( card.rarity ) ){
+    if( builderfilters?.rarity.hasOwnProperty( card.rarity ) && builderfilters.rarity[card.rarity] === false){
 
-      return builderfilters.rarity[card.rarity]
+      return false
     }
 
     if( builderfilters.attributes.length > 0 && //Check cards for any 1 attribute matching builderfilters.attributes
