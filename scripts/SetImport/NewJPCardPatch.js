@@ -34,7 +34,6 @@ const patch = async(Cards, { game = 'WS' }) => {
 
     let armylimit = 4;
     let series = await SeriesModel.findOne({lang: 'JP', game, side: CardContent.side, release: CardContent.release});
-
     if(!series){
       let createseries = new SeriesModel({
         _id: new ObjectId(),
@@ -119,7 +118,7 @@ const patch = async(Cards, { game = 'WS' }) => {
           console.log('Something went wrong', err);
         }
         else{
-          console.log('Card added:', CardContent.cardcode, remotecard._id);
+          console.log('Card added:', CardContent.cardcode);
         }
       })
     } 
