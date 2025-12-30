@@ -51,7 +51,6 @@ class SeriesSelect extends Component {
 						style={{width:'100%'}}
 						placeholder="Select one or more series"
 						filterOption={(input, option) => {
-							console.log(option)
 							return option.props?.['data-label'].toLowerCase().indexOf(input.toLowerCase()) >= 0
 						}}
 						onSelect={(val) => onSelect(val, false)}

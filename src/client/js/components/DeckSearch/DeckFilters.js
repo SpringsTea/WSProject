@@ -52,7 +52,9 @@ class DeckFilters extends Component {
 								style={{width:'100%'}}
 								placeholder="Select a set"
 								defaultValue={filters.neoset}
-								filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+								filterOption={(input, option) => {
+									return option.props?.['data-label'].toLowerCase().indexOf(input.toLowerCase()) >= 0
+								}}
 								onChange={(val) => handleFilter(val, 'neoset')}
 								allowClear
 								showSearch
@@ -64,6 +66,7 @@ class DeckFilters extends Component {
 										<Option 
 											key={i} 
 											value={set._id}
+											data-label={`${set.name}`}
 										>
 											{`${set.name}`}
 											{
@@ -82,7 +85,9 @@ class DeckFilters extends Component {
 								style={{width:'100%'}}
 								placeholder="Select a series"
 								defaultValue={filters.set}
-								filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+								filterOption={(input, option) => {
+									return option.props?.['data-label'].toLowerCase().indexOf(input.toLowerCase()) >= 0
+								}}
 								onChange={(val) => handleFilter(val, 'set')}
 								allowClear
 								showSearch
@@ -95,6 +100,7 @@ class DeckFilters extends Component {
 										<Option 
 											key={i} 
 											value={series._id}
+											data-label={`${series.name} (${series.lang})`}
 										>
 											{`${series.name} (${series.lang})`}
 											{
