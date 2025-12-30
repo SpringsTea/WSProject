@@ -30,37 +30,30 @@ const patch = async(Cards, { game = 'WS' }) => {
 
   console.log(`${Cards.length} files being patched...`)
 
-  let series = null;
-
   for (let CardContent of Cards) {
 
     let armylimit = 4;
+    let series = await SeriesModel.findOne({lang: 'JP', game, side: CardContent.side, release: CardContent.release});
 
-    //Check if this cards series has been loaded yet
-    if( !series || (series.set !== CardContent.set && series.side !== CardContent.side && series.release !== CardContent.release) ){
-      series = await SeriesModel.findOne({lang: 'JP', game, side: CardContent.side, release: CardContent.release});
-
-      if(!series){
-        createseries = new SeriesModel({
-          _id: new ObjectId(),
-          enabled: false,
-          game,
-          set: CardContent.set,
-          side: CardContent.side,
-          release: CardContent.release,
-          name: `${CardContent.set}-${CardContent.side}${CardContent.release}`,
-          lang: 'JP',
-          hash: new ObjectId()
-        })
-        await createseries.save()
-        series = createseries;
-        logger( `Series created: ${JSON.stringify(createseries)}` )
-      }
-      else{
-        series.hash = new ObjectId(); //Generate new hash each time cards in a series have been updated
-        series.save();
-      }
-
+    if(!series){
+      let createseries = new SeriesModel({
+        _id: new ObjectId(),
+        enabled: false,
+        game,
+        set: CardContent.set,
+        side: CardContent.side,
+        release: CardContent.release,
+        name: `${CardContent.set}-${CardContent.side}${CardContent.release}`,
+        lang: 'JP',
+        hash: new ObjectId()
+      })
+      await createseries.save()
+      series = createseries;
+      logger( `Series created: ${JSON.stringify(createseries)}` )
+    }
+    else{
+      series.hash = new ObjectId(); //Generate new hash each time cards in a series have been updated
+      series.save();
     }
 
     //Check if card breaks the rule of 4 cards per deck AKA army cards
@@ -126,7 +119,7 @@ const patch = async(Cards, { game = 'WS' }) => {
           console.log('Something went wrong', err);
         }
         else{
-          console.log('Card added:', CardContent.id);
+          console.log('Card added:', CardContent.cardcode, remotecard._id);
         }
       })
     } 
