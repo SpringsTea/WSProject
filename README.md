@@ -64,16 +64,3 @@ MAIL_REFRESHTOKEN=...
 You can't download PDFs if you're on windows [due to lacking support from this library](https://github.com/tpisto/pdf-fill-form). The app will otherwise work.
 
 If this isn't working for you on a supported platform, you might need to `npm i pdf-fill-form`.
-
-## Roadmap
-
-There is a [Trello](https://trello.com/b/eQnnH19k/encoredecks) that is kept up to date with what things are planned and need to be worked on.
-
-## How can I help?
-
-Since encoredecks is open source, that means any one can help, just open a pull request! You can work any things in the roadmap above, or something you think adds value (Talk to me first).
-
-Non programmers can help with the following:
-
- - Card translations (@BoatsDon'tSink for details)
- - Site design or ideas
