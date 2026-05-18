@@ -10,7 +10,9 @@ const seriesSchema = new mongoose.Schema({
 	name: String,
 	lang: String,
 	enabled: { type: Boolean, default: true },
-	hash: { type: ObjectId }
+	hash: { type: ObjectId },
+	expansions: { type: [Number], default: [] },
+	update_date: { type: Date, defualt: null }
 }, { collection: 'series' })
 
 module.exports = mongoose.model('Series', seriesSchema);

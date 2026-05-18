@@ -37,6 +37,31 @@ function mapCardType(kind){
   }
 }
 
+//Returns the numerical release number
+function decodeRelease(code){
+  const str = code.toLowerCase()
+  const match = str.match(/^[a-z]+\/[a-z](\d+)-/);
+
+  if( match ){
+   return match[1];
+  }
+  else{
+    throw new Error(`Unknown release: ${code}`);
+  }
+}
+
+function decodeCardSid(code){
+  const str = code.toLowerCase();
+  const match = str.match(/-(.+)/);
+
+  if (match) {
+    return match[1];
+  }
+  else{
+    throw new Error(`Unknown sid: ${code}`);
+  }
+}
+
 //Colors are stored as image tags: [[blue.gif]]
 function decodeColor(color){
   const match = color.match(/\[\[(.*?)\.gif\]\]/i);
@@ -102,6 +127,26 @@ function decodeCardText(cardtext){
     .filter(Boolean);
 }
 
+function armyCalc(ability){
+  let armylimit = 4;
+  if(ability.length > 0){
+      ability.map((abilitytext) => {
+        if(abilitytext.includes('このカードと同じカード名のカードは、デッキに')){//JP text that represents 'you can run up to X copies of this card in your deck'
+          //remove all non digits from ability text 
+          //The idea being that any number present in this ability text is the number defining how many copies of a card can be run
+          const armytext = (abilitytext).replace( /\D/g,'').trim();
+          if(armytext){
+            armylimit = parseInt(armytext)
+          }
+          else{
+            armylimit = -1;//unlimited
+          }
+        }
+      })
+    }
+  return armylimit;
+}
+
 //Throw an error if bushi removes or changes the name of a prop so we dont import garbage
 function requireField(obj, field, context = '') {
   if (obj[field] == null) {
@@ -112,11 +157,13 @@ function requireField(obj, field, context = '') {
 
 function mapCardData(cards = [], expansion){
   return cards.map((card) => ({
+    id: requireField(card, 'id'),
     cardcode: requireField(card, 'card_number'),
     game: 'WS',
     set: requireField(card, 'title_number'),
     side: mapSide(card.side),
-    release: null,//This will need to be mapped somehow to an encore series
+    release: decodeRelease(card.card_number),
+    sid: decodeCardSid(card.card_number),
     lang: 'JP',
     cardtype: mapCardType(card.card_kind),
     color: decodeColor(card.color),
@@ -132,12 +179,16 @@ function mapCardData(cards = [], expansion){
         name: requireField(card, 'card_name'),
         attributes: decodeFeatures(card),
         ability: decodeCardText(card.text),
+        flavor: card.flavor,
         source: 'bushi'
       }
     },
     imagepath: requireField(card, 'picture'),
-    //TODO calculate this before import
     armycount: 4
+  }))
+  .map((card) => ({
+    ...card,
+    armycount: armyCalc(card.locale.NP.ability)
   }))
 }
 

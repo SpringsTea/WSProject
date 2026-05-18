@@ -6,10 +6,18 @@ const locale = {
 	'name': String,
 	'attributes': [String],
 	'ability': [String],
+	flavor: {
+		type: String,
+		default: null
+	},
 	'source': { type: String, defualt: 'bushi' }
 };
 
 const cardSchema = new mongoose.Schema({
+	id: {
+		type: Number,
+		default: null
+	},
 	cardcode: String,
 	game: {
 		type: String,
@@ -41,6 +49,10 @@ const cardSchema = new mongoose.Schema({
 	armycount: {
 		type: Number,
 		default: 4
+	},
+	expansion: {
+		type: Number,
+		default: null
 	}
 }, {collection: 'card'});
 module.exports = mongoose.model('Card', cardSchema);

@@ -14,8 +14,6 @@ module.exports = async(decklogid, lang = 'EN') => {
         'Referer': decklogreferer
     }
 
-    console.log(decklogdataurl)
-
     const request = axios.post(decklogdataurl, {}, {
         headers
     })
