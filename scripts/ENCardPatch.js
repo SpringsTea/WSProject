@@ -64,6 +64,8 @@ WSS_SERIES.forEach( async(FILE) => {
     else{
       let newcard = Object.assign({},sourcecard);
 
+      delete newcard.expansion;
+
       newcard.lang = 'EN';
       newcard.cardcode = sourcecard.code || `${sourcecard.set}/${sourcecard.side}${sourcecard.release}-${sourcecard.sid}`;
       newcard.imagepath = `EN/${sourcecard.side}${sourcecard.release}/${sourcecard.sid}.gif`
