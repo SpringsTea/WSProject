@@ -68,7 +68,7 @@ WSS_SERIES.forEach( async(FILE) => {
 
       newcard.lang = 'EN';
       newcard.cardcode = sourcecard.code || `${sourcecard.set}/${sourcecard.side}${sourcecard.release}-${sourcecard.sid}`;
-      newcard.imagepath = `EN/${sourcecard.side}${sourcecard.release}/${sourcecard.sid}.gif`
+      newcard.imagepath = `EN/${sourcecard.side}${sourcecard.release}/${sourcecard.sid}.png`
       newcard.cardtype = ((type) => {
         switch(type){
           case 'Character':
