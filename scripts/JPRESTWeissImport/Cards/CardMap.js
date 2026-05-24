@@ -39,8 +39,8 @@ function mapCardType(kind){
 
 //Returns the numerical release number
 function decodeRelease(code){
-  const str = code.toLowerCase()
-  const match = str.match(/\/[a-z]+(\d+)-/);
+  const str = code;
+  const match = str.match(/([A-Z]\d+)-/);
 
   if( match ){
    return match[1];
