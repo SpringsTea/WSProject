@@ -33,6 +33,12 @@ console.log('connected');
 
 async function Go(){
 	let CardImages = [];
+
+	if( !EXPANSION_ID ){
+		console.log('ExpansionID must be provided for now')
+		return false;
+	}
+
 	const ExpansionList = await getExpansions({ id: EXPANSION_ID }) //Keep in mind that TDs have their own seperate expansions
 	console.log(`${ExpansionList.length} expansions found`)
 	for (const expansion of ExpansionList) {
@@ -69,7 +75,7 @@ async function Go(){
 	  	//If series already exists but dosn't include this cards expansion
 			if( !series.expansions.includes( card.expansion ) ){
 				series.expansions = [...series.expansions, card.expansion]
-				series.save();
+				await series.save();
 			}
 
 	  	CardImages.push({
@@ -112,12 +118,20 @@ async function Go(){
 
 	  let remoteseries = await getSeries({ expansion: expansion.id })
 	  remoteseries.update_date = new Date()
-	  remoteseries.save();
+	  await remoteseries.save();
 
 	  await Scrape(CardImages)
 	}
 	
+	console.log('Import Complete')
+	return
 }
 
-Go()
+(async () => {
+  try {
+    await Go();
+  } finally {
+    await mongoose.disconnect();
+  }
+})();
 

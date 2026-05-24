@@ -14,7 +14,7 @@
     "dev:client": "webpack --watch --mode development",
     "dev:server": "nodemon src/server/index.js",
     "import:rose": "node scripts/SetImport/ImportSeriesRose.js",
-    "import:ws": "node scripts/SetImport/ImportSeriesWS.js"
+    "import:ws": "node scripts/JPRESTWeissImport"
   },
   "keywords": [],
   "author": "",
