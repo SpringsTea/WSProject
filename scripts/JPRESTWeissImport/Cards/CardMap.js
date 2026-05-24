@@ -40,7 +40,7 @@ function mapCardType(kind){
 //Returns the numerical release number
 function decodeRelease(code){
   const str = code.toLowerCase()
-  const match = str.match(/^[a-z]+\/[a-z](\d+)-/);
+  const match = str.match(/\/[a-z]+(\d+)-/);
 
   if( match ){
    return match[1];
@@ -63,10 +63,10 @@ function decodeCardSid(code){
 }
 
 //Colors are stored as image tags: [[blue.gif]]
-function decodeColor(color){
-  const match = color.match(/\[\[(.*?)\.gif\]\]/i);
+function decodeColour(colour){
+  const match = colour.match(/\[\[(.*?)\.gif\]\]/i);
   if (!match) {
-    throw new Error (`Unknown card color: ${color}`)
+    throw new Error (`Unknown card colour: ${colour}`)
     return ''
   }
 
@@ -166,7 +166,7 @@ function mapCardData(cards = [], expansion){
     sid: decodeCardSid(card.card_number),
     lang: 'JP',
     cardtype: mapCardType(card.card_kind),
-    color: decodeColor(card.color),
+    colour: decodeColour(card.color),
     level: parseInt(card.level) || 0, //CXs will have level "-"
     cost: parseInt(card.cost) || 0, //CXs will have cost "-"
     power: parseInt(card.power) || 0,

@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 const seriesSchema = new mongoose.Schema({
-	_id: mongoose.Schema.Types.ObjectId,
 	game: { type: String, default: 'WS' },
 	set: String,
 	side: String,

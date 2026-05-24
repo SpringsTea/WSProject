@@ -4,7 +4,7 @@ const SeriesModel = require(`${MODEL_PATH}/series`)
 async function getSeries({ side = undefined, release = undefined, expansion = undefined }){
 
 	if( (!side && !release) && !expansion  ){
-		return [];
+		return {};
 	}
 
 	const query = {
@@ -18,6 +18,28 @@ async function getSeries({ side = undefined, release = undefined, expansion = un
   return series;
 }
 
+async function createSeries(series){
+	if( !series.set || !series.side || !series.release  ){
+		return null;
+	}
+
+	try{
+		const res = await SeriesModel.create({
+			...series,
+			name: `${series.set}/${series.side}-${series.release}`,
+			game: 'WS',
+			enabled: false
+		})
+		console.log('Series Created:', res)
+		return res;
+	}
+	catch(err){
+		console.log("Something went wrong", err)
+		throw err;
+	}	
+}
+
 module.exports = {
-	getSeries
+	getSeries,
+	createSeries
 }
