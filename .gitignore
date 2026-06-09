@@ -1,6 +1,6 @@
 node_modules/
 dist/
-public/images
+public/images/*
 !public/images/assets/
 !public/images/assets/**
 
