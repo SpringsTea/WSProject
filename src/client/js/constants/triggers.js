@@ -8,7 +8,8 @@ const triggers = [
 	"SHOT",
 	"SOUL",
 	"STANDBY",
-	"TREASURE"
+	"TREASURE",
+	"FOCUS"
 ];
 
 export default triggers;

@@ -2,6 +2,8 @@
 CardMap takes data returned from bushis new REST api and converts it into encores interal card model.
 */
 
+const { triggers } = require('./triggers');
+
 //Internally the card side is stored as -1 for W and -2 for S
 function mapSide(side){
   switch(side){
@@ -39,15 +41,13 @@ function mapCardType(kind){
 
 //Returns the numerical release number
 function decodeRelease(code){
-  const str = code;
-  const match = str.match(/([A-Z]\d+)-/);
+  const match = code.match(/^[^/]+\/([^/]+)-/);
 
-  if( match ){
-   return match[1];
-  }
-  else{
+  if (!match) {
     throw new Error(`Unknown release: ${code}`);
   }
+
+  return match[1].substring(1);
 }
 
 function decodeCardSid(code){
@@ -80,17 +80,23 @@ function decodeSoul(soul){
   return matches ? matches.length : 0;
 }
 
-//I dont currently map trigger names to anything,
-//But there are so inconsistancies sometimes with oldercards having COMEBACK vs SALVAGE
-function deodeTrigger(triggerstring){
-  if (!triggerstring || triggerstring === '-') return [];
+function decodeTrigger(triggerString) {
+  if (!triggerString || triggerString === '-') return [];
 
-  const matches = triggerstring.match(/\[\[(.*?)\.gif\]\]/g);
+  const matches = triggerString.match(/\[\[(.*?)\.gif\]\]/g);
   if (!matches) return [];
 
-  return matches.map(m => {
-    const inner = m.match(/\[\[(.*?)\.gif\]\]/);
-    return inner ? inner[1].toUpperCase() : null;
+  return matches.map(match => {
+    const inner = match.match(/\[\[(.*?)\.gif\]\]/);
+    if (!inner) return null;
+
+    const triggerName = inner[1].toUpperCase();
+
+    if (!(triggerName in triggers)) {
+      throw new Error(`Unknown trigger: ${triggerName}`);
+    }
+
+    return triggers[triggerName];
   }).filter(Boolean);
 }
 
@@ -172,7 +178,7 @@ function mapCardData(cards = [], expansion){
     power: parseInt(card.power) || 0,
     soul: decodeSoul(card.soul),
     rarity: requireField(card, 'rare'),
-    trigger: deodeTrigger(card.card_trigger),
+    trigger: decodeTrigger(card.card_trigger),
     expansion: requireField(card, 'expansion'),
     locale: {
       NP: {
