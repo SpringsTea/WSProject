@@ -39,7 +39,7 @@ const Scrape = (cards = []) => {
 
       !existsSync(imagedestination) && mkdirSync(imagedestination, { recursive: true });
 
-      //If the .gif image already exists, skip downloading
+      //If the image already exists, skip downloading
       if( !existsSync(`${imagedestination}/${card.sid}${imageextension}`) ){
         console.log(`Downloading: ${imagedestination}/${card.sid}${imageextension}`)
         await download(remotepath, `${imagedestination}/${card.sid}${imageextension}`)
