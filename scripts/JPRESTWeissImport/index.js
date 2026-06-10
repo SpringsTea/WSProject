@@ -10,6 +10,7 @@ const mongoose = require('mongoose')
 var ObjectId = mongoose.Types.ObjectId;
 
 let EXPANSION_ID =  process.env.EXPANSION_ID || null;
+let SERIES = process.env.SERIES || null;
 
 const ImageUrl = 'https://ws-tcg.com/wordpress/wp-content/images/cardlist/';
 const IMAGE_DESTINATION = path.resolve(
@@ -33,96 +34,104 @@ mongoose.connect(`mongodb://157.245.11.116:27017/wsdata?authSource=admin`, mongo
 console.log('connected');
 
 async function Go(){
+	let Cards = []
 	let CardImages = [];
 
-	if( !EXPANSION_ID ){
-		console.log('ExpansionID must be provided for now')
+	if( !EXPANSION_ID && !SERIES ){
+		console.log('Expansion or Series is required')
 		return false;
 	}
 
-	const ExpansionList = await getExpansions({ id: EXPANSION_ID }) //Keep in mind that TDs have their own seperate expansions
-	console.log(`${ExpansionList.length} expansions found`)
-	for (const expansion of ExpansionList) {
-	  console.log(`fetching cards for expansion ${expansion.id} (${expansion.name})...`)
-	  const Cards = await getCards({ expansion });
-	  console.log(`${Cards.length} cards found`);
-	  
-	  let serieses = new Map;
+	if( !!EXPANSION_ID ){
+		const ExpansionList = await getExpansions({ id: EXPANSION_ID }) //Keep in mind that TDs have their own seperate expansions
+		console.log(`${ExpansionList.length} expansions found`)
 
-	  for (let card of Cards) {
-	  	let series = null;
-	  	if( !serieses.get(`${card.side}-${card.release}`)){
-	  		series = await getSeries({ side: card.side, release: card.release })
+		for (const expansion of ExpansionList) {
+		  console.log(`fetching cards for expansion ${expansion.id} (${expansion.name})...`)
+		  const ExpCards = await getCards({ expansion });
+		  Cards = [...Cards, ...ExpCards];
+		}
+	}
+	else if( !!SERIES ){
+		const SeriesCards = await getCards({ title_number: SERIES });
+		Cards = [...Cards, ...SeriesCards]
+	}
 
-	  		//No series is found, lets create it
-	  		if( !series ){
-	  			series = await createSeries({
-	  				set: card.set,
-	  				side: card.side,
-	  				release: card.release,
-	  				lang: 'JP',
-	  				hash: new ObjectId(),
-	  				expansions: [ card.expansion ],
-	  				update_date: expansion.update_date,
-	  			})
-	  		}
+	
+	console.log(`${Cards.length} cards found`);
+	
+	let serieses = new Map;
 
-	  		serieses.set(`${series.side}-${series.release}`, series)
-	  	}
-	  	else{
-	  		series = serieses.get(`${card.side}-${card.release}`)
-	  	}
+  for (let card of Cards) {
+  	console.log(card.cardcode)
+  	let series = null;
+  	if( !serieses.get(`${card.side}-${card.release}`)){
+  		series = await getSeries({ side: card.side, release: card.release })
 
-	  	//If series already exists but dosn't include this cards expansion
-			if( !series.expansions.includes( card.expansion ) ){
-				series.expansions = [...series.expansions, card.expansion]
-				await series.save();
+  		//No series is found, lets create it
+  		if( !series ){
+  			series = await createSeries({
+  				set: card.set,
+  				side: card.side,
+  				release: card.release,
+  				lang: 'JP',
+  				hash: new ObjectId(),
+  				expansions: [ card.expansion ],
+  				update_date: new Date()
+  			})
+  		}
+
+  		serieses.set(`${series.side}-${series.release}`, series)
+  	}
+  	else{
+  		series = serieses.get(`${card.side}-${card.release}`)
+  	}
+
+  	//If series already exists but dosn't include this cards expansion
+		if( !series.expansions.includes( card.expansion ) ){
+			series.expansions = [...series.expansions, card.expansion]
+			await series.save();
+		}
+
+  	CardImages.push({
+  		...card, 
+  		remoteimage: `${ImageUrl}${card.imagepath}`,
+  		imagedestination: `${IMAGE_DESTINATION}/${card.set}/${card.side}${card.release}`,
+  	})
+
+  	let remotecard = await getCard({ cardcode: card.cardcode })
+  	
+  	if( remotecard ){
+
+  		const imgext = path.extname(card.imagepath)
+
+			remotecard.locale['JP'] = {
+				name: card.name,
+				ability: card.ability || [],
+				attributes: card.attributes || [],
 			}
 
-	  	CardImages.push({
-	  		...card, 
-	  		remoteimage: `${ImageUrl}${card.imagepath}`,
-	  		imagedestination: `${IMAGE_DESTINATION}/${card.set}/${card.side}${card.release}`,
-	  	})
+			remotecard.level = card.level
+			remotecard.colour = card.colour
+			remotecard.cardtype = card.cardtype 
+			remotecard.imagepath = `JP/${card.set}/${card.side}${card.release}/${card.sid}${imgext}`
+			remotecard.armycount = card.armylimit;
 
-	  	let remotecard = await getCard({ cardcode: card.cardcode })
-	  	
-	  	if( remotecard ){
+			//Only update series if there is none set
+			//Never override existing series because sometime is has to be manually set because fuck bushi
+			if( remotecard.series == null ){
+				remotecard.series = series ? series._id : null;
+			}
 
-	  		const imgext = path.extname(card.imagepath)
+			await remotecard.save();
+			console.log('Card Saved', remotecard.cardcode, remotecard._id);
+  	}
+  	else{
+			await createCard(card, series)
+  	}
+  }
 
-				remotecard.locale['JP'] = {
-					name: card.name,
-					ability: card.ability || [],
-					attributes: card.attributes || [],
-				}
-
-				remotecard.level = card.level
-				remotecard.colour = card.colour
-				remotecard.cardtype = card.cardtype 
-				remotecard.imagepath = `JP/${card.set}/${card.side}${card.release}/${card.sid}${imgext}`
-				remotecard.armycount = card.armylimit;
-
-				//Only update series if there is none set
-				//Never override existing series because sometime is has to be manually set because fuck bushi
-				if( remotecard.series == null ){
-					remotecard.series = series ? series._id : null;
-				}
-
-				await remotecard.save();
-				console.log('Card Saved', remotecard.cardcode, remotecard._id);
-	  	}
-	  	else{
-				await createCard(card, series)
-	  	}
-	  }
-
-	  let remoteseries = await getSeries({ expansion: expansion.id })
-	  remoteseries.update_date = new Date()
-	  await remoteseries.save();
-
-	  await Scrape(CardImages)
-	}
+  await Scrape(CardImages)
 	
 	console.log('Import Complete')
 	return

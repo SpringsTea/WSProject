@@ -161,7 +161,7 @@ function requireField(obj, field, context = '') {
   return obj[field];
 }
 
-function mapCardData(cards = [], expansion){
+function mapCardData(cards = []){
   return cards.map((card) => ({
     id: requireField(card, 'id'),
     cardcode: requireField(card, 'card_number'),
