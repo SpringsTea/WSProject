@@ -37,6 +37,7 @@ const cardSchema = new mongoose.Schema({
 	soul: Number,
 	rarity: String,
 	equivilantcard: { type: ObjectId, ref: 'Card', default: null },
+	locked: {type: Boolean, default: false},
 	trigger: {
 		type: [String],
 		default: []

@@ -10,13 +10,14 @@ const headers = {
   'user-agent': 'Mozilla/5.0'
 };
 
-async function getCards({ expansion }) {
+async function getCards({ expansion, title_number }) {
   try {
     let allCards = [];
 
     const firstRes = await axios.get(url, {
       params: {
-        expansion : expansion.id,
+        expansion : expansion?.id,
+        title_number
       },
       headers
     });
@@ -28,7 +29,8 @@ async function getCards({ expansion }) {
     for (let page = 2; page <= page_count; page++) {
       const res = await axios.get(url, {
         params: {
-          expansion: expansion.id,
+          expansion: expansion?.id,
+          title_number,
           page
         },
         headers
@@ -37,7 +39,7 @@ async function getCards({ expansion }) {
       allCards.push(...res.data.items);
     }
 
-    allCards = mapCardData(allCards, expansion);
+    allCards = mapCardData(allCards);
 
     return allCards;
 
