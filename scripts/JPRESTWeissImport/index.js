@@ -101,7 +101,7 @@ async function Go(){
 
   	let remotecard = await getCard({ cardcode: card.cardcode })
   	
-  	if( remotecard ){
+  	if( remotecard && remotecard.locked !== true){
 
   		const imgext = path.extname(card.imagepath)
 
