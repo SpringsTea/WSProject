@@ -3,7 +3,7 @@ const triggers = {
   COMEBACK: 'COMEBACK',
   SALVAGE: 'COMEBACK',
   DRAW: 'DRAW',
-  BOOK: 'BOOK',
+  BOOK: 'DRAW',
   FOCUS: 'FOCUS',
   GATE: 'GATE',
   PANTS: 'GATE',
