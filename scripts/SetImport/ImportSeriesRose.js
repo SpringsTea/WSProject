@@ -66,6 +66,7 @@ getCards().then(async(Cards) => {
 
 	for (let FILE of Cards) {
     	let CardContent = JSON.parse(readFileSync(FILE, { encoding: 'utf8'}));
+    	delete CardContent.id;//The id in rose files is not the same as the id in normal jp imports, just get rid of it.
     	CardData.push(CardContent)
     }
 
