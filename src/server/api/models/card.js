@@ -15,7 +15,7 @@ const locale = {
 
 const cardSchema = new mongoose.Schema({
 	id: {
-		type: Number,
+		type: String,
 		default: null
 	},
 	cardcode: String,

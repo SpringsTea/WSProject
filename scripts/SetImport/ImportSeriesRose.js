@@ -79,8 +79,6 @@ getCards().then(async(Cards) => {
 		)
 	}
 
-	CardData = CardData.map(({id, ...rest}) => ({...rest}))
-
 	if(!SKIP_PATCH){
 		CardPatch(CardData, { game: "ROSE" })
 	}
