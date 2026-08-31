@@ -66,7 +66,6 @@ getCards().then(async(Cards) => {
 
 	for (let FILE of Cards) {
     	let CardContent = JSON.parse(readFileSync(FILE, { encoding: 'utf8'}));
-    	delete CardContent.id;//The id in rose files is not the same as the id in normal jp imports, just get rid of it.
     	CardData.push(CardContent)
     }
 
@@ -79,6 +78,8 @@ getCards().then(async(Cards) => {
 			CardData.map((Card) => ({...Card, remoteimage: `${SitePath}${Card.imageURL}`}) )//We need to tell the scaper what site to download from
 		)
 	}
+
+	CardData = CardData.map(({id, ...rest}) => ({...rest}))
 
 	if(!SKIP_PATCH){
 		CardPatch(CardData, { game: "ROSE" })
