@@ -23,6 +23,7 @@ if( config.AUTH === true ){
 }
 
 console.log('connecting to mongoose...')
+//mongoose.connect(`mongodb://157.245.11.116:27017/wsdata?authSource=admin`, mongooseOptions); //Live connection if patching from local
 mongoose.connect(`mongodb://127.0.0.1:27017/wsdata?authSource=admin`, mongooseOptions);
 console.log('connected');
 
