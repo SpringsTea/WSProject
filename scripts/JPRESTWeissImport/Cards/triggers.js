@@ -9,6 +9,7 @@ const triggers = {
   PANTS: 'GATE',
   POOL: 'POOL',
   BAG: 'POOL',
+  STOCK: 'POOL',
   RETURN: 'RETURN',
   BOUNCE: 'RETURN',
   SHOT: 'SHOT',
