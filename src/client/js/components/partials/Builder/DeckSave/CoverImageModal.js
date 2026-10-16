@@ -27,7 +27,7 @@ export default function CoverImageModal({deck, deckdata, visible, handleVisible}
 						  }
 						  return accumulator;
 						}, [])
-						.sort( (a,b) => a.sid.localeCompare(b.sid) )
+						.sort( (a,b) => a.cardcode.localeCompare(b.cardcode) )
 						.map((card, i) => 
 							<Col span={8} key={i} className="clickable" style={{marginBottom: '4px'}}
 								onClick={() => { //Swap the clicked card with the first deck.cards index
