@@ -87,7 +87,8 @@ const patch = async(Cards, { game = 'WS' }) => {
 
       remotecard.level = CardContent.level
       remotecard.colour = CardContent.colour
-      remotecard.cardtype = CardContent.cardType 
+      remotecard.cardtype = CardContent.cardType
+      remotecard.sid = CardContent.id 
       remotecard.imagepath = `JP/${CardContent.set}/${CardContent.side}${CardContent.release}/${CardContent.id}.png`
       remotecard.armycount = armylimit;
 
